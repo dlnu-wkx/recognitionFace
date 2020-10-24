@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ccdc736-6106-45ce-98d9-c8e6daca4b97" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ArcFace64.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arcsoft-face.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arcsoft-face.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arcsoft-face.iws" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/libarcsoft_face.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/libarcsoft_face_engine.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/libarcsoft_face_engine_jni.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recognitionFace.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Results.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/config/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/config/MyMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/UserListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/UserFaceInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Cbank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/FaceSearchResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/FaceUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Jbank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/ProcessInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/enums/ErrorCodeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/factory/FaceEngineFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/CbankMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/JbankMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/MybatisUserFaceInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/FaceEngineService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/QbankService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/UserFaceInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/QbankServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/UserFaceInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CbankMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/JbankMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserInfoFaceMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/js/npm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602472719532.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602473035317.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602473068258.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602486520065.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602486539613.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602488667729.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602488774940.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602504377857.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602504693742.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602505699945.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602505703486.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602508376272.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602547407024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602549883579.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602549968122.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602550160290.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602550165037.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602550281808.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602550457068.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602589815069.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602640326774.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602640904507.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602920815525.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602920822166.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602920827065.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602920911356.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602920992955.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921082697.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921097542.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921145668.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921157119.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921160180.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921220371.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1602921235267.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/3A9487555A50B99070C16FB36EB77986.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/shibie.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/v2_pgf70f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/v2_pgfcmk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/v2_pgfcnq.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/jquery/jquery-3.3.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/jquery/jquery.cookie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/layui.mobile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/10.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/11.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/12.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/13.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/14.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/15.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/17.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/18.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/19.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/20.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/21.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/22.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/23.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/24.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/25.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/26.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/27.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/28.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/29.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/30.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/31.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/33.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/34.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/35.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/36.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/37.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/38.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/39.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/4.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/40.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/41.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/42.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/43.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/44.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/45.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/46.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/47.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/48.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/49.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/5.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/50.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/51.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/52.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/53.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/54.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/55.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/56.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/57.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/58.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/59.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/6.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/60.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/61.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/62.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/63.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/64.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/65.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/66.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/67.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/68.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/69.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/7.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/70.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/71.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/8.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/9.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/supplement/css/supplement.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/demo.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/demo2.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/face_registration.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/face_search.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/test.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/Application.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/Result.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/Results.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/config/ApplicationConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/config/MyMvcConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/FaceController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/QbankController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/UserListController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/domain/UserFaceInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Cbank.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/FaceSearchResDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/FaceUserInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Jbank.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/ProcessInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/enums/ErrorCodeEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/factory/FaceEngineFactory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/CbankMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/JbankMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/MybatisUserFaceInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/FaceEngineService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/QbankService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/UserFaceInfoService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl$CompareFaceTask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/QbankServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/UserFaceInfoServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/CbankMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/JbankMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserInfoFaceMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-3.3.7-dist/js/npm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602472719532.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602473035317.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602473068258.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602486520065.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602486539613.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602488667729.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602488774940.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602504377857.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602504693742.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602505699945.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602505703486.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602508376272.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602547407024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602549883579.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602549968122.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602550160290.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602550165037.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602550281808.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602550457068.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602589815069.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602640326774.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602640904507.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602920815525.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602920822166.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602920827065.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602920911356.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602920992955.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921082697.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921097542.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921145668.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921157119.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921160180.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921220371.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1602921235267.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/3A9487555A50B99070C16FB36EB77986.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/shibie.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/v2_pgf70f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/v2_pgfcmk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/v2_pgfcnq.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/jquery/jquery-3.3.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/jquery/jquery.cookie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/layui.mobile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/10.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/11.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/12.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/13.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/14.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/15.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/17.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/18.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/19.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/20.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/21.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/22.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/23.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/24.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/25.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/26.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/27.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/28.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/29.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/30.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/31.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/33.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/34.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/35.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/36.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/37.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/38.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/39.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/4.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/40.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/41.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/42.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/43.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/44.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/45.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/46.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/47.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/48.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/49.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/5.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/50.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/51.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/52.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/53.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/54.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/55.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/56.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/57.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/58.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/59.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/6.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/60.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/61.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/62.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/63.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/64.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/65.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/66.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/67.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/68.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/69.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/7.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/70.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/71.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/8.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/images/face/9.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/supplement/css/supplement.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/demo.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/demo2.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/face_registration.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/face_search.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/index.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/test.ftl" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="235" column="23" lean-forward="true" selection-start-line="235" selection-start-column="23" selection-end-line="235" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#pictureOutStream#0;class#FaceController#0" />
+                <element signature="method#base64StringToImage#0;class#FaceController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#677#678#0" expanded="true" />
+                <element signature="e#734#735#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/layui.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+              <folding>
+                <element signature="e#78395#78534#2" expanded="true" />
+                <element signature="e#80439#80578#2" expanded="true" />
+                <element signature="e#81288#81427#2" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/test.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-425">
+              <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/demo.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-152">
+              <caret line="145" column="20" lean-forward="true" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#2;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#video#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#canvas#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/QbankServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="46" column="43" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Singleton" />
+        <option value="Class" />
+        <option value=".ftl" />
+        <option value="HTML File" />
+        <option value="FxmlFile" />
+        <option value="freemarker" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>FaceEngine</find>
+      <find>fpath</find>
+      <find>/detectFaces</find>
+      <find>detectFaces</find>
+      <find>faceInfoArray</find>
+      <find>TYPE_INT_RGB</find>
+      <find>BufferedImage</find>
+      <find>TYPE_4BYTE_ABGR</find>
+      <find>call</find>
+      <find>firstTr</find>
+      <find>extractFaceFeature</find>
+      <find>compareFaceFeature</find>
+      <find>video2</find>
+      <find>regcoDiv</find>
+      <find>recognitionFaceId</find>
+      <find>findallquestion</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/2.2.5.RELEASE/spring-boot-starter-tomcat-2.2.5.RELEASE.pom" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/MybatisUserFaceInfoMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/modification/FaceEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/factory/FaceEngineFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserInfoFaceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/UserListController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/arcsoft/face/FaceEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/face_registration.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/UserFaceInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/demo.jsp.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/demo.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/jsp.fxml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftlh" />
+        <option value="$PROJECT_DIR$/src/main/html/index.html" />
+        <option value="$PROJECT_DIR$/target/classes/templates/index.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/supplement/css.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/supplement/css/supplement.css" />
+        <option value="$PROJECT_DIR$/target/classes/templates/demo.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/demo1.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/face_search.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/Jbank.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/Cbank.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Cbank.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Jbank.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/QbankService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/css/layui.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/test.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/demo.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../maven" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-5" />
+    <option name="y" value="45" />
+    <option name="width" value="1750" />
+    <option name="height" value="980" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="facedemo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="facedemo" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="facedemo" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="facedemo" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15316206" />
+    <property name="project.structure.side.proportion" value="0.36694214" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.itboyst.facedemo.dto" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\recognitionFace\src\main\resources\static\layui\css" />
+      <recent name="F:\recognitionFace\src\main\resources\templates" />
+      <recent name="F:\recognitionFace\src\main\java\com\itboyst\facedemo\service\impl" />
+      <recent name="F:\recognitionFace\src\main\java\com\itboyst\facedemo\service" />
+      <recent name="F:\recognitionFace\src\main\java\com\itboyst\facedemo\mapper" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="recognitionFace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itboyst.facedemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itboyst.facedemo.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ccdc736-6106-45ce-98d9-c8e6daca4b97" name="Default Changelist" comment="" />
+      <created>1602066843816</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602066843816</updated>
+      <workItem from="1602066847812" duration="7960000" />
+      <workItem from="1602154638576" duration="7522000" />
+      <workItem from="1602219343219" duration="12997000" />
+      <workItem from="1602289948268" duration="10959000" />
+      <workItem from="1602303530186" duration="14767000" />
+      <workItem from="1602375628299" duration="33824000" />
+      <workItem from="1602463996316" duration="21853000" />
+      <workItem from="1602502059346" duration="2791000" />
+      <workItem from="1602546267915" duration="4506000" />
+      <workItem from="1602562709399" duration="523000" />
+      <workItem from="1602587462592" duration="2680000" />
+      <workItem from="1602640197769" duration="6547000" />
+      <workItem from="1602748692872" duration="5700000" />
+      <workItem from="1602824688921" duration="8628000" />
+      <workItem from="1602895286457" duration="29260000" />
+      <workItem from="1603065966075" duration="5948000" />
+      <workItem from="1603176517700" duration="59000" />
+      <workItem from="1603196466243" duration="661000" />
+      <workItem from="1603267235380" duration="15145000" />
+      <workItem from="1603285012355" duration="2103000" />
+      <workItem from="1603289795411" duration="3406000" />
+      <workItem from="1603322052763" duration="17422000" />
+      <workItem from="1603413132448" duration="31429000" />
+      <workItem from="1603500397347" duration="13853000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="260543000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18766756" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.15275814" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.18413597" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40876946" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32956153" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32956153" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32956153" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.59971714" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.36916548" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32956153" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.46313673" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.3297587" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20643431" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.15275814" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.13578501" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.22065064" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32956153" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32956153" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32956153" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.59971714" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.5022971" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32956153" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.46313673" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.3297587" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar!/com/arcsoft/face/FaceEngine.class</url>
+          <line>251</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.m2/repository/org/apache/commons/commons-pool2/2.6.0/commons-pool2-2.6.0.jar!/org/apache/commons/pool2/impl/GenericObjectPool.class</url>
+          <line>508</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="imageInfo" language="JAVA" />
+        <watch expression="this" />
+        <watch expression="colorConvertOp" />
+        <watch expression="faceInfoList" />
+        <watch expression="faceInfoList" language="JAVA" />
+        <watch expression="faceFeature" />
+        <watch expression="faceFeature" language="JAVA" />
+        <watch expression="imageInfo.imageFormat" />
+        <watch expression="faceInfoList.get(13).faceFeature[99]" />
+        <watch expression="faceInfoList.get(13).faceFeature[99]" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>imageInfo</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/demo2.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="73" column="6" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/Cbank.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/Jbank.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Jbank.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/UserFaceInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/JbankMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/layui.mobile.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/CbankMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/JbankMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/CbankMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Cbank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/UserFaceInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/FaceEngineService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/UserFaceInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/QbankService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/face_search.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="189" column="48" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#canvas#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar!/com/arcsoft/face/enums/ImageFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="e#881#882#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar!/com/arcsoft/face/Rect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar!/com/arcsoft/face/FaceInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#1007#1008#0" expanded="true" />
+            <element signature="e#1039#1040#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar!/com/arcsoft/face/FaceEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="344" selection-start-line="344" selection-end-line="344" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-websocket/9.0.31/tomcat-embed-websocket-9.0.31-sources.jar!/org/apache/tomcat/websocket/server/WsFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.4.RELEASE/spring-web-5.2.4.RELEASE-sources.jar!/org/springframework/web/filter/RequestContextFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.4.RELEASE/spring-web-5.2.4.RELEASE-sources.jar!/org/springframework/web/filter/FormContentFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.4.RELEASE/spring-web-5.2.4.RELEASE-sources.jar!/org/springframework/web/filter/CharacterEncodingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="201" selection-start-line="201" selection-end-line="201" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.4.RELEASE/spring-web-5.2.4.RELEASE-sources.jar!/org/springframework/web/filter/OncePerRequestFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/core/StandardWrapperValve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="300" selection-start-line="300" selection-end-line="300" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/core/StandardContextValve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/authenticator/AuthenticatorBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="541" selection-start-line="541" selection-end-line="541" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/core/StandardHostValve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/valves/ErrorReportValve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/core/StandardEngineValve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/catalina/connector/CoyoteAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="426" selection-start-line="426" selection-end-line="426" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31-sources.jar!/org/apache/coyote/http11/Http11Processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="366" selection-start-line="366" selection-end-line="366" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.4.RELEASE/spring-web-5.2.4.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.4.RELEASE/spring-webmvc-5.2.4.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.4.RELEASE/spring-webmvc-5.2.4.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="804" selection-start-line="804" selection-end-line="804" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.4.RELEASE/spring-webmvc-5.2.4.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="952" selection-start-line="952" selection-end-line="952" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.4.RELEASE/spring-webmvc-5.2.4.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="1015" lean-forward="true" selection-start-line="1015" selection-end-line="1015" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.4.RELEASE/spring-webmvc-5.2.4.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/templates/test.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-171" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/layui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding>
+            <element signature="e#78395#78534#2" expanded="true" />
+            <element signature="e#80439#80578#2" expanded="true" />
+            <element signature="e#81288#81427#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/test.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/QbankServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="46" column="43" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/demo.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="145" column="20" lean-forward="true" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#2;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#canvas#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#677#678#0" expanded="true" />
+            <element signature="e#734#735#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="235" column="23" lean-forward="true" selection-start-line="235" selection-start-column="23" selection-end-line="235" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#pictureOutStream#0;class#FaceController#0" />
+            <element signature="method#base64StringToImage#0;class#FaceController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.36694214" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.36694214" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.36694214" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.36694214" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>recognitionFace</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.31</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.36694214" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="$PROJECT_DIR$" />
+    <option value="-U idea:idea" />
+  </component>
+</project>

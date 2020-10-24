@@ -1,0 +1,234 @@
+/*
+特定类
+ */
+.right1 {
+    top: 60px;
+    right: 80px;
+    position: fixed;
+
+}
+
+.right2 {
+    top: 160px;
+    right: 80px;
+    position: fixed;
+
+}
+
+.right3 {
+    bottom: 40px;
+    right: 80px;
+    position: fixed;
+}
+
+.pages {
+    bottom: 30px;
+
+    text-align: center;
+
+}
+
+.left {
+    width: 150px;
+    height: 600px;
+    left: 30px;
+    top: 60px;
+    position: fixed;
+}
+
+.button5 {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 25px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.button2 {
+    background-color: rgba(128, 128, 124, 0.42);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.button8 {
+    background-color: rgba(128, 128, 124, 0.42);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.button9 {
+    background-color: rgba(128, 128, 124, 0.42);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+.button6{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    bottom: 20px;
+    position: fixed;
+}
+
+
+
+.button3{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    bottom: 20px;
+    left: 300px;
+    position: fixed;
+
+}
+
+.button7{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+
+
+.button4{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    bottom: 20px;
+    right: 300px;
+    position: fixed;
+}
+
+
+.center {
+
+
+    /* position: absolute;*/
+    margin: 65px 100px 280px 260px;
+    width: 1000px;
+    height: 550px;
+    border-style: solid;
+    border-color: #0c0c0b;
+    background-color: rgba(217, 216, 216, 0.23);
+    /*position: fixed;*/
+}
+
+.choose:checked:before {
+    content: '';
+    /* width: 5px;
+     height:5px;
+     border: 1px solid #2CC17B;*/
+    background: #2CC17B;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+
+}
+.cbooks{
+    left:150px;
+
+}
+
+.question{
+    top:120px;
+    left:350px;
+
+}
+
+
+
+.choose:checked:after {
+
+    content: '';
+    width: 10px;
+    height: 5px;
+    border: 2px solid rgba(148, 148, 148, 0.58);
+    border-top: transparent;
+    border-right: transparent;
+    text-align: center;
+    display: block;
+    position: fixed;
+    top: 6px;
+    left: 5px;
+    vertical-align: middle;
+    transform: rotate(-45deg);
+
+}
+
+.top{
+    top: 0px;
+    left: 0px;
+    background-color: rgba(137, 128, 144, 0.47);
+    width:150%;
+    height:50px;
+    position:fixed;
+}
+
+
+.leftfont{
+    left: 10px;
+    top: 5px;
+    position:fixed;
+}
+
+.rightfont{
+    right: 10px;
+    top: 5px;
+    position: fixed;
+}
+
+
+.body {
+    background-color: rgba(228, 225, 218, 0.11);
+    position: fixed;
+}
