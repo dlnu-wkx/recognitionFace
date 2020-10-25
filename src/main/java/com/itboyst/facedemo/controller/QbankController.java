@@ -24,7 +24,7 @@ public class QbankController {
         return Qservice.findallQuestion(response);
     }
     /**
-     * 跳转到题目库
+     * 跳转到显示题目库的页面
      * weikaixuan 2020-10-13
      * @return
      */

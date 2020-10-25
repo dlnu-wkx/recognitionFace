@@ -219,9 +219,9 @@ public class FaceController {
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }
 
-    /**@RequestParam("name") String name, @RequestParam("gender") String gender, @RequestParam("similar") Integer similar, @RequestParam("age") Integer age,
+    /**
      * 跳转后的控制器
-     * weikaiuxan  2020-10-23
+     * 魏凯旋  2020-10-23
      * @param name
      * @param faceId
      * @param model
