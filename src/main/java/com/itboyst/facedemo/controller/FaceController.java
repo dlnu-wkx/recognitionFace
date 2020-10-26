@@ -195,8 +195,14 @@ public class FaceController {
             return false;
         }
     }
-    /*
-    人脸识别
+
+    /**
+     * 人脸识别返回识别的结果
+     * @param file
+     * @param groupId
+     * @param response
+     * @return
+     * @throws Exception
      */
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
