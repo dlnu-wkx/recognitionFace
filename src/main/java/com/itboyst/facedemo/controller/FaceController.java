@@ -262,7 +262,7 @@ public class FaceController {
     }
 
     /**
-     * 跳转后的控制器
+     * 人脸检验成功后跳转后的控制器
      * 魏凯旋  2020-10-23
      * @param name
      * @param faceId
