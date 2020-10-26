@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title> 题库 </title>
-    <link href="layui/css/demo.css" rel="stylesheet">
+    <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
 
 <#--  <script type="text/javascript" src="./layui/layui.js ">   </script>-->
-    <script  src="jquery/jquery-3.3.1.min.js "></script>
-    <script src="jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
+    <script src="./jquery/jquery.cookie.js"></script>
 
 </head>
-<body class="body">
-
+<body  class="body" >
+<!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >登陆后界面</font></div>
     <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
 </div>
 
+<!--左侧灰色按键-->
 <div class="left">
     <button class="button8" id="button1">固定任务</button>
     <br><br>
@@ -37,6 +38,7 @@
     <button class="button2" id="button9">任务名称</button>
     <br><br>
 </div>
+<!--右侧按键-->
 <div class="right1">
     <button class="button5">举手</button>
 </div>
@@ -49,18 +51,22 @@
     <button class="button5">退出系统</button>
 </div>
 
+<!--中间题目主体部分-->
+<div class="center" id="qbank" style="background-color: white">
 
-<div class="center" id="qbank" align="center">
 
 </div>
+
+
 <br><br>
 
 
+<!--翻页-->
 <div class="pages">
-    <button class="button3" onclick="lastpage()">上一页</button>
-    <button onclick="submit()" class="button6">提交测试</button>
-    <button class="button4" onclick="nextpage()">下一页</button>
+    <button class="button3" id="lastpage" onclick="lastpage()">上一页</button>
+    <button class="button4" id="nextpage" onclick="nextpage()">下一页</button>
 </div>
+
 
 
 
@@ -68,123 +74,156 @@
 </body>
 
 <script>
-
+    //分数
     var code=0;
+
+    //学生题解
     var ananswer=new Array();
+    //正确题解
     var answer=new Array();
+
     //记录页数的i值,页数减1
     var i=0;
 
+
+
+    //页面加载前方法
+    window.onload =function () {
+        load();
+    }
+
     /*
-    将所有问题都加载，显示一题，隐藏其它
-     */
-    window.onload = function laod () {
+       将所有问题都加载，显示一题，隐藏其它
+        */
+    function load() {
+        //上一页按键变灰
+        $("#lastpage").css("background-color","#A5A5A5");
+        $("#nextpage").show();
+        //上一页展现出来
 
-            var str = "";
 
-            //测试cookie
-            // alert($.cookie('name'));
+        //下一页恢复原来的样式与方法
+        var button4 =  $("#nextpage")
+        button4.attr("onclick","nextpage()");
+        button4.text('下一页');
 
-            //连接Servlet
-            $.ajax({
-                type: "post",
-                url: "/findallquestion",
-                contentType: false,
-                processData: false,
-                async: false,
-                success: function (question) {
+        //去除中间显示的样式
+        $("#qbank").removeAttr("align");
 
-                    //循环取出并加载选择题
-                    for (var i =0; i<question.cbank.length;i++) {
+        var str = "";
 
-                        var k=i+1;
-                        /*alert(question.cbank.question[0])*/
-                        str+="<div class='qbank"+i+"' id='qbank"+i+"'>";
+        //测试cookie
+        //alert($.cookie('name'));
 
-                        str+="<font size='4'>选择题</font>";
+        //连接Servlet
+        $.ajax({
+            type: "post",
+            url: "/findallquestion",
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (question) {
 
-                        str += " <div id='question' class='question'><font size='3' >"+k+"." + question.cbank[i].question + "</font></div><br><br><br>";
+                //选择题循环取出并加载
+                for (var w =0; w<question.cbank.length;w++) {
+                    var k=w+1;
 
-                        str += " <div class='cbooks'>";
-                        str += " <p><input type='checkbox' class='choose' name='message'  value='A' ><font size='4'>A.</font><font size='3' >" + question.cbank[i].answer1 + "</font><br><br><br>";
-                        str += " <input type='checkbox' class='choose' name='message'   value='B' ><font size='4'>B.</font><font size='3' >" + question.cbank[i].answer2 + "</font><br><br><br>";
-                        str += " <input type='checkbox' class='choose' name='message'   value='C'><font size='4'>C.</font><font size='3' >" + question.cbank[i].answer3 + "</font><br><br><br>";
-                        str += " <input type='checkbox'class='choose' name='message'   value='D' ><font size='4'>D.</font><font size='3' >" + question.cbank[i].answer4 + "</font><br><br><br>";
-                        str += " </p></div>";
+                    str+="<div class='qbank"+w+"' id='qbank"+w+"'>";
 
-                        str+="</div>";
+                    str+="<font size='5' class='title'>安全测试题,每题20分，60分及格</font>";
+                    str+="<font size='5' class='questiontitle'>选择题</font>";
 
-                    }
-                    //循环取出并加载判断题
-                    for(var j=0; j<question.jbank.length;j++){
-                        var k=j+4;
-                        var p=j+3;
-                        str+="<div class='qbank"+j+"' id='qbank"+p+"'>";
+                    str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].question + "</font></div><br><br><br>";
 
-                        str+="<font size='4'>判断题</font>";
+                    str += " <div class='cbooks' id='cbooks"+w+"'>";
+                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' ><font size='5'>A.</font><font size='5' >" + question.cbank[i].answer1 + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message'id='B"+w+"'    value='B' ><font size='5'>B.</font><font size='5' >" + question.cbank[i].answer2 + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'><font size='5'>C.</font><font size='5' >" + question.cbank[i].answer3 + "</font><br><br><br>";
+                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' ><font size='5'>D.</font><font size='5' >" + question.cbank[i].answer4 + "</font><br><br><br>";
+                    str += " </p></div>";
 
-                        str += " <div id='question' class='question'><font size='3' >"+k+"." + question.jbank[j].question + "</font></div><br><br><br>";
+                    str+="</div>";
 
-                        str += " <div class='cbooks'>";
-                        str += " <input type='checkbox' name='message'  class='choose'  value='对' ><font size='4'>对</font><br><br><br>";
-                        str += " <input type='checkbox' name='message'  class='choose'  value='错' ><font size='4'>错</font><br><br><br>";
-
-                        str += " </div>";
-
-                        str+="</div>";
-
-                    }
-                    //先清空里面的
-                    $("#qbank").empty();
-
-                    //再将所有html放入
-                    $("#qbank").html(str);
-
-                    //隐藏其它题
-                    $("#qbank1").hide();
-                    $("#qbank2").hide();
-
-                    $("#qbank3").hide();
-                    $("#qbank4").hide();
-
-                },
-                error: function (error) {
-                    alert(JSON.stringify(error))
                 }
-            });
-        }
+
+                //判断题循环取出并加载
+                for(var j=0; j<question.jbank.length;j++){
+                    var k=j+4;
+                    var p=j+3;
+                    str+="<div class='qbank"+p+"' id='qbank"+p+"'>";
+
+                    str+="<font size='5' class='questiontitle'>判断题</font>";
+
+                    str += " <div id='question' class='question'><font size='5' >"+k+"." + question.jbank[j].question + "</font></div><br><br><br>";
+
+                    str += " <div class='cbooks' id='cbooks"+p+"'>";
+                    str += " <p><input type='checkbox' name='message'  class='choose'  value='对' ><font size='5'>对</font><br><br><br>";
+                    str += " <input type='checkbox' name='message'   class='choose'  value='错' ><font size='5'>错</font><br><br><br>";
+
+                    str += " </p></div>";
+
+                    str+="</div>";
+
+                }
+                //先清空里面的
+                $("#qbank").empty();
+
+                //再将所有html放入
+                $("#qbank").html(str);
+
+                //隐藏其它题
+                $("#qbank1").hide();
+                $("#qbank2").hide();
+
+                $("#qbank3").hide();
+                $("#qbank4").hide();
+
+                //单选方法加载
+                onechose();
+
+            },
+            error: function (error) {
+                alert(JSON.stringify(error))
+            }
+        });
+    }
 
 
-
-
-
-
-
-
+    /**
+     * 提交方法
+     */
 
     function submit() {
-    ananswer[i]=$('input:checkbox:checked').val();
+        //分数信息居中显示
+        $("#qbank").attr("align","center");
 
-    var qbank=$("#qbank");
-    var str3="";
-
-    //可循环取出优化
-    answer[0]=$.cookie('answer0');
-    answer[1]=$.cookie('answer1');
-    answer[2]=$.cookie('answer2');
-    answer[3]=$.cookie('answer3');
-    answer[4]=$.cookie('answer4');
+        $("#lastpage").css("background-color","#A5A5A5");
+        $("#nexttpage").css("background-color","#A5A5A5");
 
 
+        //学生题解记录
+        ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
 
-    for (var j=0;j<5;j++){
-        if(ananswer[j]==answer[j]){
+        //中间题目获取
+        var qbank=$("#qbank");
+        var str3="";
 
-            code+=20;
+        //从cookie中拿出正确答案（可循环取出优化）
+        answer[0]=$.cookie('answer0');
+        answer[1]=$.cookie('answer1');
+        answer[2]=$.cookie('answer2');
+        answer[3]=$.cookie('answer3');
+        answer[4]=$.cookie('answer4');
+
+        //每答对一题加20分
+        for (var j=0;j<5;j++){
+
+            //正确答案与学生题解对比
+            if(ananswer[j]==answer[j]){
+                code+=20;
+            }
         }
-        }
-
-        alert(code)
+        //隐藏题目，并加载分数信息
         $("#qbank"+i+"").hide();
         str3+="<br><br><br><br><br>"
         str3+="<div><font size='3' >安全测试评分</font></div>";
@@ -193,65 +232,97 @@
         str3+="<div><font size='3' >测试总分：100分</font></div>";
         str3+="<div><font size='3' >合格分数：60分</font></div>";
         str3+="<br><br><br>"
-    if(code<60){
-        str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>需要重新答题</font>";
-        str3+="<br><br>"
-        str3+=" <button class='button7' onclick='test()'>重新答题</button>"
-    }else{
-        str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>已经</font><font size='3'color='red'>合格</font>";
-        str3+="<br><br>"
-        str3+="<font size='5'color='red'>点击左侧任务开始实训</font>";
+        //如果分数小于60，加载小于60的信息
+        if(code<60){
+            str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>需要重新答题</font>";
+            str3+="<br><br>"
+            str3+=" <button class='button7' onclick='reanswer()'>重新答题</button>"
+        }else{
+            //加载大于60分的信息
+            str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>已经</font><font size='3'color='red'>合格</font>";
+            str3+="<br><br>"
+            str3+="<font size='5'color='red'>点击左侧任务开始实训</font>";
 
-        //左侧按键颜色变灰
-        $('#button1').css('color','green');
-        $('#button2').css('color','orage');
-        $('#button3').css('color','bule');
-        $('#button4').css('color','bule');
-        $('#button5').css('color','bule');
-        $('#button6').css('color','bule');
-        $('#button7').css('color','bule');
-        $('#button8').css('color','bule');
-        $('#button9').css('color','bule');
+            //左侧按键颜色改变(可循环优化)
+            $('#button1').css('background-color','#70AD47');
+            $('#button2').css('background-color','#FFC000');
+            $('#button3').css('background-color','rgba(68,114,196)');
+            $('#button4').css('background-color','rgba(68,114,196)');
+            $('#button5').css('background-color','rgba(68,114,196)');
+            $('#button6').css('background-color','rgba(68,114,196)');
+            $('#button7').css('background-color','rgba(68,114,196)');
+            $('#button8').css('background-color','rgba(68,114,196)');
+            $('#button9').css('background-color','rgba(68,114,196)');
 
-    }
-    qbank.html(str3);
+        }
+        //放入
+        qbank.html(str3);
+        //提交按键隐藏（防止分数多次叠加）
+        $("#nextpage").hide();
 
-
+        code=0;
     }
 
     //用来测试的方法
-function test() {
-    alert(1)
-}
+    function test() {
+        alert(1)
+    }
 
+    //重新答题方法
+    function reanswer() {
+        //下一页出现
+        $("#nextpage").show();
+        //颜色改变
+        $("#lastpage").css("background-color","#4472C4");
+        $("#nextpage").css("background-color","#4472C4");
 
+        //初始化页面值
+        i=0;
 
+        //加载题目
+        load();
+
+    }
 
     //下一页
     function nextpage() {
         //翻页前先存储一下题解
-       ananswer[i]=$('input:checkbox:checked').val();
+        ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
 
-        if(i!=4 ){
-           //清除前一个题
-           $("#qbank"+i+"").hide();
+        if(i!=4){
 
-           //页面翻页
-           i++;
 
-           //加载下一页
-           $("#qbank"+i+"").show();
-       }else if(i==4){
-           alert("已经没有下一页了")
-       }
+            //清除前一个题
+            $("#qbank"+i+"").hide();
 
+            //页面翻页
+            i++;
+            //加载下一页
+            $("#qbank"+i+"").show();
+            if(i==1){
+                $("#lastpage").css("background-color","#4472C4");
+            }
+
+            if(i==4){
+                var button4 =  $("#nextpage")
+                button4.attr("onclick","submit()");
+                button4.text('交卷');
+            }
+
+        }else {
+
+            alert("已经没有下一页了")
+        }
+        //当前页面单选
+        onechose();
 
     }
 
     //上一页
     function lastpage(){
-    //翻页前先存储一下题解
-        ananswer[i]=$('input:checkbox:checked').val();
+
+        //翻页前先存储一下题解
+        ananswer[i]= $("#cbooks"+i+"").find(':checkbox:checked').val();
         if(i!=0){
             //清除前一个题
             $("#qbank"+i+"").hide();
@@ -261,29 +332,46 @@ function test() {
 
             //加载上一页
             $("#qbank"+i+"").show();
-
+            //当前页面单选
+            onechose();
+            if(i==0){
+                $("#lastpage").css("background-color","#A5A5A5");
+                $("#lastpage").css("daoborder-color","#f8fff9");
+            }
+            if(i==3){
+                var button4 =  $("#nextpage")
+                button4.attr("onclick","nextpage()");
+                button4.text('下一页');
+            }
 
         }else{
+
             alert("没有上一页了")
         }
 
 
     }
 
-//单选方法
-    $(function(){
-        $(":checkbox").each(function(){
+
+
+    //单选方法
+    function onechose(){
+        //在当前题解区域查找按键
+        $("#cbooks"+i+"").find(":checkbox").each(function(){
             $(this).click(function () {
                 if ($(this).is(":checked")) {
-                    //$('#cb').prop('checked') 一样的效果
-                    $(":checkbox").each(function () {
+                    //将之前确认的选项取消
+                    $("#cbooks"+i+"").find(":checkbox").each(function () {
                         $(this).prop("checked", false);
                     });
+                    //钩选现在需要确认的选项
                     $(this).prop("checked", true);
                 }
             });
         });
-    });
+
+
+    };
 
 
 

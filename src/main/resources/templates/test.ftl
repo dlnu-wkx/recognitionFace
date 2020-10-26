@@ -10,8 +10,7 @@
     <script src="./jquery/jquery.cookie.js"></script>
 
 </head>
-<body class="body">
-
+<body  class="body" >
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >登陆后界面</font></div>
@@ -53,10 +52,12 @@
 </div>
 
 <!--中间题目主体部分-->
-<div class="center" id="qbank" >
+<div class="center" id="qbank" style="background-color: white">
 
 
 </div>
+
+
 <br><br>
 
 
@@ -65,6 +66,7 @@
     <button class="button3" id="lastpage" onclick="lastpage()">上一页</button>
     <button class="button4" id="nextpage" onclick="nextpage()">下一页</button>
 </div>
+
 
 
 
@@ -96,7 +98,8 @@
     function load() {
         //上一页按键变灰
         $("#lastpage").css("background-color","#A5A5A5");
-        $("#lastpage").css("daoborder-color","#f8fff9");
+        $("#nextpage").show();
+        //上一页展现出来
 
 
         //下一页恢复原来的样式与方法
@@ -214,6 +217,7 @@
 
         //每答对一题加20分
         for (var j=0;j<5;j++){
+
             //正确答案与学生题解对比
             if(ananswer[j]==answer[j]){
                 code+=20;
@@ -254,8 +258,9 @@
         //放入
         qbank.html(str3);
         //提交按键隐藏（防止分数多次叠加）
-        $("#submit").hide();
+        $("#nextpage").hide();
 
+        code=0;
     }
 
     //用来测试的方法
@@ -265,9 +270,9 @@
 
     //重新答题方法
     function reanswer() {
-        //提交按键给出
-        $("#submit").show();
-
+        //下一页出现
+        $("#nextpage").show();
+        //颜色改变
         $("#lastpage").css("background-color","#4472C4");
         $("#nextpage").css("background-color","#4472C4");
 

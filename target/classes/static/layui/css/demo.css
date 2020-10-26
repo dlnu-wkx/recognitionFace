@@ -1,6 +1,7 @@
 /*
 特定类
  */
+
 .right1 {
     top: 60px;
     right: 80px;
@@ -37,7 +38,7 @@
 }
 
 .button5 {
-    background-color: #008CBA;
+    background-color:  #4472C4;
     border: none;
     color: white;
     padding: 25px 32px;
@@ -47,6 +48,13 @@
     font-size: 16px;
     border-radius: 10px;
 }
+
+.code{
+    color: transparent;
+    -webkit-text-fill-color: #F9D0B5;/*文字的填充色*/
+    -webkit-text-stroke: 0.8px #000;
+}
+
 
 .button2 {
     background-color: rgba(128, 128, 124, 0.42);
@@ -89,7 +97,7 @@
 
 
 .button6{
-    background-color: #008CBA;
+    background-color:  #4472C4;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -105,8 +113,8 @@
 
 
 .button3{
-    background-color: #008CBA;
-    border: none;
+    background-color:  #4472C4;
+    border:1px;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -121,7 +129,7 @@
 }
 
 .button7{
-    background-color: #008CBA;
+    background-color: #4472C4;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -135,7 +143,7 @@
 
 
 .button4{
-    background-color: #008CBA;
+    background-color: #4472C4 ;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -152,15 +160,13 @@
 
 .center {
 
-
-    /* position: absolute;*/
-    margin: 65px 100px 280px 260px;
-    width: 1000px;
-    height: 550px;
+    margin: 65px 100px 280px 180px;
+    width: 1117px;
+    height: 650px;
     border-style: solid;
-    border-color: #0c0c0b;
-    background-color: rgba(217, 216, 216, 0.23);
-    /*position: fixed;*/
+    border-color: #F2A774;
+    background-color: rgba(254, 255, 247, 0);
+    z-index: 9;
 }
 
 .choose:checked:before {
@@ -174,18 +180,6 @@
     vertical-align: middle;
 
 }
-.cbooks{
-    left:150px;
-
-}
-
-.question{
-    top:120px;
-    left:350px;
-
-}
-
-
 
 .choose:checked:after {
 
@@ -204,11 +198,39 @@
     transform: rotate(-45deg);
 
 }
+.title{
+    width: 600px;
+    left: 600px;
+    top: 100px;
+    position: absolute;
+}
+
+.cbooks{
+    left: 380px;
+    top: 280px;
+    position: absolute;
+}
+
+.questiontitle{
+    width: 600px;
+    left:320px;
+    top: 150px;
+    position: absolute;
+}
+
+.question{
+    /*  top:120px;
+      left:350px;*/
+    width: 800px;
+    left: 320px;
+    top: 200px;
+    position: absolute;
+}
+
 
 .top{
     top: 0px;
     left: 0px;
-    background-color: rgba(137, 128, 144, 0.47);
     width:150%;
     height:50px;
     position:fixed;
@@ -229,6 +251,7 @@
 
 
 .body {
-    background-color: rgba(228, 225, 218, 0.11);
+    background: rgba(137, 128, 144, 0.47);
     position: fixed;
+
 }
