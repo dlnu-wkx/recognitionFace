@@ -28,6 +28,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
@@ -161,7 +162,39 @@ public class FaceController {
         return "";
     }
 
-
+    /**
+     *对字节数组字符串进行Base64解码并生成图片
+     *魏凯旋 2020-10-26
+     * @param imgStr 图片的数据
+     * @param
+     * @return
+     */
+    private  boolean GenerateImage(String imgStr) {
+        String imgFilePath = "F:\\recognitionFace\\src\\main\\resources\\static\\images\\" + System.currentTimeMillis() + ".jpg";
+        if (imgStr == null) // 图像数据为空
+            return false;
+        //去掉头部的data:image/png;base64,
+        int start = imgStr.indexOf(',') + 1;
+            imgStr=imgStr.substring(start);
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            // Base64解码
+            byte[] bytes = decoder.decodeBuffer(imgStr);
+            for (int i = 0; i < bytes.length; ++i) {
+                if (bytes[i] < 0) {// 调整异常数据
+                    bytes[i] += 256;
+                }
+            }
+            // 生成jpg图片
+            OutputStream out = new FileOutputStream(imgFilePath);
+            out.write(bytes);
+            out.flush();
+            out.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     /*
     人脸识别
      */
@@ -172,6 +205,7 @@ public class FaceController {
             return Results.newFailedResult("groupId is null");
         }
         byte[] decode = Base64.decode(base64Process(file));
+
         BufferedImage bufImage = ImageIO.read(new ByteArrayInputStream(decode));
         ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);
         //人脸特征获取
@@ -183,6 +217,8 @@ public class FaceController {
         List<FaceUserInfo> userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);
         if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
             FaceUserInfo faceUserInfo = userFaceInfoList.get(0);
+            //获取目标文件路径以备上传照片使用
+            String fpath =userFaceInfoList.get(0).getPath();
             FaceSearchResDto faceSearchResDto = new FaceSearchResDto();
             BeanUtil.copyProperties(faceUserInfo, faceSearchResDto);
             List<ProcessInfo> processInfoList = faceEngineService.process(imageInfo);
@@ -210,10 +246,16 @@ public class FaceController {
             //将验证信息保存到Cookie
             Cookie name=new Cookie("name",faceSearchResDto.getName());
             Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
+            //替换“\”为“/”否则存不到Cookie中
+            String path =fpath.replace("\\","/");
+            //输出看是否有空格
+            Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
             name.setMaxAge(86400);
             faceId.setMaxAge(86400);
+            aimPath1.setMaxAge(86400);
             response.addCookie(name);
             response.addCookie(faceId);
+            response.addCookie(aimPath1);//把路径存到cookie中
             return Results.newSuccessResult(faceSearchResDto);
         }
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
@@ -225,14 +267,17 @@ public class FaceController {
      * @param name
      * @param faceId
      * @param model
+     * @param path 存储的图片路径
      * @return
      * @throws Exception
      */
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(@CookieValue("name") String name, @CookieValue("faceId") String faceId, Model model) throws Exception {
+    public String register(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
         model.addAttribute("faceId",faceId);
         model.addAttribute("name",name);
+        String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
+        model.addAttribute("path",indPath);
         return "index";
     }
 

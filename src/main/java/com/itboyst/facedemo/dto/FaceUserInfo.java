@@ -7,6 +7,15 @@ public class FaceUserInfo {
     private String name;
     private Integer similarValue;
     private byte[] faceFeature;
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public String getFaceId() {
         return faceId;

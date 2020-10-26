@@ -18,6 +18,7 @@
         <result column="phone_number" property="phoneNumber" javaType="String"/>
         <result column="create_time" property="createTime" javaType="java.util.Date"/>
         <result column="face_feature" property="faceFeature"/>
+        <result column="fpath" property="path" javaType="String"/>
     </resultMap>
 
 
@@ -31,6 +32,6 @@
 
     <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer"
             resultType="com.itboyst.facedemo.dto.FaceUserInfo">
-        select face_id,name,face_feature from user_face_info
+        select face_id,name,face_feature,fpath from user_face_info
     </select>
 </mapper>

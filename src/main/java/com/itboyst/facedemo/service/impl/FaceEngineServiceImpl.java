@@ -248,6 +248,8 @@ public class FaceEngineServiceImpl implements FaceEngineService {
                         info.setName(faceUserInfo.getName());
                         info.setFaceId(faceUserInfo.getFaceId());
                         info.setSimilarValue(similarValue);
+                        //给帅选出的对象加上path以备后面的上传照片用
+                        info.setPath(faceUserInfo.getPath());
                         resultFaceInfoList.add(info);
                     }
                 }
