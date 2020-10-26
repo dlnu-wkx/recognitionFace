@@ -25,7 +25,7 @@
             <div style="margin: 0,auto;margin-top:40px;height: 80px;text-align:center;line-height:40px;font-size: 40px;color: #E51C23">
                 ${name}
             </div>
-            <div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='images/shibie.jpg'style='width: 15rem;height: 16rem;'></div>
+            <div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='${path}'style='width: 15rem;height: 16rem;'></div>
             <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C"> 进入安浩智能学习工厂</div>
             <div>
                <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="test()">
@@ -33,7 +33,7 @@
                </button>
             </div>
        </div>
-       <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid #c2c2c2;">
+       <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid n10;">
           <div>
             <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:10px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
                 举手
