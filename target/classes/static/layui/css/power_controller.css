@@ -37,17 +37,6 @@
     width: 80%;
     position: absolute;
 }
-
-.popup{
-    height: 25%;
-    width: 10%;
-    right: 9%;
-    bottom: 10%;
-    position: fixed;
-    background-color: #C8C8C8 ;
-
-}
-
 .p_check{
     bottom: 0%;
     background-color: whitesmoke;
@@ -62,7 +51,7 @@
     height:93%;
     right: 0%;
     top: 6.7%;
-    border-left: 2px solid  #BBBBBB;
+    border-left: 2px solid #97A7C5;
     position: fixed;
 }
 
@@ -100,7 +89,7 @@
 }
 .p_button3{
     background-color:  #4472C4;
-    border-right: 1px solid rgba(104, 103, 105, 0.73);
+    border: none;
     color: white;
     padding: 10px 10px;
     text-align: center;
@@ -113,7 +102,7 @@
 }
 .p_button4{
     background-color:  #ED7D31;
-    border-right: 1px solid rgba(104, 103, 105, 0.73);
+    border: none;
     color: white;
     padding: 10px 10px;
     text-align: center;
@@ -126,7 +115,7 @@
 }
 .p_button5{
     background-color:  #4472C4;
-    border-right: 1px solid rgba(104, 103, 105, 0.73);
+    border:1px;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -135,19 +124,4 @@
     font-size: 16px;
     border-radius: 10px;
 
-}
-
-.parent{
-    width:100%;
-    height: 100%;
-    /* 以下属性垂直居中 */
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    opacity:1;
-    background-color: #AEC2E6;
-    opacity:0.5;
 }

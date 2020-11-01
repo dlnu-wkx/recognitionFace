@@ -216,7 +216,7 @@
 <br><br>
     <button class="p_button3">信息发布</button>
     <br><br>
-    <button class="p_button4" onclick="outpower()">退出</button>
+    <button class="p_button4">退出</button>
 </div>
 
 <!--下方按键及内容-->
@@ -229,28 +229,18 @@
     <input type="checkbox"><font size="3">关闭时延时</font><input type="text" size="1"><font size="3">分钟</font>
 </div>
 
-<!--弹框-->
-<div hidden class="popup" id="popup" align="center">
-    <br><br>
-    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-    <font size="3">弹窗</font><br>
-    <button class="p_button2">下课</button>
-</div>
 
-<!--蒙版-->
-<div id="parent" class="parent" hidden></div>
+
+
+
+
 
 
 </body>
 
 <script>
-   function outpower(){
-        $("#popup").show()
-   }
 
-   function lockscreen() {
-       $("#parent").show()
-   }
+
 
 </script>
 

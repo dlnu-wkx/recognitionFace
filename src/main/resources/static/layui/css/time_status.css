@@ -1,0 +1,32 @@
+
+.t_button1{
+    background-color: #4472C4;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 19px;
+    /*圆角控制器*/
+    /* border-radius: 10px; */
+    height: 12%;
+    width: 6%;
+    position: absolute;
+}
+
+.t_table{
+    left: 3%;
+    top: -5%;
+    right: 2%;
+    height: 90%;
+    width: 90%;
+    position: absolute;
+}
+.t_text{
+    height: 8%;
+    width: 82%;
+    bottom: 3%;
+    left: 9.2%;
+    position: absolute;
+}

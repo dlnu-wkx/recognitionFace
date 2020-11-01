@@ -104,12 +104,14 @@
     background-color:  #ED7D31;
     border: none;
     color: white;
-    padding: 25px 32px;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 26px;
+    font-size: 30px;
     border-radius: 10px;
+    height: 100px;
+    width: 100px;
 }
 .p_button5{
     background-color:  #4472C4;

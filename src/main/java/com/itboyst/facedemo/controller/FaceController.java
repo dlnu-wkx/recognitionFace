@@ -62,7 +62,12 @@ public class FaceController {
     @RequestMapping(value = "/power_controller")
     public String power_controller(){return "power_controller";}
 
+    @RequestMapping(value = "/time_status")
+    public String time_status(){return "time_status";}
 
+
+    @RequestMapping(value = "/information_service")
+    public String information_service(){return "information_service";}
 
 
 
