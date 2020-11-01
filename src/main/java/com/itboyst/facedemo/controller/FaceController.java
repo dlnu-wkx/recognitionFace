@@ -58,6 +58,15 @@ public class FaceController {
         return "demo";
     }
 
+
+    @RequestMapping(value = "/power_controller")
+    public String power_controller(){return "power_controller";}
+
+
+
+
+
+
     /*
     人脸添加
      */
