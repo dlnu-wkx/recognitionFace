@@ -21,48 +21,7 @@
 <!--中部电源显示-->
 <div class="p_center">
     <table class="p_bbbox">
-        <tr>
-            <th>
-        <div class="power_bbox" align="center">
-            <font size="3">名称1</font>
-            <div class="power_sbox">
-                <input type="checkbox" class="p_check">
-            </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-        </tr>
+
 
         <tr>
             <th>
@@ -216,7 +175,7 @@
 <br><br>
     <button class="p_button3">信息发布</button>
     <br><br>
-    <button class="p_button4">退出</button>
+    <button class="p_button4" onclick="outpower()">退出</button>
 </div>
 
 <!--下方按键及内容-->
@@ -230,7 +189,19 @@
 </div>
 
 
+<!--弹框-->
+<div hidden class="popup" id="popup" align="center">
+    <br><br>
+    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
+    <font size="3">弹窗</font><br>
+    <button class="p_button2">下课</button>
+</div>
 
+<!--蒙版-->
+<div id="parent" class="parent" hidden></div>
+
+
+</body>
 
 
 
@@ -240,7 +211,13 @@
 
 <script>
 
+    function outpower(){
+        $("#popup").show()
+    }
 
+    function lockscreen() {
+        $("#parent").show()
+    }
 
 </script>
 

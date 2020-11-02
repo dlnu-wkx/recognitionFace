@@ -53,6 +53,11 @@ public class FaceController {
     @Autowired
     UserFaceInfoService userFaceInfoService;
 
+
+    /**
+     * 跳转测试
+     * @return
+     */
     @RequestMapping(value = "/demo")
     public String demo() {
         return "demo";
@@ -68,6 +73,16 @@ public class FaceController {
 
     @RequestMapping(value = "/information_service")
     public String information_service(){return "information_service";}
+
+
+    @RequestMapping(value = "/face_registration")
+    public String face_registration(){return "face_registration";}
+
+
+
+    @RequestMapping(value = "/information_delivery")
+    public String information_delivery(){return "information_delivery";}
+
 
 
 

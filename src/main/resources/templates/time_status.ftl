@@ -44,7 +44,7 @@
     <table class="t_table">
         <tr>
             <th>
-               <button class="t_button1">机床示意</button>
+               <button class="t_button1" id="1" onclick="diagram(1)">机床示意</button>
             </th>
             <th>
                 <button class="t_button1">机床示意</button>
@@ -139,6 +139,23 @@
 
 </div>
 
+<!--学生视频展示-->
+<div class="t_message" hidden align="center" id="t_message">
+
+    <button class="t_button2"></button>
+    <div class="t_id" align="center"><font size="3">F01</font></div>
+    <div class="t_name" align="center"><font size="3">姓名：张三</font></div>
+
+
+    <div class="t_student" align="center"><font size="3">电脑屏幕</font></div>
+    <div class="t_computer" align="center"><font size="3">摄像头</font></div>
+
+    <input type="text" class="t_progress" value="当前进度:">
+    <input type="text" class="t_staets" value="状态信息">
+
+    <button class="t_button3" onclick="closemessage()">关闭</button>
+</div>
+
 
 <!--弹框-->
 <div hidden class="popup" id="popup" align="center">
@@ -155,13 +172,27 @@
 </body>
 
 <script>
+    //弹框
     function outpower(){
         $("#popup").show()
     }
 
+    //锁屏
     function lockscreen() {
         $("#parent").show()
     }
+
+    //学生实时视频
+    function diagram(id) {
+        alert(id)
+        $("#t_message").show()
+
+    }
+    //关闭
+    function closemessage() {
+        $("#t_message").hide()
+    }
+
 
 </script>
 

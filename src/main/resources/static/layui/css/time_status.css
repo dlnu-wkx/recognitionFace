@@ -30,3 +30,97 @@
     left: 9.2%;
     position: absolute;
 }
+
+.t_message{
+    height: 80%;
+    width: 80%;
+    background-color: #D9E3F2;
+    position: fixed;
+    left: 10%;
+    top: 10%;
+}
+
+
+
+
+
+.t_button2{
+    left: 15%;
+    top: 1%;
+    position: absolute;
+    background-color: #ED7D31;
+    border-radius: 50%;
+    height: 5%;
+    width: 2.8125%;
+}
+
+.t_id{
+    height: 5%;
+    left: 25%;
+    width: 10%;
+    position: absolute;
+    background-color: #4472C4;
+    top: 1%;
+}
+
+.t_name{
+    right: 20%;
+    height: 5%;
+    width: 10%;
+    position: absolute;
+    background-color:#4472C4 ;
+    top: 1%;
+}
+
+
+.t_student{
+    height: 70%;
+    width: 45%;
+    position: absolute;
+    background-color:#4472C4 ;
+    top: 7%;
+    left: 5%;
+}
+
+.t_computer{
+    height: 70%;
+    width: 45%;
+    position: absolute;
+    background-color:#4472C4 ;
+    top: 7%;
+    right: 3%;
+}
+
+.t_progress{
+    height: 5%;
+    width: 40%;
+    position: absolute;
+    top: 78%;
+    left: 30%;
+}
+
+.t_staets{
+    height: 5%;
+    width: 40%;
+    position: absolute;
+    top: 85%;
+    left: 30%;
+}
+
+
+.t_button3{
+    background-color:  #4472C4;
+    border:1px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0%;
+    height: 8%;
+    width: 8%;
+    left: 45%;
+}

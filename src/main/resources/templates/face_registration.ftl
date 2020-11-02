@@ -1,3 +1,8 @@
+<head>
+    <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
+</head>
+
+<body>
 <div class="layui-row">
     <div class="layui-col-xs7 layui-col-md-offset3" align="center">
         <div style="margin: 0,auto; width: 800px;height: 80px;background-color: #383939">
@@ -49,11 +54,12 @@
 
 
 </div>
-
+</body>
 <script>
 
 
     function getMedia() {
+        alert(1)
         $("#mainDiv").empty();
         let videoComp = " <video id='video' width='500px' height='500px' autoplay='autoplay' style='margin-top: 20px'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
