@@ -1,0 +1,43 @@
+.i_center{
+    left: 0%;
+    top: 6.7%;
+    width: 90%;
+    height: 93%;
+    position: fixed;
+
+}
+.i_text{
+    border:0.5px solid #ED7D31;
+    width: 30%;
+    height: 5%;
+    position: fixed;
+}
+
+.i_text3{
+    border:0.5px solid #ED7D31;
+    width: 30.5%;
+    height: 5%;
+    position: fixed;
+}
+
+
+.i_text1{
+    border:0.5px solid #ED7D31;
+    width: 7%;
+    height: 5%;
+    position: fixed;
+}
+
+
+.i_text2{
+    border:0.5px solid #ED7D31;
+    width: 5%;
+    height: 5%;
+    position: fixed;
+}
+
+.i_service{
+    top:20% ;
+    left: 20%;
+    position: absolute;
+}

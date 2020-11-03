@@ -53,10 +53,39 @@ public class FaceController {
     @Autowired
     UserFaceInfoService userFaceInfoService;
 
+
+    /**
+     * 跳转测试
+     * @return
+     */
     @RequestMapping(value = "/demo")
     public String demo() {
         return "demo";
     }
+
+
+    @RequestMapping(value = "/power_controller")
+    public String power_controller(){return "power_controller";}
+
+    @RequestMapping(value = "/time_status")
+    public String time_status(){return "time_status";}
+
+
+    @RequestMapping(value = "/information_service")
+    public String information_service(){return "information_service";}
+
+
+    @RequestMapping(value = "/face_registration")
+    public String face_registration(){return "face_registration";}
+
+
+
+    @RequestMapping(value = "/information_delivery")
+    public String information_delivery(){return "information_delivery";}
+
+
+
+
 
     /*
     人脸添加
