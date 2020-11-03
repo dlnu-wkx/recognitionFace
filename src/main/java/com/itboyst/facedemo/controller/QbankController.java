@@ -38,4 +38,39 @@ public class QbankController {
         return "test";
     }
 
+    /**
+     * 跳转测试
+     * @return
+     */
+
+    @RequestMapping(value = "/power_controller")
+    public String power_controller(){return "power_controller";}
+
+    @RequestMapping(value = "/time_status")
+    public String time_status(){return "time_status";}
+
+
+    @RequestMapping(value = "/information_service")
+    public String information_service(){return "information_service";}
+
+
+    @RequestMapping(value = "/face_registration")
+    public String face_registration(){return "face_registration";}
+
+
+
+    @RequestMapping(value = "/information_delivery")
+    public String information_delivery(){return "information_delivery";}
+
+
+    @RequestMapping(value = "/fixed_task")
+    public String fixed_task(){return "fixed_task";}
+
+
+
+    @RequestMapping(value = "/class_ppt")
+    public String class_ppt(){return "class_ppt";}
+
+
+
 }

@@ -38,18 +38,22 @@
     <button class="button2" id="button9">任务名称</button>
     <br><br>
 </div>
+
+<div class="right">
 <!--右侧按键-->
-<div class="right1">
-    <button class="button5">举手</button>
+    <div class="right1">
+        <button class="button5">举手</button>
+    </div>
+
+    <div class="right2">
+        <button class="button5">请假</button>
+    </div>
+
+    <div class="right3">
+        <button class="button5">退出系统</button>
+    </div>
 </div>
 
-<div class="right2">
-    <button class="button5">请假</button>
-</div>
-
-<div class="right3">
-    <button class="button5">退出系统</button>
-</div>
 
 <!--中间题目主体部分-->
 <div class="center" id="qbank" style="background-color: white">
@@ -133,13 +137,13 @@
                     str+="<font size='5' class='title'>安全测试题,每题20分，60分及格</font>";
                     str+="<font size='5' class='questiontitle'>选择题</font>";
 
-                    str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].question + "</font></div><br><br><br>";
+                    str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+w+"'>";
-                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' ><font size='5'>A.</font><font size='5' >" + question.cbank[i].answer1 + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message'id='B"+w+"'    value='B' ><font size='5'>B.</font><font size='5' >" + question.cbank[i].answer2 + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'><font size='5'>C.</font><font size='5' >" + question.cbank[i].answer3 + "</font><br><br><br>";
-                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' ><font size='5'>D.</font><font size='5' >" + question.cbank[i].answer4 + "</font><br><br><br>";
+                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' ><font size='5'>A.</font><font size='5' >" + question.cbank[i].zoptionA + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message'id='B"+w+"'    value='B' ><font size='5'>B.</font><font size='5' >" + question.cbank[i].zoptionB + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'><font size='5'>C.</font><font size='5' >" + question.cbank[i].zoptionC + "</font><br><br><br>";
+                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' ><font size='5'>D.</font><font size='5' >" + question.cbank[i].zoptionD + "</font><br><br><br>";
                     str += " </p></div>";
 
                     str+="</div>";
@@ -154,7 +158,7 @@
 
                     str+="<font size='5' class='questiontitle'>判断题</font>";
 
-                    str += " <div id='question' class='question'><font size='5' >"+k+"." + question.jbank[j].question + "</font></div><br><br><br>";
+                    str += " <div id='question' class='question'><font size='5' >"+k+"." + question.jbank[j].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+p+"'>";
                     str += " <p><input type='checkbox' name='message'  class='choose'  value='对' ><font size='5'>对</font><br><br><br>";

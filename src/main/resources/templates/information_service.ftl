@@ -22,7 +22,6 @@
 <!--中部电源显示-->
 <div class="p_center">
 </div>
-<button>测试</button>
 
 
 <!--右侧按键-->
