@@ -287,7 +287,24 @@ public class FaceController {
         return "index";
     }
 
-
+    /**
+     *如果老师的人脸检测成功则可以进入操作页面
+     * 魏凯旋 2020-10-31
+     * @param name
+     * @param faceId
+     * @param path
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/teachRegister", method = RequestMethod.GET)
+    public String teachRegister(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
+        model.addAttribute("faceId",faceId);
+        model.addAttribute("name",name);
+        String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
+        model.addAttribute("path",indPath);
+        return "fieldManagement";
+    }
 
     @RequestMapping(value = "/detectFaces", method = RequestMethod.POST)
     @ResponseBody

@@ -11,5 +11,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("toImageDemo").setViewName("imageDemo");
+        registry.addViewController("teach").setViewName("teachDemo");
     }
 }
