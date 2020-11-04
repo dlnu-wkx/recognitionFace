@@ -9,13 +9,10 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.RandomUtil;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
-import com.itboyst.facedemo.dto.FaceSearchResDto;
-import com.itboyst.facedemo.dto.ProcessInfo;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.domain.UserFaceInfo;
-import com.itboyst.facedemo.dto.Zstudent;
 import com.itboyst.facedemo.service.FaceEngineService;
 import com.itboyst.facedemo.service.UserFaceInfoService;
-import com.itboyst.facedemo.dto.FaceUserInfo;
 import com.itboyst.facedemo.base.Result;
 import com.itboyst.facedemo.base.Results;
 import com.itboyst.facedemo.enums.ErrorCodeEnum;
@@ -40,6 +37,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.*;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,6 +57,10 @@ public class FaceController {
 
     @Autowired
     ZstudentService zstuservice;
+
+    @Autowired
+    FaceEngineService faceengine;
+
 
     /**
      * 跳转测试
@@ -315,20 +318,55 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
-            //将验证信息保存到Cookie
-            Cookie name=new Cookie("name",faceSearchResDto.getName());
-            Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
-            //替换“\”为“/”否则存不到Cookie中
-            String path =fpath.replace("\\","/");
-            //输出看是否有空格
-            Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
-            name.setMaxAge(86400);
-            faceId.setMaxAge(86400);
-            aimPath1.setMaxAge(86400);
-            response.addCookie(name);
-            response.addCookie(faceId);
-            response.addCookie(aimPath1);//把路径存到cookie中
-            return Results.newSuccessResult(faceSearchResDto);
+
+
+            //student表信息更改
+            Zstudent zstudent=new Zstudent();
+
+            int faceid=faceengine.selectidbyname(faceSearchResDto.getName());
+
+            zstudent=zstuservice.findadoptstudent(faceid);
+
+
+            //学生登陆信息
+            Zstudent_login zsl=new Zstudent_login();
+
+            String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
+            zsl.setZid(uuid2);
+            zsl.setZstudentID(zstudent.getZid());
+
+            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+            zsl.setZrecongnizetime(timestamp);
+
+            //机库的交互
+            zsl.setZtype("机床001");
+
+          /*  zsl.setZrecognizeIP();
+*/
+
+
+
+
+
+
+            if(zstudent !=null){
+                //将验证信息保存到Cookie
+                Cookie name=new Cookie("name",faceSearchResDto.getName());
+                Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
+                //替换“\”为“/”否则存不到Cookie中
+                String path =fpath.replace("\\","/");
+                //输出看是否有空格
+                Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
+                name.setMaxAge(86400);
+                faceId.setMaxAge(86400);
+                aimPath1.setMaxAge(86400);
+                response.addCookie(name);
+                response.addCookie(faceId);
+                response.addCookie(aimPath1);//把路径存到cookie中
+                return Results.newSuccessResult(faceSearchResDto);
+            }
+
+
         }
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }

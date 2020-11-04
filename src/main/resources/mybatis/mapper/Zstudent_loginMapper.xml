@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.ZstudentMapper">
+    <resultMap id="zstudent_login" type="com.itboyst.facedemo.dto.Zstudent_login">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zstudentID" property="zgradeID" javaType="String"/>
+        <result column="zrecognizetime" property="zauthorityID" javaType="String"/>
+        <result column="ztype" property="zidentity" javaType="String"/>
+        <result column="zrecognizeIP" property="zpass" javaType="String"/>
+
+    </resultMap>
+
+
+    <delete id="deletefront" parameterType="com.itboyst.facedemo.dto.Zstudent_login">
+    	DELETE FROM zstudent_login WHERE zstudentID=#{zstudentID};
+  	</delete>
+
+
+
+    <select id="findfront"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
+            SELECT * FROM zstudent_login WHERE zstudentID=#{zstudentID}
+    </select>
+
+
+
+    <insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime, ztype, zrecognizeIP) VALUES(#{id}, #{zstudentID},#{zrecognizetime}, #{ztype}, #{zrecognizeIP});
+    </insert>
+
+
+<!--
+
+    <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
+            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND zstatus='审核通过';
+        </select>
+
+
+    <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
+               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
+        </insert>
+-->
+
+
+
+
+</mapper>

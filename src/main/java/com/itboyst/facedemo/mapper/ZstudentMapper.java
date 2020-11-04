@@ -6,4 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ZstudentMapper {
     public int registerstu(Zstudent zstu);
+
+    public Zstudent findadoptstudent(int zfaceinfoID);
+
+
 }
