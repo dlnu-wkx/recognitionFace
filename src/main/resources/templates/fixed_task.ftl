@@ -24,15 +24,15 @@
 
 <!--右侧按键-->
 <div class="p_right" align="center">
-    <button class="p_button3">现场管理</button>
+    <button onclick="fieldManagement()" class="p_button3">现场管理</button>
     <br><br>
-    <button class="p_button3">信息查询</button>
+    <button onclick="informationService()" class="p_button3">信息查询</button>
     <br><br>
-    <button class="p_button3">实时状态</button>
+    <button onclick="timeStatus()" class="p_button3">实时状态</button>
     <br><br>
-    <button class="p_button4" onclick="outmessage()">信息发布</button>
+    <button onclick="informationDelivery()" class="p_button4" onclick="outmessage()">信息发布</button>
     <br><br>
-    <button class="p_button3">退出</button>
+    <button onclick="powerController()" class="p_button3">退出</button>
 </div>
 
 <!--左侧人员信息-->
@@ -299,8 +299,26 @@
         //全选
         $("#f_table  input[type='checkbox']").attr("checked","true");
     }
-
-
+    //现场管理
+    function fieldManagement() {
+        location.href="/field_management";
+    }
+    //信息查询
+    function informationService() {
+        location.href="/information_service";
+    }
+    //实时状态
+    function timeStatus() {
+        location.href="/time_status";
+    }
+    //信息发布
+    function informationDelivery() {
+        location.href="/information_delivery";
+    }
+    //退出
+    function powerController() {
+        location.href="/power_controller";
+    }
 
 </script>
 
