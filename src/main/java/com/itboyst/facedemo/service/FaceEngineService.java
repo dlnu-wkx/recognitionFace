@@ -15,6 +15,8 @@ public interface FaceEngineService {
 
     List<ProcessInfo> process(ImageInfo imageInfo);
 
+    int selectidbyname(String name);
+
     /**
      * 人脸特征
      *

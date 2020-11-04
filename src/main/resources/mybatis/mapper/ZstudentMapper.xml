@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.ZstudentMapper">
+    <resultMap id="zstudent" type="com.itboyst.facedemo.dto.Zstudent">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zgradeID" property="zgradeID" javaType="String"/>
+        <result column="zauthorityID" property="zauthorityID" javaType="String"/>
+        <result column="zidentity" property="zidentity" javaType="String"/>
+        <result column="zpass" property="zpass" javaType="String"/>
+        <result column="zname" property="zname" javaType="String"/>
+        <result column="zsex" property="zsex" javaType="String"/>
+        <result column="zphone" property="zphone" javaType="String"/>
+        <result column="zfaceinfoID" property="zfaceinfoID" javaType="int"/>
+        <result column="zphotoID" property="zphotoID" javaType="String"/>
+        <result column="zstatus" property="zstatus" javaType="String"/>
+
+    </resultMap>
+
+    <!-- <resultMap id="userFace2" type="com.itboyst.facedemo.dto.FaceUserInfo">
+         <id column="id" property="id" javaType="int"/>
+         <result column="group_id" property="groupId" javaType="java.lang.Integer"/>
+         <result column="face_id" property="faceId" javaType="String"/>
+         <result column="phone_number" property="phoneNumber" javaType="String"/>
+         <result column="create_time" property="createTime" javaType="java.util.Date"/>
+         <result column="face_feature" property="faceFeature"/>
+     </resultMap>-->
+
+<!--
+    <select id="findallCbank" resultMap="zsafe_testing" resultType="com.itboyst.facedemo.dto.Zsafe_testingDto">
+        SELECT * FROM zsafe_testing  where ztitletype='选择'   ORDER BY RAND() LIMIT 3
+    </select>
+
+
+    <select id="findallJbank" resultMap="zsafe_testing" resultType="com.itboyst.facedemo.dto.Zsafe_testingDto">
+        SELECT * FROM zsafe_testing  where ztitletype='判断'   ORDER BY RAND() LIMIT 2
+    </select>-->
+
+
+        <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
+               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
+        </insert>
+
+    <!--   <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer" resultType="com.itboyst.facedemo.dto.FaceUserInfo">
+           select face_id,name,face_feature from user_face_info
+       </select>-->
+
+
+</mapper>

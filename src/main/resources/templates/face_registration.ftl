@@ -1,5 +1,6 @@
 <head>
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
+    <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -10,10 +11,16 @@
                 人脸识别系统
             </div>
         </div>
-        <div style="color:#FFFFFF;height: 50px;margin-top:20px;margin-left:20px;margin-right:20px;background-color: #5A5B5B;border-radius:5px">
-            <label style="margin-left: 180px;height: 50px;line-height:50px;font-size: 21px;text-align: right;float: left">姓名：</label>
+        <div class="registermes">
 
-            <input style="width:300px;margin-left: 0px;height: 50px;font-size: 21px;background-color: #5a5b5b;color:#FFFFFF;border: 0px;"
+            <label >学号：</label>
+
+            <input class="f_stuiid"
+                   placeholder="在此输入学号" type="text" name="zidentity" id="zidentity">
+            <br>
+            <label >姓名：</label>
+
+            <input  class="f_name"
                    placeholder="在此输入姓名" type="text" name="userName" id="userName">
         </div>
 
@@ -30,17 +37,17 @@
                         </button>
                     </td>
                     <#--这里的把图片注册的功能给隐藏了起来-->
-                    <td style="display: none">
+                  <#--  <td style="display: none">
                         <button style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px"
                                 onclick="imageRecog()">照片注册
                         </button>
-                    </td>
+                    </td>-->
                 </tr>
                 <#--<td><button id="snap" onclick="commitPhoto()" style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">照片提交</button></td>-->
                 <tr>
                     <td colspan="2">
                         <button id="snap" onclick="takePhoto()"
-                                style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">
+                                class="f_button5">
                             提交
                         </button>
                     </td>
@@ -61,7 +68,7 @@
     function getMedia() {
         alert(1)
         $("#mainDiv").empty();
-        let videoComp = " <video id='video' width='500px' height='500px' autoplay='autoplay' style='margin-top: 20px'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
+        let videoComp = " <video id='video' autoplay='autoplay' style='left:18%;height:60%; width:60%;top: 30% ;position: fixed'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
 
         let constraints = {
@@ -89,6 +96,9 @@
     //拍照事件
     function takePhoto() {
         let mainComp = $("#mainDiv");
+        var zidentity=$("#zidentity").val();
+
+
         if (mainComp.has('video').length) {
             let userNameInput = $("#userName").val();
             if (userNameInput == "") {
@@ -106,6 +116,8 @@
             formData.append("file", base64File);
             formData.append("name", userName);
             formData.append("groupId", "101");
+            formData.append("zidentity",zidentity);
+
             $.ajax({
                 type: "post",
                 url: "/faceAdd",
@@ -117,6 +129,7 @@
                     var res = JSON.stringify(text)
                     if (text.code == 0) {
                         alert("注册成功")
+                        location.href("/demo");
                     } else {
                         alert(text.message)
                     }
