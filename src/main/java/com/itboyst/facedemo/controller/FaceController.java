@@ -59,6 +59,44 @@ public class FaceController {
     @Autowired
     ZstudentService zstuservice;
 
+    /**
+     * 跳转测试
+     * @return
+     */
+    @RequestMapping(value = "/demo")
+    public String demo() {
+        return "demo";
+    }
+
+
+    @RequestMapping(value = "/power_controller")
+    public String power_controller(){return "power_controller";}
+
+    @RequestMapping(value = "/time_status")
+    public String time_status(){return "time_status";}
+
+
+    @RequestMapping(value = "/information_service")
+    public String information_service(){return "information_service";}
+
+
+    @RequestMapping(value = "/face_registration")
+    public String face_registration(){return "face_registration";}
+
+
+
+    @RequestMapping(value = "/information_delivery")
+    public String information_delivery(){return "information_delivery";}
+
+    /**老师进入的主页面跳转到右侧功能页面的控制器
+     * 魏凯旋 2020-11-04
+     * @return
+     */
+    @RequestMapping(value = "/field_management")
+    public String field_management(){return "field_management";}
+
+
+
     /*
     人脸添加
      */
@@ -92,7 +130,6 @@ public class FaceController {
             if (bytes == null) {
                 return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);
             }
-            GenerateImage(file);//还原图片并存储到指定为位置
             System.err.println(path);
             UserFaceInfo userFaceInfo = new UserFaceInfo();
             userFaceInfo.setName(name);
@@ -124,6 +161,11 @@ public class FaceController {
             if (i==0){
                 return null;
             }
+
+
+
+
+
 
             logger.info("faceAdd:" + name);
             return Results.newSuccessResult("");
@@ -291,7 +333,44 @@ public class FaceController {
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }
 
+    /**
+     * 人脸检验成功后跳转后的控制器
+     * 魏凯旋  2020-10-23
+     * @param name
+     * @param faceId
+     * @param model
+     * @param path 存储的图片路径
+     * @return
+     * @throws Exception
+     */
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String register(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
+        model.addAttribute("faceId",faceId);
+        model.addAttribute("name",name);
+        String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
+        model.addAttribute("path",indPath);
+        return "studentEnter";
+    }
+
+    /**
+     *如果老师的人脸检测成功则可以进入操作页面
+     * 魏凯旋 2020-10-31
+     * @param name
+     * @param faceId
+     * @param path
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/teachRegister", method = RequestMethod.GET)
+    public String teachRegister(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
+        model.addAttribute("faceId",faceId);
+        model.addAttribute("name",name);
+        String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
+        model.addAttribute("path",indPath);
+        return "fieldManagement";
+    }
 
     @RequestMapping(value = "/detectFaces", method = RequestMethod.POST)
     @ResponseBody

@@ -1,6 +1,7 @@
 package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.service.QbankService;
+import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,42 +10,38 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
-public class TeachController {
-    public final static Logger logger = LoggerFactory.getLogger(TeachController.class);
+public class QbankController {
+    public final static Logger logger = LoggerFactory.getLogger(QbankController.class);
 
+    @Autowired
+    QbankService Qservice;
+
+    @RequestMapping("/findallquestion")
+    @ResponseBody
+    public Map<String, Object> findall(HttpServletResponse response) {
+        return Qservice.findallQuestion(response);
+    }
     /**
      * 跳转到显示题目库的页面
      * weikaixuan 2020-10-13
      * @return
-     *//*
+     */
     @RequestMapping(value = "/student_test",method = RequestMethod.GET)
     public String test(){
 
         return "studentTest";
-    }*/
+    }
 
     /**
-     *如果老师的人脸检测成功则可以进入操作页面
-     * 魏凯旋 2020-10-31
-     * @param name
-     * @param faceId
-     * @param path
-     * @param model
+     * 跳转测试
      * @return
-     * @throws Exception
      */
-    @RequestMapping(value = "/teachLogin", method = RequestMethod.GET)
-    public String teachRegister(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
-        model.addAttribute("faceId",faceId);
-        model.addAttribute("name",name);
-        String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
-        model.addAttribute("path",indPath);
-        return "fieldManagement";
-    }
 
     @RequestMapping(value = "/power_controller")
     public String power_controller(){return "power_controller";}
@@ -74,11 +71,6 @@ public class TeachController {
     @RequestMapping(value = "/class_ppt")
     public String class_ppt(){return "class_ppt";}
 
-    /**老师进入的主页面跳转到右侧功能页面的控制器
-     * 魏凯旋 2020-11-04
-     * @return
-     */
-    @RequestMapping(value = "/field_management")
-    public String field_management(){return "field_management";}
+
 
 }

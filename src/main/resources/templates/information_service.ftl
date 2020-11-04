@@ -89,7 +89,7 @@
     }
     //现场管理
     function fieldManagement() {
-        location.href="/field_management";
+        location.href="/teachRegister";
     }
     //退出
     function powerController() {
