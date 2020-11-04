@@ -27,15 +27,16 @@
 
 <!--右侧按键-->
 <div class="p_right" align="center">
-    <button class="p_button3">现场管理</button>
+    <button onclick="fieldManagement()" class="p_button3">现场管理</button>
     <br><br>
     <button class="p_button4">信息查询</button>
     <br><br>
-    <button class="p_button3">实时状态</button>
+    <button onclick="timeStatus()" class="p_button3">实时状态</button>
     <br><br>
-    <button class="p_button3">信息发布</button>
+    <button onclick="informationDelivery()"class="p_button3">信息发布</button>
     <br><br>
-    <button class="p_button3" onclick="outpower()">退出</button>
+    <button class="p_button3" onclick="powerController()">退出</button>
+
 </div>
 
 <!--中间信息查询-->
@@ -79,7 +80,22 @@
     function lockscreen() {
         $("#parent").show()
     }
-
+    //信息发布
+    function informationDelivery() {
+        location.href="/information_delivery";
+    }
+    //实时状态
+    function timeStatus() {
+        location.href="/time_status";
+    }
+    //现场管理
+    function fieldManagement() {
+        location.href="/teachRegister";
+    }
+    //退出
+    function powerController() {
+        location.href="/power_controller";
+    }
 </script>
 
 </html>

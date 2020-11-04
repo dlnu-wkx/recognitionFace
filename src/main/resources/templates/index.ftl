@@ -36,15 +36,15 @@
        <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid #c2c2c2;">
            <div>
                <button onclick="show()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
-                   现场管理
+                   举手
                </button>
            </div>
            <div>
                <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
-                   信息查询
+                   请假
                </button>
            </div>
-           <div>
+          <#-- <div>
                <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
                    实时状态
                </button>
@@ -53,9 +53,9 @@
                <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
                    信息发布
                </button>
-           </div>
+           </div>-->
           <div>
-            <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:70px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
+            <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:300px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
                 退出系统
             </button>
           </div>

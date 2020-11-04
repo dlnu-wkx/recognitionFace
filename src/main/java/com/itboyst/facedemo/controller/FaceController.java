@@ -83,7 +83,12 @@ public class FaceController {
     @RequestMapping(value = "/information_delivery")
     public String information_delivery(){return "information_delivery";}
 
-
+    /**老师进入的主页面跳转到右侧功能页面的控制器
+     * 魏凯旋 2020-11-04
+     * @return
+     */
+    @RequestMapping(value = "/field_management")
+    public String field_management(){return "field_management";}
 
 
 
@@ -307,13 +312,13 @@ public class FaceController {
      * @throws Exception
      */
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String register(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
         model.addAttribute("faceId",faceId);
         model.addAttribute("name",name);
         String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
         model.addAttribute("path",indPath);
-        return "index";
+        return "studentEnter";
     }
 
     /**

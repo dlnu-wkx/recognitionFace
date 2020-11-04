@@ -11,6 +11,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("toImageDemo").setViewName("imageDemo");
-        registry.addViewController("teach").setViewName("teachDemo");
+        registry.addViewController("student").setViewName("studentLogin");//设置学生端的访问路径
+        registry.addViewController("teach").setViewName("teachLogin");//设置教师端的访问路径
     }
 }

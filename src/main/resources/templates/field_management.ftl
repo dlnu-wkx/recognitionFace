@@ -19,17 +19,15 @@
     </div>
     <div class="layui-row ">
         <div id='welcomeField' class="layui-col-xs1" align="center" style="width: 17%;font-size: 70px;margin-top: 40px">
-            欢迎
         </div>
         <div id='teach' class="layui-col-xs9" align="center" style="width: 74%">
             <div style="margin: 0,auto;margin-top:40px;height:80px;text-align:center;line-height:40px;font-size: 40px;color: #E51C23">
-                ${name}老师
             </div>
-            <div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='${path}'style='width: 15rem;height: 16rem;'></div>
-            <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C"> 进入安浩智能学习工厂</div>
+            <#--<div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='${path}'style='width: 15rem;height: 16rem;'></div>
+            <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C"> 进入安浩智能学习工厂</div>-->
         </div>
-         <#--二级菜单-->
-       <#-- <div id='twoMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
+        <#--二级菜单-->
+        <div id='twoMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
             <div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
                     <li style="margin: 0 auto;margin-left: 10% "><button onclick="faceShow()" style="float:left;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">人脸识别</button></li>
@@ -44,14 +42,14 @@
             </div>
         </div>
         <div id="courseRecordContent"style="display: none;width: 50%;height: 300px;position: fixed;background-color: #CDCDCD;border: 1px solid;top:50%;left: 7%;z-index: 3">
-              <div style="margin: 10px auto;width: 29%">课堂记录</div>
-              <div style="margin: 10px auto;background-color: #ffffff;width: 90%;height: 200px"><textarea style="width: 100%;height: 100%"></textarea></div>
+            <div style="margin: 10px auto;width: 29%">课堂记录</div>
+            <div style="margin: 10px auto;background-color: #ffffff;width: 90%;height: 200px"><textarea style="width: 100%;height: 100%"></textarea></div>
             <div style="position: absolute;left: 15%"><button style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">确定</button></div>
             <div style="position: absolute;left: 60%"><button onclick="cancel()" style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">取消</button></div>
         </div>
         <div id="hiddenArea"style="position: absolute;height: 100%;width: 100%;filter: alpha(opacity=60);opacity: 0.6;display: none;z-index: 2">
         </div>
-        &lt;#&ndash;三级菜单&ndash;&gt;
+        <#--三级菜单-->
         <div id='threeMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
             <div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
@@ -78,7 +76,7 @@
                 </ul>
             </div>
         </div>
-        &lt;#&ndash;查岗的下级功能表&ndash;&gt;
+        <#--查岗的下级功能表-->
         <div id='checkPointMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
             <div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
@@ -90,14 +88,60 @@
                     <li style="margin-left: 46%"><button  onclick="studentShow1(this.value)" value="2" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控铣实训区</button></li>
                 </ul>
             </div>
-        </div>-->
+        </div>
         <#--四级菜单-->
-
-
+        <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
+            <div id="mainDiv"></div>
+            <#--这个地方到时候要循环遍历出来拼接字符串-->
+            <div style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red">
+                <div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
+                <div style="font-size: 20px;width: 80%;margin-top: 10px">李四  机电19班</div>
+                <div style="font-size: 20px;width: 80%;margin-top: 10px">王二  机电19班</div>
+                <div style="font-size: 20px;width: 80%;margin-top: 10px">麻子  机电19班</div>
+                <div style="font-size: 20px;width: 80%;margin-top: 10px">隔壁老王  机电19班</div>
+            </div>
+        </div>
+        <div id='fourMenu1' class="layui-col-xs8" align="center" style="display:none;width: 64%">
+            <div style="height: 500px;text-align:center;line-height:40px;font-size: 40px;background-color: #ffff;overflow:scroll;border: 1px solid red">
+                <#--这个也要用遍历写出来的，显示最先出现的三个人-->
+                <div style="width: 100%;margin-top: 2px;">
+                    <div style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid">天龙八部</div>
+                    <div style="width: 27%;position: absolute;left:35%;background-color: #BDD7EE;color: red;border: 1px solid">广利菩萨</div>
+                    <div style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid">白龙马</div>
+                </div>
+                <#--按照顺序排出识别的人脸，顺序是最早的在最下最右边-->
+                <div style="width: 100%;margin: 53px auto">
+                    <table>
+                        <tr>
+                            <th>
+                                <div style="background-color: #BDD7EE;width: 20%;border: 1px solid red;position: absolute;left: 1%">乔峰</div>
+                            </th>
+                            <th>
+                                <div style="background-color: #BDD7EE;width: 20%;border: 1px solid red;position: absolute;left: 26%">阿朱</div>
+                            </th>
+                            <th>
+                                <div style="background-color: #BDD7EE;width: 20%;border: 1px solid red;position: absolute;left: 51%">段玉</div>
+                            </th>
+                            <th>
+                                <div style="background-color: #BDD7EE;width: 20%;border: 1px solid red;position: absolute;left: 75%">虚竹</div>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div style="float:left;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:left;width: 50%">
+                    <button onclick="showRecognitionFace()" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
+                </div>
+                <div style="text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:right;width: 50%">
+                    <button style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
+                </div>
+            </div>
+        </div>
         <#--右边功能按钮-->
         <div class="layui-col-xs1" align="right" style="height:100%;width: 9%;border-left: 1px solid #c2c2c2;">
             <div>
-                <button id='colorType' onclick="fieldManagement()"  style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                <button id='colorType'   style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
                     现场管理
                 </button>
             </div>
@@ -130,12 +174,9 @@
         var element = layui.element;
 
     });
-    //做出一个判断如果现场管理一直是橘黄色则无法点击
-    function fieldManagement() {
-        location.href="/field_management"
-    }
+   window.onload=show();
     //展示现场管理的二级菜单
-   /* function show() {
+    function show() {
         document.getElementById("colorType").style.backgroundColor="#ED7D31";
         document.getElementById("welcomeField").style.display="none";
         document.getElementById("teach").style.display="none";
@@ -173,7 +214,7 @@
         document.getElementById("fourMenu").style.display="block";
         document.getElementById("fourMenu1").style.display="block";
         getMedia();
-    }*/
+    }
     //获取摄像头
     function getMedia() {
         $("#mainDiv").empty();
@@ -201,18 +242,18 @@
         //     takePhoto();
         // },2000)
     }
-   //查岗功能
-   /*function checkPoint() {
-       document.getElementById("checkPointColor").style.backgroundColor="#ED7D31";
-       document.getElementById("twoMenu").style.display="none";
-       document.getElementById("checkPointMenu").style.display="block";
-   }
-   //从数据库中显示已经检测到的人脸信息
+    //查岗功能
+    function checkPoint() {
+        document.getElementById("checkPointColor").style.backgroundColor="#ED7D31";
+        document.getElementById("twoMenu").style.display="none";
+        document.getElementById("checkPointMenu").style.display="block";
+    }
+    //从数据库中显示已经检测到的人脸信息
     function showRecognitionFace() {
         alert("目前还没有检测到人脸");
-    }*/
+    }
     //课堂记录
-    /*function courseRecord() {
+    function courseRecord() {
         document.getElementById("courseRecordColor").style.backgroundColor="#ED7D31";
         document.getElementById("hiddenArea").style.display="block";
         document.getElementById("courseRecordContent").style.display="block";
@@ -222,7 +263,7 @@
         document.getElementById("hiddenArea").style.display="none";
         document.getElementById("courseRecordContent").style.display="none";
         document.getElementById("courseRecordColor").style.backgroundColor="#71B863";
-    }*/
+    }
     //信息发布
     function informationDelivery() {
         location.href="/information_delivery";
@@ -239,7 +280,6 @@
     function powerController() {
         location.href="/power_controller";
     }
-
 </script>
 </body>
 </html>

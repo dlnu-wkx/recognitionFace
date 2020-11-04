@@ -32,10 +32,10 @@ public class QbankController {
      * weikaixuan 2020-10-13
      * @return
      */
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @RequestMapping(value = "/student_test",method = RequestMethod.GET)
     public String test(){
 
-        return "test";
+        return "studentTest";
     }
 
 }
