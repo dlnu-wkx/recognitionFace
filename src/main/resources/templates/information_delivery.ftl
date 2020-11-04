@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 机床控制器电源管理 </title>
+    <title> 信息发送 </title>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
@@ -14,7 +14,7 @@
 <body  class="body" >
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >机床控制器电源管理</font></div>
+    <div class="leftfont"><font size="5" >信息发送</font></div>
     <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
 </div>
 
@@ -193,7 +193,7 @@
 <!--弹框-->
 <div hidden class="d_popup" id="de_popup" align="center">
     <br>
-    <button class="p_button2" onclick="">固定任务</button><br><br>
+    <button class="p_button2" onclick="fixed_tasks()">固定任务</button><br><br>
     <button class="p_button2" onclick="">临时任务</button><br><br>
     <button class="p_button2" onclick="">信息发送</button>
 </div>
@@ -221,8 +221,13 @@
     }
     
     function outmessage() {
-        alert(1)
         $("#de_popup").show()
+    }
+    
+    function fixed_tasks() {
+        alert(1);
+
+        window.location.href = "/fixed_task";
     }
 
     //信息发布

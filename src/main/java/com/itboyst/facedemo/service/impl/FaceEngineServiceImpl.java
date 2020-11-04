@@ -5,6 +5,7 @@ import com.arcsoft.face.enums.DetectMode;
 import com.arcsoft.face.enums.DetectOrient;
 import com.arcsoft.face.toolkit.ImageInfo;
 import com.itboyst.facedemo.dto.ProcessInfo;
+import com.itboyst.facedemo.dto.Useridname;
 import com.itboyst.facedemo.factory.FaceEngineFactory;
 import com.itboyst.facedemo.mapper.MybatisUserFaceInfoMapper;
 import com.itboyst.facedemo.service.FaceEngineService;
@@ -28,6 +29,9 @@ import java.util.concurrent.*;
 
 @Service
 public class FaceEngineServiceImpl implements FaceEngineService {
+
+
+
 
     public final static Logger logger = LoggerFactory.getLogger(FaceEngineServiceImpl.class);
 
@@ -89,6 +93,14 @@ public class FaceEngineServiceImpl implements FaceEngineService {
         return target.multiply(hundred).intValue();
 
     }
+
+    @Override
+    public int selectidbyname(String name){
+        Useridname u=new Useridname();
+        u  = userFaceInfoMapper.selectidbyname(name);
+        return u.getId();
+    }
+
 
     @Override
     public List<FaceInfo> detectFaces(ImageInfo imageInfo) {

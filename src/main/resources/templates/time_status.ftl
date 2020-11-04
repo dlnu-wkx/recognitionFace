@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 信息查询（智能搜索） </title>
+    <title> 实时状态 </title>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_service.css" rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
 <body  class="body" >
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >信息查询（智能搜索）</font></div>
+    <div class="leftfont"><font size="5" >实时状态</font></div>
     <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
 </div>
 

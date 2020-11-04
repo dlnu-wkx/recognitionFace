@@ -39,6 +39,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -53,6 +54,8 @@ public class FaceController {
     @Autowired
     UserFaceInfoService userFaceInfoService;
 
+    @Autowired
+    ZstudentService zstuservice;
 
     /**
      * 跳转测试
@@ -97,7 +100,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceAdd", method = RequestMethod.POST)
     @ResponseBody
-    public Result<Object> faceAdd(@RequestParam("file") String file, @RequestParam("groupId") Integer groupId, @RequestParam("name") String name) {
+    public Result<Object> faceAdd(@RequestParam("file") String file, @RequestParam("groupId") Integer groupId, @RequestParam("name") String name, @RequestParam("zidentity") String zidentity) {
 
         try {
             if (file == null) {
@@ -130,10 +133,37 @@ public class FaceController {
             userFaceInfo.setName(name);
             userFaceInfo.setGroupId(groupId);
             userFaceInfo.setFaceFeature(bytes);
+
+
             userFaceInfo.setFaceId(RandomUtil.randomString(10));
             userFaceInfo.setPath(path);
+
+
             //人脸特征插入到数据库
             userFaceInfoService.insertSelective(userFaceInfo);
+
+            Zstudent zstu=new Zstudent();
+            String zid = UUID.randomUUID().toString().replaceAll("-","");
+            zstu.setZid(zid);
+            zstu.setZidentity(zidentity);
+            zstu.setZname(name);
+            zstu.setZphone(path);
+
+            int id= faceEngineService.selectidbyname(name);
+
+            zstu.setZfaceinfoID(id);
+            zstu.setZstatus("待审核");
+
+            int i=zstuservice.registerstud(zstu);
+
+            if (i==0){
+                return null;
+            }
+
+
+
+
+
 
             logger.info("faceAdd:" + name);
             return Results.newSuccessResult("");
