@@ -38,7 +38,7 @@
 
 
         <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
-            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND zstatus='审核通过';
+            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
         </select>
 
 

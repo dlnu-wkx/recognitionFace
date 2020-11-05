@@ -1,31 +1,31 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itboyst.facedemo.mapper.ZstudentMapper">
+<mapper namespace="com.itboyst.facedemo.mapper.Zstudent_loginMapper">
     <resultMap id="zstudent_login" type="com.itboyst.facedemo.dto.Zstudent_login">
         <id column="zid" property="zid" javaType="String"/>
-        <result column="zstudentID" property="zgradeID" javaType="String"/>
-        <result column="zrecognizetime" property="zauthorityID" javaType="String"/>
-        <result column="ztype" property="zidentity" javaType="String"/>
-        <result column="zrecognizeIP" property="zpass" javaType="String"/>
+        <result column="zstudentID" property="zstudentID" javaType="String"/>
+        <result column="zrecongnizetime" property="zrecongnizetime" jdbcType="TIMESTAMP"/>
+        <result column="ztype" property="ztype" javaType="String"/>
+        <result column="zrecognizeIP" property="zrecognizeIP" javaType="String"/>
 
     </resultMap>
 
 
     <delete id="deletefront" parameterType="com.itboyst.facedemo.dto.Zstudent_login">
-    	DELETE FROM zstudent_login WHERE zstudentID=#{zstudentID};
+    	DELETE FROM zstudent_login WHERE zstudentID = #{zstudentID};
   	</delete>
 
 
 
     <select id="findfront"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
-            SELECT * FROM zstudent_login WHERE zstudentID=#{zstudentID}
+            SELECT * FROM zstudent_login WHERE zstudentID = #{zstudentID}
     </select>
 
 
 
     <insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
-        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime, ztype, zrecognizeIP) VALUES(#{id}, #{zstudentID},#{zrecognizetime}, #{ztype}, #{zrecognizeIP});
+        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime}, #{ztype}, #{zrecognizeIP});
     </insert>
 
 

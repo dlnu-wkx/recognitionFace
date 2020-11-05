@@ -5,6 +5,9 @@
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 
+
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
 
@@ -133,6 +136,11 @@
 
     //去后台查询人脸数据
     function chooseFileChangeComp() {
+
+        var ip=returnCitySN["cip"];
+
+        //document.write(returnCitySN["cip"]+','+returnCitySN["cname"] + "真实IP地址")
+
         let regcoDivComp = $("#regcoDiv");
         if (regcoDivComp.has('video').length) {
             let video = document.getElementById("video2");
@@ -143,6 +151,9 @@
             var formData = new FormData();
             formData.append("groupId", "101")
             formData.append("file", base64File);
+
+            formData.append("ip",ip);
+
             $.ajax({
                 type: "post",
                 url: "/faceSearch",
@@ -199,6 +210,10 @@
                 var base64 = reader.result;
                 formData.append("file", base64);
                 formData.append("groupId", 101);
+
+
+
+
                 $.ajax({
                     type: "post",
                     url: "/faceSearch",

@@ -11,13 +11,11 @@ import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.domain.UserFaceInfo;
-import com.itboyst.facedemo.service.FaceEngineService;
-import com.itboyst.facedemo.service.UserFaceInfoService;
+import com.itboyst.facedemo.service.*;
 import com.itboyst.facedemo.base.Result;
 import com.itboyst.facedemo.base.Results;
 import com.itboyst.facedemo.enums.ErrorCodeEnum;
 import com.arcsoft.face.FaceInfo;
-import com.itboyst.facedemo.service.ZstudentService;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +31,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -59,7 +58,16 @@ public class FaceController {
     ZstudentService zstuservice;
 
     @Autowired
+    Zstudent_loginService zstudent_loginService;
+
+    @Autowired
     FaceEngineService faceengine;
+
+    @Autowired
+    Ztraining_facilityService ztrinfser;
+
+    @Autowired
+    Ztraining_roomService ztraining_roomService;
 
 
     /**
@@ -72,24 +80,6 @@ public class FaceController {
     }
 
 
-    @RequestMapping(value = "/power_controller")
-    public String power_controller(){return "power_controller";}
-
-    @RequestMapping(value = "/time_status")
-    public String time_status(){return "time_status";}
-
-
-    @RequestMapping(value = "/information_service")
-    public String information_service(){return "information_service";}
-
-
-    @RequestMapping(value = "/face_registration")
-    public String face_registration(){return "face_registration";}
-
-
-
-    @RequestMapping(value = "/information_delivery")
-    public String information_delivery(){return "information_delivery";}
 
     /**老师进入的主页面跳转到右侧功能页面的控制器
      * 魏凯旋 2020-11-04
@@ -275,7 +265,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceSearch(String file, Integer groupId, HttpServletResponse response) throws Exception {
+    public Result<FaceSearchResDto> faceSearch(String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -325,6 +315,8 @@ public class FaceController {
 
             int faceid=faceengine.selectidbyname(faceSearchResDto.getName());
 
+
+
             zstudent=zstuservice.findadoptstudent(faceid);
 
 
@@ -344,12 +336,24 @@ public class FaceController {
           /*  zsl.setZrecognizeIP();
 */
 
+            zsl.setZrecognizeIP(ip);
+            //插入学生登陆信息
+            int  i=zstudent_loginService.updateloginmessage(zsl);
+
+
+            //将相关信息存入cookie
+            Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
+            session.setAttribute("ztraining_facility",ztrfac);
+
+
+            ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
+            session.setAttribute("ztraining_room",ztr);
 
 
 
 
 
-            if(zstudent !=null){
+            if(zstudent !=null  && i!=0){
                 //将验证信息保存到Cookie
                 Cookie name=new Cookie("name",faceSearchResDto.getName());
                 Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());

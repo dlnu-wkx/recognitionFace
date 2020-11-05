@@ -21,7 +21,8 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
         Zstudent_login zsl=zstulogma.findfront(zstl.getZstudentID());
 
         if(zsl !=null){
-            int i=zstulogma.deletefront(zstl.getZid());
+
+            int i=zstulogma.deletefront(zstl.getZstudentID());
         }
 
         int j=0;
