@@ -69,6 +69,11 @@ public class FaceController {
     @Autowired
     Ztraining_roomService ztraining_roomService;
 
+    @Autowired
+    Zstudent_cooikeService zstudent_cooikeService;
+
+    @Autowired
+    Zstudent_journalService zstudentJournalService;
 
     /**
      * 跳转测试
@@ -154,9 +159,6 @@ public class FaceController {
             if (i==0){
                 return null;
             }
-
-
-
 
 
 
@@ -265,7 +267,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceSearch(String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
+    public Result<FaceSearchResDto> faceSearch(String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -325,10 +327,13 @@ public class FaceController {
 
             String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
             zsl.setZid(uuid2);
+
             zsl.setZstudentID(zstudent.getZid());
 
             Timestamp timestamp=new Timestamp(System.currentTimeMillis());
             zsl.setZrecongnizetime(timestamp);
+
+
 
             //机库的交互
             zsl.setZtype("机床001");
@@ -341,15 +346,39 @@ public class FaceController {
             int  i=zstudent_loginService.updateloginmessage(zsl);
 
 
-            //将相关信息存入cookie
+
+            //将相关信息存入session中
+            //设备
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
             session.setAttribute("ztraining_facility",ztrfac);
 
 
+            //实训室
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);
+            //课程，日期，学生_日期
 
 
+
+            Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
+            session.setAttribute("zstudent_cookie",zsc);
+
+            Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+
+            System.out.println(zstudent_cookie);
+
+
+
+
+            //插入日志信息
+            Zstudent_journal zstudentJournal=new Zstudent_journal();
+            zstudentJournal.setZstudentID(zstudent.getZid());
+            zstudentJournal.setZtype(ztype);
+            zstudentJournal.setZoperatedate(timestamp);
+            String uuid3 = UUID.randomUUID().toString().replaceAll("-","");
+            zstudentJournal.setZid(uuid3);
+
+            int j=zstudentJournalService.insertstujournal(zstudentJournal);
 
 
 
