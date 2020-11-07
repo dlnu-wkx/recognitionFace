@@ -23,6 +23,14 @@ public class ZstudentController {
     QbankService Qservice;
 
     /**
+     * 学生注册控制器
+     * 魏凯旋 2020-11-4
+     * @return
+     */
+    @RequestMapping(value = "/face_registration")
+    public String face_registration(){return "face_registration";}
+
+    /**
      * 学生端人脸检验成功后跳转后的控制器
      * 魏凯旋  2020-10-23
      * @param name

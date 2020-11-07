@@ -57,11 +57,6 @@ public class TeachController {
     public String information_service(){return "information_service";}
 
 
-    @RequestMapping(value = "/face_registration")
-    public String face_registration(){return "face_registration";}
-
-
-
     @RequestMapping(value = "/information_delivery")
     public String information_delivery(){return "information_delivery";}
 

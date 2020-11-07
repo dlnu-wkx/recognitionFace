@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,12 +10,6 @@
     <script src="jquery/jquery.cookie.js"></script>
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
-
-<#--<font><#if sessionScope["zstudent_cookie"]?exists>
-
-        ${sessionScope["zstudent_cookie"]}
-
-    </#if></font>-->
 <div class="layui-layout layui-layout-admin" >
     <div class="layui-header" style="border-bottom: 1px solid #c2c2c2;background-color: #C6C6C6">
         <div class="layui-logo" style="osition: absolute;left: 0;top: 0;width: 200px;height: 100%;line-height: 60px;text-align: center;font-size: 16px;left:14px;letter-spacing:4px;color: #0C0C0C">登录界面</div>
@@ -33,17 +28,9 @@
             <div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='${path}'style='width: 15rem;height: 16rem;'></div>
             <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C"> 进入安浩智能学习工厂</div>
             <div>
-
-                    <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="test()" id="e_test">
-                        开始测试    
-                    </button>
-
-                  <#--  <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="simulationtasks()" id="e_test">
-                        实训任务
-                    </button>
--->
-
-
+                <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="test()">
+                    开始测试
+                </button>
             </div>
         </div>
         <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid #c2c2c2;">
@@ -76,57 +63,15 @@
     </div>
 </div>
 <script>
-
-
-    window.onload = function(){
-
-       alert(11)
-
-    /*    var test=  ${session.zstudent_cookie!"default value"}
-            alert(test)*/
-    //var test=
-   // alert(test)
-       /* var e_test=$("#e_test");
-
-        var sessionvalue =$("#sessionvalue").val();
-
-        alert(sessionvalue);
-
-        if(sessionvalue !="是"){
-            alert(22)
-            e_test.text('实训任务');
-            e_test.setAttribute('onclick',simulationtasks())
-        }*/
-    }
-
-
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;
 
     });
-    
-    //跳安全测试的方法
     function test() {
         /*ajax不能实现只发送不要数据所以不能用ajax*/
         location.href = "/student_test";
-       /* $.ajax({
-            type: "post",
-            url: "/starttest",
-            contentType: false,
-            processData: false,
-            async: false,
-            success: function (){
-            }
-        });*/
-
-        }
-    //跳实训任务的方法  
-    function simulationtasks() {
-        location.href = "/class_ppt";
-    }    
-    
-        
+    }
     function show() {
         alert("进入到show中")
     }
