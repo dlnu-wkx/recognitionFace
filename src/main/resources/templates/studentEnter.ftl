@@ -9,6 +9,12 @@
     <script src="jquery/jquery.cookie.js"></script>
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
+
+<#--<font><#if sessionScope["zstudent_cookie"]?exists>
+
+        ${sessionScope["zstudent_cookie"]}
+
+    </#if></font>-->
 <div class="layui-layout layui-layout-admin" >
     <div class="layui-header" style="border-bottom: 1px solid #c2c2c2;background-color: #C6C6C6">
         <div class="layui-logo" style="osition: absolute;left: 0;top: 0;width: 200px;height: 100%;line-height: 60px;text-align: center;font-size: 16px;left:14px;letter-spacing:4px;color: #0C0C0C">登录界面</div>
@@ -31,6 +37,11 @@
                     <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="test()" id="e_test">
                         开始测试    
                     </button>
+
+                  <#--  <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="simulationtasks()" id="e_test">
+                        实训任务
+                    </button>
+-->
 
 
             </div>
@@ -69,15 +80,23 @@
 
     window.onload = function(){
 
-    var zselecttest=$.cookie('zselecttest');
+       alert(11)
 
-    //如果cookie中不需要安全测试，更改按键的值以及方法
-    if(zselecttest!="是"){
-        $("#e_test").attr('onclick', 'simulationtasks()')
+    /*    var test=  ${session.zstudent_cookie!"default value"}
+            alert(test)*/
+    //var test=
+   // alert(test)
+       /* var e_test=$("#e_test");
 
-        $("#e_test").text("实训任务");
-    }
+        var sessionvalue =$("#sessionvalue").val();
 
+        alert(sessionvalue);
+
+        if(sessionvalue !="是"){
+            alert(22)
+            e_test.text('实训任务');
+            e_test.setAttribute('onclick',simulationtasks())
+        }*/
     }
 
 
@@ -90,18 +109,16 @@
     //跳安全测试的方法
     function test() {
         /*ajax不能实现只发送不要数据所以不能用ajax*/
-       // location.href = "/student_test";
-     //跳转开始测试的controller
-      $.ajax({
+        location.href = "/student_test";
+       /* $.ajax({
             type: "post",
             url: "/starttest",
             contentType: false,
             processData: false,
             async: false,
             success: function (){
-                location.href = "/student_test";
             }
-        });
+        });*/
 
         }
     //跳实训任务的方法  

@@ -37,17 +37,9 @@
     </select>-->
 
 
-        <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
-            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
-        </select>
-
-
         <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
                INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
         </insert>
-
-
-
 
     <!--   <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer" resultType="com.itboyst.facedemo.dto.FaceUserInfo">
            select face_id,name,face_feature from user_face_info

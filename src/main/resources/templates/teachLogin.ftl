@@ -175,7 +175,7 @@
                         //alert("姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
                         // layer.msg("姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
                         //自定义提示框
-                        location.href = "/teachRegister";
+                        location.href = "/teachLogin";
                         //showTips( "姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
                     } else {
                         $("#nameDiv").html("");

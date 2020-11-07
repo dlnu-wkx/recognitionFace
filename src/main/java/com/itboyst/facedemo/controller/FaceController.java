@@ -37,8 +37,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.*;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -266,7 +267,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceSearch(String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session,Model model) throws Exception {
+    public Result<FaceSearchResDto> faceSearch(String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -327,9 +328,6 @@ public class FaceController {
             String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
             zsl.setZid(uuid2);
 
-            //学生信息存session
-            session.setAttribute("zstudent",zstudent);
-
             zsl.setZstudentID(zstudent.getZid());
 
             Timestamp timestamp=new Timestamp(System.currentTimeMillis());
@@ -348,37 +346,26 @@ public class FaceController {
             int  i=zstudent_loginService.updateloginmessage(zsl);
 
 
+
             //将相关信息存入session中
             //设备
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
             session.setAttribute("ztraining_facility",ztrfac);
 
+
             //实训室
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);
+            //课程，日期，学生_日期
 
-            //课程，日期，上课学生表
+
+
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
             session.setAttribute("zstudent_cookie",zsc);
 
-            //存session
-           /* Map<String,Object> zstudent_cookie=new HashMap<>();
+            Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
 
-            zstudent_cookie.put("ztraining_facility",ztrfac);
-            zstudent_cookie.put("ztraining_room",ztr);
-            zstudent_cookie.put("zstudent_cookie",zsc);
-
-            model.addAllAttributes(zstudent_cookie);*/
-
-
-           //System.out.println(session.getAttribute("zstudent_cookie"));
-
-
-            Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
-
-            zselecttest.setMaxAge(86400);
-            //存cookie
-            response.addCookie(zselecttest);
+            System.out.println(zstudent_cookie);
 
 
 
@@ -434,11 +421,6 @@ public class FaceController {
         model.addAttribute("name",name);
         String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
         model.addAttribute("path",indPath);
-
-
-
-
-
         return "studentEnter";
     }
 

@@ -238,7 +238,7 @@
         str3+="<div><font size='3' >合格分数：60分</font></div>";
         str3+="<br><br><br>"
         //如果分数小于60，加载小于60的信息
-        if(code<60){
+        if(code<20){
             str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>需要重新答题</font>";
             str3+="<br><br>"
             str3+=" <button class='button7' onclick='reanswer()'>重新答题</button>"

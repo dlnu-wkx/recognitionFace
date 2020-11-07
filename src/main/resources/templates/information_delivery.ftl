@@ -246,8 +246,9 @@
     function powerController() {
         location.href="/power_controller";
     }
+    //跳转到管理页面
     function fieldManagement() {
-        location.href="/teachRegister";
+        location.href="/field_management";
     }
 </script>
 

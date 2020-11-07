@@ -1,7 +1,3 @@
-
-
-<script src="http://pv.sohu.com/cityjson"></script>
-
 <div class="layui-row">
     <div class="layui-col-xs7 layui-col-md-offset3" align="center">
         <div style="margin: 0,auto; width: 800px;height: 80px;background-color: #383939">
@@ -135,27 +131,6 @@
             var formData = new FormData();
             formData.append("groupId", "101")
             formData.append("file", base64File);
-
-            alert(returnCitySN["cip"])
-
-
-            /*$.ajax({
-                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
-                type: 'POST',
-                dataType: 'jsonp',
-                success:function(data) {
-                    alert(data.content.address_detail.province)
-                    alert(data.content.address_detail.city)
-
-                }
-            });
-*/
-
-
-
-
-
-
 
             $.ajax({
                 type: "post",
