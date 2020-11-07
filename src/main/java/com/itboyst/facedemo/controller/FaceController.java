@@ -9,18 +9,13 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.RandomUtil;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
-import com.itboyst.facedemo.dto.FaceSearchResDto;
-import com.itboyst.facedemo.dto.ProcessInfo;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.domain.UserFaceInfo;
-import com.itboyst.facedemo.dto.Zstudent;
-import com.itboyst.facedemo.service.FaceEngineService;
-import com.itboyst.facedemo.service.UserFaceInfoService;
-import com.itboyst.facedemo.dto.FaceUserInfo;
+import com.itboyst.facedemo.service.*;
 import com.itboyst.facedemo.base.Result;
 import com.itboyst.facedemo.base.Results;
 import com.itboyst.facedemo.enums.ErrorCodeEnum;
 import com.arcsoft.face.FaceInfo;
-import com.itboyst.facedemo.service.ZstudentService;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +31,12 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,6 +55,44 @@ public class FaceController {
 
     @Autowired
     ZstudentService zstuservice;
+
+    @Autowired
+    Zstudent_loginService zstudent_loginService;
+
+    @Autowired
+    FaceEngineService faceengine;
+
+    @Autowired
+    Ztraining_facilityService ztrinfser;
+
+    @Autowired
+    Ztraining_roomService ztraining_roomService;
+
+    @Autowired
+    Zstudent_cooikeService zstudent_cooikeService;
+
+    @Autowired
+    Zstudent_journalService zstudentJournalService;
+
+    /**
+     * 跳转测试
+     * @return
+     */
+    @RequestMapping(value = "/demo")
+    public String demo() {
+        return "demo";
+    }
+
+
+
+    /**老师进入的主页面跳转到右侧功能页面的控制器
+     * 魏凯旋 2020-11-04
+     * @return
+     */
+    @RequestMapping(value = "/field_management")
+    public String field_management(){return "field_management";}
+
+
 
     /*
     人脸添加
@@ -124,6 +159,8 @@ public class FaceController {
             if (i==0){
                 return null;
             }
+
+
 
             logger.info("faceAdd:" + name);
             return Results.newSuccessResult("");
@@ -230,7 +267,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceSearch(String file, Integer groupId, HttpServletResponse response) throws Exception {
+    public Result<FaceSearchResDto> faceSearch(String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -273,20 +310,96 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
-            //将验证信息保存到Cookie
-            Cookie name=new Cookie("name",faceSearchResDto.getName());
-            Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
-            //替换“\”为“/”否则存不到Cookie中
-            String path =fpath.replace("\\","/");
-            //输出看是否有空格
-            Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
-            name.setMaxAge(86400);
-            faceId.setMaxAge(86400);
-            aimPath1.setMaxAge(86400);
-            response.addCookie(name);
-            response.addCookie(faceId);
-            response.addCookie(aimPath1);//把路径存到cookie中
-            return Results.newSuccessResult(faceSearchResDto);
+
+
+            //student表信息更改
+            Zstudent zstudent=new Zstudent();
+
+            int faceid=faceengine.selectidbyname(faceSearchResDto.getName());
+
+
+
+            zstudent=zstuservice.findadoptstudent(faceid);
+
+
+            //学生登陆信息
+            Zstudent_login zsl=new Zstudent_login();
+
+            String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
+            zsl.setZid(uuid2);
+
+            zsl.setZstudentID(zstudent.getZid());
+
+            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+            zsl.setZrecongnizetime(timestamp);
+
+
+
+            //机库的交互
+            zsl.setZtype("机床001");
+
+          /*  zsl.setZrecognizeIP();
+*/
+
+            zsl.setZrecognizeIP(ip);
+            //插入学生登陆信息
+            int  i=zstudent_loginService.updateloginmessage(zsl);
+
+
+
+            //将相关信息存入session中
+            //设备
+            Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
+            session.setAttribute("ztraining_facility",ztrfac);
+
+
+            //实训室
+            ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
+            session.setAttribute("ztraining_room",ztr);
+            //课程，日期，学生_日期
+
+
+
+            Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
+            session.setAttribute("zstudent_cookie",zsc);
+
+            Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+
+            System.out.println(zstudent_cookie);
+
+
+
+
+            //插入日志信息
+            Zstudent_journal zstudentJournal=new Zstudent_journal();
+            zstudentJournal.setZstudentID(zstudent.getZid());
+            zstudentJournal.setZtype(ztype);
+            zstudentJournal.setZoperatedate(timestamp);
+            String uuid3 = UUID.randomUUID().toString().replaceAll("-","");
+            zstudentJournal.setZid(uuid3);
+
+            int j=zstudentJournalService.insertstujournal(zstudentJournal);
+
+
+
+            if(zstudent !=null  && i!=0){
+                //将验证信息保存到Cookie
+                Cookie name=new Cookie("name",faceSearchResDto.getName());
+                Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
+                //替换“\”为“/”否则存不到Cookie中
+                String path =fpath.replace("\\","/");
+                //输出看是否有空格
+                Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
+                name.setMaxAge(86400);
+                faceId.setMaxAge(86400);
+                aimPath1.setMaxAge(86400);
+                response.addCookie(name);
+                response.addCookie(faceId);
+                response.addCookie(aimPath1);//把路径存到cookie中
+                return Results.newSuccessResult(faceSearchResDto);
+            }
+
+
         }
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }

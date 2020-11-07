@@ -21,4 +21,14 @@ public class ZstudentServiceImpl implements ZstudentService {
         return i;
     }
 
+    @Override
+    public Zstudent findadoptstudent(int zfaceinfoID){
+       Zstudent zs =new Zstudent();
+
+       zs=zstu.findadoptstudent(zfaceinfoID);
+
+
+       return zs;
+    }
+
 }
