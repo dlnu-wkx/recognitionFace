@@ -62,4 +62,11 @@ public class QbankServiceImpl implements QbankService {
         return allquestion;
     }
 
+    @Override
+    public List<Zsafe_testingDto> findrand10(String zstudentID,String ztestingtype){
+
+        return   cmapper.findrand10(zstudentID,ztestingtype);
+
+    }
+
 }

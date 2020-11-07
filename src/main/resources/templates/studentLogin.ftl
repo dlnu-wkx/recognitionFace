@@ -154,8 +154,9 @@
 
             var data=getOsInfo();
             alert(data.version);
+            //操作系统
             formData.append("ztype",data.version);
-
+            //ip地址
             formData.append("ip",ip);
 
             $.ajax({

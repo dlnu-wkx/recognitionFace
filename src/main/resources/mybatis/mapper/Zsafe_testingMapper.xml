@@ -44,6 +44,9 @@
         <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer" resultType="com.itboyst.facedemo.dto.FaceUserInfo">
             select face_id,name,face_feature from user_face_info
         </select>-->
+    <select id="findrand10" resultMap="zsafe_testing" resultType="com.itboyst.facedemo.dto.Zsafe_testingDto">
+        SELECT * from zsafe_testing WHERE zid NOT IN (SELECT zsafetestingID FROM ztesting_input WHERE zstudentscheduleID =#{zstudentscheduleID }) AND ztestingtype=#{ztestingtype}  ORDER BY RAND() LIMIT 10;
+    </select>
 
 
 </mapper>

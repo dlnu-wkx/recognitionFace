@@ -1,5 +1,8 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.dto.Zsafe_testingDto;
+import com.itboyst.facedemo.dto.Zstudent;
+import com.itboyst.facedemo.dto.Zstudent_cookie;
 import com.itboyst.facedemo.service.QbankService;
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -72,5 +77,23 @@ public class QbankController {
     public String class_ppt(){return "class_ppt";}
 
 
+
+    @RequestMapping("/findrand10")
+    @ResponseBody
+    public List<Zsafe_testingDto> findrand10(HttpServletResponse response, HttpSession session) {
+        //从session中取出两个值
+        Zstudent zstudent =(Zstudent)session.getAttribute("zstudent");
+        String zstudentID=zstudent.getZid();
+
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
+        String zsafetestingType=zstudent_cookie.getZsafetestingType();
+
+        System.out.println( Qservice.findrand10(zstudentID,zsafetestingType).size());
+        for (Zsafe_testingDto string : Qservice.findrand10(zstudentID,zsafetestingType)) {
+            System.out.println(string);
+        }
+
+        return Qservice.findrand10(zstudentID,zsafetestingType);
+    }
 
 }

@@ -8,12 +8,12 @@ public class Zstudent_cookie {
     private String zname;
     private String ztype;
     private String zsafetestingType;
-    private String zid1;
+    private String zscheduleid;
     private String zcourseID;
     private String ztrainingroomID;
     private Timestamp zstartdate;
     private Timestamp zenddate;
-    private String zid2;
+    private String zstudent_scheduleid;
     private String zscheduleID;
     private String zstudentID;
     private String zselecttest;
@@ -60,12 +60,12 @@ public class Zstudent_cookie {
         this.zsafetestingType = zsafetestingType;
     }
 
-    public String getZid1() {
-        return zid1;
+    public String getZscheduleid() {
+        return zscheduleid;
     }
 
-    public void setZid1(String zid1) {
-        this.zid1 = zid1;
+    public void setZscheduleid(String zscheduleid) {
+        this.zscheduleid = zscheduleid;
     }
 
     public String getZcourseID() {
@@ -100,12 +100,12 @@ public class Zstudent_cookie {
         this.zenddate = zenddate;
     }
 
-    public String getZid2() {
-        return zid2;
+    public String getZstudent_scheduleid() {
+        return zstudent_scheduleid;
     }
 
-    public void setZid2(String zid2) {
-        this.zid2 = zid2;
+    public void setZstudent_scheduleid(String zstudent_scheduleid) {
+        this.zstudent_scheduleid = zstudent_scheduleid;
     }
 
     public String getZscheduleID() {
@@ -156,12 +156,12 @@ public class Zstudent_cookie {
                 ", zname='" + zname + '\'' +
                 ", ztype='" + ztype + '\'' +
                 ", zsafetestingType='" + zsafetestingType + '\'' +
-                ", zid1='" + zid1 + '\'' +
+                ", zscheduleid='" + zscheduleid + '\'' +
                 ", zcourseID='" + zcourseID + '\'' +
                 ", ztrainingroomID='" + ztrainingroomID + '\'' +
                 ", zstartdate=" + zstartdate +
                 ", zenddate=" + zenddate +
-                ", zid2='" + zid2 + '\'' +
+                ", zstudent_scheduleid='" + zstudent_scheduleid + '\'' +
                 ", zscheduleID='" + zscheduleID + '\'' +
                 ", zstudentID='" + zstudentID + '\'' +
                 ", zselecttest='" + zselecttest + '\'' +

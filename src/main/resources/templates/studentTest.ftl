@@ -42,10 +42,10 @@
 <div class="right">
 <!--右侧按键-->
     <div class="right1">
-        <button class="button5">举手</button>
+        <button class="button5" onclick="upheads()">举手</button>
     </div>
 
-    <div class="right2">
+    <div class="right2">    
         <button class="button5">请假</button>
     </div>
 
@@ -127,9 +127,10 @@
             processData: false,
             async: false,
             success: function (question) {
+               // alert(question[0].zid)
 
                 //选择题循环取出并加载
-                for (var w =0; w<question.cbank.length;w++) {
+               for (var w =0; w<question.cbank.length;w++) {
                     var k=w+1;
 
                     str+="<div class='qbank"+w+"' id='qbank"+w+"'>";
@@ -377,6 +378,19 @@
 
     };
 
+    
+    function upheads() {
+        alert(11)
+        $.ajax({
+            type: "post",
+            url: "/insertevent",
+            data:{"ztype":"举手"},
+            success: function (data){
+                alert(data);
+            }
+        });
+
+        }
 
 
 </script>

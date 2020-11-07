@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.Zstudent_eventMapper">
+    <resultMap id="Zstudent_event" type="com.itboyst.facedemo.dto.Zstudent_event">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zstudentID" property="zstudentID" javaType="String"/>
+        <result column="ztype" property="ztype" javaType="String"/>
+        <result column="zcontent" property="zcontent" javaType="String"/>
+        <result column="zapplicationtime" property="zapplicationtime" jdbcType="TIMESTAMP"/>
+        <result column="zhandletime" property="zhandletime" jdbcType="TIMESTAMP"/>
+        <result column="zstatus" property="zstatus" javaType="String"/>
+    </resultMap>
+
+
+
+
+<!--
+    <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
+            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
+        </select>-->
+
+
+    <insert id="insertevent" parameterType="com.itboyst.facedemo.dto.Zstudent_event" >
+               INSERT INTO zstudent_event (zid, zstudentID, ztype, zcontent ,zapplicationtime, zhandletime,zstatus) VALUES(#{zid}, #{zstudentID}, #{ztype}, #{zcontent} ,#{zapplicationtime}, #{zhandletime},#{zstatus});
+    </insert>
+
+
+
+
+    <!--   <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer" resultType="com.itboyst.facedemo.dto.FaceUserInfo">
+           select face_id,name,face_feature from user_face_info
+       </select>-->
+
+
+</mapper>
