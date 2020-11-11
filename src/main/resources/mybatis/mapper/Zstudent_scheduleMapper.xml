@@ -1,0 +1,26 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.Zstudent_scheduleMapper">
+    <resultMap id="Zstudent_schedule" type="com.itboyst.facedemo.dto.Zstudent_schedule">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zscheduleID" property="zscheduleID" javaType="String"/>
+        <result column="zstudentID" property="zstudentID" javaType="String"/>
+        <result column="zselecttest" property="zselecttest" javaType="String"/>
+        <result column="zpassingscore" property="zpassingscore" javaType="int"/>
+        <result column="zstate" property="zstate" javaType="String"/>
+    </resultMap>
+
+    <update id="updatestate" parameterType="com.itboyst.facedemo.dto.Zstudent_schedule" >
+        update zstudent_schedule
+        <set >
+            <if test="zstate != null" >
+                zstate = #{zstate,jdbcType=DECIMAL},
+            </if>
+
+        </set>
+        where zscheduleID = #{zscheduleID,jdbcType=DECIMAL} AND zstudentID = #{zstudentID,jdbcType=DECIMAL} AND zstate="未上课"
+    </update>
+
+
+</mapper>

@@ -1,0 +1,26 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.Zassign_scheduleMapper">
+    <resultMap id="Zassign_schedule" type="com.itboyst.facedemo.dto.Zassign_schedule">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zstudentscheduleID" property="zstudentscheduleID" javaType="String"/>
+        <result column="ztrainingtaskID" property="ztrainingtaskID" javaType="String"/>
+        <result column="zpublishtime" property="zpublishtime" jdbcType="TIMESTAMP"/>
+        <result column="zchecktime" property="zchecktime" jdbcType="TIMESTAMP"/>
+        <result column="zcompletetime" property="zcompletetime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <update id="updatechecktime" parameterType="com.itboyst.facedemo.dto.Zassign_schedule" >
+        update zassign_schedule
+        <set >
+            <if test="zchecktime == null" >
+                zchecktime = #{zchecktime,jdbcType=DECIMAL},
+            </if>
+
+        </set>
+        where zstudentscheduleID = #{zstudentscheduleID,jdbcType=DECIMAL} AND ztrainingtaskID = #{ztrainingtaskID,jdbcType=DECIMAL}
+    </update>
+
+
+</mapper>

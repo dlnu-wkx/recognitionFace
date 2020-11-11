@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.Ztask_content_logMapper">
+    <resultMap id="Ztask_content_log" type="com.itboyst.facedemo.dto.Ztask_content_log">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zassignscheduleID" property="zassignscheduleID" javaType="String"/>
+        <result column="ztrainingtaskcontentID" property="ztrainingtaskcontentID" javaType="String"/>
+        <result column="zstarttime" property="zstarttime" jdbcType="TIMESTAMP"/>
+        <result column="zendtime" property="zendtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <update id="updatestarttime" parameterType="com.itboyst.facedemo.dto.Ztask_content_log" >
+        update Ztask_content_log
+        <set >
+            <if test="zstarttime != null" >
+                zstarttime = #{zstarttime,jdbcType=DECIMAL},
+            </if>
+
+        </set>
+        where zassignscheduleID = #{zassignscheduleID,jdbcType=DECIMAL} AND ztrainingtaskcontentID = #{ztrainingtaskcontentID,jdbcType=DECIMAL} AND zstarttime=""
+    </update>
+
+
+</mapper>

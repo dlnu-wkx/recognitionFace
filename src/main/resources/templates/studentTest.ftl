@@ -5,10 +5,11 @@
     <title> 题库 </title>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
 
-<#--  <script type="text/javascript" src="./layui/layui.js ">   </script>-->
-    <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
-    <script src="./jquery/jquery.cookie.js"></script>
 
+    <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
+    <script type="text/javascript" src="./layui/js/common.js "></script>
+    <script src="./jquery/jquery.cookie.js"></script>
+    <script src="./layui/layui.js"></script>
 </head>
 <body  class="body" >
 <!--头部导航条-->
@@ -39,14 +40,21 @@
     <br><br>
 </div>
 
+<!--请假弹框-->
+<div class="co_leavemes" hidden id="co_leavemes">
+    <font>请假原因</font>
+    <input type="text" class="co_mes" id="co_mes">
+    <button class="co_button" onclick="common_leave()">确认</button>
+</div>
+
 <div class="right">
 <!--右侧按键-->
     <div class="right1">
-        <button class="button5" onclick="upheads()">举手</button>
+        <button class="button5" onclick="upheads()" id="upheads">举手</button>
     </div>
 
     <div class="right2">    
-        <button class="button5">请假</button>
+        <button class="button5" onclick="showleave()">请假</button>
     </div>
 
     <div class="right3">
@@ -85,6 +93,8 @@
     var ananswer=new Array();
     //正确题解
     var answer=new Array();
+
+    var answercode=new Array();
 
     //记录页数的i值,页数减1
     var i=0;
@@ -141,10 +151,10 @@
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+w+"'>";
-                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' ><font size='5'>A.</font><font size='5' >" + question.cbank[i].zoptionA + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message'id='B"+w+"'    value='B' ><font size='5'>B.</font><font size='5' >" + question.cbank[i].zoptionB + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'><font size='5'>C.</font><font size='5' >" + question.cbank[i].zoptionC + "</font><br><br><br>";
-                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' ><font size='5'>D.</font><font size='5' >" + question.cbank[i].zoptionD + "</font><br><br><br>";
+                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' ><font size='5'>A.</font><font size='5' >" + question.cbank[w].zoptionA + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message'id='B"+w+"'    value='B' ><font size='5'>B.</font><font size='5' >" + question.cbank[w].zoptionB + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'><font size='5'>C.</font><font size='5' >" + question.cbank[w].zoptionC + "</font><br><br><br>";
+                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' ><font size='5'>D.</font><font size='5' >" + question.cbank[w].zoptionD + "</font><br><br><br>";
                     str += " </p></div>";
 
                     str+="</div>";
@@ -226,6 +236,9 @@
             //正确答案与学生题解对比
             if(ananswer[j]==answer[j]){
                 code+=20;
+                answercode[j]=20;
+            }else{
+                answercode[j]=0;
             }
         }
         //隐藏题目，并加载分数信息
@@ -238,7 +251,7 @@
         str3+="<div><font size='3' >合格分数：60分</font></div>";
         str3+="<br><br><br>"
         //如果分数小于60，加载小于60的信息
-        if(code<20){
+        if(code<60){
             str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>需要重新答题</font>";
             str3+="<br><br>"
             str3+=" <button class='button7' onclick='reanswer()'>重新答题</button>"
@@ -246,10 +259,10 @@
             //加载大于60分的信息
             str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>已经</font><font size='3'color='red'>合格</font>";
             str3+="<br><br>"
-            str3+="<font size='5'color='red'>点击左侧任务开始实训</font>";
+            str3+="  <button class='start_button' onclick='begintrain()'>开始实训</button>";
 
             //左侧按键颜色改变(可循环优化)
-            $('#button1').css('background-color','#70AD47');
+          /*  $('#button1').css('background-color','#70AD47');
             $('#button2').css('background-color','#FFC000');
             $('#button3').css('background-color','rgba(68,114,196)');
             $('#button4').css('background-color','rgba(68,114,196)');
@@ -258,6 +271,7 @@
             $('#button7').css('background-color','rgba(68,114,196)');
             $('#button8').css('background-color','rgba(68,114,196)');
             $('#button9').css('background-color','rgba(68,114,196)');
+*/
 
         }
         //放入
@@ -265,7 +279,20 @@
         //提交按键隐藏（防止分数多次叠加）
         $("#nextpage").hide();
 
+     //  更改输入
+      /*  $.ajax({
+            type: "post",
+            url: "/updatetestinput",
+            data: {"ananswer":ananswer,"answercode":answercode},
+            success: function (data) {
+                alert(data)
+            }
+        });*/
+
+
         code=0;
+
+
     }
 
     //用来测试的方法
@@ -374,23 +401,15 @@
                 }
             });
         });
+    }
 
 
-    };
 
-    
-    function upheads() {
-        alert(11)
-        $.ajax({
-            type: "post",
-            url: "/insertevent",
-            data:{"ztype":"举手"},
-            success: function (data){
-                alert(data);
-            }
-        });
+function begintrain() {
 
-        }
+    location.href = "/class_ppt";
+}
+
 
 
 </script>

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itboyst.facedemo.mapper.Zsafe_testingMapper">
     <resultMap id="zsafe_testing" type="com.itboyst.facedemo.dto.Zsafe_testingDto">
-        <id column="zid" property="zid" javaType="int"/>
+        <id column="zid" property="zid" javaType="String"/>
         <result column="ztestingtype" property="ztestingtype" javaType="String"/>
         <result column="zlevel" property="zlevel" javaType="String"/>
         <result column="ztitletype" property="ztitletype" javaType="String"/>
@@ -17,14 +17,6 @@
 
     </resultMap>
 
-    <!-- <resultMap id="userFace2" type="com.itboyst.facedemo.dto.FaceUserInfo">
-         <id column="id" property="id" javaType="int"/>
-         <result column="group_id" property="groupId" javaType="java.lang.Integer"/>
-         <result column="face_id" property="faceId" javaType="String"/>
-         <result column="phone_number" property="phoneNumber" javaType="String"/>
-         <result column="create_time" property="createTime" javaType="java.util.Date"/>
-         <result column="face_feature" property="faceFeature"/>
-     </resultMap>-->
 
 
     <select id="findallCbank" resultMap="zsafe_testing" resultType="com.itboyst.facedemo.dto.Zsafe_testingDto">

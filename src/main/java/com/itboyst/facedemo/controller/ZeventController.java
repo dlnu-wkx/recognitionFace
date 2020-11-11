@@ -19,11 +19,17 @@ public class ZeventController {
 
     @RequestMapping("/insertevent")
     @ResponseBody
-    public int insertevent(HttpSession session,String ztype){
+    public int insertevent(HttpSession session,String ztype,String zcontent){
+
+        //System.out.println(ztype+zcontent);
         Zstudent_event zstudent_event =new Zstudent_event();
 
         String uuid = UUID.randomUUID().toString().replaceAll("-","");
         zstudent_event.setZid(uuid);
+
+        //将请假的id存入session中去
+        session.setAttribute("zstudent_eventid",uuid);
+
 
         Zstudent zstudent=(Zstudent)session.getAttribute("zstudent") ;
         String zstudentid=zstudent.getZid();
@@ -31,6 +37,9 @@ public class ZeventController {
 
         zstudent_event.setZstatus("申请中");
         zstudent_event.setZtype(ztype);
+        if (zcontent!=null ||zcontent!=""){
+            zstudent_event.setZcontent(zcontent);
+        }
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         zstudent_event.setZapplicationtime(timestamp);
@@ -38,5 +47,14 @@ public class ZeventController {
 
         return zstudent_eventService.insertevent(zstudent_event);
     }
+
+    @RequestMapping("/removeup")
+    @ResponseBody
+    public int removeup(HttpSession session){
+        String zid =(String) session.getAttribute("zstudent_eventid");
+
+        return zstudent_eventService.delteup(zid);
+    }
+
 
 }

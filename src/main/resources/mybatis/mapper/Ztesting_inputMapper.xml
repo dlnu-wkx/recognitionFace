@@ -29,6 +29,43 @@
 
 
 
+    <insert id="addlist" parameterType="list" useGeneratedKeys="true">
+        INSERT into ztesting_input
+        (zid,zstudentscheduleID, zsafetestingID, zorder, zstate)
+        VALUES
+        <foreach collection="list" item="test" separator=",">
+            (#{test.zid},
+            #{test.zstudentscheduleID},
+            #{test.zsafetestingID},
+            #{test.zorder},
+            #{test.zstate}
+           )
+        </foreach>
+    </insert>
+
+
+
+    <update id="updatelist" parameterType="java.util.List" >
+        update ztesting_input
+        SET zstate =
+        <foreach collection="list" item="item" separator=",">
+            #{item.zstate}
+        </foreach>
+        ,zinput=
+        <foreach collection="list" item="item" separator="," >
+            #{item.zinput}
+        </foreach>
+        ,zscore=
+        <foreach collection="list" item="item" separator=",">
+            #{item.zscore}
+        </foreach>
+        WHERE
+        zstudentscheduleID
+        <foreach collection="list"  item="item" separator=",">
+            #{item.zstudentscheduleID}
+        </foreach>
+
+    </update>
 
 
 </mapper>

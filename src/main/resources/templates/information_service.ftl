@@ -53,6 +53,7 @@
        <font size="5">时间：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input class="i_text1" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" type="time" />
        &emsp;&emsp;&emsp;  &emsp;&emsp;<font size="5">----</font> <input class="i_text1" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" type="time" />
        <br><br>
+       <button class="i_button">查询</button>
    </div>
 </div>
 
@@ -89,7 +90,7 @@
     }
     //现场管理
     function fieldManagement() {
-        location.href="/field_management";
+        location.href="/teachRegister";
     }
     //退出
     function powerController() {

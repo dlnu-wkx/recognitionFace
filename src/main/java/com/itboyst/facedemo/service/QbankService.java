@@ -11,5 +11,5 @@ public interface QbankService {
 
     public Map<String,Object> findallQuestion(HttpServletResponse response);
 
-    public List<Zsafe_testingDto> findrand10(String zstudentID,String zsafetestingType);
+    public List<Zsafe_testingDto> findrand10(String zstudentID, String zsafetestingType);
 }

@@ -15,4 +15,6 @@ public interface Zsafe_testingMapper {
     public List<Zsafe_testingDto> findallJbank();
 
     public List<Zsafe_testingDto> findrand10(String zstudentID,String ztestingtype);
+
+
 }

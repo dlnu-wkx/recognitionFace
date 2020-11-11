@@ -26,7 +26,9 @@
     </insert>
 
 
-
+    <delete id="deleteupmes" parameterType="java.lang.String">
+            DELETE FROM zstudent_event WHERE zid=#{zid}
+    </delete>
 
     <!--   <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer" resultType="com.itboyst.facedemo.dto.FaceUserInfo">
            select face_id,name,face_feature from user_face_info

@@ -229,7 +229,7 @@
     border-style: solid;
     border-color: #F2A774;
     background-color: rgba(254, 255, 247, 0);
-    z-index: 9;
+
     position: fixed;
 }
 
@@ -242,6 +242,7 @@
     display: inline-block;
     border-radius: 50%;
     vertical-align: middle;
+    transform: scale(1.5,1.5);
 
 }
 
@@ -259,7 +260,8 @@
     top: 6px;
     left: 5px;
     vertical-align: middle;
-    transform: rotate(-45deg);
+    transform: rotate(-45deg)  scale(1.5,1.5);
+
 
 }
 .title{
@@ -317,4 +319,51 @@
     background: rgba(137, 128, 144, 0.47);
     position: fixed;
 
+}
+
+
+.co_leavemes{
+    right: 10%;
+    top: 20%;
+    height: 40%;
+    width: 20%;
+    position: fixed;
+    border-style: solid;
+    border-color: #F2A774;
+    z-index: 10;
+}
+
+.co_mes{
+    top: 15%;
+    position: absolute;
+    height: 60%;
+    width: 90%;
+    left: 5%;
+}
+
+.co_button{
+    background-color: #4472C4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    bottom: 0%;
+    position: absolute;
+    left: 36%;
+}
+
+.start_button{
+    background-color: #4472C4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
 }

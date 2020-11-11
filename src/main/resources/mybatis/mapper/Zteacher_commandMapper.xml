@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.Zteacher_commandMapper">
+    <resultMap id="Zteacher_command" type="com.itboyst.facedemo.dto.Zteacher_command">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="ztrainingroomID" property="ztrainingroomID" javaType="String"/>
+        <result column="ztype" property="ztype" javaType="String"/>
+        <result column="zcontent" property="zcontent" javaType="String"/>
+        <result column="zpublishtime" property="zpublishtime" jdbcType="TIMESTAMP"/>
+        <result column="zstatus" property="zstatus" javaType="String"/>
+    </resultMap>
+
+
+
+
+   <select id="findcommand"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND (((ztype='签到' OR ztype='查岗') AND zstatus='有效') OR (ztype='滚屏信息' AND TimeStampDiff(DAY ,zpublishtime,NOW()) <![CDATA[ <= ]]> 30));
+    </select>
+
+<!--
+
+    <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
+               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
+    </insert>
+-->
+
+
+
+
+
+</mapper>

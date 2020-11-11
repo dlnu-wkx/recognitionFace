@@ -5,11 +5,18 @@
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 
+
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
 
 </head>
 <body class="layui-layout-body">
+
+
+
+
 <div class="layui-layout layui-layout-admin"  style="background-color: #CDCDCD">
     <div class="layui-header" style="border-bottom: 1px solid #c2c2c2;background-color: #CDCDCD">
         <div class="layui-logo" style="osition: absolute;left: 0;top: 0;width: 200px;height: 100%;line-height: 60px;text-align: center;font-size: 16px;left:14px;letter-spacing:4px;color: #0C0C0C">登录界面</div>
@@ -35,12 +42,12 @@
         </div>
         <div class="layui-col-xs1" align="right" style="height:700px;left: 124px;border-left: 1px solid #c2c2c2;">
             <div>
-                <button style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:10px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
+                <button  style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:10px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
                     举手
                 </button>
             </div>
             <div>
-                <button style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:15px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
+                <button  style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:15px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
                     请假
                 </button>
             </div>
@@ -212,6 +219,10 @@
                 var base64 = reader.result;
                 formData.append("file", base64);
                 formData.append("groupId", 101);
+
+
+
+
                 $.ajax({
                     type: "post",
                     url: "/faceSearch",
