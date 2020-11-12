@@ -12,6 +12,7 @@
     opacity:1;
     background-color: #AEC2E6;
     opacity:0.5;
+    z-index: 9;
 }
 
 
@@ -30,7 +31,7 @@
     height:60%;
     left: 0%;
     top: 6.7%;
-    border-right: 2px solid #97A7C5;
+    border-right: 2px solid #BBBBBB;
     position: fixed;
 }
 .p_center{
@@ -69,6 +70,7 @@
     background-color: whitesmoke;
     right: 0%;
     position: absolute;
+    transform: scale(1.5,1.5);
 }
 
 
@@ -87,7 +89,7 @@
     height:30%;
     left: 0%;
     top: 66.8%;
-    border-top: 2px solid #97A7C5;
+    border-top: 2px solid #BBBBBB;
     position: fixed;
 }
 
@@ -151,4 +153,11 @@
     font-size: 16px;
     border-radius: 10px;
 
+}
+
+.outdiv{
+    z-index: 10;
+    position: fixed;
+    right: 1.75%;
+    bottom: 14%;
 }

@@ -33,24 +33,34 @@
                </button>
             </div>
        </div>
-       <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid n10;">
+       <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid #c2c2c2;">
+           <div>
+               <button onclick="show()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                   举手
+               </button>
+           </div>
+           <div>
+               <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                   请假
+               </button>
+           </div>
+          <#-- <div>
+               <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                   实时状态
+               </button>
+           </div>
+           <div>
+               <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                   信息发布
+               </button>
+           </div>-->
           <div>
-            <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:10px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
-                举手
-            </button>
-          </div>
-          <div>
-            <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:15px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
-                请假
-            </button>
-          </div>
-          <div>
-            <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:350px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 26px">
+            <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:300px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
                 退出系统
             </button>
           </div>
        </div>
-</div>
+  </div>
 </div>
 <script>
     //JavaScript代码区域
@@ -61,6 +71,9 @@
     function test() {
         /*ajax不能实现只发送不要数据所以不能用ajax*/
         location.href = "/test";
+    }
+    function show() {
+        alert("进入到show中")
     }
 </script>
 </body>

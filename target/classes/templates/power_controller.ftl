@@ -167,16 +167,18 @@
 </div>
 <!--右侧按键-->
 <div class="p_right" align="center">
-    <button class="p_button3">现场管理</button>
+    <button onclick="fieldManagement()" class="p_button3">现场管理</button>
 <br><br>
-    <button class="p_button3">信息查询</button>
+    <button onclick="informationService()" class="p_button3">信息查询</button>
 <br><br>
-    <button class="p_button3">实时状态</button>
+    <button onclick="timeStatus()" class="p_button3">实时状态</button>
 <br><br>
-    <button class="p_button3">信息发布</button>
+    <button onclick="informationDelivery()" class="p_button3">信息发布</button>
     <br><br>
-    <button class="p_button4" onclick="outpower()">退出</button>
 </div>
+<div class="outdiv">
+    <button class="p_button4" id="p_button4" onclick="outpower()">退出</button></div>
+
 
 <!--下方按键及内容-->
 <div class="p_text" align="center">
@@ -216,9 +218,44 @@
     }
 
     function lockscreen() {
-        $("#parent").show()
+        //蒙版出现
+        $("#parent").show();
+        //弹框消失
+        $("#popup").hide();
+        //按键文字改变，颜色改变，方法改变
+        $("#p_button4").css('background-color','#FFC000');
+        $("#p_button4").text('解锁');
+        $("#p_button4").attr("onclick","removescreer()");
+
     }
 
+    function removescreer() {
+        $("#parent").hide();
+        $("#p_button4").css('background-color','rgba(68,114,196)');
+        $("#p_button4").text('退出');
+        $("#p_button4").attr("onclick","outpower()");
+
+    }
+
+
+
+
+    //现场管理
+    function fieldManagement() {
+        location.href="/teachRegister";
+    }
+    //信息查询
+    function informationService() {
+        location.href="/information_service";
+    }
+    //实时状态
+    function timeStatus() {
+        location.href="/time_status";
+    }
+    //信息发布
+    function informationDelivery() {
+        location.href="/information_delivery";
+    }
 </script>
 
 </html>
