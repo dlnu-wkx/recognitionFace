@@ -6,6 +6,8 @@ import com.itboyst.facedemo.service.Ztraining_facilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Ztraining_facilityServiceImpl implements Ztraining_facilityService {
 
@@ -16,5 +18,10 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
     public Ztraining_facility findbyip(String zstudentPCIP){
 
       return   ztran_facmap.findtrain_fac(zstudentPCIP);
+    }
+
+    @Override
+    public List<Ztraining_facility> findfacilitybyrid(String Ztraining_roomID){
+        return ztran_facmap.findfactibyrid(Ztraining_roomID);
     }
 }

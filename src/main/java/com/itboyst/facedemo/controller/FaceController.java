@@ -74,6 +74,16 @@ public class FaceController {
     @Autowired
     Zstudent_journalService zstudentJournalService;
 
+    @Autowired
+    Zteacher_journalService zteacher_journalService;
+
+    @Autowired
+    ZteacherService zteacherService;
+
+    @Autowired
+    ZscheuleService zscheuleService;
+
+
     /**
      * 跳转测试
      * @return
@@ -407,6 +417,123 @@ public class FaceController {
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }
 
+
+
+
+   //教师登陆
+    @RequestMapping(value = "/faceTeacherSearch", method = RequestMethod.POST)
+    @ResponseBody
+    public Result<FaceSearchResDto> faceTeacherSearch(String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
+        if (groupId == null) {
+            return Results.newFailedResult("groupId is null");
+        }
+        byte[] decode = Base64.decode(base64Process(file));
+
+        BufferedImage bufImage = ImageIO.read(new ByteArrayInputStream(decode));
+        ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);
+        //人脸特征获取
+        byte[] bytes = faceEngineService.extractFaceFeature(imageInfo);
+        if (bytes == null) {
+            return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);//没检测到人脸数据
+        }
+        //人脸比对，获取比对结果
+        List<FaceUserInfo> userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);
+        if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
+            FaceUserInfo faceUserInfo = userFaceInfoList.get(0);
+            //获取目标文件路径以备上传照片使用
+            String fpath =userFaceInfoList.get(0).getPath();
+            FaceSearchResDto faceSearchResDto = new FaceSearchResDto();
+            BeanUtil.copyProperties(faceUserInfo, faceSearchResDto);
+            List<ProcessInfo> processInfoList = faceEngineService.process(imageInfo);
+            if (CollectionUtil.isNotEmpty(processInfoList)) {
+                //人脸检测
+                List<FaceInfo> faceInfoList = faceEngineService.detectFaces(imageInfo);
+                int left = faceInfoList.get(0).getRect().getLeft();
+                int top = faceInfoList.get(0).getRect().getTop();
+                int width = faceInfoList.get(0).getRect().getRight() - left;
+                int height = faceInfoList.get(0).getRect().getBottom() - top;
+
+                Graphics2D graphics2D = bufImage.createGraphics();
+                graphics2D.setColor(Color.RED);//红色
+                BasicStroke stroke = new BasicStroke(5f);
+                graphics2D.setStroke(stroke);
+                graphics2D.drawRect(left, top, width, height);
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                ImageIO.write(bufImage, "jpg", outputStream);
+                byte[] bytes1 = outputStream.toByteArray();
+                faceSearchResDto.setImage("data:image/jpeg;base64," + Base64Utils.encodeToString(bytes1));
+                faceSearchResDto.setAge(processInfoList.get(0).getAge());
+                faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
+
+            }
+                //插入教师日志
+                Zteacher_journal zteacher_journal=new Zteacher_journal();
+                String uuid = UUID.randomUUID().toString().replaceAll("-","");
+                zteacher_journal.setZid(uuid);
+                zteacher_journal.setZtype("登陆系统");
+                Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+                zteacher_journal.setZoperatedate(timestamp);
+                int i= zteacher_journalService.inserteacherjournal(zteacher_journal,faceSearchResDto.getName());
+
+                //将教师表存入session中
+                Zteacher zteacher=zteacherService.selectteacherbyname(faceSearchResDto.getName());
+                session.setAttribute("zteacher",zteacher);
+
+
+
+                //将设备表ztraining_facility存入session中去
+                Ztraining_facility ztraining_facility=ztrinfser.findbyip(ip);
+                session.setAttribute("ztraining_facility",ztraining_facility);
+
+                System.out.println(ip);
+
+                //将实训室ztraining_room存入session中去
+                ztraining_room ztraining_room=ztraining_roomService.findbyip(ztraining_facility.getZtrainingroomID());
+                session.setAttribute("ztraining_room",ztraining_room);
+
+                //上课表Zschedule存入session中去
+                Zschedule zschedule = zscheuleService.selectbynt(faceSearchResDto.getName(),timestamp);
+                session.setAttribute("zschedule",zschedule);
+
+
+                //将验证信息保存到Cookie
+                Cookie name=new Cookie("name",faceSearchResDto.getName());
+                Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
+                //替换“\”为“/”否则存不到Cookie中
+                String path =fpath.replace("\\","/");
+                //输出看是否有空格
+                Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
+                name.setMaxAge(86400);
+                faceId.setMaxAge(86400);
+                aimPath1.setMaxAge(86400);
+                response.addCookie(name);
+                response.addCookie(faceId);
+                response.addCookie(aimPath1);//把路径存到cookie中
+                return Results.newSuccessResult(faceSearchResDto);
+
+        }
+        return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
+    }
+
+
+    @RequestMapping(value = "/teacherlogin", method = RequestMethod.GET)
+    public String teacherlogin(@CookieValue("name") String name, @CookieValue("faceId") String faceId,@CookieValue("path") String path, Model model) throws Exception {
+        model.addAttribute("faceId",faceId);
+        model.addAttribute("name",name);
+        String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
+        model.addAttribute("path",indPath);
+
+        return "teacherEnter";
+    }
+
+
+
+
+
+
+
+
+
     /**
      * 人脸检验成功后跳转后的控制器
      * 魏凯旋  2020-10-23
@@ -424,10 +551,6 @@ public class FaceController {
         model.addAttribute("name",name);
         String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
         model.addAttribute("path",indPath);
-
-
-
-
 
         return "studentEnter";
     }

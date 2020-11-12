@@ -18,11 +18,10 @@
           SELECT * FROM ztraining_room WHERE zid=#{zid};
     </select>
 
+    <select id="findallztrainroom"  resultType="com.itboyst.facedemo.dto.ztraining_room">
+          SELECT * FROM ztraining_room ;
+    </select>
 
-    <!--<insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
-               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
-        </insert>
--->
 
 
 

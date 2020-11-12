@@ -151,6 +151,9 @@ public class QbankController {
     @RequestMapping(value = "/class_ppt")
     public String class_ppt(){return "class_ppt";}
 
+    @RequestMapping(value = "/teacher")
+    public String teacher(){return "TeacherLogin";}
+
 
 
     @RequestMapping("/findrand10")

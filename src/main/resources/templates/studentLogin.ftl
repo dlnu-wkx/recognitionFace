@@ -42,21 +42,21 @@
         </div>
         <div class="layui-col-xs1" align="right" style="height:700px;left: 124px;border-left: 1px solid #c2c2c2;">
             <div>
-                <button  style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:10px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
-                    举手
-                </button>
-            </div>
-            <div>
-                <button  style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:15px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
-                    请假
-                </button>
-            </div>
-            <div>
-                <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:350px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 26px">
-                    退出系统
-                </button>
-            </div>
-        </div>
+        <button  style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:10px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
+            举手
+        </button>
+    </div>
+    <div>
+        <button  style="pointer-events:none;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:15px;width:80px;background-color: #A5A5A5;border-radius:14px;text-align: center;line-height: 30px;font-size: 20px">
+            请假
+        </button>
+    </div>
+    <div>
+        <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:350px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 26px">
+            退出系统
+        </button>
+    </div>
+</div>
     </div>
 </div>
 <script>
@@ -157,7 +157,7 @@
             formData.append("file", base64File);
 
             var data=getOsInfo();
-            alert(data.version);
+
             //操作系统
             formData.append("ztype",data.version);
             //ip地址

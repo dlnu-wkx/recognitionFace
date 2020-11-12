@@ -8,6 +8,8 @@ import com.itboyst.facedemo.service.ZstudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ZstudentServiceImpl implements ZstudentService {
 
@@ -30,5 +32,11 @@ public class ZstudentServiceImpl implements ZstudentService {
 
        return zs;
     }
+    @Override
+    public List<String> findnamebyzscheduleID(String zscheduleID){
+        return zstu.findnamebyzscheduleID(zscheduleID);
+    }
+
+
 
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itboyst.facedemo.mapper.ZstudentMapper">
-    <resultMap id="zstudent" type="com.itboyst.facedemo.dto.Zstudent">
+<mapper namespace="com.itboyst.facedemo.mapper.ZteacherMapper">
+    <resultMap id="zteacher" type="com.itboyst.facedemo.dto.Zteacher">
         <id column="zid" property="zid" javaType="String"/>
-        <result column="zgradeID" property="zgradeID" javaType="String"/>
+        <result column="zmajorID" property="zmajorID" javaType="String"/>
         <result column="zauthorityID" property="zauthorityID" javaType="String"/>
         <result column="zidentity" property="zidentity" javaType="String"/>
         <result column="zpass" property="zpass" javaType="String"/>
@@ -12,30 +12,21 @@
         <result column="zsex" property="zsex" javaType="String"/>
         <result column="zphone" property="zphone" javaType="String"/>
         <result column="zfaceinfoID" property="zfaceinfoID" javaType="int"/>
-        <result column="zphotoID" property="zphotoID" javaType="String"/>
-        <result column="zstatus" property="zstatus" javaType="String"/>
+        <result column="zphoto" property="zphoto" javaType="String"/>
 
     </resultMap>
 
 
 
 
-        <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
-            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
+    <select id="selectbyname"  resultType="com.itboyst.facedemo.dto.Zteacher">
+            SELECT * FROM zteacher WHERE zname=#{zname};
         </select>
 
-
-        <select id="findnamebyzscheduleID"  resultType="java.lang.String">
-          select A.zname from zstudent A ,zstudent_schedule B where B.zstudentID=A.zid   and B.zscheduleID=#{zscheduleID} and zstate="在上课";
-        </select>
-
-
-
+<!--
     <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
                INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
-        </insert>
-
-
+    </insert>-->
 
 
 </mapper>

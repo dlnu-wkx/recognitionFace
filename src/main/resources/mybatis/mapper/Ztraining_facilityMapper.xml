@@ -28,7 +28,9 @@
                INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
         </insert>
 -->
-
+    <select id="findfactibyrid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
+          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
+    </select>
 
 
 
