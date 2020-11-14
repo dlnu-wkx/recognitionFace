@@ -5,9 +5,11 @@
     <title> 机床控制器电源管理 </title>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
+    <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
+    <script src="./layui/js/common.js"></script>
 
 </head>
 <body  class="body" >
@@ -19,151 +21,14 @@
 
 
 <!--中部电源显示-->
-<div class="p_center">
-    <table class="p_bbbox">
+<div class="p_center" id="p_center">
 
-
-        <tr>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"   align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>    <th>
-            <div class="power_bbox"   align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>    <th>
-            <div class="power_bbox"  align="center">
-                <font size="3">名称1</font>
-                <div class="power_sbox">
-                    <input type="checkbox" class="p_check">
-                </div>
-        </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-            <th>
-                <div class="power_bbox"  align="center">
-                    <font size="3">名称1</font>
-                    <div class="power_sbox">
-                        <input type="checkbox" class="p_check">
-                    </div>
-            </th>
-        </tr>
-    </table>
 </div>
 
 
 <!--左侧按键-->
-<div class="p_left" align="center">
-    <br><br>
-    <button class="p_button1" id="button1">数控车实训室</button>
-    <br><br>
-    <button class="p_button2" id="button2">数控铣实训室</button>
-    <br><br>
-    <button class="p_button2" id="button3">数控车展示屏</button>
-    <br><br>
-    <button class="p_button2" id="button4">数控铣展示屏</button>
-    <br><br>
+<div class="p_left" align="center" id="p_left">
+
 </div>
 <!--右侧按键-->
 <div class="p_right" align="center">
@@ -196,7 +61,7 @@
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
     <font size="3">弹窗</font><br>
-    <button class="p_button2">下课</button>
+    <button class="p_button2" onclick="overclass()">下课</button>
 </div>
 
 <!--蒙版-->
@@ -213,9 +78,9 @@
 
 <script>
 
-    function outpower(){
-        $("#popup").show()
-    }
+
+
+    var num=0;
 
     function lockscreen() {
         //蒙版出现
@@ -230,11 +95,144 @@
     }
 
     function removescreer() {
-
         location.href = "/teacher";
+    }
 
+    function removemes() {
+        $("#inputmes").val("");
+    }
+
+    var zlocation="";
+
+
+    //查到被点击实训室的所有设备
+    function findfacbyrid(id) {
+
+        zlocation =id;
+
+        $("#p_left button").css("background-color","#70AD47");
+
+        var str="";
+        var p_center=$("#p_center");
+        p_center.empty();
+        $.ajax({
+            type: "post",
+            url: "/findfacilitybyrid",
+            data:{"zlocation":id},
+            success: function (data) {
+                    num=data.length;
+
+                $("#"+id+"").css("background-color","#FFC000")
+
+                if(data.length <7){
+
+                    str+="<table class='p_bbbox' id='p_bbox'>"
+                    str+=" <tr>";
+                    //var类型，不能写成int
+                    for(var i=0; i<data.length;i++){
+
+                         if (data[i].zpowerstatus=="已开机"){
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                         }else if (data[i].zpowerstatus=="关机"){
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                         }
+
+                    }
+                    str+="</tr>";
+                    str+="</table>";
+                    str+="<button class='d_button1' onclick='allchose()'>全选</button>"
+
+                }else {
+                    var j=0;
+                    str+="<table class='p_bbbox' id='p_bbox'>"
+
+                    for (var i=0;i<(data.length/6+1);i++){
+
+                        str+=" <tr>";
+                        for(;j<6*(i+1);j++){
+                            if(j==data.length){break;}
+                            if (data[j].zpowerstatus=="已开机"){
+                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                            }else if (data[j].zpowerstatus=="关机"){
+                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                            }
+
+                        }
+                        str+="</tr>";
+                        //  j+=6;
+                    }
+
+                    str+="</table>";
+                    str+="<button class='d_button1' onclick='allchose()'>全选</button>"
+                }
+
+                p_center.html(str)
+
+            }
+        });
+    }
+
+    window.onload =function () {
+        onloadallroom();
+    }
+
+    function onloadallroom(){
+        var p_left=$("#p_left");
+        var str=""
+
+        $.ajax({
+            type: "post",
+            url: "/findalltrainroom",
+            success: function (data) {
+
+                for(var i =0; i<data.length;i++){
+                    str+=" <br><br><button onclick='findfacbyrid("+data[i].zlocation+")' class='p_button2'id='"+data[i].zlocation+"'>"+data[i].zname+"</button>"
+                }
+                p_left.html(str)
+
+            }
+        });
 
     }
+
+    function allchose() {
+        $("#p_center  input[type='checkbox']").attr("checked","true");
+    }
+
+    function insertcommand() {
+        var inputmes=$("#inputmes").val()
+        alert(inputmes)
+        if(inputmes !=null|| imputmes!="" || inputmes!="点击输入滚动消息"){
+            $.ajax({
+                type: "post",
+                url: "/insertcommand",
+                data:{"zcontent":inputmes,"zlocation":zlocation},
+                success: function (data) {
+                    if(data>0){
+                        alert("发布成功")
+                    }
+
+                }
+            });
+        }
+    }
+
+    function overclass() {
+
+        $.ajax({
+            type: "post",
+            url: "/overclass",
+            data:{"num":num},
+            success: function (data) {
+                if(data!=0){
+                    alert("成功下课，等待电源关闭")
+                }
+            }
+        });
+    }
+
+
+
 
 
 

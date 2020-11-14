@@ -29,7 +29,7 @@
         </insert>
 -->
     <select id="findfactibyrid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
-          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
+          SELECT * FROM ztraining_facility WHERE zlocation=#{zlocation};
     </select>
 
 

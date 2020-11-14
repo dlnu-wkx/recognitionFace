@@ -11,4 +11,6 @@ public interface Zstudent_loginMapper {
 
     Zstudent_login findfront(String zstudentID);
 
+    int updateloginstate(String zstatus,String ztrainingroomID);
+
 }

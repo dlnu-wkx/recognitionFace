@@ -17,5 +17,5 @@ public interface MybatisUserFaceInfoMapper {
 
     List<FaceUserInfo> getUserFaceInfoByGroupId(Integer groupId);
 
-    Useridname selectidbyname(String name);
+    int selectidbyname(String fpath);
 }

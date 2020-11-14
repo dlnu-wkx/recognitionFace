@@ -16,8 +16,6 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
 
     @Override
     public int updateloginmessage(Zstudent_login zstl){
-
-
         Zstudent_login zsl=zstulogma.findfront(zstl.getZstudentID());
 
         if(zsl !=null){
@@ -29,6 +27,11 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
         j= zstulogma.insertnowmessage(zstl);
 
         return j;
+    }
+
+    @Override
+    public int updateloginstate(String status,String ztrainingroomID){
+        return zstulogma.updateloginstate(status,ztrainingroomID);
     }
 
 }

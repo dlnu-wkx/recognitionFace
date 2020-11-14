@@ -95,10 +95,8 @@ public class FaceEngineServiceImpl implements FaceEngineService {
     }
 
     @Override
-    public int selectidbyname(String name){
-        Useridname u=new Useridname();
-        u  = userFaceInfoMapper.selectidbyname(name);
-        return u.getId();
+    public int selectidbyname(String fpath){
+        return userFaceInfoMapper.selectidbyname(fpath);
     }
 
 

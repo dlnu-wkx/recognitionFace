@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class ZcommandController {
@@ -28,4 +30,25 @@ public class ZcommandController {
 
         return data;
     }
+
+
+
+    @RequestMapping("/insertcommand")
+    @ResponseBody
+    public int insertcommand(String zlocation,String zcontent){
+        Zteacher_command zteacher_command=new Zteacher_command();
+        zteacher_command.setZcontent(zcontent);
+        String uuid = UUID.randomUUID().toString().replaceAll("-","");
+        zteacher_command.setZid(uuid);
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        zteacher_command.setZpublishtime(timestamp);
+        zteacher_command.setZstatus("有效");
+        zteacher_command.setZtype("滚屏消息");
+       // System.out.println(zteacher_command);
+        return zteacher_commandService.insertcommand(zteacher_command,zlocation);
+    }
+
+
+
+
 }

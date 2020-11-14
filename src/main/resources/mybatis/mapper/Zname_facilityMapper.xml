@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.Zname_facilityMapper">
+    <resultMap id="zstudent_facility" type="com.itboyst.facedemo.dto.Zstudent_facility">
+        <id column="zid" property="zid" javaType="String"/>
+        <result column="zname" property="zname" javaType="String"/>
+        <result column="zidentity" property="zidentity" javaType="String"/>
+
+
+    </resultMap>
+
+
+
+
+    <select id="findnameandf"  resultType="com.itboyst.facedemo.dto.Zstudent_facility">
+      select A.zid zid, A.zname zname,B.zidentity zidentity from zstudent A,ztraining_facility B,zstudent_login C,zstudent_schedule D where A.zid=C.zstudentID and C.zrecognizeIP=B.zstudentPCIP and D.zstudentID=A.Zid and D.zstate="在上课"
+    </select>
+
+
+
+</mapper>

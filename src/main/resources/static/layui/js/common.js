@@ -73,3 +73,7 @@ function timeStatus() {
 function informationDelivery() {
     location.href="/information_delivery";
 }
+//退出
+function outpower(){
+    $("#popup").show()
+}

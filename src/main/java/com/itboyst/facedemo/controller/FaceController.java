@@ -83,6 +83,9 @@ public class FaceController {
     @Autowired
     ZscheuleService zscheuleService;
 
+    @Autowired
+    Zteacher_cookieSerice zteacher_cookieSerice;
+
 
     /**
      * 跳转测试
@@ -320,14 +323,13 @@ public class FaceController {
 
             }
 
-
+          //  System.out.println(faceUserInfo.getPath());
             //student表信息更改
             Zstudent zstudent=new Zstudent();
 
-            int faceid=faceengine.selectidbyname(faceSearchResDto.getName());
+            int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
 
-
-
+          //  System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
 
 
@@ -359,6 +361,7 @@ public class FaceController {
 
             //将相关信息存入session中
             //设备
+            System.out.println(ip);
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
             session.setAttribute("ztraining_facility",ztrfac);
 
@@ -466,6 +469,13 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
+                //人脸表id
+                int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
+                //教师信息、课程信息和实训室信息
+                Zteacher_cookie zteacher_cookie=zteacher_cookieSerice.findbyfaceid(faceid);
+                session.setAttribute("zteacher_cookie",zteacher_cookie);
+                //System.out.println(session.getAttribute("zteacher_cookie"));
+
                 //插入教师日志
                 Zteacher_journal zteacher_journal=new Zteacher_journal();
                 String uuid = UUID.randomUUID().toString().replaceAll("-","");
@@ -475,25 +485,6 @@ public class FaceController {
                 zteacher_journal.setZoperatedate(timestamp);
                 int i= zteacher_journalService.inserteacherjournal(zteacher_journal,faceSearchResDto.getName());
 
-                //将教师表存入session中
-                Zteacher zteacher=zteacherService.selectteacherbyname(faceSearchResDto.getName());
-                session.setAttribute("zteacher",zteacher);
-
-
-
-                //将设备表ztraining_facility存入session中去
-                Ztraining_facility ztraining_facility=ztrinfser.findbyip(ip);
-                session.setAttribute("ztraining_facility",ztraining_facility);
-
-                System.out.println(ip);
-
-                //将实训室ztraining_room存入session中去
-                ztraining_room ztraining_room=ztraining_roomService.findbyip(ztraining_facility.getZtrainingroomID());
-                session.setAttribute("ztraining_room",ztraining_room);
-
-                //上课表Zschedule存入session中去
-                Zschedule zschedule = zscheuleService.selectbynt(faceSearchResDto.getName(),timestamp);
-                session.setAttribute("zschedule",zschedule);
 
 
                 //将验证信息保存到Cookie

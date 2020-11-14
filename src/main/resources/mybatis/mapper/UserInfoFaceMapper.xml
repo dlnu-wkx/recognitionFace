@@ -26,8 +26,8 @@
         SELECT name,create_time from user_face_info
     </select>
 
-    <select id="selectidbyname"  resultType="com.itboyst.facedemo.dto.Useridname">
-        SELECT id from user_face_info where name =#{name}
+    <select id="selectidbyname"  resultType="int">
+        SELECT id from user_face_info where fpath =#{fpath}
     </select>
 
 
@@ -39,4 +39,7 @@
             resultType="com.itboyst.facedemo.dto.FaceUserInfo">
         select face_id,name,face_feature,fpath from user_face_info
     </select>
+
+
+
 </mapper>

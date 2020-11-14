@@ -40,220 +40,20 @@
     <font size="3" class="f_font1">设备列表</font>
     <button class="f_button1" onclick="allchose()">全选</button>
 
-        <table class="f_table1" align="center" id="f_table">
-            <tr>
+    <div class="f_leftmes" id="f_leftmes">
 
-                <th>
-                    当前人员
-                </th>
-                <th>
-                    机床号
-                </th>
-                <th>
-                    选项
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr><tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr><tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr><tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-            <tr>
-
-                <th>
-                    张三
-                </th>
-                <th>
-                    F01
-                </th>
-                <th>
-                    <input type="checkbox">
-                </th>
-            </tr>
-        </table>
+    </div>
 </div>
 
 <!--右侧课件列表-->
 <div class="f_rmessage">
     <font class="f_font2">课件列表</font>
-    <input class="f_input1" type="text" >
-    <button class="f_button2">搜索</button>
+    <input class="f_input1" type="text" id="f_input1">
+    <button class="f_button2" onclick="tasklike()">搜索</button>
 
-    <table class="f_table2">
-        <tr>
-            <th>课件名称</th>
-            <th>
-                选项
-            </th>
-        </tr>
-        <tr>
-            <th>课件名称1</th>
-            <th>
-                <input type="checkbox">
-            </th>
-        </tr>
+   <div class="f_table2mes" id="f_table2mes">
 
-    </table>
+   </div>
 </div>
 
 
@@ -266,7 +66,7 @@
 </div>
 
 <div class="f_bottom">
-    <button class="p_button2">信息广播</button>
+    <button class="p_button2" onclick="informationDelivery()">信息广播</button>
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
     <button class="p_button2">临时任务</button>
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -280,6 +80,11 @@
 
 <script>
 
+    function informationDelivery() {
+        location.href="/information_delivery"
+    }
+
+
     function outpower(){
         $("#popup").show()
     }
@@ -289,7 +94,6 @@
     }
 
     function outmessage() {
-        alert(1)
         $("#de_popup").show()
     }
 
@@ -297,8 +101,83 @@
     function allchose() {
 
         //全选
-        $("#f_table  input[type='checkbox']").attr("checked","true");
+        $("#f_leftmes  input[type='checkbox']").attr("checked","true");
     }
+
+
+    window.onload =function () {
+        load();
+    }
+
+    function load() {
+
+        var str=""
+        var f_leftmes=$("#f_leftmes")
+
+        var str2=""
+        var f_table2mes=$("#f_table2mes")
+
+        $.ajax({
+            type: "post",
+            url: "/findallnandf",
+            success: function (data) {
+
+                str+="  <table class='f_table1' align='center' id='f_table'>"
+                str+="<tr> <th> 当前人员 </th> <th>机床号 </th> <th> 选项 </th> </tr>"
+                for (var i=0; i<data.length;i++) {
+                    str+=" <tr> <th> "+data[i].zname+" </th> <th>"+data[i].zidentity+" </th> <th> <input id='"+data[i].zid+"' type='checkbox'> </th> </tr> "
+                }
+                str+=" </table>"
+                f_leftmes.html(str)
+            }
+        });
+
+
+        $.ajax({
+            type: "post",
+            url: "/findalltask",
+            success: function (data) {
+
+                str2+=" <table class='f_table2'>";
+                str2+="<tr><th>课件名称</th><th>选项</th></tr>"
+                for (var i=0;i<data.length;i++){
+                    str2+=" <tr><th>"+data[i].zname+"</th><th><input type='checkbox' id='"+data[i].zid+"'></th></tr>"
+                }
+                str2+="</table>";
+
+                f_table2mes.html(str2)
+            }
+        });
+
+    }
+
+
+    function tasklike() {
+        var str2=""
+        var f_table2mes=$("#f_table2mes")
+        var zname=$("#f_input1").val()
+
+        $.ajax({
+            type: "post",
+            url: "/findtasklikename",
+            data:{"zname":zname},
+            success: function (data) {
+                str2+=" <table class='f_table2'>";
+                str2+="<tr><th>课件名称</th><th>选项</th></tr>"
+                for (var i=0;i<data.length;i++){
+                    str2+=" <tr><th>"+data[i].zname+"</th><th><input type='checkbox'></th></tr>"
+                }
+                str2+="</table>";
+
+                f_table2mes.empty();
+                f_table2mes.html(str2)
+            }
+        })
+        }
+
+
+
+
 
 
 

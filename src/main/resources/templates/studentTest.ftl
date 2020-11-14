@@ -20,7 +20,7 @@
 
 <!--左侧灰色按键-->
 <div class="left">
-    <button class="button8" id="button1">固定任务</button>
+    <#--<button class="button8" id="button1">固定任务</button>
     <br><br>
     <button class="button9" id="button2">临时任务</button>
     <br><br>
@@ -37,7 +37,7 @@
     <button class="button2" id="button8">任务名称</button>
     <br><br>
     <button class="button2" id="button9">任务名称</button>
-    <br><br>
+    <br><br>-->
 </div>
 
 <!--请假弹框-->
@@ -96,6 +96,8 @@
 
     var answercode=new Array();
 
+    var questionid=new Array()
+
     //记录页数的i值,页数减1
     var i=0;
 
@@ -143,6 +145,7 @@
                for (var w =0; w<question.cbank.length;w++) {
                     var k=w+1;
 
+                   questionid[w]=question.cbank[w].zid;
                     str+="<div class='qbank"+w+"' id='qbank"+w+"'>";
 
                     str+="<font size='5' class='title'>安全测试题,每题20分，60分及格</font>";
@@ -165,6 +168,8 @@
                 for(var j=0; j<question.jbank.length;j++){
                     var k=j+4;
                     var p=j+3;
+
+                    questionid[p]=question.jbank[j].zid;
                     str+="<div class='qbank"+p+"' id='qbank"+p+"'>";
 
                     str+="<font size='5' class='questiontitle'>判断题</font>";
@@ -280,14 +285,20 @@
         $("#nextpage").hide();
 
      //  更改输入
-      /*  $.ajax({
+      $.ajax({
             type: "post",
             url: "/updatetestinput",
-            data: {"ananswer":ananswer,"answercode":answercode},
+            data: {"ananswer":ananswer,"answercode":answercode,"questionid":questionid},
             success: function (data) {
-                alert(data)
+
+                if(data==5){
+                    alert("提交成功！")
+                }else{
+                    alert("出错")
+                }
+
             }
-        });*/
+        });
 
 
         code=0;

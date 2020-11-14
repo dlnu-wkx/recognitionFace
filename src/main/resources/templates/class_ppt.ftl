@@ -266,7 +266,7 @@
             success: function (data){
 
                 for(var i=0;i<data.length;i++){
-                    str+="<button class='cp_button1' onclick='loadcontentbypages2("+data[i].zid+")' id='"+data[i].zid+"'>"+data[i].ztitle+"</button> <br><br>"
+                    str+="<button class='cp_button1' onclick='loadcontentbypages3("+data[i].zid+")' id='"+data[i].zid+"'>"+data[i].ztitle+"</button> <br><br>"
                 }
 
             }

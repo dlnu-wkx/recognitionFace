@@ -18,12 +18,12 @@
         SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND (((ztype='签到' OR ztype='查岗') AND zstatus='有效') OR (ztype='滚屏信息' AND TimeStampDiff(DAY ,zpublishtime,NOW()) <![CDATA[ <= ]]> 30));
     </select>
 
-<!--
 
-    <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
-               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
+
+    <insert id="insertcommand" parameterType="com.itboyst.facedemo.dto.Zteacher_command" >
+               INSERT INTO Zteacher_command (zid, ztrainingroomID, ztype, zcontent ,zpublishtime, zstatus) VALUES(#{zid}, (select zid from ztraining_room where zlocation=#{zlocation}) , #{ztype}, #{zcontent} ,#{zpublishtime}, #{zstatus});
     </insert>
--->
+
 
 
 

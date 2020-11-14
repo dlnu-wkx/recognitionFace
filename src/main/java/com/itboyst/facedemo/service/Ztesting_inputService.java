@@ -9,5 +9,5 @@ public interface Ztesting_inputService {
 
     public int addtestinput(List<Ztesting_input> data);
 
-    public int updatelist(List<Ztesting_input> data);
+    public int updatelist(Ztesting_input ztesting_input);
 }

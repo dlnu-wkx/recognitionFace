@@ -4,7 +4,21 @@
     height: 70%;
     width: 80%;
     position: absolute;
+    border-style:solid;
+    border-color: #0a0b0b;
 }
+
+
+.delivery_unpowerbox{
+    bottom: 0%;
+    background-color: #C8C8C8;
+    height: 70%;
+    width: 80%;
+    position: absolute;
+    border-style:solid;
+    border-color: #0a0b0b;
+}
+
 
 .d_button1{
     background-color:  #4472C4;

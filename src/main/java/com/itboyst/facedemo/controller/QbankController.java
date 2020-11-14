@@ -82,13 +82,12 @@ public class QbankController {
 
     @RequestMapping("/updatetestinput")
     @ResponseBody
-    public int updatetestinput(@RequestParam(value = "ananswer[]")String [] ananswer,@RequestParam(value = "answercode[]")String [] answercode,HttpSession session){
-        System.out.println("进入controller");
-        System.out.println(ananswer);
+    public int updatetestinput(@RequestParam(value = "questionid[]")String [] questionid,@RequestParam(value = "ananswer[]")String [] ananswer,@RequestParam(value = "answercode[]")String [] answercode,HttpSession session){
 
-        List<Ztesting_input> data =new ArrayList<>();
+
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
         String zstudentscheduleID=zstudent_cookie.getZstudent_scheduleid();
+        int j=0,k=0;
 
         for (int i=0;i<5;i++){
             Ztesting_input ztesting_input=new Ztesting_input();
@@ -97,11 +96,15 @@ public class QbankController {
             ztesting_input.setZstate("已做");
             ztesting_input.setZinput(ananswer[i]);
             ztesting_input.setZscore(Integer.parseInt(answercode[i]));
-            data.add(ztesting_input);
+            ztesting_input.setZsafetestingID(questionid[i]);
+            k=ztesting_inputService.updatelist(ztesting_input);
+
+            if(k==1){
+                j++;
+            }
+
         }
 
-        int j=ztesting_inputService.updatelist(data);
-        System.out.println(j);
         return j;
     }
 

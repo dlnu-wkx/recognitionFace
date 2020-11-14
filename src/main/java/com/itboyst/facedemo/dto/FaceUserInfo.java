@@ -2,7 +2,6 @@ package com.itboyst.facedemo.dto;
 
 
 public class FaceUserInfo {
-
     private String faceId;
     private String name;
     private Integer similarValue;

@@ -2,10 +2,9 @@ package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.Zfixed_task;
 import com.itboyst.facedemo.dto.Zstudent_cookie;
-import com.itboyst.facedemo.service.Zassign_scheduleService;
-import com.itboyst.facedemo.service.Zfixed_taskService;
-import com.itboyst.facedemo.service.Zstudent_scheduleService;
-import com.itboyst.facedemo.service.Ztask_content_logService;
+import com.itboyst.facedemo.dto.Zstudent_facility;
+import com.itboyst.facedemo.dto.Ztraining_task;
+import com.itboyst.facedemo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +29,11 @@ public class Zfixed_taskController {
     @Autowired
     Ztask_content_logService ztask_content_logService;
 
+    @Autowired
+    Zname_facilityService zname_facilityService;
+
+    @Autowired
+    Ztraining_taskService ztraining_taskService;
 
 
     @RequestMapping("/findallfixedtasks")
@@ -71,6 +75,30 @@ public class Zfixed_taskController {
 
        return 0;
     }
+
+
+
+    @RequestMapping("/findallnandf")
+    @ResponseBody
+    public List<Zstudent_facility> findallnandf(){
+        return zname_facilityService.findnameandfaclity();
+    }
+
+
+    @RequestMapping("/findalltask")
+    @ResponseBody
+    public List<Ztraining_task> findalltask(){
+
+        return ztraining_taskService.findalltask();
+    }
+
+
+    @RequestMapping("/findtasklikename")
+    @ResponseBody
+    public List<Ztraining_task> findtasklikename(String zname){
+        return ztraining_taskService.findtasklike(zname);
+    }
+
 
 
 

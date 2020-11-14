@@ -45,25 +45,8 @@
 
 
 
-    <update id="updatelist" parameterType="java.util.List" >
-        update ztesting_input
-        SET zstate =
-        <foreach collection="list" item="item" separator=",">
-            #{item.zstate}
-        </foreach>
-        ,zinput=
-        <foreach collection="list" item="item" separator="," >
-            #{item.zinput}
-        </foreach>
-        ,zscore=
-        <foreach collection="list" item="item" separator=",">
-            #{item.zscore}
-        </foreach>
-        WHERE
-        zstudentscheduleID
-        <foreach collection="list"  item="item" separator=",">
-            #{item.zstudentscheduleID}
-        </foreach>
+    <update id="updatelist" parameterType="com.itboyst.facedemo.dto.Ztesting_input" >
+    UPDATE ztesting_input SET zinput=#{zinput} ,zstate=#{zstate},zscore=#{zscore} WHERE zstudentscheduleID=#{zstudentscheduleID} AND zsafetestingID = #{zsafetestingID}
 
     </update>
 

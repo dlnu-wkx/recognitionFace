@@ -28,14 +28,20 @@
     top:4%;
 }
 
+.f_leftmes{
+    height: 80%;
+    width: 90%;
+    top: 10%;
+    position: absolute;
+}
+
 
 .f_table1{
     border-collapse: collapse;
     text-align:center;
     background-color: #FFFFFF;
-    height: 80%;
-    width: 90%;
-    top: 10%;
+    height: 100%;
+    width: 100%;
     position: absolute;
     border:solid 1px #4472C4;
     overflow-y:auto;
@@ -102,13 +108,22 @@
     right: 10%;
     width: 20%;
 }
+
+.f_table2mes{
+    height: 80%;
+    width: 90%;
+    top: 10%;
+    position: absolute;
+}
+
+
+
 .f_table2{
     border-collapse: collapse;
     text-align:center;
     background-color: #FFFFFF;
-    height: 80%;
-    width: 90%;
-    top: 10%;
+    height: 100%;
+    width: 100%;
     position: absolute;
     border:solid 1px #FFC000;
     overflow-y:auto;

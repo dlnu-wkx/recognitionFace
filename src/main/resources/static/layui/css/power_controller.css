@@ -32,6 +32,9 @@
     left: 0%;
     top: 6.7%;
     border-right: 2px solid #BBBBBB;
+    overflow-y:auto;
+    display: block;
+    border-spacing: 0;
     position: fixed;
 }
 .p_center{

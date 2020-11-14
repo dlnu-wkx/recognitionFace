@@ -9,5 +9,5 @@ import java.util.List;
 public interface Ztraining_facilityMapper {
     public Ztraining_facility findtrain_fac(String zstudentPCIP);
 
-    public List<Ztraining_facility> findfactibyrid(String ztrainingroomID);
+    public List<Ztraining_facility> findfactibyrid(String zlocation);
 }

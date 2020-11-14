@@ -13,5 +13,5 @@ public interface Ztesting_inputMapper {
 
     public int addlist(@Param("list") List<Ztesting_input> list);
 
-    public int updatelist(@Param("list")List<Ztesting_input> data);
+    public int updatelist(Ztesting_input ztesting_input);
 }

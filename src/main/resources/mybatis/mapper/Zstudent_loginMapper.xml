@@ -28,19 +28,9 @@
         INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime}, #{ztype}, #{zrecognizeIP});
     </insert>
 
-
-<!--
-
-    <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
-            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND zstatus='审核通过';
-        </select>
-
-
-    <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
-               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
-        </insert>
--->
-
+    <update id="updateloginstate" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+      UPDATE zstudent_login SET zstatus=#{zstatus} WHERE ztype='机床' AND zstatus='正常' AND zrecognizeIP IN (SELECT zstudentPCIP FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID});
+    </update>
 
 
 

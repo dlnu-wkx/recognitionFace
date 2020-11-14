@@ -13,7 +13,7 @@
 
     <select id="selectbynt"  resultType="com.itboyst.facedemo.dto.Zschedule">
            select B.* from zteacher A ,zschedule B,zteacher_schedule C where A.zid=C.zteacherID and C.zscheduleID=B.zid  and #{time} BETWEEN B.zstartdate AND B.zenddate  and A.zname=#{zname};
-        </select>
+    </select>
 
 
 

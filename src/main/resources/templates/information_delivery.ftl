@@ -28,15 +28,7 @@
 
 <!--左侧按键-->
 <div class="p_left" align="center" id="p_left">
-    <br><br>
-    <button class="p_button1" id="button1">数控车实训室</button>
-    <br><br>
-    <button class="p_button2" id="button2">数控铣实训室</button>
-    <br><br>
-    <button class="p_button2" id="button3">数控车展示屏</button>
-    <br><br>
-    <button class="p_button2" id="button4">数控铣展示屏</button>
-    <br><br>
+
 </div>
 <!--右侧按键-->
 <div class="p_right" align="center">
@@ -54,7 +46,7 @@
 <!--下方按键及内容-->
 <div class="p_text" align="center">
     <input type="text" class="d_text" value="点击输入滚动消息" onclick="removemes()" id="inputmes">
-    <div class="d_font2"><button class="button7">确认</button></div>
+    <div class="d_font2"><button class="button7" onclick="insertcommand()">确认</button></div>
     <div class="d_choose">
     <div class="d_font">
         <font >显示:</font> <input type="text" value="" size="1"><font>秒</font>
@@ -89,32 +81,44 @@
         $("#inputmes").val("");
     }
 
+    var zlocation="";
 
-    //查到该次上课的所有人的姓名
+
+    //查到被点击实训室的所有设备
     function findfacbyrid(id) {
 
+        zlocation =id;
+
+        $("#p_left button").css("background-color","#70AD47");
 
         var str="";
         var p_center=$("#p_center");
-
+        p_center.empty();
         $.ajax({
             type: "post",
             url: "/findfacilitybyrid",
-            data:{"ztrainroomid":id},
+            data:{"zlocation":id},
             success: function (data) {
 
 
-             if(data.length <7){
+                $("#"+id+"").css("background-color","#FFC000")
+
+                if(data.length <7){
 
                  str+="<table class='p_bbbox' id='p_bbox'>"
                   str+=" <tr>";
                   //var类型，不能写成int
                     for(var i=0; i<data.length;i++){
-                       str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input id='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+
+                        if (data[i].zpowerstatus=="已开机"){
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                        }else if (data[i].zpowerstatus=="关机"){
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                        }
                    }
                    str+="</tr>";
                    str+="</table>";
-                   str+="<button class='d_button1' onclick=''>全选</button>"
+                   str+="<button class='d_button1' onclick='allchose()'>全选</button>"
 
               }else {
                  var j=0;
@@ -125,7 +129,11 @@
                      str+=" <tr>";
                      for(;j<6*(i+1);j++){
                         if(j==data.length){break;}
-                         str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input type='checkbox' id='"+data[i].zid+"' class='p_check'></div></th>";
+                         if (data[j].zpowerstatus=="已开机"){
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                         }else if (data[j].zpowerstatus=="关机"){
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                         }
 
                      }
                      str+="</tr>";
@@ -133,7 +141,7 @@
                  }
 
                  str+="</table>";
-                 str+="<button class='d_button1' onclick=''>全选</button>"
+                 str+="<button class='d_button1' onclick='allchose()'>全选</button>"
              }
 
                 p_center.html(str)
@@ -154,13 +162,9 @@
             type: "post",
             url: "/findalltrainroom",
             success: function (data) {
-                    for(var i =0; i<data.length;i++){
-                        if(i==0){
-                            str+=" <br><br><button onclick='findfacbyrid("+data[i].zid+")' class='p_button1'id='"+data[i].zid+"'>"+data[i].zname+"</button>"
-                        }else {
-                            str+=" <br><br><button onclick='findfacbyrid("+data[i].zid+")' class='p_button2'id='"+data[i].zid+"'>"+data[i].zname+"</button>"
-                        }
 
+                    for(var i =0; i<data.length;i++){
+                        str+=" <br><br><button onclick='findfacbyrid("+data[i].zlocation+")' class='p_button2'id='"+data[i].zlocation+"'>"+data[i].zname+"</button>"
                     }
                     p_left.html(str)
 
@@ -168,6 +172,29 @@
         });
 
     }
+
+    function allchose() {
+        $("#p_center  input[type='checkbox']").attr("checked","true");
+    }
+
+    function insertcommand() {
+        var inputmes=$("#inputmes").val()
+        alert(inputmes)
+        if(inputmes !=null|| imputmes!="" || inputmes!="点击输入滚动消息"){
+            $.ajax({
+                type: "post",
+                url: "/insertcommand",
+                data:{"zcontent":inputmes,"zlocation":zlocation},
+                success: function (data) {
+                    alert(data)
+                }
+            });
+        }
+    }
+
+
+
+
 
 
     function outpower(){

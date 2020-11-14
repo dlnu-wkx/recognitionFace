@@ -25,7 +25,7 @@ public class Zstesting_inputServiceImpl implements Ztesting_inputService {
     }
 
     @Override
-    public int updatelist(List<Ztesting_input> data){
-        return ztestingInputMapper.updatelist(data);
+    public int updatelist(Ztesting_input ztesting_input){
+        return ztestingInputMapper.updatelist(ztesting_input);
     }
 }

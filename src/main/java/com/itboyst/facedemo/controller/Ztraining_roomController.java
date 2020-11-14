@@ -28,9 +28,9 @@ public class Ztraining_roomController {
 
     @RequestMapping("/findfacilitybyrid")
     @ResponseBody
-    public List<Ztraining_facility> findfacilitybyrid(String ztrainroomid){
+    public List<Ztraining_facility> findfacilitybyrid(String zlocation){
 
-        return ztraining_facilityService.findfacilitybyrid(ztrainroomid);
+        return ztraining_facilityService.findfacilitybyrid(zlocation);
     }
 
 
