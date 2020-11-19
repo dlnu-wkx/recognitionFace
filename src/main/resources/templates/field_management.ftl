@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="./layui/js/common.js "></script>
+    <script type="text/javascript" src="./layui/js/common.js "></script>
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
     <script src="jquery/jquery.cookie.js"></script>
@@ -42,9 +45,17 @@
             </div>
         </div>
         <div id="courseRecordContent"style="display: none;width: 50%;height: 300px;position: fixed;background-color: #CDCDCD;border: 1px solid;top:50%;left: 7%;z-index: 3">
-            <div style="margin: 10px auto;width: 29%">课堂记录</div>
-            <div style="margin: 10px auto;background-color: #ffffff;width: 90%;height: 200px"><textarea style="width: 100%;height: 100%"></textarea></div>
-            <div style="position: absolute;left: 15%"><button style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">确定</button></div>
+            <div style="margin: 5px auto;width: 29%">
+                <div style="float: left">课堂记录</div>
+                <select id="valueSelect" style="float: right">
+                    <option value="正常">正常</option>
+                    <option value="事故">事故</option>
+                    <option value="冲突">冲突</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+            <div style="margin: 29px auto;background-color: #ffffff;width: 90%;height: 200px"><textarea id="textContent" style="width: 100%;height: 100%"></textarea></div>
+            <div style="position: absolute;left: 15%"><button onclick="subContent()" style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">确定</button></div>
             <div style="position: absolute;left: 60%"><button onclick="cancel()" style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">取消</button></div>
         </div>
         <div id="hiddenArea"style="position: absolute;height: 100%;width: 100%;filter: alpha(opacity=60);opacity: 0.6;display: none;z-index: 2">
@@ -93,7 +104,7 @@
         <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
             <div id="mainDiv"></div>
             <#--这个地方到时候要循环遍历出来拼接字符串-->
-            <div style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red">
+            <div id="identifyAreas"style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red">
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">李四  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">王二  机电19班</div>
@@ -105,12 +116,12 @@
             <div style="height: 500px;text-align:center;line-height:40px;font-size: 40px;background-color: #ffff;overflow:scroll;border: 1px solid red">
                 <#--这个也要用遍历写出来的，显示最先出现的三个人-->
                 <div style="width: 100%;margin-top: 2px;">
-                    <div style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid">天龙八部</div>
-                    <div style="width: 27%;position: absolute;left:35%;background-color: #BDD7EE;color: red;border: 1px solid">广利菩萨</div>
-                    <div style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid">白龙马</div>
+                    <div id="left" style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid">天龙八部</div>
+                    <div id="middle" style="width: 27%;position: absolute;left:35%;background-color: #BDD7EE;color: red;border: 1px solid">广利菩萨</div>
+                    <div id="right" style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid">白龙马</div>
                 </div>
                 <#--按照顺序排出识别的人脸，顺序是最早的在最下最右边-->
-                <div style="width: 100%;margin: 53px auto">
+                <div id="mainBody"style="width: 100%;margin: 53px auto">
                     <table>
                         <tr>
                             <th>
@@ -131,10 +142,10 @@
             </div>
             <div>
                 <div style="float:left;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:left;width: 50%">
-                    <button onclick="showRecognitionFace()" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
+                    <button onclick="OpenOrCloseTimer(this.value)" value="1" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
                 </div>
                 <div style="text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:right;width: 50%">
-                    <button style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
+                    <button onclick="OpenOrCloseTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
                 </div>
             </div>
         </div>
@@ -189,6 +200,7 @@
     }
     //数控车讨论区显示每台机的人脸识别情况
     function studentShow(e){
+        insertCheckPoint();
         var a =e;
         if(a==2){
             document.getElementById("checkPointMenu").style.display="none";
@@ -200,9 +212,11 @@
         document.getElementById("fourMenu").style.display="block";
         document.getElementById("fourMenu1").style.display="block";
         getMedia();
+
     }
     //数控铣讨论区显示每台机的人脸识别情况
     function studentShow1(e){
+        insertCheckPoint();
         var b =e;
         if(b==2){
             document.getElementById("checkPointMenu").style.display="none";
@@ -214,6 +228,7 @@
         document.getElementById("fourMenu").style.display="block";
         document.getElementById("fourMenu1").style.display="block";
         getMedia();
+
     }
     //获取摄像头
     function getMedia() {
@@ -247,16 +262,16 @@
         document.getElementById("checkPointColor").style.backgroundColor="#ED7D31";
         document.getElementById("twoMenu").style.display="none";
         document.getElementById("checkPointMenu").style.display="block";
+
     }
-    //从数据库中显示已经检测到的人脸信息
-    function showRecognitionFace() {
-        alert("目前还没有检测到人脸");
-    }
+
     //课堂记录
     function courseRecord() {
         document.getElementById("courseRecordColor").style.backgroundColor="#ED7D31";
         document.getElementById("hiddenArea").style.display="block";
         document.getElementById("courseRecordContent").style.display="block";
+
+
     }
     //课程记录中的取消按钮
     function cancel() {

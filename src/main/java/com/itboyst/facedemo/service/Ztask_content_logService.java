@@ -4,6 +4,8 @@ import com.itboyst.facedemo.dto.Ztask_content_log;
 
 import java.sql.Timestamp;
 
+import com.itboyst.facedemo.dto.Ztask_content_log;
+
 public interface Ztask_content_logService {
 
     public int updatestarttime(String zassignscheduleID,String ztrainingtaskcontentID,String zstarttime);
@@ -15,5 +17,6 @@ public interface Ztask_content_logService {
     public int updatecontentlogstart(String zassignscheduleID, String ztrainingtaskcontentID, Timestamp zstarttime);
 
     public int updatecontentlogend(String zassignscheduleID, String ztrainingtaskcontentID, Timestamp zendtime);
+
 
 }

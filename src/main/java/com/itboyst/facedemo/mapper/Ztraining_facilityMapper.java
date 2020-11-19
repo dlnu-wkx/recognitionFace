@@ -14,4 +14,9 @@ public interface Ztraining_facilityMapper {
     public int updateallfacility(String ztrainingroomID,String zpowerstatus);
 
     public int updateallfacilitybyzid(String zid,String zpowerstatus);
+
+
+    public List<Ztraining_facility> findfactibyztrainingroomID(String ztrainingroomID);
+
+    public String  findOpenPower(String zid);
 }

@@ -31,6 +31,16 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
     }
 
     @Override
+    public String findOpenPower(String zid) {
+        return ztran_facmap.findOpenPower(zid);
+    }
+
+    @Override
+    public List<Ztraining_facility> findfactibyztrainingroomID(String ztrainingroomID) {
+        return ztran_facmap.findfactibyztrainingroomID(ztrainingroomID);
+    }
+
+    @Override
     public int updateallfacilitybyzid(String zid,String zpowerstatus){
         return ztran_facmap.updateallfacilitybyzid(zid, zpowerstatus);
     }

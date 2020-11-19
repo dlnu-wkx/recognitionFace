@@ -15,11 +15,35 @@
     position: absolute;
 }
 
+.f_button1{
+    background-color: #BDD7EE;
+    border: 1px solid;
+    color: black;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 19px;
+    /*圆角控制器*/
+    /* border-radius: 10px; */
+    height: 7%;
+    width: 24%;
+    position: absolute;
+}
+
 .t_table{
     left: 3%;
     top: -5%;
     right: 2%;
     height: 90%;
+    width: 90%;
+    position: absolute;
+}
+.f_table{
+    left: -5%;
+    top: -5%;
+    right: 2%;
+    height: 65%;
     width: 90%;
     position: absolute;
 }
@@ -38,8 +62,17 @@
     position: fixed;
     left: 10%;
     top: 10%;
+    z-index: 3;
 }
-
+.t_hiddenArea{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    display: none;
+    z-index: 2;
+}
 
 
 
@@ -64,9 +97,9 @@
 }
 
 .t_name{
-    right: 20%;
+    right: 15%;
     height: 5%;
-    width: 10%;
+    width: 20%;
     position: absolute;
     background-color:#4472C4 ;
     top: 1%;

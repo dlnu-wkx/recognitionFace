@@ -1,5 +1,6 @@
 package com.itboyst.facedemo.mapper;
 
+import com.itboyst.facedemo.dto.Zstudent;
 import com.itboyst.facedemo.dto.Zstudent_event;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,6 @@ public interface Zstudent_eventMapper {
     public int findisevent(String zstudentid);
 
     public int deleteleave(String zstudentID,String ztype);
+
+    public Zstudent_event findRaiseHandByFacility(String zid);
 }

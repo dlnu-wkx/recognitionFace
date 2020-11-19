@@ -38,5 +38,9 @@
     </delete>
 
 
-
+    <select id="findRaiseHandByFacility" resultType="com.itboyst.facedemo.dto.Zstudent_event">
+     select max(a.zapplicationtime),a.zid,a.zstudentID,a.ztype,a.zcontent,a.zstatus,a.zhandletime from (SELECT *
+               FROM zstudent_event
+               WHERE zstatus ="申请中" AND (TIME_TO_SEC(NOW())- TIME_TO_SEC(zapplicationtime)&gt;3600) AND zstudentID=(SELECT zstudentID FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid})))a
+    </select>
 </mapper>

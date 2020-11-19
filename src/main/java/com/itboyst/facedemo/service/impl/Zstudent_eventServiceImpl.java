@@ -32,4 +32,9 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
     public int deleteleave(String zstudentID,String ztype){
         return zstudent_eventMapper.deleteleave(zstudentID,ztype);
     }
+
+    @Override
+    public Zstudent_event  findRaiseHandByFacility(String zid) {
+        return zstudent_eventMapper.findRaiseHandByFacility(zid);
+    }
 }

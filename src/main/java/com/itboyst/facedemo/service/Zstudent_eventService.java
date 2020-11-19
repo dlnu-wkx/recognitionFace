@@ -10,4 +10,6 @@ public interface Zstudent_eventService {
     public int findisevent(String zstudentid);
 
     public int deleteleave(String zstudentID,String ztype);
+
+    public Zstudent_event  findRaiseHandByFacility(String zid);
 }

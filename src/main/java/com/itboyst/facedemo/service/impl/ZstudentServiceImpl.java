@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public class ZstudentServiceImpl implements ZstudentService {
 
+
+
     @Autowired
     private ZstudentMapper zstu;
 
@@ -39,4 +41,14 @@ public class ZstudentServiceImpl implements ZstudentService {
 
 
 
+    @Override
+    public Zstudent findStudentById(String zstudentID) {
+        return zstu.findStudentById(zstudentID);
+    }
+
+
+    @Override
+    public String findStudentNameByfacilityID(String facilityID) {
+        return zstu.findStudentNameByfacilityID(facilityID);
+    }
 }

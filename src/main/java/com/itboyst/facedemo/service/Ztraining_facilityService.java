@@ -8,10 +8,14 @@ public interface Ztraining_facilityService {
 
     public Ztraining_facility findbyip(String zstudentPCIP);
 
-    public List<Ztraining_facility> findfacilitybyrid(String ztrainingroomID);
 
     public int updateallfacility(String ztrainingroomID,String zpowerstatus);
 
     public int updateallfacilitybyzid(String zid,String zpowerstatus);
 
+    public List<Ztraining_facility> findfacilitybyrid(String Ztraining_roomID);
+
+    public List<Ztraining_facility> findfactibyztrainingroomID(String ztrainingroomID);
+
+    public String  findOpenPower(String zid);
 }

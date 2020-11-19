@@ -20,6 +20,12 @@
        SELECT MAX(zorder) as zorder  FROM ztraining_task_content WHERE ztrainingtaskID=#{ztrainingtaskID}
     </select>
 
+    <select id="findpresentProgessByfacilityID" resultType="com.itboyst.facedemo.dto.Ztraining_task_content">
+        SELECT B.*
+        FROM ztask_content_log A, ztraining_task_content B, zassign_schedule C, zstudent_schedule D
+        WHERE (TIME_TO_SEC(NOW())- TIME_TO_SEC(A.zstarttime)&lt;3600) AND (A.zendtime&lt;A.zstarttime) AND A. ztrainingtaskcontentID=B.zid AND zassignscheduleID=C.zid AND A. zassignscheduleID=C.zid AND C.ztrainingtaskID=B. ztrainingtaskID AND C. zstudentscheduleID=D.zid
+        AND D.zstudentID=(SELECT zstudentID FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{facilityID})) ORDER BY A.zstarttime DESC
 
+    </select>
 
 </mapper>

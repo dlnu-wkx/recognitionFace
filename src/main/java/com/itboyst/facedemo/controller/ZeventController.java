@@ -3,6 +3,8 @@ package com.itboyst.facedemo.controller;
 import com.itboyst.facedemo.dto.Zstudent;
 import com.itboyst.facedemo.dto.Zstudent_event;
 import com.itboyst.facedemo.service.Zstudent_eventService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,9 @@ import java.util.UUID;
 
 @Controller
 public class ZeventController {
+    public final static Logger logger = LoggerFactory.getLogger(ZeventController.class);
+
+
     @Autowired
     Zstudent_eventService zstudent_eventService;
 

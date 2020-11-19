@@ -39,4 +39,5 @@ public class Ztask_content_logServiceImpl implements Ztask_content_logService {
         return ztask_content_logMapper.updatecontentlogend(zassignscheduleID, ztrainingtaskcontentID, zendtime);
     }
 
+
 }

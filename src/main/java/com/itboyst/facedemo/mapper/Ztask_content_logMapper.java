@@ -16,4 +16,5 @@ public interface Ztask_content_logMapper {
     public int updatecontentlogstart(String zassignscheduleID, String ztrainingtaskcontentID, Timestamp zstarttime);
 
     public int updatecontentlogend(String zassignscheduleID, String ztrainingtaskcontentID, Timestamp zendtime);
+
 }

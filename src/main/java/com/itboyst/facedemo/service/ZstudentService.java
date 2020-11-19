@@ -11,4 +11,8 @@ public interface ZstudentService {
     public Zstudent findadoptstudent(int zfaceinfoID);
 
     public List<String> findnamebyzscheduleID(String zscheduleID);
+
+    Zstudent findStudentById(String zstudentID);
+
+    String findStudentNameByfacilityID(String facilityID);
 }

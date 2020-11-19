@@ -16,7 +16,9 @@
     </resultMap>
 
 
-
+    <select id="findOpenPower"  resultType="java.lang.String">
+          SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} AND zpowerstatus="已开机";
+    </select>
 
 
     <select id="findtrain_fac"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
@@ -31,7 +33,9 @@
     <select id="findfactibyrid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
           SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
     </select>
-
+    <select id="findfactibyztrainingroomID"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
+          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
+    </select>
 
     <update id="updateallfacility" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zpowerstatus = #{zpowerstatus} where ztrainingroomID = #{ztrainingroomID}

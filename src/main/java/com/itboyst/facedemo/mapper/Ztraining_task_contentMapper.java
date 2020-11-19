@@ -11,5 +11,5 @@ public interface Ztraining_task_contentMapper {
     //查找当前任务的最后一页
     public int findendpages(String ztrainingtaskID);
 
-
+    Ztraining_task_content findpresentProgessByfacilityID(String zid);
 }

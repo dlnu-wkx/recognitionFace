@@ -8,6 +8,7 @@
     <link href="./layui/css/information_service.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="./layui/js/common.js "></script>
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
 
@@ -40,7 +41,7 @@
 </div>
 
 <!--机床信息示意-->
-<div class="i_center" >
+<div id="center" class="i_center" >
     <table class="t_table">
         <tr>
             <th>
@@ -138,9 +139,11 @@
     <input type="text" class="t_text">
 
 </div>
-
+<div class ="t_hiddenArea" id="hiddenArea">
+</div>
 <!--学生视频展示-->
-<div class="t_message" hidden align="center" id="t_message">
+<#--<div class="t_message" hidden align="center" id="t_message">
+
 
     <button class="t_button2"></button>
     <div class="t_id" align="center"><font size="3">F01</font></div>
@@ -154,7 +157,7 @@
     <input type="text" class="t_staets" value="状态信息">
 
     <button class="t_button3" onclick="closemessage()">关闭</button>
-</div>
+</div>-->
 
 
 <!--弹框-->
@@ -173,6 +176,11 @@
 
 <script>
     //弹框
+    window.onload=showStudentStatus();
+
+
+
+
     function outpower(){
         $("#popup").show()
     }
@@ -185,12 +193,15 @@
     //学生实时视频
     function diagram(id) {
         alert(id)
-        $("#t_message").show()
+        findRaiseHand(id)
+        findStudentName(id);
+        presentProgess(id);
+        $("#t_message"+id).show()
 
     }
     //关闭
-    function closemessage() {
-        $("#t_message").hide()
+    function closemessage(id) {
+        $("#t_message"+id).hide()
     }
     //现场管理
     function fieldManagement() {

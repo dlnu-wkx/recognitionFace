@@ -30,17 +30,17 @@ public class UserFaceInfo {
 
     private String path;//这个是我添加的路径不要也行
 
-    public String getPath() {
+    /*public String getPath() {
         return path;
     }
 
     public void setPath(String path) {
         this.path = path;
-    }
+    }*/
 
     private byte[] faceFeature;
 
-    public Integer getId() {
+   /* public Integer getId() {
         return id;
     }
 
@@ -122,7 +122,7 @@ public class UserFaceInfo {
 
     public byte[] getFaceFeature() {
         return faceFeature;
-    }
+    }*/
 
     public void setFaceFeature(byte[] faceFeature) {
         this.faceFeature = faceFeature;

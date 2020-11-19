@@ -2,6 +2,8 @@ package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.Ztraining_task_content;
 import com.itboyst.facedemo.service.Ztraining_task_contentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class Ztraining_task_contentController {
 
+    public final static Logger logger = LoggerFactory.getLogger(Ztraining_task_contentController.class);
     @Autowired
     Ztraining_task_contentService ztraining_task_contentService;
 

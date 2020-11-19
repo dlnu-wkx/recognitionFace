@@ -13,4 +13,8 @@ public interface ZstudentMapper {
 
     public List<String> findnamebyzscheduleID(String zscheduleID);
 
+    Zstudent findStudentById(String zstudentID);
+
+    String findStudentNameByfacilityID(String facilityID);
+
 }

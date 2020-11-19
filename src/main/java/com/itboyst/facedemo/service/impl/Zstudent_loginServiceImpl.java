@@ -1,11 +1,13 @@
 package com.itboyst.facedemo.service.impl;
 
-import com.itboyst.facedemo.dto.Zstudent;
+
 import com.itboyst.facedemo.dto.Zstudent_login;
 import com.itboyst.facedemo.mapper.Zstudent_loginMapper;
 import com.itboyst.facedemo.service.Zstudent_loginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -13,6 +15,11 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
 
     @Autowired
     private Zstudent_loginMapper zstulogma;
+
+    @Override
+    public List<Zstudent_login> findAllStudentLogin() {
+        return zstulogma.findAllStudentLogin();
+    }
 
     @Override
     public int updateloginmessage(Zstudent_login zstl){

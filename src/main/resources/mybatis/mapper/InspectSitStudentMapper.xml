@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itboyst.facedemo.mapper.InspectSitStudentMapper">
+    <resultMap id="inspectSitStudent" type="com.itboyst.facedemo.dto.InspectSitStudent">
+        <id column="zid" property="zstudentID" javaType="java.lang.String"/>
+        <result column="zname" property="zstudentName" javaType="java.lang.String"/>
+        <result column="zname1" property="zgradeName" javaType="java.lang.String"/>
+    </resultMap>
+    <select id="findStudentByDateAndTrainingId" resultMap="inspectSitStudent" resultType="com.itboyst.facedemo.dto.InspectSitStudent">
+        select f.zid,f.zname,g.zname from zstudent f,zgrade g,(select DISTINCT zid from (select * from (select c.zrecognizetime,d.zid from zstudent_login c,zstudent_schedule a,zschedule b ,zstudent d
+                                                               where b.zid=a.zscheduleID and b.ztrainingroomID=#{ztrainingroomID} and d.zid=c.zstudentID and c.zstudentID=a.zstudentID and c.zrecognizetime BETWEEN '2020-01-07 09:29:56' and NOW()) m
+                                                               ORDER BY m.zrecognizetime DESC)n) j
+        where f.zid=j.zid and g.zid=f.zgradeID
+
+    </select>
+</mapper>

@@ -18,6 +18,11 @@ public class Ztraining_task_contentServiceImpl implements Ztraining_task_content
     }
 
     @Override
+    public Ztraining_task_content findpresentProgessByfacilityID(String zid) {
+        return ztraining_task_contentMapper.findpresentProgessByfacilityID(zid);
+    }
+
+    @Override
     public int findendpages(String ztraingingtaskID){
         //System.out.println(ztraingingtaskID);
         return ztraining_task_contentMapper.findendpages(ztraingingtaskID);
