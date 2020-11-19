@@ -33,6 +33,7 @@ public class ZeventController {
 
         Zstudent zstudent=(Zstudent)session.getAttribute("zstudent") ;
         String zstudentid=zstudent.getZid();
+
         zstudent_event.setZstudentID(zstudentid);
 
         zstudent_event.setZstatus("申请中");
@@ -54,6 +55,14 @@ public class ZeventController {
         String zid =(String) session.getAttribute("zstudent_eventid");
 
         return zstudent_eventService.delteup(zid);
+    }
+
+    @RequestMapping("/deleteleave")
+    @ResponseBody
+    public int deleteleave(HttpSession session){
+        Zstudent zstudent=(Zstudent)session.getAttribute("zstudent");
+        return  zstudent_eventService.deleteleave(zstudent.getZid(),"请假");
+
     }
 
 

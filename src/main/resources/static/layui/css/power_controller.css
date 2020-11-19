@@ -1,3 +1,26 @@
+.p_testchose{
+    left: 10%;
+    bottom: 5%;
+    position: fixed;
+    width: 30%;
+    height: 15%;
+    background-color: #A5A5A5;
+}
+.p_input{
+    height: 20px;
+    width: 40px;
+}
+
+
+.closetime{
+    right: 20%;
+    bottom: 5%;
+    position: fixed;
+    height: 15%;
+    width: 30%;
+    background-color: #A5A5A5;
+}
+
 
 .parent{
     width:100%;

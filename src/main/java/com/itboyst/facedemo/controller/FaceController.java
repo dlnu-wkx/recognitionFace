@@ -374,16 +374,13 @@ public class FaceController {
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
             session.setAttribute("zstudent_cookie",zsc);
-
-
+            //System.out.println(session.getAttribute("zstudent_cookie"));
 
             Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 
             zselecttest.setMaxAge(86400);
             //存cookie
             response.addCookie(zselecttest);
-
-
 
 
             //插入日志信息
@@ -516,12 +513,6 @@ public class FaceController {
 
         return "teacherEnter";
     }
-
-
-
-
-
-
 
 
 

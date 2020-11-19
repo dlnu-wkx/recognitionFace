@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title> 题库 </title>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script type="text/javascript" src="./layui/js/common.js "></script>
@@ -12,6 +12,22 @@
     <script src="./layui/layui.js"></script>
 </head>
 <body  class="body" >
+
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
+
+
+
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >登陆后界面</font></div>
@@ -20,24 +36,7 @@
 
 <!--左侧灰色按键-->
 <div class="left">
-    <#--<button class="button8" id="button1">固定任务</button>
-    <br><br>
-    <button class="button9" id="button2">临时任务</button>
-    <br><br>
-    <button class="button2" id="button3">临时任务</button>
-    <br><br>
-    <button class="button2" id="button4">任务名称</button>
-    <br><br>
-    <button class="button2" id="button5">任务名称</button>
-    <br><br>
-    <button class="button2" id="button6">任务名称</button>
-    <br><br>
-    <button class="button2" id="button7">任务名称</button>
-    <br><br>
-    <button class="button2" id="button8">任务名称</button>
-    <br><br>
-    <button class="button2" id="button9">任务名称</button>
-    <br><br>-->
+
 </div>
 
 <!--请假弹框-->
@@ -54,7 +53,7 @@
     </div>
 
     <div class="right2">    
-        <button class="button5" onclick="showleave()">请假</button>
+        <button class="button5" onclick="showleave()"  id="leave">请假</button>
     </div>
 
     <div class="right3">
@@ -98,6 +97,9 @@
 
     var questionid=new Array()
 
+
+    var static_passingcode=0;
+
     //记录页数的i值,页数减1
     var i=0;
 
@@ -131,6 +133,18 @@
         //测试cookie
         //alert($.cookie('name'));
 
+
+        //通过的分数
+        $.ajax({
+            type: "post",
+            url: "/findpassingcode",
+            success: function (data){
+                static_passingcode=data;
+            }
+        });
+
+
+
         //连接Servlet
         $.ajax({
             type: "post",
@@ -148,7 +162,7 @@
                    questionid[w]=question.cbank[w].zid;
                     str+="<div class='qbank"+w+"' id='qbank"+w+"'>";
 
-                    str+="<font size='5' class='title'>安全测试题,每题20分，60分及格</font>";
+                    str+="<font size='5' class='title'>安全测试题,每题20分，"+static_passingcode+"分及格</font>";
                     str+="<font size='5' class='questiontitle'>选择题</font>";
 
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";
@@ -256,7 +270,7 @@
         str3+="<div><font size='3' >合格分数：60分</font></div>";
         str3+="<br><br><br>"
         //如果分数小于60，加载小于60的信息
-        if(code<60){
+        if(code<static_passingcode){
             str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>需要重新答题</font>";
             str3+="<br><br>"
             str3+=" <button class='button7' onclick='reanswer()'>重新答题</button>"
@@ -267,16 +281,6 @@
             str3+="  <button class='start_button' onclick='begintrain()'>开始实训</button>";
 
             //左侧按键颜色改变(可循环优化)
-          /*  $('#button1').css('background-color','#70AD47');
-            $('#button2').css('background-color','#FFC000');
-            $('#button3').css('background-color','rgba(68,114,196)');
-            $('#button4').css('background-color','rgba(68,114,196)');
-            $('#button5').css('background-color','rgba(68,114,196)');
-            $('#button6').css('background-color','rgba(68,114,196)');
-            $('#button7').css('background-color','rgba(68,114,196)');
-            $('#button8').css('background-color','rgba(68,114,196)');
-            $('#button9').css('background-color','rgba(68,114,196)');
-*/
 
         }
         //放入
@@ -292,7 +296,7 @@
             success: function (data) {
 
                 if(data==5){
-                    alert("提交成功！")
+                    layer.msg("提交成功", { icon: 1, offset: "auto", time:2000 });
                 }else{
                     alert("出错")
                 }
@@ -413,8 +417,6 @@
             });
         });
     }
-
-
 
 function begintrain() {
 

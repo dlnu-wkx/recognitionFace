@@ -28,9 +28,25 @@ public class Ztraining_roomController {
 
     @RequestMapping("/findfacilitybyrid")
     @ResponseBody
-    public List<Ztraining_facility> findfacilitybyrid(String zlocation){
+    public List<Ztraining_facility> findfacilitybyrid(String id){
 
-        return ztraining_facilityService.findfacilitybyrid(zlocation);
+        return ztraining_facilityService.findfacilitybyrid(id);
+    }
+
+
+    @RequestMapping("/updateallfacility")
+    @ResponseBody
+    public int updateallfacility(String ztrainroomid,String zpowerstatus){
+       // System.out.println(ztrainroomid+zpowerstatus);
+        return ztraining_facilityService.updateallfacility(ztrainroomid,zpowerstatus);
+    }
+
+
+    @RequestMapping("/updateallfacilitybyzid")
+    @ResponseBody
+    public int updateallfacilitybyzid(String zid,String zpowerstatus){
+       // System.out.println(zid+zpowerstatus);
+        return ztraining_facilityService.updateallfacilitybyzid(zid, zpowerstatus);
     }
 
 

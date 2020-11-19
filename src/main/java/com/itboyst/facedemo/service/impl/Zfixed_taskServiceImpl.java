@@ -15,8 +15,8 @@ public class Zfixed_taskServiceImpl implements Zfixed_taskService {
     Zfixed_taskMapper zfixed_taskMapper;
 
 
-    public List<Zfixed_task> findallfixedtask(){
-        return zfixed_taskMapper.findallfixed();
+    public List<Zfixed_task> findallfixedtask(String zstudentscheduleID){
+        return zfixed_taskMapper.findallfixed(zstudentscheduleID);
     }
 
 }

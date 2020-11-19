@@ -21,7 +21,18 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
     }
 
     @Override
-    public List<Ztraining_facility> findfacilitybyrid(String Ztraining_roomID){
-        return ztran_facmap.findfactibyrid(Ztraining_roomID);
+    public List<Ztraining_facility> findfacilitybyrid(String ztrainingroomID){
+        return ztran_facmap.findfactibyrid(ztrainingroomID);
     }
+
+    @Override
+    public int updateallfacility(String ztrainingroomID,String zpowerstatus){
+        return ztran_facmap.updateallfacility(ztrainingroomID, zpowerstatus);
+    }
+
+    @Override
+    public int updateallfacilitybyzid(String zid,String zpowerstatus){
+        return ztran_facmap.updateallfacilitybyzid(zid, zpowerstatus);
+    }
+
 }

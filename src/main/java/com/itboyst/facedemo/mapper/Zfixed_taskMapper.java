@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface Zfixed_taskMapper {
 
-    public List<Zfixed_task> findallfixed();
+    public List<Zfixed_task> findallfixed(String zstudentscheduleID);
 }

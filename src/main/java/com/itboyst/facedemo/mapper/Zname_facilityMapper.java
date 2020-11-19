@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface Zname_facilityMapper {
 
-   public List<Zstudent_facility> findnameandf();
+   public List<Zstudent_facility> findnameandf(String ztrainingroomID,String zscheduleid);
 }

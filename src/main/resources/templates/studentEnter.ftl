@@ -12,6 +12,20 @@
     <script src="jquery/jquery.cookie.js"></script>
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
+
+
 
 <!--请假弹框-->
 <div class="co_leavemes" hidden id="co_leavemes">
@@ -55,7 +69,7 @@
                 </button>
             </div>
             <div>
-                <button onclick="showleave()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                <button onclick="showleave()" id="leave" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
                     请假
                 </button>
             </div>

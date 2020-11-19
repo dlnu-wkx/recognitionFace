@@ -41,8 +41,105 @@
     position: absolute;
 }
 
+.right_message{
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow:auto;
+}
+
+
 .cp_number{
     left: 35%;
     position: absolute;
     top: 30%;
+}
+.left_table{
+    left: 2%;
+    top: 2%;
+    right: 55%;
+    height: 95%;
+    width: 64%;
+    position: absolute;
+    border: 1px solid;
+    border-color: #F2A774;
+
+
+}
+
+
+
+.reight_mes{
+    right: 2%;
+    left: 68%;
+    width: 30%;
+    height: 95%;
+    position: absolute;
+    border: 1px solid;
+    top: 2%;
+
+}
+
+.r_table2{
+    border-collapse: collapse;
+    text-align:center;
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border:solid 1px #FFC000;
+    overflow-y:auto;
+    display: block;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+.r_table2 tbody tr th {
+    padding: 8px 12px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    width: 100%;
+}
+.r_table2 tbody tr{
+    height: 10%;
+}
+
+.rmes_input {
+    width: 200px;
+    height: 30px;
+}
+
+.mes_title{
+    top: 0%;
+    width: 100%;
+    height: 8%;
+    position: absolute;
+    text-align: center;
+}
+.cp_message2{
+    top: 8%;
+    width: 100%;
+    height: 90%;
+    position: absolute;
+}
+.left_table2{
+    left: 2%;
+    top: 8%;
+    right: 55%;
+    height: 90%;
+    width: 64%;
+    position: absolute;
+    border: 1px solid;
+    border-color: #F2A774;
+}
+.reight_mes2{
+    right: 2%;
+    left: 68%;
+    width: 30%;
+    height: 90%;
+    position: absolute;
+    border: 1px solid;
+    top: 8%;
 }

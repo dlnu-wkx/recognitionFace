@@ -12,14 +12,19 @@
     </resultMap>
 
     <update id="updatechecktime" parameterType="com.itboyst.facedemo.dto.Zassign_schedule" >
-        update zassign_schedule
-        <set >
-            <if test="zchecktime == null" >
-                zchecktime = #{zchecktime,jdbcType=DECIMAL},
-            </if>
+        update zassign_schedule set zchecktime = #{zchecktime} where zstudentscheduleID = #{zstudentscheduleID} AND ztrainingtaskID = #{ztrainingtaskID}
+    </update>
 
-        </set>
-        where zstudentscheduleID = #{zstudentscheduleID,jdbcType=DECIMAL} AND ztrainingtaskID = #{ztrainingtaskID,jdbcType=DECIMAL}
+    <select id="findtaskisin"  resultType="java.lang.Integer">
+      SELECT COUNT(*) FROM zassign_schedule WHERE ztrainingtaskID=#{ztrainingtaskID} AND zstudentscheduleID IN (SELECT zid FROM zstudent_schedule WHERE zstudentID=#{zstudentID} AND zscheduleID=#{zscheduleID}) ;
+    </select>
+
+    <insert id="insertfixedtask" parameterType="com.itboyst.facedemo.dto.Zassign_schedule" >
+            INSERT INTO zassign_schedule(zid,zstudentscheduleID,ztrainingtaskID,zpublishtime) VALUES(#{zid},(select zid from zstudent_schedule where zscheduleID=#{zscheduleID} and zstudentID=#{zstudentID}) ,#{ztrainingtaskID},#{zpublishtime});
+    </insert>
+
+    <update id="updatecompletetime" parameterType="com.itboyst.facedemo.dto.Zassign_schedule" >
+        update zassign_schedule set zcompletetime = #{zcompletetime} where zstudentscheduleID = #{zstudentscheduleID} AND ztrainingtaskID = #{ztrainingtaskID}
     </update>
 
 

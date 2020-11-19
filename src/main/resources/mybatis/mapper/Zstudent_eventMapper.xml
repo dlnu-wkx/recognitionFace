@@ -15,10 +15,10 @@
 
 
 
-<!--
-    <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
-            SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
-        </select>-->
+
+    <select id="findisevent"  resultType="java.lang.Integer">
+            SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID}  AND ztype='请假' and zstatus='审核中';
+    </select>
 
 
     <insert id="insertevent" parameterType="com.itboyst.facedemo.dto.Zstudent_event" >
@@ -33,6 +33,10 @@
     <!--   <select id="getUserFaceInfoByGroupId" resultMap="userFace2" parameterType="java.lang.Integer" resultType="com.itboyst.facedemo.dto.FaceUserInfo">
            select face_id,name,face_feature from user_face_info
        </select>-->
+    <delete id="deleteleave" parameterType="java.lang.String">
+            DELETE FROM zstudent_event WHERE zstudentID=#{zstudentID} and ztype=#{ztype}
+    </delete>
+
 
 
 </mapper>

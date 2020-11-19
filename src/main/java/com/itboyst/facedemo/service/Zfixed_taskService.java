@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Zfixed_taskService {
 
-    public List<Zfixed_task> findallfixedtask();
+    public List<Zfixed_task> findallfixedtask(String zstudentscheduleID);
 }

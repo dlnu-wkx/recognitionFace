@@ -6,12 +6,29 @@
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
+    <script src="./layui/layui.js"></script>
+    <script src="./layui/js/common.js"></script>
 
 </head>
 <body  class="body" >
+
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
+
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >信息发送</font></div>
@@ -49,7 +66,7 @@
     <div class="d_font2"><button class="button7" onclick="insertcommand()">确认</button></div>
     <div class="d_choose">
     <div class="d_font">
-        <font >显示:</font> <input type="text" value="" size="1"><font>秒</font>
+        <font >显示:</font> <input id="i_time" class="i_time" type="number" value="" size="4"><font>秒</font>
     </div>
 </div>
 </div>
@@ -58,8 +75,8 @@
 <!--弹框-->
 <div hidden class="d_popup" id="de_popup" align="center">
     <br>
-    <button class="p_button2" onclick="fixed_tasks()">固定任务</button><br><br>
-    <button class="p_button2" onclick="">临时任务</button><br><br>
+    <button class="p_button2" onclick="fixed_task()">固定任务</button><br><br>
+    <button class="p_button2" onclick="temporary_task()">临时任务</button><br><br>
     <button class="p_button2" onclick="">信息发送</button>
 </div>
 
@@ -97,7 +114,7 @@
         $.ajax({
             type: "post",
             url: "/findfacilitybyrid",
-            data:{"zlocation":id},
+            data:{"id":id},
             success: function (data) {
 
 
@@ -112,7 +129,7 @@
 
                         if (data[i].zpowerstatus=="已开机"){
                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
-                        }else if (data[i].zpowerstatus=="关机"){
+                        }else if (data[i].zpowerstatus=="未开机"){
                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
                         }
                    }
@@ -130,9 +147,9 @@
                      for(;j<6*(i+1);j++){
                         if(j==data.length){break;}
                          if (data[j].zpowerstatus=="已开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
-                         }else if (data[j].zpowerstatus=="关机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input id='\""+data[j].zid+"\"' type='checkbox' class='p_check'></div></th>";
+                         }else if (data[j].zpowerstatus=="未开机"){
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input id='\""+data[j].zid+"\"' type='checkbox' class='p_check'></div></th>";
                          }
 
                      }
@@ -164,7 +181,7 @@
             success: function (data) {
 
                     for(var i =0; i<data.length;i++){
-                        str+=" <br><br><button onclick='findfacbyrid("+data[i].zlocation+")' class='p_button2'id='"+data[i].zlocation+"'>"+data[i].zname+"</button>"
+                        str+=" <br><br><button onclick='findfacbyrid(\""+data[i].zid+"\")' class='p_button2'id='"+data[i].zid+"'>"+data[i].zname+"</button>"
                     }
                     p_left.html(str)
 
@@ -178,19 +195,44 @@
     }
 
     function insertcommand() {
+
+        var i_time=$("#i_time").val()
+
         var inputmes=$("#inputmes").val()
         alert(inputmes)
         if(inputmes !=null|| imputmes!="" || inputmes!="点击输入滚动消息"){
             $.ajax({
                 type: "post",
                 url: "/insertcommand",
-                data:{"zcontent":inputmes,"zlocation":zlocation},
+                data:{"zcontent":inputmes},
                 success: function (data) {
-                    alert(data)
+                    if(data>0){
+                        layer.msg("成功发布滚屏信息", { icon: 1, offset: "auto", time:2000 });
+                    }
                 }
             });
         }
+
+        setTimeout(function (){
+
+            $.ajax({
+                type: "post",
+                url: "/upadtestates",
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("滚屏消息已失效", { icon: 1, offset: "auto", time:2000 });
+                    }
+                }
+            });
+
+
+        }, 1000*i_time+5000);
+
+
     }
+
+
+
 
 
 
@@ -208,31 +250,18 @@
     function outmessage() {
         $("#de_popup").show()
     }
-    
-    function fixed_tasks() {
 
-        window.location.href = "/fixed_task";
+    function temporary_task() {
+
+        location.href = "/temporary_task";
     }
 
-    //信息发布
-    function informationDelivery() {
-        location.href="/information_delivery";
+    function fixed_task() {
+
+       location.href = "/fixed_task";
     }
-    //信息查询
-    function informationService() {
-        location.href="/information_service";
-    }
-    //实时状态
-    function timeStatus() {
-        location.href="/time_status";
-    }
-    //退出
-    function powerController() {
-        location.href="/power_controller";
-    }
-    function fieldManagement() {
-        location.href="/teachRegister";
-    }
+
+
 </script>
 
 </html>

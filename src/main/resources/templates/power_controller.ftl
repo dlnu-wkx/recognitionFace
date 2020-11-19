@@ -6,13 +6,29 @@
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/js/common.js"></script>
+    <script src="./layui/layui.js"></script>
 
 </head>
 <body  class="body" >
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
+
+
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >机床控制器电源管理</font></div>
@@ -48,12 +64,30 @@
 <!--下方按键及内容-->
 <div class="p_text" align="center">
     <br><br>
-    <button class="p_button5">开启</button>&emsp;&emsp;&emsp;&emsp;&emsp;
-    <button class="p_button5">关闭</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <button class="p_button5">全部开启</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <button class="p_button5">全部关闭</button><br><br>
-    <input type="checkbox"><font size="3">关闭时延时</font><input type="text" size="1"><font size="3">分钟</font>
+    <button class="p_button5" onclick="startchose()">开启</button>
+    &emsp;&emsp;&emsp;&emsp;&emsp;
+    <button class="p_button5" onclick="startallfacti()">全部开启</button>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <button class="p_button5" onclick="closechose()">关闭</button>
+    &emsp;&emsp;&emsp;&emsp;&emsp;
+    <button class="p_button5" onclick="endallfacti()">全部关闭</button>
 </div>
+
+<!--关闭时间控制-->
+<div class="closetime" align="center">
+    <font size="3">关闭电源时作用：</font><br><br>
+    <input type="checkbox" name="closetime"><font size="3">关闭时延时</font><input type="number" class="p_input" id="timenumber"><font size="3">分钟</font>
+
+</div>
+
+
+<!--测试题控制-->
+<div class="p_testchose" align="center">
+     <font size="3">开启电源时作用</font><br><br>
+    &emsp;&emsp;<input type="checkbox" name="istest">
+    <font>测试合格分数</font><input type="number" class="p_input" id="testcode">分
+</div>
+
 
 
 <!--弹框-->
@@ -78,9 +112,178 @@
 
 <script>
 
+    //全部开启
+    function startallfacti() {
+       //alert(1)
+        if($("input[name='istest']:checked")){
+            var zpassingscore=$("#testcode").val()
+            $.ajax({
+                type: "post",
+                url: "/updatetestbyscheduleid",
+                data:{"zpassingscore":zpassingscore},
+                async: false,
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("已全部开启安全测试", { icon: 1, offset: "auto", time:1000 });
+                    }
+                }
+            });
+
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/updateallfacility",
+            data:{"ztrainroomid":ztrainroomid,"zpowerstatus":"已开机"},
+            async: false,
+            success: function (data) {
+                if(data>0){
+                    layer.msg("已全部开启，等待电源开启", { icon: 1, offset: "auto", time:1000 });
+                }else{
+                    alert("出错")
+                }
+            }
+        });
+     findfacbyrid(ztrainroomid)
+    }
+
+    //全部关闭
+    function endallfacti() {
+       // alert(2)
+        //延时按键有被选中，加载延时关闭选项
+        if($("input[name='closetime']:checked")){
+
+            var timenumber=$("#timenumber").val();
+            setTimeout(function (){
+
+                $.ajax({
+                    type: "post",
+                    url: "/updateallfacility",
+                    data:{"ztrainroomid":ztrainroomid,"zpowerstatus":"未开机"},
+                    async: false,
+                    success: function (data) {
+                        if(data>0){
+                            layer.msg("已接受关机命令，请等待"+timenumber+"分钟后关机", { icon: 1, offset: "auto", time:1000 });
+                        }else{
+                            alert("出错")
+                        }
+                    }
+                });
+
+            }, 60000*timenumber);
+        }//延时按键没有被选中，加载直接关闭方法
+        else{
+            $.ajax({
+                type: "post",
+                url: "/updateallfacility",
+                data:{"ztrainroomid":ztrainroomid,"zpowerstatus":"未开机"},
+                async: false,
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("已全部关闭，等待设备关闭", { icon: 1, offset: "auto", time:1000 });
+                    }else{
+                        alert("出错")
+                    }
+                }
+            });
+        }
+       findfacbyrid(ztrainroomid)
+
+    }
+
+    //开启选中的
+    function startchose() {
+       // alert(3)
+        var j=0;
+        var startchose =[];
+        $("input[name='npowerchose']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+            startchose[i] =$(this).val();
+        });
+        for (var i=0;i<startchose.length;i++){
+          //  alert(startchose[i]);
+            $.ajax({
+                type: "post",
+                url: "/updateallfacilitybyzid",
+                data:{"zid":startchose[i],"zpowerstatus":"已开机"},
+                async: false,
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("已开启选中，等待电源开启", { icon: 1, offset: "auto", time:1000 });
+                    }else{
+                        alert("出错")
+                    }
+                }
+            });
+        }
+
+        findfacbyrid(ztrainroomid)
+    }
 
 
-    var num=0;
+    //关闭选中
+    function closechose() {
+        var j=0;
+        var closechose =[];
+        $("input[name='ypowerchose']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+            closechose[i] =$(this).val();
+        });
+
+        if($("input[name='closetime']:checked")){
+
+            var timenumber=$("#timenumber").val();
+            setTimeout(function (){
+
+                for (var i=0;i<closechose.length;i++) {
+                   // alert(closechose[i]);
+                    $.ajax({
+                        type: "post",
+                        url: "/updateallfacilitybyzid",
+                        data: {"zid": closechose[i], "zpowerstatus": "未开机"},
+                        async: false,
+                        success: function (data) {
+                            if(data>0){
+                                layer.msg("已接受关机命令，请等待"+timenumber+"分钟后关机", { icon: 1, offset: "auto", time:1000 });
+                            }else{
+                                alert("出错")
+                            }
+                        }
+                    });
+                }
+
+            }, 60000*timenumber);
+        }//延时按键没有被选中，加载直接关闭方法
+        else{
+            for (var i=0;i<closechose.length;i++) {
+               // alert(closechose[i]);
+                $.ajax({
+                    type: "post",
+                    url: "/updateallfacilitybyzid",
+                    data: {"zid": closechose[i], "zpowerstatus": "未开机"},
+                    async: false,
+                    success: function (data) {
+                        if(data>0){
+                            layer.msg("已关闭选中，等待电源关闭", { icon: 1, offset: "auto", time:1000 });
+                        }else{
+                            alert("出错")
+                        }
+                    }
+                });
+            }
+
+        }
+
+        setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
+    }
+
+
+
+
+    //退出
+    function outpower(){
+        $("#popup").show()
+    }
+
+
 
     function lockscreen() {
         //蒙版出现
@@ -102,13 +305,13 @@
         $("#inputmes").val("");
     }
 
-    var zlocation="";
+    var ztrainroomid="";
 
 
     //查到被点击实训室的所有设备
     function findfacbyrid(id) {
 
-        zlocation =id;
+        ztrainroomid =id;
 
         $("#p_left button").css("background-color","#70AD47");
 
@@ -118,9 +321,9 @@
         $.ajax({
             type: "post",
             url: "/findfacilitybyrid",
-            data:{"zlocation":id},
+            data:{"id":id},
             success: function (data) {
-                    num=data.length;
+
 
                 $("#"+id+"").css("background-color","#FFC000")
 
@@ -128,15 +331,13 @@
 
                     str+="<table class='p_bbbox' id='p_bbox'>"
                     str+=" <tr>";
-                    //var类型，不能写成int
                     for(var i=0; i<data.length;i++){
 
-                         if (data[i].zpowerstatus=="已开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
-                         }else if (data[i].zpowerstatus=="关机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
-                         }
-
+                        if (data[i].zpowerstatus=="已开机"){
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input name='ypowerchose' id='\""+data[i].zid+"\"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+                        }else if (data[i].zpowerstatus=="未开机"){
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input name='npowerchose' id='\""+data[i].zid+"\"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+                        }
                     }
                     str+="</tr>";
                     str+="</table>";
@@ -152,9 +353,9 @@
                         for(;j<6*(i+1);j++){
                             if(j==data.length){break;}
                             if (data[j].zpowerstatus=="已开机"){
-                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
-                            }else if (data[j].zpowerstatus=="关机"){
-                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[j].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input  name='ypowerchose' id='\""+data[j].zid+"\"' value='"+data[j].zid+"' type='checkbox' class='p_check'></div></th>";
+                            }else if (data[j].zpowerstatus=="未开机"){
+                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input name='npowerchose' id='\""+data[j].zid+"\"' value='"+data[j].zid+"' type='checkbox' class='p_check'></div></th>";
                             }
 
                         }
@@ -186,7 +387,7 @@
             success: function (data) {
 
                 for(var i =0; i<data.length;i++){
-                    str+=" <br><br><button onclick='findfacbyrid("+data[i].zlocation+")' class='p_button2'id='"+data[i].zlocation+"'>"+data[i].zname+"</button>"
+                    str+=" <br><br><button onclick='findfacbyrid(\""+data[i].zid+"\")' class='p_button2'id='"+data[i].zid+"'>"+data[i].zname+"</button>"
                 }
                 p_left.html(str)
 
@@ -199,33 +400,19 @@
         $("#p_center  input[type='checkbox']").attr("checked","true");
     }
 
-    function insertcommand() {
-        var inputmes=$("#inputmes").val()
-        alert(inputmes)
-        if(inputmes !=null|| imputmes!="" || inputmes!="点击输入滚动消息"){
-            $.ajax({
-                type: "post",
-                url: "/insertcommand",
-                data:{"zcontent":inputmes,"zlocation":zlocation},
-                success: function (data) {
-                    if(data>0){
-                        alert("发布成功")
-                    }
 
-                }
-            });
-        }
-    }
-
+    /**
+     * 下课
+     */
     function overclass() {
-
         $.ajax({
             type: "post",
             url: "/overclass",
-            data:{"num":num},
             success: function (data) {
                 if(data!=0){
-                    alert("成功下课，等待电源关闭")
+                    layer.msg("已下课，等待电源关闭", { icon: 1, offset: "auto", time:2000 });
+                }else{
+                    alert("出错")
                 }
             }
         });

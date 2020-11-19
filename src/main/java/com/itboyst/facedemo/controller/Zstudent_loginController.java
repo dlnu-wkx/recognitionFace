@@ -20,14 +20,10 @@ public class Zstudent_loginController {
 
     @RequestMapping("/overclass")
     @ResponseBody
-    public int overclass(HttpSession session,int num){
-        int u=0;
+    public int overclass(HttpSession session){
         Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
 
-        for (int k=0;k<num;k++){
-           int w=zstudent_loginService.updateloginstate("强退",zteacher_cookie.getZtrainingroomid());
-           if(w==1) u++;
-        }
-        return u;
+        return zstudent_loginService.updateloginstate("强退",zteacher_cookie.getZtrainingroomid());
+
     }
 }

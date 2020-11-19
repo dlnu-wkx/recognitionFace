@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface Zstudent_scheduleMapper {
 
     public int updatestate(String zstate,String zscheduleID,String zstudentID);
+
+    public int updatetestbyscheduleid(String zscheduleID,String zselecttest,int zpassingscore);
 }

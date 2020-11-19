@@ -7,9 +7,9 @@
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="/layui/layui.js"></script>
-    <script src="jquery/jquery.cookie.js"></script>
+    <script src="./jquery/jquery-3.3.1.min.js"></script>
+    <script src="./layui/layui.js"></script>
+    <script src="./jquery/jquery.cookie.js"></script>
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
 
@@ -48,7 +48,7 @@
             <br><br>
         </div>
         <div class="outdiv">
-            <button class="p_button3" id="p_button3" onclick="outpower()">退出</button></div>
+            <button class="p_button3" id="p_button3" onclick="powerController()">退出</button></div>
     </div>
 </div>
 <script>

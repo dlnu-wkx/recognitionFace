@@ -21,7 +21,17 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
     }
 
     @Override
-    public int insertcommand(Zteacher_command zteacher_command,String zlocation){
-        return zteacher_commandMapper.insertcommand(zteacher_command.getZid(),zlocation,zteacher_command.getZpublishtime(),zteacher_command.getZtype(),zteacher_command.getZcontent(),zteacher_command.getZstatus());
+    public int insertcommand(Zteacher_command zteacher_command){
+        return zteacher_commandMapper.insertcommand(zteacher_command);
     }
+
+    @Override
+    public int deltebefore(String ztraining_roomid,String ztype){
+        return  zteacher_commandMapper.deletebefore(ztraining_roomid,ztype);
+    }
+
+    public int updatestate(Zteacher_command zteacher_command){
+        return zteacher_commandMapper.updatestate(zteacher_command);
+    }
+
 }

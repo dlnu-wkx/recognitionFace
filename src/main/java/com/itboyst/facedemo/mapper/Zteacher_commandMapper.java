@@ -11,5 +11,9 @@ public interface Zteacher_commandMapper {
 
    public List<Zteacher_command> findcommand(String ztrainingroomID);
 
-   public int insertcommand(String zid, String zlocation, Timestamp zpublishtime,String ztype,String zcontent,String zstatus);
+   public int insertcommand(Zteacher_command zteacher_command);
+
+   public int deletebefore(String ztrainingroomID,String ztype);
+
+   public int updatestate(Zteacher_command zteacher_command);
 }

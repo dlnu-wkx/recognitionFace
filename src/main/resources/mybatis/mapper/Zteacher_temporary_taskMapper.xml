@@ -4,30 +4,24 @@
 <mapper namespace="com.itboyst.facedemo.mapper.Zteacher_temporary_taskMapper">
     <resultMap id="Zteacher_temporary_task" type="com.itboyst.facedemo.dto.Zteacher_temporary_task">
         <id column="zid" property="zid" javaType="String"/>
-        <result column="zstudentscheduleID" property="zstudentscheduleID" javaType="String"/>
-        <result column="zsafetestingID" property="zsafetestingID" javaType="String"/>
-        <result column="zorder" property="zorder" javaType="int"/>
-        <result column="zstate" property="zstate" javaType="String"/>
-        <result column="zinput" property="zinput" javaType="String"/>
-        <result column="zscore" property="zscore" javaType="int"/>
+        <result column="zstudentID" property="zstudentID" javaType="String"/>
+        <result column="ztype" property="ztype" javaType="String"/>
+        <result column="ztitle" property="ztitle" javaType="String"/>
+        <result column="zpublishtime" property="zpublishtime" javaType="String"/>
+        <result column="zcontentID" property="zcontentID" javaType="String"/>
     </resultMap>
 
 
-
         <select id="findtitle"  resultType="com.itboyst.facedemo.dto.Zteacher_temporary_task">
-            SELECT zid,ztitle FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} AND TO_DAYS(NOW())-TO_DAYS(zpublishtime)<![CDATA[ <= ]]>300 ORDER BY zpublishtime;
+            SELECT zid,ztitle,zcontentID FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} AND TO_DAYS(NOW())-TO_DAYS(zpublishtime)<![CDATA[ <= ]]>300 ORDER BY zpublishtime;
         </select>
 
-
-    <!-- <insert id="insertstujounal" parameterType="com.itboyst.facedemo.dto.Zstudent_journal" >
-                INSERT INTO zstudent_journal (zid,zstudentID,ztype,zoperatedate, zoperatecontent) VALUES(#{zid}, #{zstudentID},#{ztype},#{zoperatedate}, NULL);
-     </insert>-->
-
-   <!-- <delete id="deleteftestinput" parameterType="com.itboyst.facedemo.dto.Ztesting_input">
-    	DELETE FROM ztesting_input WHERE zstudentscheduleID=#{zstudentscheduleID};
-  	</delete>-->
-
-
+        <select id="findisintemp"  resultType="java.lang.Integer">
+            SELECT COUNT(*) FROM zteacher_temporary_task WHERE ztype='临时任务' AND zcontentID=#{zcontentID} AND zstudentID=#{zstudentID};
+        </select>
+        <insert id="inserttemptask" parameterType="com.itboyst.facedemo.dto.Zteacher_temporary_task" >
+            INSERT INTO zteacher_temporary_task(zid,zstudentID,ztype,ztitle,zpublishtime,zcontentID) VALUES(#{zid},#{zstudentID},'临时任务','临时任务',#{zpublishtime},#{zcontentID});
+        </insert>
 
 
 

@@ -18,4 +18,15 @@ public class Zteacher_temporary_taskServiceImpl implements Zteacher_temporary_ta
     public List<Zteacher_temporary_task> findtaskname (String id){
         return zteacher_temporary_taskMapper.findtitle(id);
     }
+
+    @Override
+    public int findisintemp(String zcontentID,String zstudentID){
+        return zteacher_temporary_taskMapper.findisintemp(zcontentID,zstudentID);
+    }
+
+    @Override
+    public int inserttemptask(Zteacher_temporary_task zteacher_temporary_task){
+        return zteacher_temporary_taskMapper.inserttemptask(zteacher_temporary_task);
+    }
+
 }

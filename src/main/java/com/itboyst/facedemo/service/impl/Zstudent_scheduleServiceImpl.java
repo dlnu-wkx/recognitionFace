@@ -16,4 +16,9 @@ public class Zstudent_scheduleServiceImpl implements Zstudent_scheduleService {
         return zstudent_scheduleMapper.updatestate(zstate,zscheduleID,zstudentID);
 
     }
+
+    @Override
+    public int updatetestbyscheduleid(String zscheduleID,String zselecttest,int zpassingscore){
+        return zstudent_scheduleMapper.updatetestbyscheduleid(zscheduleID, zselecttest,zpassingscore);
+    }
 }

@@ -8,7 +8,7 @@
         <result column="zorder" property="zorder" javaType="int"/>
         <result column="ztype" property="ztype" javaType="String"/>
         <result column="zcontent" property="zcontent" javaType="String"/>
-
+        <result column="ztitle" property="ztitle" javaType="String"/>
     </resultMap>
 
 

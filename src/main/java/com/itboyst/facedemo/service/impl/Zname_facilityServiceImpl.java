@@ -13,8 +13,8 @@ public class Zname_facilityServiceImpl implements Zname_facilityService {
     @Autowired
     Zname_facilityMapper zname_facilityMapper;
 
-    public List<Zstudent_facility> findnameandfaclity(){
-        return  zname_facilityMapper.findnameandf();
+    public List<Zstudent_facility> findnameandfaclity(String ztrainingroomID,String zscheduleid){
+        return  zname_facilityMapper.findnameandf(ztrainingroomID,zscheduleid);
     }
 
 }

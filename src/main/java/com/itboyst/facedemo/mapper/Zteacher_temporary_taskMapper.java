@@ -9,4 +9,9 @@ import java.util.List;
 public interface Zteacher_temporary_taskMapper {
 
   List<Zteacher_temporary_task> findtitle(String zstudentID);
+
+  public int findisintemp(String zcontentID,String zstudentID);
+
+  public int inserttemptask(Zteacher_temporary_task zteacher_temporary_task);
+
 }

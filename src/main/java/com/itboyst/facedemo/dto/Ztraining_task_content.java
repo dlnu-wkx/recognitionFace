@@ -6,6 +6,7 @@ public class Ztraining_task_content {
     private int zorder;
     private String ztype;
     private String zcontent;
+    private String ztitle;
 
     public String getZid() {
         return zid;
@@ -47,6 +48,14 @@ public class Ztraining_task_content {
         this.zcontent = zcontent;
     }
 
+    public String getZtitle() {
+        return ztitle;
+    }
+
+    public void setZtitle(String ztitle) {
+        this.ztitle = ztitle;
+    }
+
     @Override
     public String toString() {
         return "Ztraining_task_content{" +
@@ -55,6 +64,7 @@ public class Ztraining_task_content {
                 ", zorder=" + zorder +
                 ", ztype='" + ztype + '\'' +
                 ", zcontent='" + zcontent + '\'' +
+                ", ztitle='" + ztitle + '\'' +
                 '}';
     }
 }

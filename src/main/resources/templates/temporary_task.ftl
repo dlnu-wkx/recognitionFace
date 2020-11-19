@@ -7,29 +7,13 @@
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/fixed_task.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/js/common.js"></script>
-    <script src="./layui/layui.js"></script>
 
 </head>
 <body  class="body" >
-<!--警示消息-->
-<div>
-    <script>
-        var layer;
-        $(function () {
-            layui.use("layer",function () {
-                layer =layui.layer;
-            });
-        })
-    </script>
-
-</div>
-
-
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >任务发布</font></div>
@@ -68,9 +52,9 @@
     <input class="f_input1" type="text" id="f_input1">
     <button class="f_button2" onclick="tasklike()">搜索</button>
 
-    <div class="f_table2mes" id="f_table2mes">
+   <div class="f_table2mes" id="f_table2mes">
 
-    </div>
+   </div>
 </div>
 
 
@@ -85,9 +69,9 @@
 <div class="f_bottom">
     <button class="p_button2" onclick="informationDelivery()">信息广播</button>
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <button class="p_button2" onclick="temporary_task()">临时任务</button>
+    <button class="p_button2" onclick="fixed_task()">固定任务</button>
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    <button class="p_button2" onclick="insertfixedtask()">任务发送</button>
+    <button class="p_button2" onclick="inserttemptask()">任务发送</button>
 </div>
 
 
@@ -102,18 +86,18 @@
     }
 
 
-    /* function outpower(){
-         $("#popup").show()
-     }
+   /* function outpower(){
+        $("#popup").show()
+    }
 
-     function lockscreen() {
-         $("#parent").show()
-     }
+    function lockscreen() {
+        $("#parent").show()
+    }
 
-     function outmessage() {
-         $("#de_popup").show()
-     }
- */
+    function outmessage() {
+        $("#de_popup").show()
+    }
+*/
 
     function allchose() {
 
@@ -190,65 +174,82 @@
                 f_table2mes.html(str2)
             }
         })
-    }
-
-    function insertfixedtask() {
-        var studentid = [];
-        var taskid=[];
-        var data1=0;
-        var data2=0;
-
-        $("input[name='studentid']:checked").each(function(i){//把所有被选中的复选框的值存入数组
-            studentid[i] =$(this).val();
-        });
-        $("input[name='temtaskid']:checked").each(function(i){//把所有被选中的复选框的值存入数组
-            taskid[i] =$(this).val();
-        });
-
-        //alert(studentid)
-        //alert(taskid)
-        for(var i=0;i<studentid.length;i++){
-            for (var j=0;j<taskid.length;j++){
-                //上课学生任务表是否有该任务
-                $.ajax({
-                    type: "post",
-                    url: "/findisinassigan",
-                    data:{"studentid":studentid[i],"taskid":taskid[j]},
-                    success: function (data) {
-                        data1=data;
-                    }
-                });
-
-                if(data1>0)continue;
-
-                //教师临时任务表是否有该学生和任务
-                $.ajax({
-                    type: "post",
-                    url: "/findisintemp",
-                    data:{"studentid":studentid[i],"taskid":taskid[j]},
-                    success: function (data) {
-                        data2 =data;
-                    }
-                });
-                if(data2>0)continue;
-
-                $.ajax({
-                    type: "post",
-                    url: "/insertfixedtask",
-                    data:{"studentid":studentid[i],"taskid":taskid[j]},
-                    success: function (data) {
-                        //alert(data)
-                        if(data>0) layer.msg("成功上传任务", { icon: 1, offset: "auto", time:1000 });
-                    }
-                });
-
-
-
-            }
         }
 
-    }
+        function inserttemptask() {
+            var studentid = [];
+            var taskid=[];
+            var data1=0;
+            var data2=0;
 
+            $("input[name='studentid']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+                studentid[i] =$(this).val();
+            });
+            $("input[name='temtaskid']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+                taskid[i] =$(this).val();
+            });
+
+            alert(studentid)
+            alert(taskid)
+            for(var i=0;i<studentid.length;i++){
+                for (var j=0;j<taskid.length;j++){
+                    //上课学生任务表是否有该任务
+                    $.ajax({
+                        type: "post",
+                        url: "/findisinassigan",
+                        data:{"studentid":studentid[i],"taskid":taskid[j]},
+                        success: function (data) {
+                            data1=data;
+                        }
+                    });
+
+                    if(data1>0)continue;
+
+                   //教师临时任务表是否有该学生和任务
+                    $.ajax({
+                        type: "post",
+                        url: "/findisintemp",
+                        data:{"studentid":studentid[i],"taskid":taskid[j]},
+                        success: function (data) {
+                           data2 =data;
+                        }
+                    });
+                    if(data2>0)continue;
+
+                 $.ajax({
+                        type: "post",
+                        url: "/inserttemptask",
+                        data:{"studentid":studentid[i],"taskid":taskid[j]},
+                        success: function (data) {
+                           alert(data)
+                        }
+                    });
+
+
+
+                }
+            }
+
+        }
+
+
+
+    //现场管理
+    function fieldManagement() {
+        location.href="/teachRegister";
+    }
+    //信息查询
+    function informationService() {
+        location.href="/information_service";
+    }
+    //实时状态
+    function timeStatus() {
+        location.href="/time_status";
+    }
+    //信息发布
+    function informationDelivery() {
+        location.href="/information_delivery";
+    }
 
     function temporary_task() {
 
@@ -259,6 +260,17 @@
 
         location.href = "/fixed_task";
     }
+
+
+    //退出
+    function outpower(){
+        $("#popup").show()
+    }
+
+
+
+
+
 
 </script>
 

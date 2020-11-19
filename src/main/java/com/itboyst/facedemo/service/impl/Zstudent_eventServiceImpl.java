@@ -22,4 +22,14 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
     public  int delteup(String zid){
         return zstudent_eventMapper.deleteupmes(zid);
     }
+
+    @Override
+    public int findisevent(String zstudentid){
+        return  zstudent_eventMapper.findisevent(zstudentid);
+    }
+
+    @Override
+    public int deleteleave(String zstudentID,String ztype){
+        return zstudent_eventMapper.deleteleave(zstudentID,ztype);
+    }
 }

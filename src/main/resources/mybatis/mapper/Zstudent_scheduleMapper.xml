@@ -22,5 +22,10 @@
         where zscheduleID = #{zscheduleID,jdbcType=DECIMAL} AND zstudentID = #{zstudentID,jdbcType=DECIMAL} AND zstate="未上课"
     </update>
 
+    <update id="updatetestbyscheduleid" parameterType="com.itboyst.facedemo.dto.Zstudent_schedule" >
+        update zstudent_schedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zscheduleID=#{zscheduleID}
+    </update>
+
+
 
 </mapper>

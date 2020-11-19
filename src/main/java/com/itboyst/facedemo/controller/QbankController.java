@@ -1,10 +1,8 @@
 package com.itboyst.facedemo.controller;
 
-import com.itboyst.facedemo.dto.Zsafe_testingDto;
-import com.itboyst.facedemo.dto.Zstudent;
-import com.itboyst.facedemo.dto.Zstudent_cookie;
-import com.itboyst.facedemo.dto.Ztesting_input;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.QbankService;
+import com.itboyst.facedemo.service.Zstudent_scheduleService;
 import com.itboyst.facedemo.service.Ztesting_inputService;
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
@@ -35,6 +33,26 @@ public class QbankController {
 
     @Autowired
     Ztesting_inputService ztesting_inputService;
+
+    @Autowired
+    Zstudent_scheduleService zstudent_scheduleService;
+
+
+    @RequestMapping("/updatetestbyscheduleid")
+    @ResponseBody
+    public int updatetestbyscheduleid(HttpSession session,int zpassingscore){
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
+        return zstudent_scheduleService.updatetestbyscheduleid(zteacher_cookie.getZscheduleID(),"是",zpassingscore);
+    }
+
+    @RequestMapping("/findpassingcode")
+    @ResponseBody
+    public int findpassingcode(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        //System.out.println(zstudent_cookie);
+        return zstudent_cookie.getZpassingscore();
+    }
+
 
 
 
@@ -149,6 +167,9 @@ public class QbankController {
     @RequestMapping(value = "/fixed_task")
     public String fixed_task(){return "fixed_task";}
 
+    @RequestMapping(value = "/temporary_task")
+    public String temporary_task(){return "temporary_task";}
+
 
 
     @RequestMapping(value = "/class_ppt")
@@ -176,5 +197,10 @@ public class QbankController {
 
         return Qservice.findrand10(zstudentID,zsafetestingType);
     }
+
+
+
+
+
 
 }

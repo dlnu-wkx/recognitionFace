@@ -29,9 +29,17 @@
         </insert>
 -->
     <select id="findfactibyrid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
-          SELECT * FROM ztraining_facility WHERE zlocation=#{zlocation};
+          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
     </select>
 
+
+    <update id="updateallfacility" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerstatus = #{zpowerstatus} where ztrainingroomID = #{ztrainingroomID}
+    </update>
+
+    <update id="updateallfacilitybyzid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerstatus = #{zpowerstatus} where zid = #{zid}
+    </update>
 
 
 </mapper>
