@@ -9,7 +9,7 @@ public class Zstudent {
     private String zsex;
     private String zphone;
     private int zfaceinfoID;
-    private String zphotoID;
+    private String zphoto;
     private String zstatus;
 
     public String getZid() {
@@ -76,20 +76,20 @@ public class Zstudent {
         this.zfaceinfoID = zfaceinfoID;
     }
 
-    public String getZphotoID() {
-        return zphotoID;
-    }
-
-    public void setZphotoID(String zphotoID) {
-        this.zphotoID = zphotoID;
-    }
-
     public String getZstatus() {
         return zstatus;
     }
 
     public void setZstatus(String zstatus) {
         this.zstatus = zstatus;
+    }
+
+    public String getZphoto() {
+        return zphoto;
+    }
+
+    public void setZphoto(String zphoto) {
+        this.zphoto = zphoto;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Zstudent {
                 ", zsex='" + zsex + '\'' +
                 ", zphone='" + zphone + '\'' +
                 ", zfaceinfoID=" + zfaceinfoID +
-                ", zphotoID='" + zphotoID + '\'' +
+                ", zphoto='" + zphoto + '\'' +
                 ", zstatus='" + zstatus + '\'' +
                 '}';
     }

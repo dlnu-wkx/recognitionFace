@@ -213,6 +213,7 @@
                 $.ajax({
                     type: "post",
                     url: "/findisinassigan",
+                    async: false,
                     data:{"studentid":studentid[i],"taskid":taskid[j]},
                     success: function (data) {
                         data1=data;
@@ -225,6 +226,7 @@
                 $.ajax({
                     type: "post",
                     url: "/findisintemp",
+                    async: false,
                     data:{"studentid":studentid[i],"taskid":taskid[j]},
                     success: function (data) {
                         data2 =data;
@@ -235,15 +237,13 @@
                 $.ajax({
                     type: "post",
                     url: "/insertfixedtask",
+                    async: false,
                     data:{"studentid":studentid[i],"taskid":taskid[j]},
                     success: function (data) {
                         //alert(data)
                         if(data>0) layer.msg("成功上传任务", { icon: 1, offset: "auto", time:1000 });
                     }
                 });
-
-
-
             }
         }
 

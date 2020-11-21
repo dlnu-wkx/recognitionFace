@@ -74,7 +74,7 @@ public class Zfixed_taskController {
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 
-       // System.out.println(timestamp+zstudentscheduleID+taskid);
+        //System.out.println(timestamp);
 
         int i= zassign_scheduleService.updatechecktime(timestamp,zstudentscheduleID,taskid);
 

@@ -26,6 +26,9 @@
         update zstudent_schedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zscheduleID=#{zscheduleID}
     </update>
 
+    <update id="updatetestbychose" parameterType="com.itboyst.facedemo.dto.Zstudent_schedule" >
+        update zstudent_schedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zscheduleID=#{zscheduleID} and zstudentID=(select zstudentID from zstudent_login where zrecognizeIP =(select zstudentPCIP from ztraining_facility where zid =#{zid}));
+    </update>
 
 
 </mapper>

@@ -38,6 +38,46 @@ public class QbankController {
     Zstudent_scheduleService zstudent_scheduleService;
 
 
+
+    /*
+    勾选开启安全测试
+   */
+    @RequestMapping("/updatetestbychose")
+    @ResponseBody
+    public int updatetestbychose(HttpSession session,@RequestParam(value = "zpassingscore")int zpassingscore,@RequestParam(value = "zid[]")String [] zid){
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
+
+        int j,k=0;
+        for(int i=0;i<zid.length;i++){
+            j=zstudent_scheduleService.updatetestbychose("是",zpassingscore,zteacher_cookie.getZscheduleID(),zid[i]);
+            if(j==1)k++;
+        }
+
+        return k;
+    }
+
+    /*
+        勾选不开启安全测试
+     */
+    @RequestMapping("/updatenotestbychose")
+    @ResponseBody
+    public int updatenotestbychose(HttpSession session,@RequestParam(value = "zid[]")String [] zid){
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
+
+        int j,k=0;
+        for(int i=0;i<zid.length;i++){
+            j=zstudent_scheduleService.updatetestbychose("否",0,zteacher_cookie.getZscheduleID(),zid[i]);
+            if(j==1)k+=1;
+        }
+
+        return k;
+    }
+
+
+
+    /*
+    根据上课表id更新是否需要考试及考试分数
+     */
     @RequestMapping("/updatetestbyscheduleid")
     @ResponseBody
     public int updatetestbyscheduleid(HttpSession session,int zpassingscore){
@@ -45,6 +85,23 @@ public class QbankController {
         return zstudent_scheduleService.updatetestbyscheduleid(zteacher_cookie.getZscheduleID(),"是",zpassingscore);
     }
 
+
+    /*
+   根据上课表id更新变成不需要测试，合格分数更为0
+    */
+    @RequestMapping("/updatenotestbyscheduleid")
+    @ResponseBody
+    public int updatenotestbyscheduleid(HttpSession session){
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
+        //System.out.println(zteacher_cookie.getZscheduleID());
+        return zstudent_scheduleService.updatetestbyscheduleid(zteacher_cookie.getZscheduleID(),"否",0);
+    }
+
+
+
+    /*
+    查找合格分数
+     */
     @RequestMapping("/findpassingcode")
     @ResponseBody
     public int findpassingcode(HttpSession session){
@@ -55,7 +112,9 @@ public class QbankController {
 
 
 
-
+    /*
+    查找所有问题
+     */
     @RequestMapping("/findallquestion")
     @ResponseBody
     public Map<String, Object> findall(HttpServletResponse response,HttpSession session) {
@@ -98,10 +157,12 @@ public class QbankController {
         return safetest;
     }
 
+    /*
+    更新安全测试表，每刷一次更新一次
+     */
     @RequestMapping("/updatetestinput")
     @ResponseBody
     public int updatetestinput(@RequestParam(value = "questionid[]")String [] questionid,@RequestParam(value = "ananswer[]")String [] ananswer,@RequestParam(value = "answercode[]")String [] answercode,HttpSession session){
-
 
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
         String zstudentscheduleID=zstudent_cookie.getZstudent_scheduleid();
@@ -179,7 +240,12 @@ public class QbankController {
     public String teacher(){return "TeacherLogin";}
 
 
-
+    /**
+     * 查十个题目，备用
+     * @param response
+     * @param session
+     * @return
+     */
     @RequestMapping("/findrand10")
     @ResponseBody
     public List<Zsafe_testingDto> findrand10(HttpServletResponse response, HttpSession session) {

@@ -19,6 +19,13 @@ public class Ztraining_task_contentController {
     @Autowired
     Ztraining_task_contentService ztraining_task_contentService;
 
+
+    /**
+     * 根据页码及任务id加载主体任务
+     * @param page
+     * @param taskid
+     * @return
+     */
     @RequestMapping("/selectcontentbypage")
     @ResponseBody
     public Ztraining_task_content selectcontentbypage(int page, String taskid){

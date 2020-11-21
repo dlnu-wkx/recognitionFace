@@ -7,13 +7,28 @@
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/fixed_task.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/js/common.js"></script>
-
+    <script src="./layui/layui.js"></script>
 </head>
 <body  class="body" >
+
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
+
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >任务发布</font></div>
@@ -177,6 +192,7 @@
         }
 
         function inserttemptask() {
+        //alert(22)
             var studentid = [];
             var taskid=[];
             var data1=0;
@@ -189,43 +205,48 @@
                 taskid[i] =$(this).val();
             });
 
-            alert(studentid)
-            alert(taskid)
+            //alert(studentid)
+            //alert(taskid)
             for(var i=0;i<studentid.length;i++){
                 for (var j=0;j<taskid.length;j++){
                     //上课学生任务表是否有该任务
                     $.ajax({
                         type: "post",
                         url: "/findisinassigan",
+                        async: false,
                         data:{"studentid":studentid[i],"taskid":taskid[j]},
                         success: function (data) {
+                           // alert(data)
                             data1=data;
                         }
                     });
-
-                    if(data1>0)continue;
+                   // alert(data1)
+                    if(data1>0){continue;}
 
                    //教师临时任务表是否有该学生和任务
                     $.ajax({
                         type: "post",
                         url: "/findisintemp",
                         data:{"studentid":studentid[i],"taskid":taskid[j]},
+                        async: false,
                         success: function (data) {
-                           data2 =data;
+                           // alert(data)
+                            data2 =data;
                         }
                     });
-                    if(data2>0)continue;
+                   // alert(data2)
+                    if(data2>0){continue;}
 
                  $.ajax({
                         type: "post",
                         url: "/inserttemptask",
                         data:{"studentid":studentid[i],"taskid":taskid[j]},
+                        async: false,
                         success: function (data) {
-                           alert(data)
+                            //alert(data)
+                            if(data>0) layer.msg("成功上传任务", { icon: 1, offset: "auto", time:1000 });
                         }
                     });
-
-
 
                 }
             }

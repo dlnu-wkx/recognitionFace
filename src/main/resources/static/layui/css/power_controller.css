@@ -130,6 +130,7 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button2{
     background-color:#70AD47;
@@ -141,6 +142,7 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button3{
     background-color:  #4472C4;
@@ -154,6 +156,8 @@
     border-radius: 10px;
     height: 100px;
     width: 100px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button4{
     background-color:  #ED7D31;

@@ -1,16 +1,35 @@
 <head>
+
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script src="./layui/layui.js"></script>
+
 </head>
 
 <body>
+
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
+
+
 <div class="layui-row">
     <div class="layui-col-xs7 layui-col-md-offset3" align="center">
-        <div style="margin: 0,auto; width: 800px;height: 80px;background-color: #383939">
+       <#-- <div style="margin: 0,auto; width: 800px;height: 80px;background-color: #383939">
             <div style="margin: 0,auto;height: 80px;text-align:center;line-height:80px;font-size: 40px;color: #E51C23">
                 人脸识别系统
             </div>
-        </div>
+        </div>-->
         <div class="registermes">
 
             <label >学号：</label>
@@ -27,23 +46,20 @@
         <div id="mainDiv">
 
         </div>
-        <div>
+       <#-- <div>
             <table frame="void">
-                <tr>
+               &lt;#&ndash; <tr>
                     <td>
-                        <button title="摄像头注册" value="摄像头注册" onclick="getMedia()"
-                                style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">
-                            摄像头注册
-                        </button>
+
                     </td>
-                    <#--这里的把图片注册的功能给隐藏了起来-->
-                  <#--  <td style="display: none">
+                    &lt;#&ndash;这里的把图片注册的功能给隐藏了起来&ndash;&gt;
+                  &lt;#&ndash;  <td style="display: none">
                         <button style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px"
                                 onclick="imageRecog()">照片注册
                         </button>
-                    </td>-->
-                </tr>
-                <#--<td><button id="snap" onclick="commitPhoto()" style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">照片提交</button></td>-->
+                    </td>&ndash;&gt;
+                </tr>&ndash;&gt;
+                &lt;#&ndash;<td><button id="snap" onclick="commitPhoto()" style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">照片提交</button></td>&ndash;&gt;
                 <tr>
                     <td colspan="2">
                         <button id="snap" onclick="takePhoto()"
@@ -53,12 +69,23 @@
                     </td>
                 </tr>
             </table>
-        </div>
+        </div>-->
         <div style="float: right">
 
         </div>
     </div>
 
+</div>
+
+<div class="last_button">  <button title="摄像头注册" value="摄像头注册" onclick="getMedia()"
+                                   class="f_button5">
+        摄像头注册
+    </button>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <button id="snap" onclick="takePhoto()"
+            class="f_button5">
+        提交
+    </button>
 
 </div>
 </body>
@@ -66,7 +93,7 @@
 
 
     function getMedia() {
-        alert(1)
+       // alert(1)
         $("#mainDiv").empty();
         let videoComp = " <video id='video' autoplay='autoplay' style='left:18%;height:60%; width:60%;top: 30% ;position: fixed'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
@@ -159,7 +186,7 @@
                     success: function (text) {
                         var res = JSON.stringify(text)
                         if (text.code == 0) {
-                            alert("注册成功")
+                            layer.msg("注册成功", { icon: 1, offset: "auto", time:1000 });
                         } else {
                             alert(text.message)
                         }

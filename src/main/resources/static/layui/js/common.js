@@ -7,7 +7,7 @@ function upheads() {
         data:{"ztype":"举手"},
         success: function (data){
                 if(data==1){
-                    alert("已举手，等待老师处理")
+                    layer.msg("已举手，等待老师处理", { icon: 1, offset: "auto", time:1000 });
                 }
               $("#upheads").css('background-color','#FFC000');
               $("#upheads").text('取消举手');
@@ -65,7 +65,7 @@ function common_leave(){
          data:  {"ztype": "请假", "zcontent": co_mes} ,
          success: function (i){
              if(i==1){
-                 alert("已请假，等待老师审批")
+                 layer.msg("已请假，等待老师审批", { icon: 1, offset: "auto", time:1000 });
                  $("#co_leavemes").hide();
 
                  $("#leave").css('background-color','#FFC000');
@@ -86,7 +86,7 @@ function removeup() {
         url: "/removeup",
         success: function (data){
             if(data==1){
-                alert("已取消举手")
+                layer.msg("已取消举手", { icon: 1, offset: "auto", time:1000 });
             }
             $("#upheads").css('background-color','rgba(68,114,196)');
             $("#upheads").text('举手');

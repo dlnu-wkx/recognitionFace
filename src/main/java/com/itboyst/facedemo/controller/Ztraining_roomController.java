@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -54,9 +55,13 @@ public class Ztraining_roomController {
 
     @RequestMapping("/updateallfacilitybyzid")
     @ResponseBody
-    public int updateallfacilitybyzid(String zid,String zpowerstatus){
-       // System.out.println(zid+zpowerstatus);
-        return ztraining_facilityService.updateallfacilitybyzid(zid, zpowerstatus);
+    public int updateallfacilitybyzid(@RequestParam(value = "zid[]")String [] zid, @RequestParam(value = "zpowerstatus")String  zpowerstatus){
+        int j,k=0;
+        for (int i=0;i<zid.length;i++){
+           j= ztraining_facilityService.updateallfacilitybyzid(zid[i], zpowerstatus);
+           if(j==1)k++;
+        }
+      return k;
     }
 
 

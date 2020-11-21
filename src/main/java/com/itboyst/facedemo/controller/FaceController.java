@@ -130,9 +130,7 @@ public class FaceController {
             byte[] decode = Base64.decode(base64Process(file));
             //String path = pictureOutStream(decode);//保存图片到指定的位置
             //String path = base64StringToImage(decode);
-            /*if ("".equals(path)) {
-                return Results.newFailedResult("picture sava failure");
-            }*/
+
             ImageInfo imageInfo = ImageFactory.getRGBData(decode);
 
             //人脸特征获取
@@ -140,7 +138,11 @@ public class FaceController {
             if (bytes == null) {
                 return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);
             }
+            //System.err.println(path);
             String path = "C:\\FacePic\\images\\" + System.currentTimeMillis() + ".jpg";
+            if ("".equals(path)) {
+                return Results.newFailedResult("picture sava failure");
+            }
             GenerateImage(file,path);
             UserFaceInfo userFaceInfo = new UserFaceInfo();
             userFaceInfo.setName(name);
@@ -160,9 +162,9 @@ public class FaceController {
             zstu.setZid(zid);
             zstu.setZidentity(zidentity);
             zstu.setZname(name);
-            zstu.setZphone(path);
+            zstu.setZphoto(path);
 
-            int id= faceEngineService.selectidbyname(name);
+            int id= faceEngineService.selectidbyname(path);
 
             zstu.setZfaceinfoID(id);
             zstu.setZstatus("待审核");
@@ -357,7 +359,6 @@ public class FaceController {
 
             zsl.setZrecognizeIP(ip);
             //插入学生登陆信息
-
             int  i=zstudent_loginService.updateloginmessage(zsl);
 
             //将相关信息存入session中
@@ -365,18 +366,14 @@ public class FaceController {
             System.out.println(ip);
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
             session.setAttribute("ztraining_facility",ztrfac);
-                      System.err.println(ztrfac.getZtrainingroomID());
-            //实训室
 
+            //实训室
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);
 
 
 
             //课程，日期，上课学生表
-            System.err.println(ztr.getZid());
-            System.err.println(timestamp);
-            System.err.println(zstudent.getZid());
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
             session.setAttribute("zstudent_cookie",zsc);
             //System.out.println(session.getAttribute("zstudent_cookie"));

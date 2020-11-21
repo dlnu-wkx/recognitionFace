@@ -13,9 +13,9 @@
 
 
 
-<!--TimeStampDiff(DAY ,zpublishtime,NOW()) <![CDATA[ <= ]]> 30))-->
+
    <select id="findcommand"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
-        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ((ztype='签到' OR ztype='查岗') AND zstatus='有效') OR (ztype='滚屏信息' AND zstatus='有效');
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ((ztype='签到' OR ztype='查岗') AND zstatus='有效') OR (ztype=滚屏信息 AND TimeStampDiff(MINUTE,zdate,NOW())<![CDATA[ <= ]]>3));
     </select>
 
 

@@ -20,6 +20,8 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 
 .cp_button1{
@@ -32,6 +34,8 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 
 .cp_message{

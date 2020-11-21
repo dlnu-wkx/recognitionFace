@@ -13,7 +13,7 @@
 
 
         <select id="findtitle"  resultType="com.itboyst.facedemo.dto.Zteacher_temporary_task">
-            SELECT zid,ztitle,zcontentID FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} AND TO_DAYS(NOW())-TO_DAYS(zpublishtime)<![CDATA[ <= ]]>300 ORDER BY zpublishtime;
+            SELECT zid,ztitle,zcontentID FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} AND TO_DAYS(NOW())-TO_DAYS(zpublishtime)<![CDATA[ <= ]]>1 ORDER BY zpublishtime;
         </select>
 
         <select id="findisintemp"  resultType="java.lang.Integer">

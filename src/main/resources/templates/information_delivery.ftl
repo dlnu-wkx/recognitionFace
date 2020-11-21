@@ -62,8 +62,10 @@
    
 <!--下方按键及内容-->
 <div class="p_text" align="center">
-    <input type="text" class="d_text" value="点击输入滚动消息" onclick="removemes()" id="inputmes">
-    <div class="d_font2"><button class="button7" onclick="insertcommand()">确认</button></div>
+    <textarea  type="text" class="d_text"  onclick="removemes()" id="inputmes">点击输入滚动消息</textarea>
+    <div class="d_font2"><button class="button7" onclick="insertcommand()">确认</button>
+   <#-- <br><br><button class="button7" onclick="insertcommandbychose()">发送到勾选</button>-->
+    </div>
     <div class="d_choose">
     <div class="d_font">
         <font >显示:</font> <input id="i_time" class="i_time" type="number" value="" size="4"><font>秒</font>
@@ -128,9 +130,9 @@
                     for(var i=0; i<data.length;i++){
 
                         if (data[i].zpowerstatus=="已开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input name='zid' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
                         }else if (data[i].zpowerstatus=="未开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input id='"+data[i].zidentity+"' type='checkbox' class='p_check'></div></th>";
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input name='zid' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
                         }
                    }
                    str+="</tr>";
@@ -147,9 +149,9 @@
                      for(;j<6*(i+1);j++){
                         if(j==data.length){break;}
                          if (data[j].zpowerstatus=="已开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input id='\""+data[j].zid+"\"' type='checkbox' class='p_check'></div></th>";
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input name='zid' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
                          }else if (data[j].zpowerstatus=="未开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input id='\""+data[j].zid+"\"' type='checkbox' class='p_check'></div></th>";
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input name='zid' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
                          }
 
                      }
@@ -194,13 +196,57 @@
         $("#p_center  input[type='checkbox']").attr("checked","true");
     }
 
+
+
+    /*function insertcommandbychose() {
+
+        var startchose =[];
+        $("input[name='zid']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+            startchose[i] =$(this).val();
+        });
+
+        var i_time=$("#i_time").val()
+
+        var inputmes=$("#inputmes").val()
+        //alert(inputmes)
+        if(inputmes && inputmes !="点击输入滚动消息"){
+            $.ajax({
+                type: "post",
+                url: "/insertcommandbychose",
+                data:{"zcontent":inputmes,"zid":startchose},
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("成功发布滚屏信息", { icon: 1, offset: "auto", time:2000 });
+                    }
+                }
+            });
+        }
+
+        setTimeout(function (){
+            $.ajax({
+                type: "post",
+                url: "/upadtestates",
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("滚屏消息已失效", { icon: 1, offset: "auto", time:2000 });
+                    }
+                }
+            });
+        }, 1000*i_time+5000);
+    }
+*/
+
+
+
+
+
     function insertcommand() {
 
         var i_time=$("#i_time").val()
 
         var inputmes=$("#inputmes").val()
-        alert(inputmes)
-        if(inputmes !=null|| imputmes!="" || inputmes!="点击输入滚动消息"){
+        //alert(inputmes)
+        if(inputmes && inputmes !="点击输入滚动消息"){
             $.ajax({
                 type: "post",
                 url: "/insertcommand",
@@ -214,7 +260,6 @@
         }
 
         setTimeout(function (){
-
             $.ajax({
                 type: "post",
                 url: "/upadtestates",

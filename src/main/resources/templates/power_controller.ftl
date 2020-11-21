@@ -76,15 +76,15 @@
 <!--关闭时间控制-->
 <div class="closetime" align="center">
     <font size="3">关闭电源时作用：</font><br><br>
-    <input type="checkbox" name="closetime"><font size="3">关闭时延时</font><input type="number" class="p_input" id="timenumber"><font size="3">分钟</font>
+    <input type="checkbox" name="closetime" id="closetime"><font size="3">关闭时延时</font><input type="number" class="p_input" id="timenumber"><font size="3">分钟</font>
 
 </div>
 
 
 <!--测试题控制-->
 <div class="p_testchose" align="center">
-     <font size="3">开启电源时作用</font><br><br>
-    &emsp;&emsp;<input type="checkbox" name="istest">
+     <font size="3">开启电源时作用:</font><br><br>
+    &emsp;&emsp;<input type="checkbox" name="istest" id="istest">
     <font>测试合格分数</font><input type="number" class="p_input" id="testcode">分
 </div>
 
@@ -106,16 +106,12 @@
 
 
 
-
-
-</body>
-
 <script>
 
     //全部开启
     function startallfacti() {
        //alert(1)
-        if($("input[name='istest']:checked")){
+        if($('#istest').prop('checked')){
             var zpassingscore=$("#testcode").val()
             $.ajax({
                 type: "post",
@@ -129,6 +125,18 @@
                 }
             });
 
+        }else{
+            $.ajax({
+                type: "post",
+                url: "/updatenotestbyscheduleid",
+                async: false,
+                success: function (data) {
+                    //alert(data)
+                    if(data>0){
+                        layer.msg("不开启安全测试", { icon: 1, offset: "auto", time:1000 });
+                    }
+                }
+            });
         }
 
         $.ajax({
@@ -144,14 +152,14 @@
                 }
             }
         });
-     findfacbyrid(ztrainroomid)
+        setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
     }
 
     //全部关闭
     function endallfacti() {
        // alert(2)
         //延时按键有被选中，加载延时关闭选项
-        if($("input[name='closetime']:checked")){
+        if($('#closetime').prop('checked')){
 
             var timenumber=$("#timenumber").val();
             setTimeout(function (){
@@ -187,7 +195,7 @@
                 }
             });
         }
-       findfacbyrid(ztrainroomid)
+        setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
 
     }
 
@@ -199,12 +207,11 @@
         $("input[name='npowerchose']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             startchose[i] =$(this).val();
         });
-        for (var i=0;i<startchose.length;i++){
           //  alert(startchose[i]);
             $.ajax({
                 type: "post",
                 url: "/updateallfacilitybyzid",
-                data:{"zid":startchose[i],"zpowerstatus":"已开机"},
+                data:{"zid":startchose,"zpowerstatus":"已开机"},
                 async: false,
                 success: function (data) {
                     if(data>0){
@@ -214,9 +221,45 @@
                     }
                 }
             });
+
+
+
+
+        //可以在这里加入一个钩选的开启安全测试
+        if($('#istest').prop('checked')){
+            var zpassingscore=$("#testcode").val()
+            $.ajax({
+                type: "post",
+                url: "/updatetestbychose",
+                data:{"zid":startchose,"zpassingscore":zpassingscore},
+                async: false,
+                success: function (data) {
+                    if(data>0){
+                        layer.msg("已开启安全测试", { icon: 1, offset: "auto", time:1000 });
+                    }
+                }
+            });
+        }else{
+            $.ajax({
+                type: "post",
+                url: "/updatenotestbychose",
+                data:{"zid":startchose},
+                async: false,
+                success: function (data) {
+                    //alert(data)
+                    if(data>0){
+                        layer.msg("不开启安全测试", { icon: 1, offset: "auto", time:1000 });
+                    }
+                }
+            });
         }
 
-        findfacbyrid(ztrainroomid)
+
+
+
+
+
+        setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
     }
 
 
@@ -233,22 +276,19 @@
             var timenumber=$("#timenumber").val();
             setTimeout(function (){
 
-                for (var i=0;i<closechose.length;i++) {
-                   // alert(closechose[i]);
-                    $.ajax({
-                        type: "post",
-                        url: "/updateallfacilitybyzid",
-                        data: {"zid": closechose[i], "zpowerstatus": "未开机"},
-                        async: false,
-                        success: function (data) {
-                            if(data>0){
-                                layer.msg("已接受关机命令，请等待"+timenumber+"分钟后关机", { icon: 1, offset: "auto", time:1000 });
-                            }else{
-                                alert("出错")
-                            }
+                $.ajax({
+                    type: "post",
+                    url: "/updateallfacilitybyzid",
+                    data:{"zid":closechose,"zpowerstatus":"未开机"},
+                    async: false,
+                    success: function (data) {
+                        if(data>0){
+                            layer.msg("已关闭选中，等待电源关闭", { icon: 1, offset: "auto", time:1000 });
+                        }else{
+                            alert("出错")
                         }
-                    });
-                }
+                    }
+                });
 
             }, 60000*timenumber);
         }//延时按键没有被选中，加载直接关闭方法

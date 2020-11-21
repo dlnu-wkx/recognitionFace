@@ -42,6 +42,7 @@ public class TasktempController {
     @RequestMapping("/findisinassigan")
     @ResponseBody
     public int findisinassigan(String studentid,String taskid,HttpSession session){
+        //System.out.println(studentid+taskid);
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie)session.getAttribute("zteacher_cookie");
         return zassign_scheduleService.findtaskisin(taskid,studentid,zteacher_cookie.getZscheduleID());
 
@@ -50,7 +51,7 @@ public class TasktempController {
     @RequestMapping("/findisintemp")
     @ResponseBody
     public int findisintemp(String studentid,String taskid){
-
+       // System.out.println(studentid+taskid);
         return zteacher_temporary_taskService.findisintemp(taskid,studentid);
 
     }

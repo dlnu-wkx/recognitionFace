@@ -28,9 +28,9 @@
 
 
 <!--请假弹框-->
-<div class="co_leavemes" hidden id="co_leavemes">
-    <font>请假原因</font>
-    <input type="text" class="co_mes" id="co_mes">
+<div class="co_leavemes" hidden id="co_leavemes" align="center">
+    <font size="5">请假原因</font>
+    <textarea type="text" class="co_mes" id="co_mes"></textarea>
     <button class="co_button" onclick="common_leave()">确认</button>
 </div>
 
