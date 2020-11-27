@@ -40,6 +40,8 @@ import java.sql.Timestamp;
 import java.util.*;
 import java.util.List;
 
+import static com.itboyst.facedemo.base.UUIDutil.ReplaceSQLChar;
+
 
 @Controller
 public class FaceController {
@@ -86,6 +88,8 @@ public class FaceController {
     @Autowired
     Zteacher_cookieSerice zteacher_cookieSerice;
 
+    @Autowired
+    ZmanagerService zmanagerService;
 
     /**
      * 跳转测试
@@ -112,7 +116,18 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceAdd", method = RequestMethod.POST)
     @ResponseBody
-    public Result<Object> faceAdd(@RequestParam("file") String file, @RequestParam("groupId") Integer groupId, @RequestParam("name") String name, @RequestParam("zidentity") String zidentity) {
+    public Result<Object> faceAdd(String major,String classes,String userkind,String password,String zphone,String sex,@RequestParam("file") String file, @RequestParam("groupId") Integer groupId, @RequestParam("name") String name, @RequestParam("zidentity") String zidentity) {
+
+       //字符替换
+        major =ReplaceSQLChar(major);
+        classes =ReplaceSQLChar(classes);
+        userkind =ReplaceSQLChar(userkind);
+        password =ReplaceSQLChar(password);
+        zphone =ReplaceSQLChar(zphone);
+        sex =ReplaceSQLChar(sex);
+        name =ReplaceSQLChar(name);
+        zidentity =ReplaceSQLChar(zidentity);
+
 
         try {
             if (file == null) {
@@ -143,6 +158,10 @@ public class FaceController {
             if ("".equals(path)) {
                 return Results.newFailedResult("picture sava failure");
             }
+            //System.out.println(password+zphone+sex+classes+major+userkind);
+            //System.out.println(major);
+           // return null;
+
             GenerateImage(file,path);
             UserFaceInfo userFaceInfo = new UserFaceInfo();
             userFaceInfo.setName(name);
@@ -156,25 +175,61 @@ public class FaceController {
 
             //人脸特征插入到数据库
             userFaceInfoService.insertSelective(userFaceInfo);
-
-            Zstudent zstu=new Zstudent();
             String zid = UUID.randomUUID().toString().replaceAll("-","");
-            zstu.setZid(zid);
-            zstu.setZidentity(zidentity);
-            zstu.setZname(name);
-            zstu.setZphoto(path);
-
             int id= faceEngineService.selectidbyname(path);
+            if(userkind.equals("学生")){
+               // System.out.println(0);
+                Zstudent zstu=new Zstudent();
 
-            zstu.setZfaceinfoID(id);
-            zstu.setZstatus("待审核");
+                zstu.setZid(zid);
+                zstu.setZidentity(zidentity);
+                zstu.setZname(name);
+                zstu.setZphoto(path);
+                zstu.setZpass(password);
+                zstu.setZsex(sex);
+                zstu.setZphone(zphone);
+                zstu.setZgradeID(classes);
+                zstu.setZfaceinfoID(id);
+                zstu.setZstatus("待审核");
 
-            int i=zstuservice.registerstud(zstu);
+                int i=zstuservice.registerstud(zstu);
+               // System.out.println(i);
+                if (i==0){
+                    return null;
+                }
+            }else if(userkind.equals("教师")){
+                //System.out.println(0);
+                Zteacher zteacher=new Zteacher();
+                zteacher.setZid(zid);
+                zteacher.setZfaceinfoID(id);
+                zteacher.setZidentity(zidentity);
+                zteacher.setZname(name);
+                zteacher.setZpass(password);
+                zteacher.setZphone(zphone);
+                zteacher.setZphoto(path);
+                zteacher.setZsex(sex);
+                zteacher.setZmajorID(major);
+                //System.out.println(zteacher);
 
-            if (i==0){
-                return null;
+                int j= zteacherService.registerteacher(zteacher);
+                if (j==0){
+                    return null;
+                }
+
+            }else if(userkind.equals("管理员")){
+                //System.out.println(0);
+                Zmanager zmanager=new Zmanager();
+                zmanager.setZid(zid);
+                zmanager.setZidentity(zidentity);
+                zmanager.setZname(name);
+                zmanager.setZpass(password);
+                zmanager.setZphone(zphone);
+                int k=zmanagerService.insertmanager(zmanager);
+                if(k==0){
+                    return null;
+                }
+
             }
-
 
 
             logger.info("faceAdd:" + name);

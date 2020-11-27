@@ -14,10 +14,12 @@
 
 
 
-
+    <update id="updateeventstatus" parameterType="com.itboyst.facedemo.dto.Zstudent_event">
+        update zstudent_event set zstatus =#{zstatus} where zstudentID=#{zstudentID} and ztype=#{ztype} and zstatus='申请中'
+    </update>
 
     <select id="findisevent"  resultType="java.lang.Integer">
-            SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID}  AND ztype='请假' and zstatus='审核中';
+            SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID}  AND ztype='请假' and zstatus='申请中';
     </select>
 
 

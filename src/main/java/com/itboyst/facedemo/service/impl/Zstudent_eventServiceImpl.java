@@ -37,4 +37,11 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
     public Zstudent_event  findRaiseHandByFacility(String zid) {
         return zstudent_eventMapper.findRaiseHandByFacility(zid);
     }
+
+    @Override
+    public int updateeventstatus(Zstudent_event zstudent_event){
+        return zstudent_eventMapper.updateeventstatus(zstudent_event);
+    }
+
+
 }

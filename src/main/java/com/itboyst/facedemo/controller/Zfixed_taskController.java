@@ -15,6 +15,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
+import static com.itboyst.facedemo.base.UUIDutil.ReplaceSQLChar;
+
 @Controller
 public class Zfixed_taskController {
     public final static Logger logger = LoggerFactory.getLogger(Zfixed_taskController.class);
@@ -183,6 +185,9 @@ public class Zfixed_taskController {
         int j,k=0;
         int w=0;
         for (int i=0;i<zselfcheck.length;i++){
+            //字符替换
+            zselfcheck[i] =ReplaceSQLChar(zselfcheck[i]);
+
             Ztask_input ztask_input=new Ztask_input();
             String zid = UUID.randomUUID().toString().replaceAll("-","");
             ztask_input.setZid(zid);

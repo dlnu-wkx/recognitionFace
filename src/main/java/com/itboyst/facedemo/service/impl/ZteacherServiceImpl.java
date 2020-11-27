@@ -16,4 +16,9 @@ public class ZteacherServiceImpl implements ZteacherService {
     public Zteacher selectteacherbyname(String zname){
         return zteacherMapper.selectbyname(zname);
     }
+
+    @Override
+    public int registerteacher(Zteacher zteacher){
+        return zteacherMapper.registerteacher(zteacher);
+    }
 }

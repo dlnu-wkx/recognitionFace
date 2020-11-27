@@ -32,14 +32,14 @@
 
 
         <insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
-               INSERT INTO zstudent (zid, zidentity, zname, zphoto ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphoto} ,#{zfaceinfoID}, #{zstatus});
+               INSERT INTO zstudent (zid, zidentity, zname, zphoto ,zfaceinfoID, zstatus,zpass,zsex,zphone,zgradeID) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphoto} ,#{zfaceinfoID}, #{zstatus},#{zpass},#{zsex},#{zphone},#{zgradeID});
         </insert>
 
        <select id="findStudentById"  resultType="com.itboyst.facedemo.dto.Zstudent">
             SELECT * FROM zstudent WHERE zid=#{zstudentID} ;
         </select>
 
-    <select id="findStudentNameByfacilityID"  resultType="java.lang.String">
+        <select id="findStudentNameByfacilityID"  resultType="java.lang.String">
             SELECT A.zname
             FROM zstudent A, zstudent_login B
             WHERE A.zid=B. zstudentID AND B.zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{facilityID});

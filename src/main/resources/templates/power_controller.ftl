@@ -108,6 +108,7 @@
 
 <script>
 
+
     //全部开启
     function startallfacti() {
        //alert(1)
@@ -444,10 +445,11 @@
     /**
      * 下课
      */
-    function overclass() {
+   /* function overclass() {
         $.ajax({
             type: "post",
             url: "/overclass",
+            data:{"ztrainroomid":ztrainroomid},
             success: function (data) {
                 if(data!=0){
                     layer.msg("已下课，等待电源关闭", { icon: 1, offset: "auto", time:2000 });
@@ -456,12 +458,7 @@
                 }
             }
         });
-    }
-
-
-
-
-
+    }*/
 
 </script>
 

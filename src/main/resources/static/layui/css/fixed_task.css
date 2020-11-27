@@ -127,7 +127,7 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    border:solid 1px #FFC000;
+    border:solid 2px #FFC000;
     overflow-y:auto;
     display: block;
     border-spacing: 0;

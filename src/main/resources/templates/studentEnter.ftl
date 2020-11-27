@@ -58,8 +58,6 @@
                     <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="test()" id="e_test">
                         开始测试    
                     </button>
-
-
             </div>
         </div>
         <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid #c2c2c2;">
@@ -75,7 +73,7 @@
             </div>
 
             <div>
-                <button style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:300px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
+                <button onclick="outsystem()" id="outsystem" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:300px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
                     退出系统
                 </button>
             </div>

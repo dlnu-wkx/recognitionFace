@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ZteacherMapper {
     public Zteacher selectbyname(String name);
 
-
+    public int registerteacher(Zteacher zteacher);
 }

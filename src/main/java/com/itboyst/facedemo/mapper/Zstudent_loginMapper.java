@@ -17,4 +17,5 @@ public interface Zstudent_loginMapper {
 
     int updateloginstate(String zstatus,String ztrainingroomID);
 
+
 }

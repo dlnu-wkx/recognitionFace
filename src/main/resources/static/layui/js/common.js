@@ -12,11 +12,85 @@ function upheads() {
               $("#upheads").css('background-color','#FFC000');
               $("#upheads").text('取消举手');
               $("#upheads").attr("onclick","removeup()");
-
         }
     });
 
 }
+
+//申请退出系统
+function outsystem() {
+    //alert(1)
+    $.ajax({
+        type: "post",
+        url: "/outsystem",
+        data:{"ztype":"退出系统"},
+        success: function (data){
+            if(data==1){
+                layer.msg("已申请退出系统，等待老师处理", { icon: 1, offset: "auto", time:1000 });
+            }
+            $("#outsystem").css('background-color','#FFC000');
+            $("#outsystem").text('取消申请');
+            $("#outsystem").attr("onclick","removeout()");
+        }
+    });
+}
+
+function removeout() {
+    //alert(2)
+    $.ajax({
+        type: "post",
+        url: "/removeout",
+        success: function (data){
+            if(data!=0){
+                layer.msg("已取消申请", { icon: 1, offset: "auto", time:1000 });
+            }
+            $("#outsystem").css('background-color','rgba(68,114,196)');
+            $("#outsystem").text('退出系统');
+            $("#outsystem").attr("onclick","outsystem()");
+        }
+    });
+}
+
+
+
+//判断字符串长度
+function titleLength(str) {
+    var strLength = 0;
+    var list = str.split("");
+    for (var i = 0; i < list.length; i++) {
+            strLength = strLength + 1;
+    }
+    return strLength;
+}
+
+//去掉前面空格
+function LTrim(str){
+    var i;
+    for(i=0;i<str.length;i++){
+        if(str.charAt(i)!=" ")
+            break;
+    }
+    str = str.substring(i,str.length);
+    return str;
+}
+
+//去掉后面空格
+function RTrim(str){
+    var i;
+    for(i=str.length-1;i>=0;i--){
+        if(str.charAt(i)!=" ")
+            break;
+    }
+    str = str.substring(0,i+1);
+    return str;
+}
+
+//去掉前后空格
+function Trim(str){
+    return LTrim(RTrim(str));
+}
+
+
 
 
 //请假原因框
@@ -29,24 +103,25 @@ function showleave() {
 }
 
 
-function removeleave() {
+/*function removeleave() {
     $("#co_leavemes").hide();
     $("#leaveclass").css('background-color','rgba(68,114,196)');
     $("#leaveclass").text('请假');
     $("#leaveclass").attr("onclick","showleave()");
-}
+}*/
 
+//销假
 function deleteleave() {
     $.ajax({
         type: 'post',
         url: '/deleteleave',
-        success: function (i){
-            if(i==1){
+        success: function (data){
+           // alert(data)
+            if(data!=0){
                 layer.msg("已销假", { icon: 1, offset: "auto", time:1000 });
                 $("#leave").css('background-color','rgba(68,114,196)');
                 $("#leave").attr("onclick","showleave()");
                 $("#leave").text('请假');
-
 
             }
         }
@@ -54,29 +129,39 @@ function deleteleave() {
 }
 
 
-
 //请假
 function common_leave(){
     var co_mes=$("#co_mes").val();
+    //去空格
+    co_mes=Trim(co_mes)
 
-     $.ajax({
-         type: 'post',
-         url: '/insertevent',
-         data:  {"ztype": "请假", "zcontent": co_mes} ,
-         success: function (i){
-             if(i==1){
-                 layer.msg("已请假，等待老师审批", { icon: 1, offset: "auto", time:1000 });
-                 $("#co_leavemes").hide();
+    //alert(co_mes)
+    var length=titleLength(co_mes)
 
-                 $("#leave").css('background-color','#FFC000');
-                 $("#leave").attr("onclick","deleteleave()");
-                 $("#leave").text('销假');
+    //数据长度过长
+    if (length>100){
+        alert("请假原因过长")
+    }
+    //去空格后是否还有内容
+    else if(!co_mes){
+        alert("请填入请假原因")
+    }else {
+        $.ajax({
+            type: 'post',
+            url: '/insertevent',
+            data:  {"ztype": "请假", "zcontent": co_mes} ,
+            success: function (i){
+                if(i==1){
+                    layer.msg("已请假，等待老师审批", { icon: 1, offset: "auto", time:1000 });
+                    $("#co_leavemes").hide();
 
-             }
-
-         }
-     });
-
+                    $("#leave").css('background-color','#FFC000');
+                    $("#leave").attr("onclick","deleteleave()");
+                    $("#leave").text('销假');
+                }
+            }
+        });
+    }
 
 }
 
@@ -91,11 +176,11 @@ function removeup() {
             $("#upheads").css('background-color','rgba(68,114,196)');
             $("#upheads").text('举手');
             $("#upheads").attr("onclick","upheads()");
-
         }
     });
 
 }
+
 function subContent() {
     var formData = new FormData();
     var zcontent =$("#textContent").val();
@@ -424,12 +509,14 @@ function getcommand() {
         processData: false,
         async: false,
         success: function (data){
-
+                //alert(data)
             for(var i=0;i<data.length;i++){
+                //alert(data[i])
                 if(data[i].ztype =="签到"||data[i].ztype=="查岗"){
                     location.href = "/student";
                 }
                 else if(data[i].ztype == "滚屏信息"){
+                    alert(data[i].zcontent)
                     str+=" <marquee><span style=‘font-weight: bolder;font-size: 40px;color: white;’><font size='7'>"+data[i].zcontent+"</font></span></marquee>"
                     rolling_barrage.html(str)
                     rolling_barrage.show()

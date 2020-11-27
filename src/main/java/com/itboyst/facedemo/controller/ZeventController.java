@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+import static com.itboyst.facedemo.base.UUIDutil.ReplaceSQLChar;
+
 @Controller
 public class ZeventController {
     public final static Logger logger = LoggerFactory.getLogger(ZeventController.class);
@@ -25,6 +27,9 @@ public class ZeventController {
     @RequestMapping("/insertevent")
     @ResponseBody
     public int insertevent(HttpSession session,String ztype,String zcontent){
+
+        //字符替换
+        zcontent =ReplaceSQLChar(zcontent);
 
         //System.out.println(ztype+zcontent);
         Zstudent_event zstudent_event =new Zstudent_event();
@@ -41,9 +46,9 @@ public class ZeventController {
 
         zstudent_event.setZstudentID(zstudentid);
 
-        zstudent_event.setZstatus("申请中");
+        zstudent_event.setZstatus("取消");
         zstudent_event.setZtype(ztype);
-        if (zcontent!=null ||zcontent!=""){
+        if (zcontent!=null && zcontent!=""){
             zstudent_event.setZcontent(zcontent);
         }
 
@@ -51,24 +56,76 @@ public class ZeventController {
         zstudent_event.setZapplicationtime(timestamp);
 
 
+        //插入之前将之前的事件状态更改
+        zstudent_eventService.updateeventstatus(zstudent_event);
+
+        zstudent_event.setZstatus("申请中");
+        //插入新的学生事件信息
         return zstudent_eventService.insertevent(zstudent_event);
     }
 
+    /**
+     * 取消举手
+     * @param session
+     * @return
+     */
     @RequestMapping("/removeup")
     @ResponseBody
     public int removeup(HttpSession session){
-        String zid =(String) session.getAttribute("zstudent_eventid");
+        Zstudent zstudent=(Zstudent) session.getAttribute("zstudent");
 
-        return zstudent_eventService.delteup(zid);
+        Zstudent_event zstudent_event=new Zstudent_event();
+        zstudent_event.setZstudentID(zstudent.getZid());
+        zstudent_event.setZtype("举手");
+        zstudent_event.setZstatus("取消");
+
+
+        return zstudent_eventService.updateeventstatus(zstudent_event);
     }
 
     @RequestMapping("/deleteleave")
     @ResponseBody
     public int deleteleave(HttpSession session){
-        Zstudent zstudent=(Zstudent)session.getAttribute("zstudent");
-        return  zstudent_eventService.deleteleave(zstudent.getZid(),"请假");
+        Zstudent zstudent=(Zstudent) session.getAttribute("zstudent");
+
+        Zstudent_event zstudent_event=new Zstudent_event();
+        zstudent_event.setZstudentID(zstudent.getZid());
+        zstudent_event.setZtype("请假");
+        zstudent_event.setZstatus("取消");
+
+        return zstudent_eventService.updateeventstatus(zstudent_event);
 
     }
+
+    @RequestMapping("/outsystem")
+    @ResponseBody
+    public int outsystem(String ztype,HttpSession session){
+        Zstudent zstudent=(Zstudent) session.getAttribute("zstudent");
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        String uuid = UUID.randomUUID().toString().replaceAll("-","");
+
+        Zstudent_event zstudent_event=new Zstudent_event();
+        zstudent_event.setZid(uuid);
+        zstudent_event.setZstudentID(zstudent.getZid());
+        zstudent_event.setZtype(ztype);
+        zstudent_event.setZstatus("申请中");
+        zstudent_event.setZapplicationtime(timestamp);
+
+        return zstudent_eventService.insertevent(zstudent_event);
+    }
+
+    @RequestMapping("/removeout")
+    @ResponseBody
+    public int removeout(HttpSession session){
+        Zstudent zstudent=(Zstudent) session.getAttribute("zstudent");
+        Zstudent_event zstudent_event=new Zstudent_event();
+        zstudent_event.setZstudentID(zstudent.getZid());
+        zstudent_event.setZtype("退出系统");
+        zstudent_event.setZstatus("取消");
+
+        return zstudent_eventService.updateeventstatus(zstudent_event);
+    }
+
 
 
 }

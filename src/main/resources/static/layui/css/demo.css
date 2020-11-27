@@ -116,6 +116,10 @@
     border-right: 1px solid white;
     box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
+.button5 :active {
+    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
+    top: 1px;
+}
 
 .code{
     color: transparent;
@@ -198,6 +202,13 @@
     box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 
+
+
+.button3:active {
+    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
+    top: 0.5px;
+}
+
 .button7{
     background-color: #4472C4;
     border: none;
@@ -209,6 +220,7 @@
     font-size: 16px;
     border-radius: 10px;
     border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 
 
@@ -234,26 +246,14 @@
 
 
 /*按键动态*/
-.button4 :active {
+.button4:active {
     box-shadow: 0px 2px 0px rgba(0,0,0,.2);
-    top: 1px;
+    top:0.5px;
 }
-.button5 :active {
-    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
-    top: 1px;
-}
-.button3 :active {
-    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
-    top: 1px;
-}
-.cp_button2 :active {
-    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
-    top: 1px;
-}
-.cp_button1 :active {
-    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
-    top: 1px;
-}
+/*
+
+
+
 .p_button3 :active {
     box-shadow: 0px 2px 0px rgba(0,0,0,.2);
     top: 1px;
@@ -269,7 +269,7 @@
 .f_button1 :active {
     box-shadow: 0px 2px 0px rgba(0,0,0,.2);
     top: 1px;
-}
+}*/
 
 
 
@@ -282,7 +282,6 @@
     border-style: solid;
     border-color: #F2A774;
     background-color: rgba(254, 255, 247, 0);
-
     position: fixed;
 }
 
@@ -366,6 +365,7 @@
     top: 5px;
     position: fixed;
 }
+
 
 
 .body {

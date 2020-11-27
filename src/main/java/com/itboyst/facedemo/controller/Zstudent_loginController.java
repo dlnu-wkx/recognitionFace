@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class Zstudent_loginController {
-    public final static Logger logger = LoggerFactory.getLogger(Zstudent_loginController.class);
+   /* public final static Logger logger = LoggerFactory.getLogger(Zstudent_loginController.class);
 
 
     @Autowired
@@ -29,5 +29,5 @@ public class Zstudent_loginController {
 
         return zstudent_loginService.updateloginstate("强退",zteacher_cookie.getZtrainingroomid());
 
-    }
+    }*/
 }

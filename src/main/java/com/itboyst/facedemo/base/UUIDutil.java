@@ -28,4 +28,34 @@ public class UUIDutil {
         //去掉“-”符号
         return uuid.replaceAll("-", "");
     }
+
+    /**
+     * 字符替换
+     * @param str
+     * @return
+     */
+    public static String ReplaceSQLChar( String str)
+    {
+        if (str == null)
+            return null;
+        str = str.replace( "'" , "‘" );
+        str = str.replace( ";" , "；" );
+        str = str.replace( "," , "," );
+        str = str.replace( "?" , "?" );
+        str = str.replace( "<" , "＜" );
+        str = str.replace( ">" , "＞" );
+        str = str.replace( "(" , "(" );
+        str = str.replace( ")" , ")" );
+        str = str.replace( "@" , "＠" );
+        str = str.replace( "=" , "＝" );
+        str = str.replace( "+" , "＋" );
+        str = str.replace( "*" , "＊" );
+        str = str.replace( "&" , "＆" );
+        str = str.replace( "#" , "＃" );
+        str = str.replace( "%" , "％" );
+        str = str.replace( "$" , "￥" );
+
+        return str;
+    }
+
 }

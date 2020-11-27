@@ -1,9 +1,12 @@
 package com.itboyst.facedemo.service.impl;
 
+import com.itboyst.facedemo.dto.Zstudent_schedule;
 import com.itboyst.facedemo.mapper.Zstudent_scheduleMapper;
 import com.itboyst.facedemo.service.Zstudent_scheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class Zstudent_scheduleServiceImpl implements Zstudent_scheduleService {
@@ -26,4 +29,15 @@ public class Zstudent_scheduleServiceImpl implements Zstudent_scheduleService {
     public int updatetestbychose(String zselecttest,int zpassingscore,String zscheduleID,String zid){
         return  zstudent_scheduleMapper.updatetestbychose(zselecttest, zpassingscore, zscheduleID, zid);
     }
+
+    @Override
+    public int updatestatebyscheduleid(Zstudent_schedule zstudent_schedule){
+        return zstudent_scheduleMapper.updatestatebyscheduleid(zstudent_schedule);
+    }
+
+    @Override
+    public List<String> findstudentidbyscheduleid(String zscheduleID){
+        return zstudent_scheduleMapper.findstudentidbyscheduleid(zscheduleID);
+    }
+
 }

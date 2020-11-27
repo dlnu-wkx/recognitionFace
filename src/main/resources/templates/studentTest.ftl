@@ -57,7 +57,7 @@
     </div>
 
     <div class="right3">
-        <button class="button5">退出系统</button>
+        <button class="button5" onclick="outsystem()" id="outsystem">退出系统</button>
     </div>
 </div>
 
@@ -143,8 +143,6 @@
             }
         });
 
-
-
         //连接Servlet
         $.ajax({
             type: "post",
@@ -228,15 +226,24 @@
      */
 
     function submit() {
+
+        //学生题解记录
+        ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
+        for (var f=0;f<i+1;f++){
+            if (!ananswer[f]){
+                alert("你还有未做的题，请仔细检查")
+                return ;
+            }
+
+        }
+
+
         //分数信息居中显示
         $("#qbank").attr("align","center");
 
         $("#lastpage").css("background-color","#A5A5A5");
         $("#nexttpage").css("background-color","#A5A5A5");
 
-
-        //学生题解记录
-        ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
 
         //中间题目获取
         var qbank=$("#qbank");
@@ -267,7 +274,7 @@
         str3+="<div><font size='3' >题目数量：5题</font></div>";
         str3+="<div><font size='3' >每题分数：20分</font></div>";
         str3+="<div><font size='3' >测试总分：100分</font></div>";
-        str3+="<div><font size='3' >合格分数：60分</font></div>";
+        str3+="<div><font size='3' >合格分数："+static_passingcode+"分</font></div>";
         str3+="<br><br><br>"
         //如果分数小于60，加载小于60的信息
         if(code<static_passingcode){
@@ -303,8 +310,6 @@
 
             }
         });
-
-
         code=0;
 
 
@@ -335,6 +340,7 @@
     function nextpage() {
         //翻页前先存储一下题解
         ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
+
 
         if(i!=4){
 

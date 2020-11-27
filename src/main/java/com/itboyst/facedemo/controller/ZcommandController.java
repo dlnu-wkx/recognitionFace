@@ -1,5 +1,6 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.dto.Zteacher;
 import com.itboyst.facedemo.dto.Zteacher_command;
 import com.itboyst.facedemo.dto.Zteacher_cookie;
 import com.itboyst.facedemo.dto.ztraining_room;
@@ -53,11 +54,19 @@ public class ZcommandController {
         zteacher_command.setZtype("滚屏信息");
         zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
 
-        //先删除原先的滚屏信息
-        int i=zteacher_commandService.deltebefore(zteacher_cookie.getZtrainingroomid(),"滚屏信息");
+        Zteacher_command zteacher_command1=new Zteacher_command();
+        zteacher_command1.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
+        zteacher_command1.setZstatus("失效");
+        zteacher_command1.setZtype("滚屏信息");
 
+
+        //先将原先的滚屏信息的状态更改为失效
+        int i=zteacher_commandService.updatestate(zteacher_command1);
         //插入现在的滚屏信息
-        return zteacher_commandService.insertcommand(zteacher_command);
+        int j=zteacher_commandService.insertcommand(zteacher_command);
+        if(i>0&&j>0)return 1;
+
+        return 0;
     }
 
 

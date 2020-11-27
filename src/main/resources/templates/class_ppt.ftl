@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
-    <script type="text/javascript" src="./layui/js/common.js "></script>
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/layui.js"></script>
@@ -62,7 +61,7 @@
     </div>
 
     <div class="right3">
-        <button class="button5">退出系统</button>
+        <button class="button5" onclick="outsystem()" id="outsystem">退出系统</button>
     </div>
 </div>
 
@@ -300,12 +299,10 @@
         }
 
     }
-
-
     //页面加载前方法
     window.onload =function () {
         $("#lastpage").css("background-color","#A5A5A5");
-        //getcommand();
+       // getcommand();
         findalltask();
     }
 
@@ -352,8 +349,24 @@
         function lastpage() {
         //如果是数据测量的表，将插入学生输入的测量数据
         if(static_ztype=="数据测量"){
+
         for(var i=0;i<static_assessnum;i++){
-            zselfcheck[i]=$("#"+ztrainingtaskassessID[i]+"").val()
+            //对每个传过来的字符串去空格
+            var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val())
+            //空字符串与空格判断
+            if(!removenull){
+                alert("你还有未输入的测量数据！")
+                return;
+            }
+            //长度长于数据库字体长度，直接返回
+            else if(titleLength(removenull)>20){
+                alert("你输入的长度过长！")
+                return;
+            }
+            //长度与空格检查都通过，将值附给自检值
+            else{
+                zselfcheck[i]=removenull
+            }
         }
 
             $.ajax({
@@ -366,8 +379,6 @@
                     layer.msg("成功提交测量数据", { icon: 1, offset: "auto", time:1000 });
                 }
             });
-
-
         }
 
 
@@ -416,13 +427,19 @@
 
         //下一页方法
         function nextpage(){
-
             if(static_ztype=="数据测量"){
 
                 for(var i=0;i<static_assessnum;i++){
-                    //alert(ztrainingtaskassessID[i])
-                    zselfcheck[i]=$("#"+ztrainingtaskassessID[i]+"").val()
-                    //alert(zselfcheck[i])
+                    var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val())
+                    if(!removenull){
+                        alert("你还有未输入的测量数据！")
+                        return;
+                    }else if(titleLength(removenull)>20){
+                        alert("你输入的长度过长！")
+                        return;
+                    }else{
+                        zselfcheck[i]=removenull
+                    }
                 }
 
                 $.ajax({
