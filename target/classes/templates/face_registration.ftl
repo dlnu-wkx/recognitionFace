@@ -1,74 +1,207 @@
 <head>
+
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./layui/css/register.css">
+    <link href="./layui/css/fixed_task.css" rel="stylesheet" type="text/css">
+    <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
+    <script src="./layui/layui.js"></script>
+
 </head>
 
-<body>
-<div class="layui-row">
-    <div class="layui-col-xs7 layui-col-md-offset3" align="center">
-        <div style="margin: 0,auto; width: 800px;height: 80px;background-color: #383939">
-            <div style="margin: 0,auto;height: 80px;text-align:center;line-height:80px;font-size: 40px;color: #E51C23">
-                人脸识别系统
-            </div>
-        </div>
-        <div class="registermes">
+<body class="body">
 
-            <label >学号：</label>
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+</div>
+<!--头部导航条-->
+<div class="top">
+    <div class="leftfont"><font size="5" >用户注册</font></div>
+    <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
+</div>
 
-            <input class="f_stuiid"
-                   placeholder="在此输入学号" type="text" name="zidentity" id="zidentity">
-            <br>
-            <label >姓名：</label>
-
-            <input  class="f_name"
-                   placeholder="在此输入姓名" type="text" name="userName" id="userName">
-        </div>
-
-        <div id="mainDiv">
-
-        </div>
-        <div>
-            <table frame="void">
-                <tr>
-                    <td>
-                        <button title="摄像头注册" value="摄像头注册" onclick="getMedia()"
-                                style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">
-                            摄像头注册
-                        </button>
-                    </td>
-                    <#--这里的把图片注册的功能给隐藏了起来-->
-                  <#--  <td style="display: none">
-                        <button style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px"
-                                onclick="imageRecog()">照片注册
-                        </button>
-                    </td>-->
-                </tr>
-                <#--<td><button id="snap" onclick="commitPhoto()" style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">照片提交</button></td>-->
-                <tr>
-                    <td colspan="2">
-                        <button id="snap" onclick="takePhoto()"
-                                class="f_button5">
-                            提交
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div style="float: right">
-
-        </div>
-    </div>
-
+<!--左侧摄像头-->
+<div id="mainDiv" class="mainDiv">
 
 </div>
+
+<!--右侧注册信息部分-->
+<div class="re_rightmes" align="center">
+ <table class="r_table1" id="r_table1">
+     <tr id="userkind">
+         <th class="r_title1">用户类型：</th>
+         <th>
+             <select class="t_select" id="r_userkind">
+                 <option value ="学生">学生</option>
+                 <option value ="教师">教师</option>
+                 <option value="管理员">管理员</option>
+             </select>
+         </th>
+     </tr>
+     <tr id="nametr">
+         <th>
+             姓名:
+         <th>
+             <input type="text" class="t_select" id="userName">
+         </th>
+     </tr>
+     <tr id="sextr">
+         <th>
+             性别:
+         </th>
+         <th>
+             <label><input type="radio" id="sex" value="男">男</label>
+             <label><input type="radio" id="sex" value="女">女</label>
+         </th>
+     </tr>
+     <tr id="idcardtr">
+         <th id="idcardtitle">
+            学号:
+         </th>
+         <th>
+             <input type="text" class="t_select" id="zidentity">
+         </th>
+     </tr>
+    <tr id="passtr">
+         <th>
+             密码:
+         </th>
+         <th>
+             <input type="text" class="t_select" id="password">
+         </th>
+     </tr>
+    <tr id="phonetr">
+         <th>
+             电话:
+         </th>
+         <th>
+             <input type="number" class="t_select" id="zphone">
+         </th>
+     </tr>
+
+     <#-- <tr id="classes">
+     <th>
+         班级:
+     </th>
+     <th>
+         <select class="t_select">
+             <option value ="volvo">Volvo</option>
+             <option value ="saab">Saab</option>
+             <option value="opel">Opel</option>
+             <option value="audi">Audi</option>
+         </select>
+     </th>
+ </tr>
+ <tr id="classes">
+     <th>
+         班级:
+     </th>
+     <th>
+         <select class="t_select">
+             <option value ="volvo">Volvo</option>
+             <option value ="saab">Saab</option>
+             <option value="opel">Opel</option>
+             <option value="audi">Audi</option>
+         </select>
+     </th>
+ </tr>
+ <tr id="classes">
+     <th>
+         班级:
+     </th>
+     <th>
+         <select class="t_select">
+             <option value ="volvo">Volvo</option>
+             <option value ="saab">Saab</option>
+             <option value="opel">Opel</option>
+             <option value="audi">Audi</option>
+         </select>
+     </th>
+ </tr>-->
+ </table>
+
+</div>
+
+<button class="r_button" onclick="takePhoto()">注册</button>
+
+
 </body>
 <script>
 
+    //用户类型联动
+    $('#r_userkind').change(function() {
+       var t_test=$('#r_userkind').val();
+       if(t_test=="教师"){
+           $("#sextr").show()
+           $("#idcardtitle").html("工号:")
+           $("#classestr").hide();
+           $("#majortr").show()
+       }
+        else if(t_test=="学生"){
+           $("#sextr").show()
+           $("#idcardtitle").html("学号:")
+           $("#classestr").show();
+           $("#majortr").hide();
+       }else if(t_test=="管理员"){
+            $("#idcardtitle").html("工号:")
+            $("#sextr").hide();
+           $("#classestr").hide();
+       }
+    });
+ function loadclassandmajor(){
+       // alert(1)
+        var r_table1=$("#r_table1");
+        var str="<tr id='classestr'><th>班级:</th><th><select class='t_select' id='classes'>";
+        $.ajax({
+            type: "post",
+            url: "/findallgrade",
+            async: false,
+            success: function (data) {
+                    //alert(data)
+                for (var i=0;i<data.length;i++){
+                    str+="<option value ='"+data[i].zid+"'>"+data[i].zname+"</option>";
+                }
+            }
+        });
+            str+="</select></th></tr>";
+            r_table1.append(str);
+            var str2="<tr id='majortr' hidden><th>专业:</th><th><select class='t_select' id='major'>";
+         $.ajax({
+             type: "post",
+             url: "/findallmajor",
+             async: false,
+             success: function (data) {
+                 //alert(data)
+                 for (var i = 0; i < data.length; i++) {
+                     str2 += "<option value ='" + data[i].zid + "'>" + data[i].zname + "</option>";
+                 }
+             }
+         });
+     str2+="</select></th></tr>";
+     r_table1.append(str2);
+
+    }
+
+
+    window.onload=function () {
+        getMedia();
+        loadclassandmajor();
+    }
+
 
     function getMedia() {
-        alert(1)
+       // alert(1)
         $("#mainDiv").empty();
-        let videoComp = " <video id='video' autoplay='autoplay' style='left:18%;height:60%; width:60%;top: 30% ;position: fixed'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
+        let videoComp = " <video id='video' autoplay='autoplay' class='left_video'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
 
         let constraints = {
@@ -97,7 +230,12 @@
     function takePhoto() {
         let mainComp = $("#mainDiv");
         var zidentity=$("#zidentity").val();
-
+        var password=$("#password").val();
+        var zphone=$("#zphone").val();
+        var sex=$("#sex").val();
+        var r_userkind=$("#r_userkind").val();
+        var classes=$("#classes").val();
+        var major=$("#major").val();
 
         if (mainComp.has('video').length) {
             let userNameInput = $("#userName").val();
@@ -117,6 +255,12 @@
             formData.append("name", userName);
             formData.append("groupId", "101");
             formData.append("zidentity",zidentity);
+            formData.append("password",password);
+            formData.append("zphone",zphone);
+            formData.append("sex",sex);
+            formData.append("userkind",r_userkind);
+            formData.append("classes",classes);
+            formData.append("major",major);
 
             $.ajax({
                 type: "post",
@@ -128,7 +272,7 @@
                 success: function (text) {
                     var res = JSON.stringify(text)
                     if (text.code == 0) {
-                        alert("注册成功")
+                        layer.msg("注册成功", { icon: 1, offset: "auto", time:1000 });
                         location.href("/demo");
                     } else {
                         alert(text.message)
@@ -159,7 +303,7 @@
                     success: function (text) {
                         var res = JSON.stringify(text)
                         if (text.code == 0) {
-                            alert("注册成功")
+                            layer.msg("注册成功", { icon: 1, offset: "auto", time:1000 });
                         } else {
                             alert(text.message)
                         }

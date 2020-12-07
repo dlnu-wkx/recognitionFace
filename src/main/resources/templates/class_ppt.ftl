@@ -261,7 +261,6 @@
                                     j=i+1;
                                     str+=" <tr><th><input class='rmes_input' type='input' id='"+data[i].zid+"'></th><th>"+j+"</th></tr>"
                                 }
-
                             }
                         });
 

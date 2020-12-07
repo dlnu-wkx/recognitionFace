@@ -1,3 +1,26 @@
+.p_testchose{
+    left: 10%;
+    bottom: 5%;
+    position: fixed;
+    width: 30%;
+    height: 15%;
+    background-color: #A5A5A5;
+}
+.p_input{
+    height: 20px;
+    width: 40px;
+}
+
+
+.closetime{
+    right: 20%;
+    bottom: 5%;
+    position: fixed;
+    height: 15%;
+    width: 30%;
+    background-color: #A5A5A5;
+}
+
 
 .parent{
     width:100%;
@@ -32,6 +55,9 @@
     left: 0%;
     top: 6.7%;
     border-right: 2px solid #BBBBBB;
+    overflow-y:auto;
+    display: block;
+    border-spacing: 0;
     position: fixed;
 }
 .p_center{
@@ -104,6 +130,7 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button2{
     background-color:#70AD47;
@@ -115,6 +142,7 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button3{
     background-color:  #4472C4;
@@ -128,6 +156,8 @@
     border-radius: 10px;
     height: 100px;
     width: 100px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button4{
     background-color:  #ED7D31;
@@ -141,6 +171,8 @@
     border-radius: 10px;
     height: 100px;
     width: 100px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 .p_button5{
     background-color:  #4472C4;

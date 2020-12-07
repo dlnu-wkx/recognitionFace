@@ -391,7 +391,9 @@ public class FaceController {
 
           //  System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
+            if(zstudent == null){
 
+            }
 
             //学生登陆信息
             Zstudent_login zsl=new Zstudent_login();

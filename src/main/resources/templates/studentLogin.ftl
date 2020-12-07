@@ -175,14 +175,14 @@
                 success: function (text) {
                     var res = JSON.stringify(text)
                     if (text.code == 0) {
-                        var name = text.data.name;
+                        /*var name = text.data.name;
                         $("#nameDiv").html("姓名：" + name);
                         var similar = text.data.similarValue;
                         $("#similarDiv").html("相似度：" + similar + "%");
                         var age = text.data.age;
                         $("#ageDiv").html("年龄：" + age);
                         var gender = text.data.gender;
-                        $("#genderDiv").html("性别：" + gender);
+                        $("#genderDiv").html("性别：" + gender);*/
                         // img.css("background-image", 'url(' + text.data.image + ')');
                         //alert("姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
                         // layer.msg("姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
@@ -190,10 +190,10 @@
                         location.href = "/login";
                         //showTips( "姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
                     } else {
-                        $("#nameDiv").html("");
+                      /*  $("#nameDiv").html("");
                         $("#similarDiv").html("");
                         $("#ageDiv").html("");
-                        $("#genderDiv").html("");
+                        $("#genderDiv").html("");*/
                         //alert("人脸不匹配");
                         //自定义提示框
                         showTips("人脸不匹配");
