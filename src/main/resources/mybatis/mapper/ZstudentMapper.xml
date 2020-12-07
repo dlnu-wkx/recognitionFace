@@ -45,6 +45,8 @@
             WHERE A.zid=B. zstudentID AND B.zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{facilityID});
         </select>
 
-
+    <select id="findstudentByZidentity"  resultType="com.itboyst.facedemo.dto.Zstudent">
+            SELECT * FROM zstudent WHERE zidentity=#{zidentity}  AND  zstatus='审核通过';
+        </select>
 
 </mapper>

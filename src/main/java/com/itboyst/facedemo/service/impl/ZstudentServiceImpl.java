@@ -51,4 +51,9 @@ public class ZstudentServiceImpl implements ZstudentService {
     public String findStudentNameByfacilityID(String facilityID) {
         return zstu.findStudentNameByfacilityID(facilityID);
     }
+
+    @Override
+    public Zstudent findstudentByZidentity(String zidentity) {
+        return zstu.findstudentByZidentity(zidentity);
+    }
 }

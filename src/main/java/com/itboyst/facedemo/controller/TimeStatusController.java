@@ -99,9 +99,12 @@ public class TimeStatusController {
     @RequestMapping("/presentProgess")
     @ResponseBody
     public Ztraining_task_content  presentProgess(String zid) {
-        Ztraining_task_content ztraining_task_content = ztraining_task_contentService.findpresentProgessByfacilityID(zid);
-
-        return ztraining_task_content;
+        System.err.println("zid ："+zid);
+        List<Ztraining_task_content> ztraining_task_content = ztraining_task_contentService.findpresentProgessByfacilityID(zid);
+        if(ztraining_task_content.size()>0){
+            return ztraining_task_content.get(0);
+        }
+        return null;
     }
 
 }

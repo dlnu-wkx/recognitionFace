@@ -15,4 +15,6 @@ public interface ZstudentService {
     Zstudent findStudentById(String zstudentID);
 
     String findStudentNameByfacilityID(String facilityID);
+
+    Zstudent findstudentByZidentity(String zidentity);
 }

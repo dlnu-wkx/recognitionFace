@@ -34,4 +34,13 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
         return zteacher_commandMapper.updatestate(zteacher_command);
     }
 
+    @Override
+    public Zteacher_command findcommandById(String zid) {
+        return zteacher_commandMapper.findcommandById(zid);
+    }
+
+    @Override
+    public int updateCommandByroomandZtype(String ztype, String ztrainingroomID) {
+        return zteacher_commandMapper.updateCommandByroomandZtype(ztype,ztrainingroomID);
+    }
 }

@@ -12,10 +12,11 @@ public interface Zstudent_loginMapper {
 
     int insertnowmessage(Zstudent_login zstlog);
 
-    Zstudent_login findfront(String zstudentID);
+    List<Zstudent_login> findfront(String zstudentID);
+
     List<Zstudent_login> findAllStudentLogin();
 
     int updateloginstate(String zstatus,String ztrainingroomID);
 
-
+    int deleteStudentLoginByzidentity(String zidentity);
 }

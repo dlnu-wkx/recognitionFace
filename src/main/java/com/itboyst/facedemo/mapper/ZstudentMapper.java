@@ -17,4 +17,5 @@ public interface ZstudentMapper {
 
     String findStudentNameByfacilityID(String facilityID);
 
+    Zstudent findstudentByZidentity(String zidentity);
 }

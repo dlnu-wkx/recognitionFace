@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,13 +27,20 @@ public class ZcommandController {
 
     @RequestMapping("/findcommand")
     @ResponseBody
-    public List<Zteacher_command> findcommand(HttpSession session){
+    public List<Zteacher_command> findcommand(HttpSession session,String chagangID,String gundongID){
 
         ztraining_room ztraining_room=(ztraining_room)session.getAttribute("ztraining_room");
         String zid=ztraining_room.getZid();
-
         List<Zteacher_command> data=zteacher_commandService.selectcommand(zid);
+        System.err.println("befor data :"+data.size());
+        System.out.println(data.toString());
+        for(int i=0;i<data.size();i++){
+            if(data.get(i).getZid().equals(chagangID)|| data.get(i).getZid().equals(gundongID)){
 
+            data.remove(i);
+            }
+        }
+        System.err.println(data.size());
         return data;
     }
 
@@ -122,6 +130,9 @@ public class ZcommandController {
     public int addCheckPoint(HttpSession session,String zcontent,String ztype){
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
         String ztrainingroomid =zteacher_cookie.getZtrainingroomid();
+        //通过查岗和所在的房间id找出所以的对象
+        int a =zteacher_commandService.updateCommandByroomandZtype(ztype,ztrainingroomid);
+        //插入一条最新的更新
         Zteacher_command zteacher_command=new Zteacher_command();
         zteacher_command.setZtrainingroomID(ztrainingroomid);
         zteacher_command.setZcontent(zcontent);

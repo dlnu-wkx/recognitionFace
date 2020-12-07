@@ -6,6 +6,16 @@ public class Zstudent_login {
     private String zid;
     private String zstudentID;
     private Timestamp zrecongnizetime;
+
+    public String getZcheck() {
+        return zcheck;
+    }
+
+    public void setZcheck(String zcheck) {
+        this.zcheck = zcheck;
+    }
+
+    private String zcheck;
     private String ztype;
     private String  zrecognizeIP;
 
@@ -56,6 +66,7 @@ public class Zstudent_login {
                 "zid='" + zid + '\'' +
                 ", zstudentID='" + zstudentID + '\'' +
                 ", zrecongnizetime=" + zrecongnizetime +
+                ", zcheck='" + zcheck + '\'' +
                 ", ztype='" + ztype + '\'' +
                 ", zrecognizeIP='" + zrecognizeIP + '\'' +
                 '}';

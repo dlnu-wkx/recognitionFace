@@ -22,10 +22,15 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
     }
 
     @Override
-    public int updateloginmessage(Zstudent_login zstl){
-        Zstudent_login zsl=zstulogma.findfront(zstl.getZstudentID());
+    public int deleteStudentLoginByzidentity(String zidentity) {
+        return zstulogma.deleteStudentLoginByzidentity(zidentity);
+    }
 
-        if(zsl !=null){
+    @Override
+    public  synchronized int updateloginmessage(Zstudent_login zstl){
+        List<Zstudent_login> zsl=zstulogma.findfront(zstl.getZstudentID());
+
+        if(zsl.size()!=0){
 
             int i=zstulogma.deletefront(zstl.getZstudentID());
         }

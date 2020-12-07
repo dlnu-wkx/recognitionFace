@@ -193,7 +193,7 @@
     //学生实时视频
     function diagram(id) {
         alert(id)
-        findRaiseHand(id)
+        findRaiseHand(id);
         findStudentName(id);
         presentProgess(id);
         $("#t_message"+id).show()

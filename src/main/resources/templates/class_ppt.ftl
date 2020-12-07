@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
+    <script type="text/javascript" src="./layui/js/common.js "></script>
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/layui.js"></script>
@@ -34,12 +35,16 @@
     <div class="leftfont"><font size="5" >实训任务</font></div>
     <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
 </div>
+<#--隐藏区域是为了解决摄像头显示其他不能点击的问题-->
 
+<div id="hiddenArea"style="position: absolute;height: 200%;width: 200%;filter: alpha(opacity=60);opacity: 0.6;display: none;z-index: 2"></div>
 <!--左侧灰色按键-->
 <div class="left" id="leftbutton">
 
 </div>
-
+<div id="regcoDiv"></div>
+<div id="chagangID" style="display: none"></div>
+<div id="gundongID" style="display: none"></div>
 
 <!--请假弹框-->
 <div class="co_leavemes" hidden id="co_leavemes" align="center">
@@ -61,13 +66,13 @@
     </div>
 
     <div class="right3">
-        <button class="button5" onclick="outsystem()" id="outsystem">退出系统</button>
+        <button class="button5">退出系统</button>
     </div>
 </div>
 
 
 <!--中间题目主体部分-->
-<div class="center" id="cp_content" style="background-color: white">
+<div class="center" id="cp_content" style="background-color: white;z-index:-1;">
 
 </div>
 
@@ -82,7 +87,7 @@
 
 
 <!--滚动弹幕-->
-<div  class="rolling_barrage" id="rolling_barrage" hidden>
+<div  class="rolling_barrage" id="rolling_barrage" hidden >
 
 
 </div>
@@ -299,11 +304,17 @@
         }
 
     }
+
+
     //页面加载前方法
     window.onload =function () {
         $("#lastpage").css("background-color","#A5A5A5");
-       // getcommand();
         findalltask();
+        /*getcommand();*/
+        //循环查找老师的命令
+        window.setInterval(function () {
+            getcommand();
+        }, 8000);
     }
 
 
@@ -352,7 +363,7 @@
 
         for(var i=0;i<static_assessnum;i++){
             //对每个传过来的字符串去空格
-            var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val())
+            var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val());
             //空字符串与空格判断
             if(!removenull){
                 alert("你还有未输入的测量数据！")
@@ -379,6 +390,8 @@
                     layer.msg("成功提交测量数据", { icon: 1, offset: "auto", time:1000 });
                 }
             });
+
+
         }
 
 

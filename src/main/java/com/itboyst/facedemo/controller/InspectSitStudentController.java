@@ -32,15 +32,22 @@ public class InspectSitStudentController {
 
     @RequestMapping(value = "/InspectSitStudent", method = RequestMethod.POST)
     @ResponseBody
-    public List<InspectSitStudent> InspectSitStudent(HttpSession session) throws IOException, ParseException {
-
+    public List<InspectSitStudent> InspectSitStudent(HttpSession session,String mytime) throws IOException, ParseException {
+        Renlian renlian =new Renlian();
+        renlian.renlianwinCreate();
+        System.err.println("出来了");
+        renlian.startBtnClick();
+        renlian.stopBtnClick();
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        if(mytime!=null){
+            Long time =Long.parseLong(mytime);
+            timestamp.setTime(time);
+        }
+
         List<InspectSitStudent>  zstudentList = new ArrayList<>();
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
         String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
         zstudentList =inspectSitStudentService.findStudentByDateAndTrainingId(ztrainingroomID,timestamp);
-        System.err.println(zstudentList.get(0).getZstudentName());
-        System.err.println(zstudentList.get(0).getZstudentID());
         return zstudentList;
     }
 }

@@ -26,14 +26,21 @@
             SELECT * FROM zstudent_login ORDER BY zrecognizetime DESC
     </select>
 
-    <insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
-        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime}, #{ztype}, #{zrecognizeIP});
-    </insert>
+    <!--<insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime,zcheck, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime},#{zcheck}, #{ztype}, #{zrecognizeIP});
+    </insert>-->
 
     <update id="updateloginstate" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
       UPDATE zstudent_login SET zstatus=#{zstatus} WHERE ztype='机床' AND zstatus='正常' AND zrecognizeIP IN (SELECT zstudentPCIP FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID});
     </update>
 
+    <!--删除登录表的相关学生之前的信息-->
+    <delete id="deleteStudentLoginByzidentity" parameterType="java.lang.String">
+    	DELETE FROM zstudent_login WHERE zstudentID=(SELECT zid FROM zstudent WHERE zidentity LIKE #{zidentity})
+  	</delete>
 
+    <insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime,zcheck, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime},#{zcheck}, #{ztype}, #{zrecognizeIP});
+    </insert>
 
 </mapper>

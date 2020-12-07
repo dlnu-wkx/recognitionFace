@@ -6,6 +6,8 @@ import com.itboyst.facedemo.service.Ztraining_task_contentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Ztraining_task_contentServiceImpl implements Ztraining_task_contentService {
 
@@ -18,7 +20,7 @@ public class Ztraining_task_contentServiceImpl implements Ztraining_task_content
     }
 
     @Override
-    public Ztraining_task_content findpresentProgessByfacilityID(String zid) {
+    public List<Ztraining_task_content> findpresentProgessByfacilityID(String zid) {
         return ztraining_task_contentMapper.findpresentProgessByfacilityID(zid);
     }
 

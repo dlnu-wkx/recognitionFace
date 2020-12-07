@@ -13,4 +13,8 @@ public interface Zteacher_commandService {
     public int deltebefore(String ztraining_roomid,String ztype);
 
     public int updatestate(Zteacher_command zteacher_command);
+
+    Zteacher_command findcommandById(String zid);
+
+    int updateCommandByroomandZtype(String ztype,String ztrainingroomID);
 }

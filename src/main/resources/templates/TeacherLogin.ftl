@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 
@@ -10,7 +11,7 @@
 
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
-    <script src="./js/common.js"></script>
+    <script src="./layui/js/common.js"></script>
 </head>
 <body class="layui-layout-body">
 

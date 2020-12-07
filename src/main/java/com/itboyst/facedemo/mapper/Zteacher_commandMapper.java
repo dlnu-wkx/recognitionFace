@@ -16,4 +16,8 @@ public interface Zteacher_commandMapper {
    public int deletebefore(String ztrainingroomID,String ztype);
 
    public int updatestate(Zteacher_command zteacher_command);
+
+   Zteacher_command findcommandById(String zid);
+
+   int updateCommandByroomandZtype(String ztype,String ztrainingroomID);
 }

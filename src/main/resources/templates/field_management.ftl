@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
@@ -122,7 +123,7 @@
                 </div>
                 <#--按照顺序排出识别的人脸，顺序是最早的在最下最右边-->
                 <div id="mainBody"style="width: 100%;margin: 53px auto">
-                    <table>
+                    <#--<table>
                         <tr>
                             <th>
                                 <div style="background-color: #BDD7EE;width: 20%;border: 1px solid red;position: absolute;left: 1%">乔峰</div>
@@ -137,7 +138,7 @@
                                 <div style="background-color: #BDD7EE;width: 20%;border: 1px solid red;position: absolute;left: 75%">虚竹</div>
                             </th>
                         </tr>
-                    </table>
+                    </table>-->
                 </div>
             </div>
             <div>
@@ -200,9 +201,10 @@
     }
     //数控车讨论区显示每台机的人脸识别情况
     function studentShow(e){
-        insertCheckPoint();
+
         var a =e;
         if(a==2){
+            insertCheckPoint();
             document.getElementById("checkPointMenu").style.display="none";
         }
         if(a==1){
@@ -216,9 +218,9 @@
     }
     //数控铣讨论区显示每台机的人脸识别情况
     function studentShow1(e){
-        insertCheckPoint();
         var b =e;
         if(b==2){
+            insertCheckPoint();
             document.getElementById("checkPointMenu").style.display="none";
         }
         if(b==1){
@@ -294,6 +296,60 @@
     //退出
     function powerController() {
         location.href="/power_controller";
+    }
+
+
+
+    var websocket = null;
+
+    //判断当前浏览器是否支持WebSocket
+    if('WebSocket' in window){
+        websocket = new WebSocket("ws://192.168.1.156:8080/webapi/websocket");
+    }
+    else{
+        alert('Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function(){
+        setMessageInnerHTML("error");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function(event){
+        websocket.send("亚太建模要开始了");
+       // setMessageInnerHTML("open");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function(event){
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function(){
+        setMessageInnerHTML("close");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function(){
+        websocket.close();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML){
+        //document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+    //关闭连接
+    function closeWebSocket(){
+        websocket.close();
+    }
+
+    //发送消息
+    function send() {
+        //var message = document.getElementById('text').value;
+        websocket.send("亚太建模要开始了");
     }
 </script>
 </body>

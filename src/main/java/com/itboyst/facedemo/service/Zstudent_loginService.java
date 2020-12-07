@@ -8,5 +8,8 @@ public interface Zstudent_loginService {
     public int updateloginmessage( Zstudent_login zstl);
 
     public int updateloginstate(String status,String ztrainingroomID);
+
     List<Zstudent_login> findAllStudentLogin();
+
+    int deleteStudentLoginByzidentity(String zidentity);
 }

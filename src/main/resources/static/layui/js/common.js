@@ -36,7 +36,6 @@ function outsystem() {
 }
 
 function removeout() {
-    //alert(2)
     $.ajax({
         type: "post",
         url: "/removeout",
@@ -133,18 +132,18 @@ function deleteleave() {
 function common_leave(){
     var co_mes=$("#co_mes").val();
     //去空格
-    co_mes=Trim(co_mes)
+    co_mes=Trim(co_mes);
 
     //alert(co_mes)
-    var length=titleLength(co_mes)
+    var length=titleLength(co_mes);
 
     //数据长度过长
     if (length>100){
-        alert("请假原因过长")
+        alert("请假原因过长");
     }
     //去空格后是否还有内容
     else if(!co_mes){
-        alert("请填入请假原因")
+        alert("请填入请假原因");
     }else {
         $.ajax({
             type: 'post',
@@ -205,11 +204,15 @@ function subContent() {
 }
 //根据开始按钮或者是结束按钮来帅选签到的人
 function OpenOrCloseTimer(a) {
-    if(a==1){
-        alert("开始")
-        timer = setInterval(showRecognitionFace,3000)
+    checkRenlian()
+    if (a == 1) {
+        var myDate = new Date();
+        var mytime=myDate.getTime();
+        timer = setInterval(function(){
+            showRecognitionFace(mytime)
+        }, 3000)
     }
-    if(a==2){
+    if (a == 2) {
         alert("进入到结束按钮中")
         clearInterval(timer);
         //timer=false;
@@ -329,6 +332,7 @@ function findOpenPower(zid){
 }
 //查看使用该机床学生的姓名
 function findStudentName(zid){
+    var format
     $.ajax({
         type: 'post',
         url: '/findStudentName',
@@ -347,11 +351,13 @@ function findStudentName(zid){
 
 //查看学生当前进度
 function presentProgess(zid){
-
+        alert("presentProgess"+zid);
+    var formData = new FormData();
+    formData.append("zid", zid);
     $.ajax({
         type: 'post',
         url: '/presentProgess',
-        data:  {"zid": zid} ,
+        data:  formData ,
         contentType: false,
         processData: false,
         async: false,
@@ -374,22 +380,27 @@ function presentProgess(zid){
 }
 //从数据库中显示已经检测到的人脸信息
 //从数据中找到签到的学生
-function showRecognitionFace() {
+function showRecognitionFace(mytime) {
+    var formData = new FormData();
+    formData.append("mytime",mytime );
     $.ajax({
         type:"post",
         url:"/InspectSitStudent",
+        data:formData,
         contentType: false,
         processData: false,
         async: false,
         success:function (data) {
             if(data!=null){
-                $("#identifyAreas").empty();
                 if(data.length>5){
+                    $("#identifyAreas").empty();
                     for(var i=0;i<5;i++){
                         content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zstudentName+data[i].zgradeName+"</div>";
                         $("#identifyAreas").append(content);
                     }
                 }else {
+                    $("#identifyAreas").empty();
+                    //alert("data :")
                     for(var i=0;i<data.length;i++){
                         content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zstudentName+data[i].zgradeName+"</div>";
                         $("#identifyAreas").append(content);
@@ -417,7 +428,22 @@ function showRecognitionFace() {
                      $("#middle").append(zgradeName2+zstudentName2);
                      //$("#mainBody").hide();
                  }
-                 if(data.length==3){
+                if(data.length==3){
+                    $("#left").empty();
+                    $("#middle").empty();
+                    $("#right").empty();
+                    var  zstudentName1 =data[0].zstudentName;
+                    var  zgradeName1 =data[0].zgradeName;
+                    $("#left").append(zgradeName1+zstudentName1);
+                    var  zstudentName2 =data[1].zstudentName;
+                    var  zgradeName2 =data[1].zgradeName;
+                    $("#middle").append(zgradeName2+zstudentName2);
+                    var  zstudentName3 =data[2].zstudentName;
+                    var  zgradeName3 =data[2].zgradeName;
+                    $("#right").append(zgradeName3+zstudentName3);
+                    //$("#mainBody").hide();
+                }
+                 if(data.length>3){
                      $("#left").empty();
                      $("#middle").empty();
                      $("#right").empty();
@@ -444,7 +470,7 @@ function showRecognitionFace() {
                  for (var i=0;i<(arr.length/4+1);i++) {
 
                      str += " <tr>";
-                     for (; j < 6 * (i + 1); j++) {
+                     for (; j < 4 * (i + 1); j++) {
                          if (j == arr.length) {break;}
                          str += "<th><div class='f_button1'>" + arr[j].zstudentName + arr[j].zgradeName + "</div></th>";
 
@@ -456,7 +482,7 @@ function showRecognitionFace() {
                  center.html(str)
              }
             }else{
-                alert("没有学生登录");
+                alert("没有学生签到成功");
             }
         }
     })
@@ -497,33 +523,40 @@ function powerController() {
 
 //获取命令
 function getcommand() {
-    var rolling_barrage=$("#rolling_barrage")
-
-    var str=""
+    var rolling_barrage=$("#rolling_barrage");
+   var chagangID =document.getElementById("chagangID").innerHTML;
+    var gundongID =document.getElementById("gundongID").innerHTML;
+    var formData = new FormData();
+    formData.append("chagangID", chagangID);
+    formData.append("gundongID", gundongID);
+    var str="";
 
     //获取教师命令
     $.ajax({
         type: "post",
         url: "/findcommand",
+        data: formData,
         contentType: false,
         processData: false,
         async: false,
         success: function (data){
-                //alert(data)
+
             for(var i=0;i<data.length;i++){
-                //alert(data[i])
-                if(data[i].ztype =="签到"||data[i].ztype=="查岗"){
-                    location.href = "/student";
+                if(data[i].ztype=="查岗"){//data[i].ztype =="签到"||
+                    document.getElementById("chagangID").innerHTML=data[i].zid;
+                    getMedia2();
+
                 }
                 else if(data[i].ztype == "滚屏信息"){
-                    alert(data[i].zcontent)
-                    str+=" <marquee><span style=‘font-weight: bolder;font-size: 40px;color: white;’><font size='7'>"+data[i].zcontent+"</font></span></marquee>"
+                    str+=" <marquee><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>"+data[i].zcontent+"</font></span></marquee>"
                     rolling_barrage.html(str)
                     rolling_barrage.show()
+                    document.getElementById("gundongID").innerHTML=data[i].zid;
                 }
             }
             //location.href = "/student_test";
         }
+
     });
 
 }
@@ -546,4 +579,121 @@ function insertCheckPoint(){
 
         }
     });
+}
+var mediaStreamTrack;
+
+function getMedia2() {
+    $("#regcoDiv").empty();
+    let vedioComp = "<video id='video2' width='600px' height='400px' autoplay='autoplay' style='margin-top: 20px;z-index:1000;position:relative;left:90%;margin-top:20%' ></video><canvas id='canvas2' width='500px' height='500px' style='display: none'></canvas>";
+    $("#regcoDiv").append(vedioComp);
+    let constraints = {
+        video: {width: 500, height: 500},
+        audio: true
+    };
+    //获得video摄像头区域
+    let video = document.getElementById("video2");
+    //这里介绍新的方法，返回一个 Promise对象
+    // 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+    // then()是Promise对象里的方法
+    // then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+    // 避免数据没有获取到
+
+    let promise = navigator.mediaDevices.getUserMedia(constraints);
+    promise.then(function (stream) {
+        mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+        //video.src = (window.webkitURL).createObjectURL(stream);
+        video.srcObject = stream;
+        video.play()
+    });
+    window.setInterval(function () {//每隔几秒查询对比一次结果，循环对比
+        chooseFileChangeComp()
+    }, 5000);
+    //chooseFileChangeComp()
+
+}
+function chooseFileChangeComp() {
+    let regcoDivComp = $("#regcoDiv");
+    if (regcoDivComp.has('video').length) {
+        let video = document.getElementById("video2");
+        let canvas = document.getElementById("canvas2");
+        document.getElementById("hiddenArea").style.display="block";
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, 500, 500);
+        var base64File = canvas.toDataURL();
+        var formData = new FormData();
+        formData.append("groupId", "101")
+        formData.append("file", base64File);
+        $.ajax({
+            type: "post",
+            url: "/faceFind",
+            data: formData,
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (text) {
+                var res = JSON.stringify(text)
+                if (text.code == 0) {
+                    var name = text.data.name;
+                    $("#nameDiv").html("姓名：" + name);
+                    var similar = text.data.similarValue;
+                    $("#similarDiv").html("相似度：" + similar + "%");
+                    var age = text.data.age;
+                    $("#ageDiv").html("年龄：" + age);
+                    var gender = text.data.gender;
+                    $("#genderDiv").html("性别：" + gender);
+                    document.getElementById("hiddenArea").style.display="none";
+                    //关闭摄像头
+                    mediaStreamTrack.stop();
+                    $("#regcoDiv").empty();
+
+                } else {
+                    $("#nameDiv").html("");
+                    $("#similarDiv").html("");
+                    $("#ageDiv").html("");
+                    $("#genderDiv").html("");
+                    //自定义提示框
+                    showTips("人脸不匹配");
+                   // mediaStreamTrack.stop();
+                    //location.href = "/student";
+                }
+
+            },
+            error: function (error) {
+                $("#nameDiv").html("");
+                $("#similarDiv").html("");
+                $("#ageDiv").html("");
+                $("#genderDiv").html("");
+                alert(JSON.stringify(error))
+            }
+        });
+    }
+}
+function showTips(content) {
+    //窗口的宽度
+    height = 200;
+    var windowWidth = $(window).width();
+    var tipsDiv = '<div class="tipsClass">' + content + '</div>';
+    $('body').append(tipsDiv);
+    $('div.tipsClass').css({//(windowWidth / 2) - 350 / 2 + 'px'
+        'top': height + 'px',
+        'left':  '650px',
+        'position': 'absolute',
+        'padding': '3px 5px',
+        'background': '#fff',
+        'font-size': 20 + 'px',
+        'margin': '0 auto',
+        'text-align': 'center',
+        'width': '350px',
+        'height': 'auto',
+        'color': '#fc2b2e',
+        'opacity': '1.0',
+        'z-index':'1000'
+    }).show();
+    setTimeout(function () {
+        $('div.tipsClass').fadeOut();
+    }, 2000);
+}
+
+function checkRenlian() {
+        //send();
 }

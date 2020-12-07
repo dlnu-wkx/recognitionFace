@@ -64,7 +64,6 @@ public class FaceEngineServiceImpl implements FaceEngineService {
         poolConfig.setMaxTotal(threadPoolSize);
         poolConfig.setMinIdle(threadPoolSize);
         poolConfig.setLifo(false);
-
         //引擎配置
         EngineConfiguration engineConfiguration = new EngineConfiguration();
         engineConfiguration.setDetectMode(DetectMode.ASF_DETECT_MODE_IMAGE);
