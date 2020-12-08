@@ -383,18 +383,23 @@ public class FaceController {
 
             }
 
-          //  System.out.println(faceUserInfo.getPath());
             //student表信息更改
             Zstudent zstudent=new Zstudent();
 
+            //System.out.println(faceUserInfo.getPath());
+
+            if (faceUserInfo.getPath().isEmpty())
+                return Results.newFailedResult(ErrorCodeEnum.NO_FACE_PATH);
+
+
             int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
+            //判定int类型为空,设备表出问题返回1
 
-          //  System.out.println(faceid);
+
+            // System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
-            if(zstudent == null){
 
-            }
-
+            if(zstudent==null) return Results.newFailedResult(ErrorCodeEnum.NO_STUDENT_FACEID);
             //学生登陆信息
             Zstudent_login zsl=new Zstudent_login();
 
@@ -405,14 +410,11 @@ public class FaceController {
             session.setAttribute("zstudent",zstudent);
 
             zsl.setZstudentID(zstudent.getZid());
-
             Timestamp timestamp=new Timestamp(System.currentTimeMillis());
             zsl.setZrecongnizetime(timestamp);
 
-
-
-            //机库的交互
-            zsl.setZtype("机床001");
+            //首次电脑界面登陆设置类型为机床
+            zsl.setZtype("机床");
 
           /*  zsl.setZrecognizeIP();
 */
@@ -425,8 +427,11 @@ public class FaceController {
             //设备
             System.out.println("本机的ip："+ip);
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
+            if (ztrfac == null) return Results.newFailedResult(ErrorCodeEnum.NO_FACILITY_STUDENTPCIP);
+
             session.setAttribute("ztraining_facility",ztrfac);
 
+            if(ztrfac.getZtrainingroomID().isEmpty()) return Results.newFailedResult(ErrorCodeEnum.NO_FACILITY_TRAINROOMID);
             //实训室
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);

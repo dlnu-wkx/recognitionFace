@@ -19,6 +19,15 @@ public enum ErrorCodeEnum {
     GLOBAL_DATA_NOT_EXIST(13, "全局数据不存在"),
     NO_FACE_DETECTED(14, "未检出到人脸"),
     FACE_DOES_NOT_MATCH(15, "人脸不匹配"),
+
+
+
+    NO_FACE_PATH(16,"人脸信息表（user_face_info表）里没有地址信息"),
+    NO_STUDENT_FACEID(17,"学生表（zstudent表）里没有人脸id(faceid),请添加人脸信息"),
+    NO_FACILITY_STUDENTPCIP(18,"设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)"),
+    NO_FACILITY_TRAINROOMID(19,"设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)"),
+
+
     INVALID_APP_ID(28673, "无效的AppId"),
     INVALID_SDK_ID(28674, "无效的SdkKey"),
     INVALID_ID_PAIR(28675, "AppId和SdkKey不匹配"),
