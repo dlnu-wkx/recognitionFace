@@ -17,11 +17,17 @@
 
     </resultMap>
 
-
+        <select id="findstudentnamelike" resultType="java.lang.String" >
+            select zname from zstudent where zname like CONCAT('%',#{name},'%')
+        </select>
 
 
         <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
             SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
+        </select>
+
+        <select id="findcountbyname"  resultType="java.lang.Integer">
+            select count(*) from zstudent where zname=#{zname}
         </select>
 
 
@@ -45,8 +51,17 @@
             WHERE A.zid=B. zstudentID AND B.zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{facilityID});
         </select>
 
-    <select id="findstudentByZidentity"  resultType="com.itboyst.facedemo.dto.Zstudent">
+        <select id="findstudentByZidentity"  resultType="com.itboyst.facedemo.dto.Zstudent">
             SELECT * FROM zstudent WHERE zidentity=#{zidentity}  AND  zstatus='审核通过';
         </select>
+
+        <select id="findallbystudentname"  resultType="com.itboyst.facedemo.dto.Zstudent">
+            SELECT * FROM zstudent WHERE zname=#{zname};
+        </select>
+
+        <update id="updatestudent" parameterType="com.itboyst.facedemo.dto.Zstudent" >
+            UPDATE zstudent SET zgradeID=#{zgradeID} ,zidentity=#{zidentity},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto},zstatus='待审核' WHERE zname=#{zname}
+        </update>
+
 
 </mapper>

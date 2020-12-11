@@ -17,4 +17,12 @@ public interface ZstudentService {
     String findStudentNameByfacilityID(String facilityID);
 
     Zstudent findstudentByZidentity(String zidentity);
+
+    public int findcountbyname(String zname);
+
+    public Zstudent findallbystudentname(String zname);
+
+    public int updatestudent(Zstudent zstudent);
+
+    public List<String> findstudentnamelike(String name);
 }

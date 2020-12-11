@@ -46,8 +46,7 @@
 
 
     <update id="updatelist" parameterType="com.itboyst.facedemo.dto.Ztesting_input" >
-    UPDATE ztesting_input SET zinput=#{zinput} ,zstate=#{zstate},zscore=#{zscore} WHERE zstudentscheduleID=#{zstudentscheduleID} AND zsafetestingID = #{zsafetestingID}
-
+        UPDATE ztesting_input SET zinput=#{zinput} ,zstate=#{zstate},zscore=#{zscore} WHERE zstudentscheduleID=#{zstudentscheduleID} AND zsafetestingID = #{zsafetestingID}
     </update>
 
 

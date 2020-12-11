@@ -16,7 +16,17 @@
         INSERT INTO zmanager (zid, zidentity, zpass ,zname, zphone) VALUES(#{zid}, #{zidentity}, #{zpass} ,#{zname},#{zphone});
     </insert>
 
+    <select id="findallbymanagername"  resultType="com.itboyst.facedemo.dto.Zmanager">
+            SELECT * FROM zmanager WHERE zname=#{zname};
+    </select>
 
+    <update id="updatemanager" parameterType="com.itboyst.facedemo.dto.Zmanager" >
+            UPDATE zmanager SET zidentity=#{zidentity},zpass=#{zpass},zphone=#{zphone},zphoto=#{zphoto} WHERE zname=#{zname}
+    </update>
+
+    <select id="findmanagernamelike" resultType="java.lang.String" >
+            select zname from zmanager where zname like CONCAT('%',#{zname},'%')
+    </select>
 
 
 </mapper>

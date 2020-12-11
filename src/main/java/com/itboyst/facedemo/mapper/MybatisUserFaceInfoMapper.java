@@ -18,4 +18,10 @@ public interface MybatisUserFaceInfoMapper {
     List<FaceUserInfo> getUserFaceInfoByGroupId(Integer groupId);
 
     int selectidbyname(String fpath);
+
+    int findcountbyface(String name);
+
+    List<String> findcountnamelike(String name);
+
+    public int updateuserfopath(String path);
 }

@@ -6,6 +6,8 @@ import com.itboyst.facedemo.service.ZteacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ZteacherServiceImpl implements ZteacherService {
 
@@ -21,4 +23,10 @@ public class ZteacherServiceImpl implements ZteacherService {
     public int registerteacher(Zteacher zteacher){
         return zteacherMapper.registerteacher(zteacher);
     }
+
+    @Override
+    public int updateteacher(Zteacher zteacher){return zteacherMapper.updateteacher(zteacher);}
+
+    @Override
+    public List<String> findteachernamelike(String name){return zteacherMapper.findteachernamelike(name);}
 }

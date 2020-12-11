@@ -59,8 +59,9 @@
              性别:
          </th>
          <th>
-             <label><input type="radio" id="sex" value="男">男</label>
-             <label><input type="radio" id="sex" value="女">女</label>
+             <label><input type="checkbox" id="sex" value="男">男</label>
+             &#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;
+             <label><input type="checkbox" id="sex" value="女">女</label>
          </th>
      </tr>
      <tr id="idcardtr">
@@ -88,54 +89,142 @@
          </th>
      </tr>
 
-     <#-- <tr id="classes">
-     <th>
-         班级:
-     </th>
-     <th>
-         <select class="t_select">
-             <option value ="volvo">Volvo</option>
-             <option value ="saab">Saab</option>
-             <option value="opel">Opel</option>
-             <option value="audi">Audi</option>
-         </select>
-     </th>
- </tr>
- <tr id="classes">
-     <th>
-         班级:
-     </th>
-     <th>
-         <select class="t_select">
-             <option value ="volvo">Volvo</option>
-             <option value ="saab">Saab</option>
-             <option value="opel">Opel</option>
-             <option value="audi">Audi</option>
-         </select>
-     </th>
- </tr>
- <tr id="classes">
-     <th>
-         班级:
-     </th>
-     <th>
-         <select class="t_select">
-             <option value ="volvo">Volvo</option>
-             <option value ="saab">Saab</option>
-             <option value="opel">Opel</option>
-             <option value="audi">Audi</option>
-         </select>
-     </th>
- </tr>-->
+
  </table>
 
 </div>
 
-<button class="r_button" onclick="takePhoto()">注册</button>
+<button class="r_button" id="r_button" onclick="takePhoto()">注册</button>
 
+
+<div class="reg_namelike" id="reg_namelike" hidden>
+
+
+</div>
 
 </body>
 <script>
+
+
+
+    function chosename(cname){
+        alert(cname)
+        $("#reg_namelike").hide()
+        $("#userName").val(cname)
+
+        //按键修改
+        $("#r_button").css('background-color','#FFC000');
+        $("#r_button").text('修改信息');
+
+        var t_test=$('#r_userkind').val();
+        if(t_test=="教师"){
+            $.ajax({
+                type: "post",
+                url: "/findallbyteachername",
+                async: false,
+                data: { "name": cname},
+                success: function (data) {
+                    $("#sex").val(data.zsex)
+                    $("#zidentity").val(data.zidentity)
+                    $("#password").val(data.zpass)
+                    $("#zphone").val(data.zphone)
+                    //专业在此处更新
+                }
+            });
+        }else if(t_test=="学生"){
+            $.ajax({
+                type: "post",
+                url: "/findallbystudentname",
+                async: false,
+                data: { "name": cname},
+                success: function (data) {
+                    $("#sex").val(data.zsex)
+                    $("#zidentity").val(data.zidentity)
+                    $("#password").val(data.zpass)
+                    $("#zphone").val(data.zphone)
+                    //班级在此处更新
+                }
+            });
+        }else if(t_test=="管理员"){
+            $.ajax({
+                type: "post",
+                url: "/findallbymeangername",
+                async: false,
+                data: { "name": cname},
+                success: function (data) {
+                    //$("#sex").val(data.zsex)
+                    $("#zidentity").val(data.zidentity)
+                    $("#password").val(data.zpass)
+                    $("#zphone").val(data.zphone)
+
+                }
+            });
+        }
+    }
+
+    $('#userName').change(function(){
+        $("#reg_namelike").hide()
+    })
+
+    $('#userName').bind('input propertychange', function () {
+        //alert(1)
+        var name=$("#userName").val()
+        $("#reg_namelike").show()
+        var reg_namelike =$("#reg_namelike")
+        var str="<ul align='center'>"
+
+        if($("#r_userkind").val()=="学生"){
+            $.ajax({
+                type: "post",
+                url: "/findstudentnamelike",
+                async: false,
+                data: { "name": name},
+                success: function (data) {
+                    // alert(data)
+                    for (var i=0;i<data.length;i++){
+                        str+="<li value ='"+data[i]+"' onclick='chosename(\""+data[i]+"\")'>"+data[i]+"</li>";
+                    }
+                    str+="</ul>"
+                }
+            });
+        }
+
+        if($("#r_userkind").val()=="教师"){
+            $.ajax({
+                type: "post",
+                url: "/findteachernamelike",
+                async: false,
+                data: { "name": name},
+                success: function (data) {
+                    // alert(data)
+                    for (var i=0;i<data.length;i++){
+                        str+="<li value ='"+data[i]+"' onclick='chosename(\""+data[i]+"\")'>"+data[i]+"</li>";
+                    }
+                    str+="</ul>"
+                }
+            });
+        }
+
+        if($("#r_userkind").val()=="管理员"){
+            $.ajax({
+                type: "post",
+                url: "/findmanagernamelike",
+                async: false,
+                data: { "name": name},
+                success: function (data) {
+                    // alert(data)
+                    for (var i=0;i<data.length;i++){
+                        str+="<li value ='"+data[i]+"' onclick='chosename(\""+data[i]+"\")'>"+data[i]+"</li>";
+                    }
+                    str+="</ul>"
+                }
+            });
+        }
+
+        reg_namelike.html(str)
+
+    });
+
 
     //用户类型联动
     $('#r_userkind').change(function() {

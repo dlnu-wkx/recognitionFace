@@ -9,6 +9,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.RandomUtil;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
+import com.itboyst.facedemo.base.Iputil;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.domain.UserFaceInfo;
 import com.itboyst.facedemo.service.*;
@@ -37,6 +38,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.*;
+import java.net.InetAddress;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.List;
@@ -111,6 +113,17 @@ public class FaceController {
     public String field_management(){return "field_management";}
 
 
+    @RequestMapping(value = "/findnamelike")
+    @ResponseBody
+    public List<String> findallface(String name){
+        return userFaceInfoService.findcountnamelike(name);
+    }
+
+
+
+
+
+
 
     /*
     人脸添加
@@ -163,7 +176,19 @@ public class FaceController {
             //System.out.println(major);
            // return null;
 
+
             GenerateImage(file,path);
+
+            /*int namenum=userFaceInfoService.findcountbyface(name);*/
+            //初始化更新与添加数据的行数
+            int namenum,i,j,k,q,w,v,z=0;
+
+            /*if(namenum !=0){
+                //人脸表已有数据就更新人脸信息
+                q=userFaceInfoService.updateuserfopath(path);
+
+            }*/
+
             UserFaceInfo userFaceInfo = new UserFaceInfo();
             userFaceInfo.setName(name);
             userFaceInfo.setGroupId(groupId);
@@ -180,9 +205,9 @@ public class FaceController {
             int id= faceEngineService.selectidbyname(path);
             if(userkind.equals("学生")){
                // System.out.println(0);
+
                 Zstudent zstu=new Zstudent();
 
-                zstu.setZid(zid);
                 zstu.setZidentity(zidentity);
                 zstu.setZname(name);
                 zstu.setZphoto(path);
@@ -192,8 +217,22 @@ public class FaceController {
                 zstu.setZgradeID(classes);
                 zstu.setZfaceinfoID(id);
                 zstu.setZstatus("待审核");
+                namenum=zstuservice.findcountbyname(name);
 
-                int i=zstuservice.registerstud(zstu);
+                if (namenum !=0){
+                    w=zstuservice.updatestudent(zstu);
+                    //更新成功
+                    if (w>0){
+                        return Results.newSuccessResult("");
+                    }else{
+                        //更新学生失败
+                        return Results.newFailedResult(ErrorCodeEnum.FAIL_UPDATE_STUDENT);
+                    }
+                }else {
+                    zstu.setZid(zid);
+                    i=zstuservice.registerstud(zstu);
+                }
+
                // System.out.println(i);
                 if (i==0){
                     return null;
@@ -201,7 +240,11 @@ public class FaceController {
             }else if(userkind.equals("教师")){
                 //System.out.println(0);
                 Zteacher zteacher=new Zteacher();
-                zteacher.setZid(zid);
+                Zteacher zteacher2=new Zteacher();
+                zteacher2 = zteacherService.selectteacherbyname(name);
+                int a=0;
+                if (zteacher2!=null) a=1;
+
                 zteacher.setZfaceinfoID(id);
                 zteacher.setZidentity(zidentity);
                 zteacher.setZname(name);
@@ -212,7 +255,21 @@ public class FaceController {
                 zteacher.setZmajorID(major);
                 //System.out.println(zteacher);
 
-                int j= zteacherService.registerteacher(zteacher);
+
+                if (a !=0){
+                    v=zteacherService.updateteacher(zteacher);
+                    //更新成功
+                    if (v>0){
+                        return Results.newSuccessResult("");
+                    }else{
+                        //更新学生失败
+                        return Results.newFailedResult(ErrorCodeEnum.FAIL_UPDATE_TEACHER);
+                    }
+                }else {
+                    zteacher.setZid(zid);
+                    j= zteacherService.registerteacher(zteacher);
+                }
+
                 if (j==0){
                     return null;
                 }
@@ -220,18 +277,36 @@ public class FaceController {
             }else if(userkind.equals("管理员")){
                 //System.out.println(0);
                 Zmanager zmanager=new Zmanager();
-                zmanager.setZid(zid);
+                Zmanager zmanager2=new Zmanager();
+                zmanager2=zmanagerService.findallbymanagername(name);
+
+                int b=0;
+                if (zmanager2!=null)b=1;
+
                 zmanager.setZidentity(zidentity);
                 zmanager.setZname(name);
                 zmanager.setZpass(password);
                 zmanager.setZphone(zphone);
-                int k=zmanagerService.insertmanager(zmanager);
+
+                if (b !=0){
+                    v=zmanagerService.updatemanager(zmanager);
+                    //更新成功
+                    if (v>0){
+                        return Results.newSuccessResult("");
+                    }else{
+                        //更新学生失败
+                        return Results.newFailedResult(ErrorCodeEnum.FAIL_UPDATE_MANAGER);
+                    }
+                }else {
+                    zmanager.setZid(zid);
+                    k=zmanagerService.insertmanager(zmanager);
+                }
+
                 if(k==0){
                     return null;
                 }
 
             }
-
 
             logger.info("faceAdd:" + name);
             return Results.newSuccessResult("");
@@ -339,7 +414,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceSearch(String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session,Model model) throws Exception {
+    public Result<FaceSearchResDto> faceSearch(HttpServletRequest request,String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session,Model model) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -382,22 +457,23 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
-
+            System.out.println(faceUserInfo.getPath());
             //student表信息更改
             Zstudent zstudent=new Zstudent();
 
             //System.out.println(faceUserInfo.getPath());
 
-            if (faceUserInfo.getPath().isEmpty())
+            if (faceUserInfo.getPath()==null)
                 return Results.newFailedResult(ErrorCodeEnum.NO_FACE_PATH);
 
 
             int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
             //判定int类型为空,设备表出问题返回1
 
-
+            System.out.println(faceid);
             // System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
+            System.out.println(zstudent);
 
             if(zstudent==null) return Results.newFailedResult(ErrorCodeEnum.NO_STUDENT_FACEID);
             //学生登陆信息
@@ -417,7 +493,12 @@ public class FaceController {
             zsl.setZtype("机床");
 
           /*  zsl.setZrecognizeIP();
-*/
+*/          InetAddress addr = InetAddress.getLocalHost();
+
+            System.out.println(addr.getHostAddress().toString());
+
+            String ip2 = addr.getHostAddress().toString();
+
             zsl.setZcheck("实操");
             zsl.setZrecognizeIP(ip);
             //插入学生登陆信息
@@ -425,8 +506,8 @@ public class FaceController {
 
             //将相关信息存入session中
             //设备
-            System.out.println("本机的ip："+ip);
-            Ztraining_facility ztrfac = ztrinfser.findbyip(ip);
+            //System.out.println("本机的ip："+ip);
+            Ztraining_facility ztrfac = ztrinfser.findbyip(ip2);
             if (ztrfac == null) return Results.newFailedResult(ErrorCodeEnum.NO_FACILITY_STUDENTPCIP);
 
             session.setAttribute("ztraining_facility",ztrfac);
@@ -440,6 +521,9 @@ public class FaceController {
 
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
+
+            if (zsc==null)return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
+
             session.setAttribute("zstudent_cookie",zsc);
             //System.out.println(session.getAttribute("zstudent_cookie"));
 
@@ -601,6 +685,8 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
+
+
                 //人脸表id
                 int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
                 //教师信息、课程信息和实训室信息

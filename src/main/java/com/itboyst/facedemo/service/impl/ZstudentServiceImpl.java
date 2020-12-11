@@ -56,4 +56,17 @@ public class ZstudentServiceImpl implements ZstudentService {
     public Zstudent findstudentByZidentity(String zidentity) {
         return zstu.findstudentByZidentity(zidentity);
     }
+
+    @Override
+    public int findcountbyname(String zname){return zstu.findcountbyname(zname);}
+
+    @Override
+    public Zstudent findallbystudentname(String zname){return  zstu.findallbystudentname(zname);}
+
+    @Override
+    public int updatestudent(Zstudent zstudent){return zstu.updatestudent(zstudent);}
+
+    @Override
+    public List<String> findstudentnamelike(String name){return zstu.findstudentnamelike(name);}
+
 }

@@ -7,7 +7,7 @@
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 
-
+    <script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 
     <script src="jquery/jquery-3.3.1.min.js"></script>
@@ -62,6 +62,9 @@
     </div>
 </div>
 <script>
+
+
+
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;
@@ -133,6 +136,7 @@
         * */
         /*document.getElementById("recognitionFaceId").style.display = "none";*/
         window.setInterval(function () {//每隔几秒查询对比一次结果，循环对比
+
             chooseFileChangeComp()
         }, 5000);
         /*var t1 = window.setTimeout(function() {
@@ -175,7 +179,6 @@
                 success: function (text) {
                     var res = JSON.stringify(text)
 
-
                     if (text.code == 0) {
                         location.href = "/login";
                     } else {
@@ -190,7 +193,10 @@
                         }
                         else if (text.code==19){
                             alert("设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)");
-                        }else{
+                        }else if (text.code==23){
+                            alert("学生上课表(zstudent_schedule)没有该名学生的信息");
+                        }
+                        else{
                             alert("其它错误")
                         }
 
@@ -215,8 +221,6 @@
                 var base64 = reader.result;
                 formData.append("file", base64);
                 formData.append("groupId", 101);
-
-
 
 
                 $.ajax({

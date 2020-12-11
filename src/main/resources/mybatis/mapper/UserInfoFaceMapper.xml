@@ -40,6 +40,24 @@
         select face_id,name,face_feature,fpath from user_face_info
     </select>
 
+    <select id="findcountbyface" resultMap="userFace2" parameterType="java.lang.Integer"
+            resultType="com.itboyst.facedemo.dto.FaceUserInfo">
+        select count(*) from user_face_info where name= #{name}
+    </select>
+
+    <update id="updatelist" parameterType="com.itboyst.facedemo.dto.Ztesting_input" >
+        UPDATE ztesting_input SET zinput=#{zinput} ,zstate=#{zstate},zscore=#{zscore} WHERE zstudentscheduleID=#{zstudentscheduleID} AND zsafetestingID = #{zsafetestingID}
+    </update>
+
+    <update id="updateuserfopath" parameterType="com.itboyst.facedemo.domain.UserFaceInfo" >
+        UPDATE user_face_info SET fpath=#{path} WHERE name=#{name}
+    </update>
+
+
+    <select id="findcountnamelike" resultType="java.lang.String" >
+        select name from user_face_info where name like CONCAT('%',#{name},'%')
+    </select>
+
 
 
 </mapper>

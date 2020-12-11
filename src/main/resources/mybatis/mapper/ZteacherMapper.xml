@@ -16,16 +16,23 @@
 
     </resultMap>
 
-
+    <select id="findteachernamelike" resultType="java.lang.String" >
+            select zname from zteacher where zname like CONCAT('%',#{zname},'%')
+    </select>
 
 
     <select id="selectbyname"  resultType="com.itboyst.facedemo.dto.Zteacher">
             SELECT * FROM zteacher WHERE zname=#{zname};
-        </select>
+    </select>
+
 
     <insert id="registerteacher" parameterType="com.itboyst.facedemo.dto.Zteacher" >
-               INSERT INTO zteacher (zid, zmajorID, zidentity, zpass ,zname, zsex,zphone,zfaceinfoID,zphoto) VALUES(#{zid}, #{zmajorID}, #{zidentity}, #{zpass} ,#{zname}, #{zsex},#{zphone},#{zfaceinfoID},#{zphoto});
+            INSERT INTO zteacher (zid, zmajorID, zidentity, zpass ,zname, zsex,zphone,zfaceinfoID,zphoto) VALUES(#{zid}, #{zmajorID}, #{zidentity}, #{zpass} ,#{zname}, #{zsex},#{zphone},#{zfaceinfoID},#{zphoto});
     </insert>
+
+    <update id="updateteacher" parameterType="com.itboyst.facedemo.dto.Zteacher" >
+            UPDATE zteahcer SET zmajorID=#{zmajorID} ,zidentity=#{zidentity},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto} WHERE zname=#{zname}
+    </update>
 
 
 </mapper>
