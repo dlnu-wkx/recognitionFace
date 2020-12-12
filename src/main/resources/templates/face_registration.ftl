@@ -108,7 +108,9 @@
 
 
     function chosename(cname){
-        alert(cname)
+        //alert(cname)
+
+
         $("#reg_namelike").hide()
         $("#userName").val(cname)
 
@@ -162,16 +164,21 @@
         }
     }
 
-    $('#userName').change(function(){
+    /*$('#userName').change(function(){
         $("#reg_namelike").hide()
-    })
+    })*/
+
+    function hidename(){
+        $("#reg_namelike").hide()
+    }
 
     $('#userName').bind('input propertychange', function () {
         //alert(1)
         var name=$("#userName").val()
         $("#reg_namelike").show()
         var reg_namelike =$("#reg_namelike")
-        var str="<ul align='center'>"
+        var str="<table align='center' class='registername_table'>"
+
 
         if($("#r_userkind").val()=="学生"){
             $.ajax({
@@ -182,11 +189,14 @@
                 success: function (data) {
                     // alert(data)
                     for (var i=0;i<data.length;i++){
-                        str+="<li value ='"+data[i]+"' onclick='chosename(\""+data[i]+"\")'>"+data[i]+"</li>";
+                        str+="<tr>"
+                        str+="<th  onclick='chosename(\""+data[i]+"\")' class='registername_list' value ='"+data[i]+"' ><font size='5'>"+data[i]+"</font></th>";
+                        str+="</tr>"
                     }
-                    str+="</ul>"
+
                 }
-            });
+            });str+="<tr><button class='button5' onclick='hidename()'>取消</button></tr>"
+            str+="</table>"
         }
 
         if($("#r_userkind").val()=="教师"){
@@ -198,11 +208,14 @@
                 success: function (data) {
                     // alert(data)
                     for (var i=0;i<data.length;i++){
-                        str+="<li value ='"+data[i]+"' onclick='chosename(\""+data[i]+"\")'>"+data[i]+"</li>";
+                        str+="<tr>"
+                        str+="<th  onclick='chosename(\""+data[i]+"\")' class='registername_list' value ='"+data[i]+"' ><font size='5'>"+data[i]+"</font></th>";
+                        str+="</tr>"
                     }
-                    str+="</ul>"
+
                 }
-            });
+            });str+="<tr><button class='button5' onclick='hidename()'>取消</button></tr>"
+            str+="</table>"
         }
 
         if($("#r_userkind").val()=="管理员"){
@@ -214,11 +227,15 @@
                 success: function (data) {
                     // alert(data)
                     for (var i=0;i<data.length;i++){
-                        str+="<li value ='"+data[i]+"' onclick='chosename(\""+data[i]+"\")'>"+data[i]+"</li>";
+                        str+="<tr>"
+                        str+="<th  onclick='chosename(\""+data[i]+"\")' class='registername_list' value ='"+data[i]+"' ><font size='5'>"+data[i]+"</font></th>";
+                        str+="</tr>"
                     }
-                    str+="</ul>"
+
                 }
             });
+           str+="<tr><button class='button5' onclick='hidename()'>取消</button></tr>"
+            str+="</table>"
         }
 
         reg_namelike.html(str)

@@ -31,12 +31,12 @@
             <div style="margin: 0,auto;margin-top:40px;height: 80px;text-align:center;line-height:40px;font-size: 40px;color: #E51C23">
                 欢迎使用安浩智学习工厂
             </div>
-            <#--//摄像头的位置-->
-            <div id="regcoDiv"></div>
+            <!--摄像头的位置-->
+          <div id="regcoDiv"></div>
 
-            <#--<div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='images/shibie.jpg'style='width: 15rem;height: 16rem;'></div>-->
-            <#--<div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:20px;color:#0C0C0C"> 进入安浩智能学习工厂</div>-->
-            <#--<div>
+          <#--  <div style=";margin:0 auto;margin-top:0px;height: 100px"><h2>点击图片区域上传文件</h2><input style='display: none' type='file' name='file1' id='file1' multiple='multiple' /><br><img onclick='chooseFile()' src='images/shibie.jpg'style='width: 15rem;height: 16rem;'></div>
+            <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:20px;color:#0C0C0C"> </div>-->
+         <#--   <div>
                 <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px">
                     开始测试
                 </button>
@@ -63,6 +63,19 @@
 </div>
 <script>
 
+    $(document).on("change", "#file1", function () {
+        var objUrl = getObjectURL(this.files[0]);//获取文件信息
+        console.log("objUrl = " + objUrl);
+        if (objUrl) {
+            $("#img0").attr("src", objUrl);
+        }
+    });
+
+
+
+    function chooseFile() {
+        $("#file1").trigger('click');
+    }
 
 
     //JavaScript代码区域
@@ -197,9 +210,8 @@
                             alert("学生上课表(zstudent_schedule)没有该名学生的信息");
                         }
                         else{
-                            alert("其它错误")
+                            alert("摄像头未开或其它错误")
                         }
-
                     }
 
                 },
@@ -209,7 +221,7 @@
                 }
             });
         } else {//这个对比根据图片进行查找的
-            var file = $("#file1")[0].files[0];
+          var file = $("#file1")[0].files[0];
             if (file == undefined) {
                 alert("请选择有人脸的图片进行识别");
                 return;
@@ -221,8 +233,13 @@
                 var base64 = reader.result;
                 formData.append("file", base64);
                 formData.append("groupId", 101);
+                var data=getOsInfo();
 
-
+                //操作系统
+                formData.append("ztype",data.version);
+                //ip地址
+                formData.append("ip",ip);
+                alert(formData)
                 $.ajax({
                     type: "post",
                     url: "/faceSearch",
@@ -231,35 +248,35 @@
                     processData: false,
                     async: false,
                     success: function (text) {
+                        alert(1)
                         var res = JSON.stringify(text)
+
                         if (text.code == 0) {
-                            var name = text.data.name;
-                            // $("#nameDiv").html("姓名：" + name);
-                            var similar = text.data.similarValue;
-                            // $("#similarDiv").html("相似度：" + similar + "%");
-                            var age = text.data.age;
-                            // $("#ageDiv").html("年龄：" + age);
-                            var gender = text.data.gender;
-                            // $("#genderDiv").html("性别：" + gender);
-                            // img.css("background-image", 'url(' + text.data.image + ')');
-                            //alert("姓名：" + name +"\n相似度：" + similar + "%" + "\n年龄：" + age +"\n性别：" + gender);
-                            //自定义提示框
-                            showTips("姓名：" + name + "\n相似度：" + similar + "%" + "\n年龄：" + age + "\n性别：" + gender);
+                            location.href = "/login";
                         } else {
-                            $("#nameDiv").html("");
-                            $("#similarDiv").html("");
-                            $("#ageDiv").html("");
-                            $("#genderDiv").html("");
-                            alert("人脸不匹配")
-                            showTips("人脸不匹配");
+                            if(text.code==16){
+                                alert("人脸信息表（user_face_info表）里没有地址信息");
+                            }
+                            else if(text.code==17){
+                                alert("学生表（zstudent表）里没有人脸id(faceid),请添加人脸信息");
+                            }
+                            else if (text.code==18){
+                                alert("设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)");
+                            }
+                            else if (text.code==19){
+                                alert("设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)");
+                            }else if (text.code==23){
+                                alert("学生上课表(zstudent_schedule)没有该名学生的信息");
+                            }
+                            else{
+                                alert("摄像头未开或其它错误")
+                            }
+
                         }
 
                     },
                     error: function (error) {
-                        $("#nameDiv").html("");
-                        $("#similarDiv").html("");
-                        $("#ageDiv").html("");
-                        $("#genderDiv").html("");
+                        alert(0)
                         alert(JSON.stringify(error))
                     }
                 });

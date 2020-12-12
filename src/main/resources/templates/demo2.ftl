@@ -58,7 +58,7 @@
     </div>
     <div class="layui-tab-content" style="">
         <div class="layui-tab-item "><#include "face_registration.ftl"></div>
-        <div class="layui-tab-item layui-show"><#include "face_search.ftl"></div>
+        <div class="layui-tab-item layui-show"><#include "student_LoginTest.ftl"></div>
 
     </div>
 </div>

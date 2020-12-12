@@ -13,5 +13,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("toImageDemo").setViewName("imageDemo");
         registry.addViewController("student").setViewName("studentLogin");//设置学生端的访问路径
         registry.addViewController("teacher").setViewName("teacherLogin");//设置教师端的访问路径
+
     }
 }

@@ -9,6 +9,12 @@
 
 }
 
+.facetest_btn{
+    position: fixed;
+    bottom: 20%;
+
+}
+
 .right2 {
     top: 20%;
     right: 2%;
