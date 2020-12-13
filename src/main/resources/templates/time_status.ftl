@@ -205,7 +205,7 @@
     }
     //现场管理
     function fieldManagement() {
-        location.href="/teachRegister";
+        location.href="/field_management";
     }
     //信息查询
     function informationService() {

@@ -31,6 +31,9 @@ public class TimeStatusController {
 
     @Autowired
     Ztraining_task_contentService ztraining_task_contentService;
+
+    @Autowired
+    Ztraining_cameraService ztraining_cameraService;
     /**
      * 根据老师的教室查找该教室所有的机床
      * 魏凯旋 2020-11-16
@@ -106,5 +109,24 @@ public class TimeStatusController {
         }
         return null;
     }
+
+    /**
+     * 魏凯旋 2020-12-12
+     * @param session
+     * @return
+     */
+    @RequestMapping("/findAllCameras")
+    @ResponseBody
+    public List<Ztraining_camera> findAllCameras(HttpSession session){
+        Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
+
+        List<Ztraining_camera> ztrainingCameraList =ztraining_cameraService.findAllByZtrainingroomID(ztrainingroomID);
+        for(Ztraining_camera a:ztrainingCameraList){
+            System.err.println(a.toString());
+        }
+        return ztrainingCameraList;
+    }
+
 
 }

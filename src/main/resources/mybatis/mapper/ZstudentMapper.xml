@@ -47,8 +47,8 @@
 
         <select id="findStudentNameByfacilityID"  resultType="java.lang.String">
             SELECT A.zname
-            FROM zstudent A, zstudent_login B
-            WHERE A.zid=B. zstudentID AND B.zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{facilityID});
+            FROM zstudent A, zstudent_login B,(SELECT zstudentID,max(zrecognizetime) FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{facilityID}))C
+            WHERE A.zid=B. zstudentID AND B.zstudentID=C.zstudentID;
         </select>
 
         <select id="findstudentByZidentity"  resultType="com.itboyst.facedemo.dto.Zstudent">

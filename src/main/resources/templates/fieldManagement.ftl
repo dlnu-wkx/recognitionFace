@@ -133,6 +133,7 @@
     //做出一个判断如果现场管理一直是橘黄色则无法点击
     function fieldManagement() {
         location.href="/field_management"
+        //location.href="/teachRegister"
     }
     //展示现场管理的二级菜单
    /* function show() {

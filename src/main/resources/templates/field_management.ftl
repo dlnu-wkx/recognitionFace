@@ -63,13 +63,13 @@
         </div>
         <#--三级菜单-->
         <div id='threeMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
-            <div>
+            <#--<div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
-                    <li style="margin: 0 auto;margin-left: 10% "><button onclick="studentShow(this.value)" value="1" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控车讨论区</button></li>
-                    <li style=" margin: 0 auto;margin-right: 10%"><button onclick="studentShow1(this.value)" value="1" style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控铣讨论区</button></li>
+                    <li style="margin-left: 10% "><button onclick="studentShow(this.value)" value="1" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控车讨论区</button></li>
+                    <li style="margin-right: 10%"><button onclick="studentShow1(this.value)" value="1" style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控铣讨论区</button></li>
                 </ul>
-            </div>
-            <div>
+            </div>-->
+            <#--<div>
                 <ul style="margin: 15% auto;width: 80% ">
                     <li style="margin-left: 10%"><button  style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">东大门入口</button></li>
                     <li style="margin-right: 10%"><button style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">东大门出口</button></li>
@@ -86,11 +86,11 @@
                     <li style="margin-left: 10%"><button style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">北大门入口</button></li>
                     <li style="margin-right: 10%"><button style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">北大门出口</button></li>
                 </ul>
-            </div>
+            </div>-->
         </div>
         <#--查岗的下级功能表-->
         <div id='checkPointMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
-            <div>
+            <#--<div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
                     <li style="margin: 0 auto;margin-left: 46% "><button onclick="studentShow(this.value)" value="2" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控区实训区</button></li>
                 </ul>
@@ -99,27 +99,27 @@
                 <ul style="margin: 30% auto;width: 80% ">
                     <li style="margin-left: 46%"><button  onclick="studentShow1(this.value)" value="2" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控铣实训区</button></li>
                 </ul>
-            </div>
+            </div>-->
         </div>
         <#--四级菜单-->
         <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
             <div id="mainDiv"></div>
             <#--这个地方到时候要循环遍历出来拼接字符串-->
             <div id="identifyAreas"style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red">
-                <div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
+                <#--<div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">李四  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">王二  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">麻子  机电19班</div>
-                <div style="font-size: 20px;width: 80%;margin-top: 10px">隔壁老王  机电19班</div>
+                <div style="font-size: 20px;width: 80%;margin-top: 10px">隔壁老王  机电19班</div>-->
             </div>
         </div>
         <div id='fourMenu1' class="layui-col-xs8" align="center" style="display:none;width: 64%">
             <div style="height: 500px;text-align:center;line-height:40px;font-size: 40px;background-color: #ffff;overflow:scroll;border: 1px solid red">
                 <#--这个也要用遍历写出来的，显示最先出现的三个人-->
                 <div style="width: 100%;margin-top: 2px;">
-                    <div id="left" style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid">天龙八部</div>
-                    <div id="middle" style="width: 27%;position: absolute;left:35%;background-color: #BDD7EE;color: red;border: 1px solid">广利菩萨</div>
-                    <div id="right" style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid">白龙马</div>
+                    <div id="left" style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
+                    <div id="middle" style="width: 27%;position: absolute;left:35%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
+                    <div id="right" style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
                 </div>
                 <#--按照顺序排出识别的人脸，顺序是最早的在最下最右边-->
                 <div id="mainBody"style="width: 100%;margin: 53px auto">
@@ -197,43 +197,46 @@
     //展示
     function faceShow() {
         document.getElementById("twoMenu").style.display="none";
+        //遍历所有的实训室的摄像装备
+
+        findAllCameras();
+
+
         document.getElementById("threeMenu").style.display="block";
     }
     //数控车讨论区显示每台机的人脸识别情况
     function studentShow(e){
 
-        var a =e;
-        if(a==2){
-            insertCheckPoint();
-            document.getElementById("checkPointMenu").style.display="none";
-        }
-        if(a==1){
-            document.getElementById("threeMenu").style.display="none";
-        }
+       /* var b =$("#zcameraIP"+e).val();
+        alert(b)*/
+        document.getElementById("threeMenu").style.display="none";
 
         document.getElementById("fourMenu").style.display="block";
         document.getElementById("fourMenu1").style.display="block";
         getMedia();
 
+        $("#left").hide();
+        $("#middle").hide();
+        $("#right").hide();
     }
     //数控铣讨论区显示每台机的人脸识别情况
     function studentShow1(e){
-        var b =e;
-        if(b==2){
-            insertCheckPoint();
-            document.getElementById("checkPointMenu").style.display="none";
-        }
-        if(b==1){
-            document.getElementById("threeMenu").style.display="none";
-        }
 
+        insertCheckPoint();
+        document.getElementById("checkPointMenu").style.display="none";
         document.getElementById("fourMenu").style.display="block";
         document.getElementById("fourMenu1").style.display="block";
         getMedia();
-
+        $("#left").hide();
+        $("#middle").hide();
+        $("#right").hide();
     }
     //获取摄像头
-    function getMedia() {
+    /*function getMedia(){
+
+    }*/
+
+   function getMedia() {
         $("#mainDiv").empty();
         let videoComp = " <video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
@@ -263,6 +266,8 @@
     function checkPoint() {
         document.getElementById("checkPointColor").style.backgroundColor="#ED7D31";
         document.getElementById("twoMenu").style.display="none";
+        //找出所有实训室所有的种类的摄像头
+        CheckPointFindAllCameras();
         document.getElementById("checkPointMenu").style.display="block";
 
     }
@@ -300,57 +305,7 @@
 
 
 
-    var websocket = null;
 
-    //判断当前浏览器是否支持WebSocket
-    if('WebSocket' in window){
-        websocket = new WebSocket("ws://192.168.1.156:8080/webapi/websocket");
-    }
-    else{
-        alert('Not support websocket')
-    }
-
-    //连接发生错误的回调方法
-    websocket.onerror = function(){
-        setMessageInnerHTML("error");
-    };
-
-    //连接成功建立的回调方法
-    websocket.onopen = function(event){
-        websocket.send("亚太建模要开始了");
-       // setMessageInnerHTML("open");
-    }
-
-    //接收到消息的回调方法
-    websocket.onmessage = function(event){
-        setMessageInnerHTML(event.data);
-    }
-
-    //连接关闭的回调方法
-    websocket.onclose = function(){
-        setMessageInnerHTML("close");
-    }
-
-    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-    window.onbeforeunload = function(){
-        websocket.close();
-    }
-
-    //将消息显示在网页上
-    function setMessageInnerHTML(innerHTML){
-        //document.getElementById('message').innerHTML += innerHTML + '<br/>';
-    }
-
-    //关闭连接
-    function closeWebSocket(){
-        websocket.close();
-    }
-
-    //发送消息
-    function send() {
-        //var message = document.getElementById('text').value;
-        websocket.send("亚太建模要开始了");
-    }
 </script>
 </body>
 </html>

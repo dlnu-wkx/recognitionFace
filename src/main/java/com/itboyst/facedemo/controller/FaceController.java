@@ -98,9 +98,10 @@ public class FaceController {
      * 跳转测试
      * @return
      */
-    @RequestMapping(value = "/demo")
+    @RequestMapping(value = "/demo",method = RequestMethod.GET)
     public String demo() {
-        return "demo";
+        System.out.println("你好");
+        return "demo3";
     }
 
 

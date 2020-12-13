@@ -203,14 +203,21 @@
                 if (data.ztitle){
                     str+="<div class='mes_title'><font size='5'>"+data.ztitle+"</font></div>"
                     if(data.ztype=="图片"){
-                        str+="<img src='"+data.zcontent+"'  alt='测试用' class='cp_message2' />";
+                        //截取图片获取相对路径
+                        var zcontent = data.zcontent;
+                        var content=zcontent.substr(43);
+                        str+="<img src='"+content+"'  alt='测试用' class='cp_message2' />";
                     }else if(data.ztype=="视频"){
-                        str+="<video src='"+data.zcontent+"' controls='controls' class='cp_message2'>您的浏览器不支持 video 标签。</video>"
+                        var zcontent = data.zcontent;
+                        var content=zcontent.substr(43);
+                        str+="<video src='"+content+"' controls='controls' class='cp_message2'>您的浏览器不支持 video 标签。</video>"
                     }else if(data.ztype=="文字"){
                         str+="<font class='cp_message2' size='3'>"+data.zcontent+"</font>"
                         //数据测量需要额外加载右侧测量值的Id
                     }else if(data.ztype=="数据测量"){
-                        str+=" <div class='left_table2'><img src='"+data.zcontent+"'  alt='测试用' class='right_message' /></div>"
+                        var zcontent = data.zcontent;
+                        var content=zcontent.substr(43);
+                        str+=" <div class='left_table2'><img src='"+content+"'  alt='测试用' class='right_message' /></div>"
                         str+=" <div class='reight_mes2'>"
                         str+=" <table class='r_table2'>";
                         str+="<tr><th>测量值</th><th>序列</th></tr>"
@@ -237,13 +244,20 @@
                     //任务没有title的情况
                 }else{
                     if(data.ztype=="图片"){
-                        str+="<img src='"+data.zcontent+"'  alt='测试用' class='cp_message' />";
+                        var zcontent = data.zcontent;
+                        var content=zcontent.substr(43);
+
+                        str+="<img src='"+content+"'  alt='测试用' class='cp_message' />";
                     }else if(data.ztype=="视频"){
-                        str+="<video src='"+data.zcontent+"' controls='controls' class='cp_message'>您的浏览器不支持 video 标签。</video>"
+                        var zcontent = data.zcontent;
+                        var content=zcontent.substr(43);
+                        str+="<video src='"+content+"' controls='controls' class='cp_message'>您的浏览器不支持 video 标签。</video>"
                     }else if(data.ztype=="文字"){
                         str+="<font class='cp_message' size='3'>"+data.zcontent+"</font>"
                     }else if(data.ztype=="数据测量"){
-                        str+=" <div class='left_table'><img src='"+data.zcontent+"'  alt='测试用' class='right_message' /></div>"
+                        var zcontent = data.zcontent;
+                        var content=zcontent.substr(43);
+                        str+=" <div class='left_table'><img src='"+content+"'  alt='测试用' class='right_message' /></div>"
                         str+=" <div class='reight_mes'>"
                         str+=" <table class='r_table2'>";
                         str+="<tr><th>测量值</th><th>序列</th></tr>"
