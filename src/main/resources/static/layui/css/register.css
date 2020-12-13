@@ -74,6 +74,11 @@
     width: 45%;
 }
 
+.registername_list{
+    height: 50px;
+}
+
+
 .reg_namelike{
     top: 28%;
     right: 5.5%;
@@ -83,6 +88,12 @@
     z-index: 10;
     background-color: whitesmoke;
 }
-li{
+th{
     border: solid 2px black;
+}
+
+.registername_table{
+    height: 100%;
+    width:100%;
+    position: absolute;
 }

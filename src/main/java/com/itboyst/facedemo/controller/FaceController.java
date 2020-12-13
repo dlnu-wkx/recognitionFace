@@ -415,6 +415,9 @@ public class FaceController {
     @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)
     @ResponseBody
     public Result<FaceSearchResDto> faceSearch(HttpServletRequest request,String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session,Model model) throws Exception {
+
+        //System.out.println(ip+ztype+file+groupId);
+
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -457,7 +460,7 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
-            System.out.println(faceUserInfo.getPath());
+            //System.out.println(faceUserInfo.getPath());
             //student表信息更改
             Zstudent zstudent=new Zstudent();
 
@@ -470,10 +473,10 @@ public class FaceController {
             int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
             //判定int类型为空,设备表出问题返回1
 
-            System.out.println(faceid);
+            //System.out.println(faceid);
             // System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
-            System.out.println(zstudent);
+            //System.out.println(zstudent);
 
             if(zstudent==null) return Results.newFailedResult(ErrorCodeEnum.NO_STUDENT_FACEID);
             //学生登陆信息
