@@ -173,37 +173,40 @@ public class FaceController {
             if ("".equals(path)) {
                 return Results.newFailedResult("picture sava failure");
             }
-            //System.out.println(password+zphone+sex+classes+major+userkind);
-            //System.out.println(major);
-           // return null;
-
+            //System.out.println(path);
 
             GenerateImage(file,path);
 
-            /*int namenum=userFaceInfoService.findcountbyface(name);*/
+
             //初始化更新与添加数据的行数
             int namenum,i,j,k,q,w,v,z=0;
 
-            /*if(namenum !=0){
-                //人脸表已有数据就更新人脸信息
-                q=userFaceInfoService.updateuserfopath(path);
-
-            }*/
 
             UserFaceInfo userFaceInfo = new UserFaceInfo();
             userFaceInfo.setName(name);
             userFaceInfo.setGroupId(groupId);
             userFaceInfo.setFaceFeature(bytes);
 
-
-            userFaceInfo.setFaceId(RandomUtil.randomString(10));
+            //用学号或工号与face表相连
+            userFaceInfo.setFaceId(zidentity);
             userFaceInfo.setPath(path);
 
+            int e=userFaceInfoService.findcountfaceid(zidentity);
 
-            //人脸特征插入到数据库
-            userFaceInfoService.insertSelective(userFaceInfo);
+            //System.out.println(e);
+            if (e>0)
+                userFaceInfoService.updateuserfopath(path,zidentity,name);
+            else
+                userFaceInfoService.insertSelective(userFaceInfo);
+
             String zid = UUID.randomUUID().toString().replaceAll("-","");
-            int id= faceEngineService.selectidbyname(path);
+            int id=0;
+
+            if(e>0)
+                  id=  userFaceInfoService.findidbyfaceid(zidentity);
+            else
+                  id=  faceEngineService.selectidbyname(path);
+
             if(userkind.equals("学生")){
                // System.out.println(0);
 
@@ -218,8 +221,9 @@ public class FaceController {
                 zstu.setZgradeID(classes);
                 zstu.setZfaceinfoID(id);
                 zstu.setZstatus("待审核");
-                namenum=zstuservice.findcountbyname(name);
+                namenum=zstuservice.findcountbyname(zidentity);
 
+                //System.out.println(zstu);
                 if (namenum !=0){
                     w=zstuservice.updatestudent(zstu);
                     //更新成功
@@ -525,6 +529,7 @@ public class FaceController {
 
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
+            //System.out.println(zsc);
 
             if (zsc==null)return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
 
@@ -696,7 +701,7 @@ public class FaceController {
                 //教师信息、课程信息和实训室信息
                 Zteacher_cookie zteacher_cookie=zteacher_cookieSerice.findbyfaceid(faceid);
                 session.setAttribute("zteacher_cookie",zteacher_cookie);
-                //System.out.println(session.getAttribute("zteacher_cookie"));
+                System.out.println(session.getAttribute("zteacher_cookie"));
 
                 //插入教师日志
                 Zteacher_journal zteacher_journal=new Zteacher_journal();

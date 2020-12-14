@@ -166,10 +166,10 @@
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+w+"'>";
-                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' ><font size='5'>A.</font><font size='5' >" + question.cbank[w].zoptionA + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message'id='B"+w+"'    value='B' ><font size='5'>B.</font><font size='5' >" + question.cbank[w].zoptionB + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'><font size='5'>C.</font><font size='5' >" + question.cbank[w].zoptionC + "</font><br><br><br>";
-                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' ><font size='5'>D.</font><font size='5' >" + question.cbank[w].zoptionD + "</font><br><br><br>";
+                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>A.</font><font onclick='checkquestion(\"A"+w+"\")' size='5' >" + question.cbank[w].zoptionA + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message' id='B"+w+"'    value='B' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>B.</font><font onclick='checkquestion(\"B"+w+"\")' size='5' >" + question.cbank[w].zoptionB + "</font><br><br><br>";
+                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>C.</font><font onclick='checkquestion(\"C"+w+"\")' size='5' >" + question.cbank[w].zoptionC + "</font><br><br><br>";
+                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>D.</font><font onclick='checkquestion(\"D"+w+"\")' size='5' >" + question.cbank[w].zoptionD + "</font><br><br><br>";
                     str += " </p></div>";
 
                     str+="</div>";
@@ -219,6 +219,17 @@
             }
         });
     }
+
+    //点击题目选中选项
+   function checkquestion(id){
+       // alert(id)
+       //alert($("#"+id+"").val());
+       if ($("#"+id+"").prop('checked'))
+           $("#"+id+"").prop("checked",false);
+       else
+           $("#"+id+"").prop("checked",true);
+   }
+
 
 
     /**

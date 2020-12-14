@@ -291,19 +291,11 @@
     position: fixed;
 }
 
-.choose:checked:before {
-    content: '';
-    /* width: 5px;
-     height:5px;
-     border: 1px solid #2CC17B;*/
-    background: #2CC17B;
-    display: inline-block;
-    border-radius: 50%;
-    vertical-align: middle;
-    transform: scale(1.5,1.5);
-
+.choose {
+    width: 30px;
+    height: 30px;
 }
-
+/*
 .choose:checked:after {
 
     content: '';
@@ -321,7 +313,7 @@
     transform: rotate(-45deg)  scale(1.5,1.5);
 
 
-}
+}*/
 .title{
 
     left: 35%;

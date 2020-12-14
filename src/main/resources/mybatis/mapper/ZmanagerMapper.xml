@@ -17,15 +17,15 @@
     </insert>
 
     <select id="findallbymanagername"  resultType="com.itboyst.facedemo.dto.Zmanager">
-            SELECT * FROM zmanager WHERE zname=#{zname};
+            SELECT * FROM zmanager WHERE zidentity=#{zname};
     </select>
 
     <update id="updatemanager" parameterType="com.itboyst.facedemo.dto.Zmanager" >
-            UPDATE zmanager SET zidentity=#{zidentity},zpass=#{zpass},zphone=#{zphone},zphoto=#{zphoto} WHERE zname=#{zname}
+            UPDATE zmanager SET zname=#{zname},zpass=#{zpass},zphone=#{zphone},zphoto=#{zphoto} WHERE zidentity=#{zidentity}
     </update>
 
     <select id="findmanagernamelike" resultType="java.lang.String" >
-            select zname from zmanager where zname like CONCAT('%',#{zname},'%')
+            select zidentity from zmanager where zidentity like CONCAT('%',#{zname},'%')
     </select>
 
 

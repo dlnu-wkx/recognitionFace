@@ -17,12 +17,12 @@
     </resultMap>
 
     <select id="findteachernamelike" resultType="java.lang.String" >
-            select zname from zteacher where zname like CONCAT('%',#{zname},'%')
+            select zidentity from zteacher where zidentity like CONCAT('%',#{zname},'%')
     </select>
 
 
     <select id="selectbyname"  resultType="com.itboyst.facedemo.dto.Zteacher">
-            SELECT * FROM zteacher WHERE zname=#{zname};
+            SELECT * FROM zteacher WHERE zidentity=#{zname};
     </select>
 
 
@@ -31,7 +31,7 @@
     </insert>
 
     <update id="updateteacher" parameterType="com.itboyst.facedemo.dto.Zteacher" >
-            UPDATE zteahcer SET zmajorID=#{zmajorID} ,zidentity=#{zidentity},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto} WHERE zname=#{zname}
+            UPDATE zteahcer SET zmajorID=#{zmajorID} ,zname=#{zname},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto} WHERE zidentity=#{zidentity}
     </update>
 
 

@@ -50,7 +50,7 @@
     </update>
 
     <update id="updateuserfopath" parameterType="com.itboyst.facedemo.domain.UserFaceInfo" >
-        UPDATE user_face_info SET fpath=#{path} WHERE name=#{name}
+        UPDATE user_face_info SET fpath=#{path} WHERE face_id=#{face_id} and name=#{name}
     </update>
 
 
@@ -58,6 +58,13 @@
         select name from user_face_info where name like CONCAT('%',#{name},'%')
     </select>
 
+    <select id="findcountfaceid" resultType="java.lang.Integer" >
+        select count(*) from user_face_info where face_id=#{face_id}
+    </select>
+
+    <select id="findidbyfaceid" resultType="java.lang.Integer" >
+        select id from user_face_info where face_id=#{face_id}
+    </select>
 
 
 </mapper>

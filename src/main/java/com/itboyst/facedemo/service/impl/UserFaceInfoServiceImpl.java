@@ -28,6 +28,11 @@ public class UserFaceInfoServiceImpl implements UserFaceInfoService {
     public List<String> findcountnamelike(String name){return userFaceInfoMapper.findcountnamelike(name);}
 
     @Override
-    public int updateuserfopath(String path){return userFaceInfoMapper.updateuserfopath(path);}
+    public int updateuserfopath(String path,String face_id,String name){return userFaceInfoMapper.updateuserfopath(path,face_id,name);}
+
+
+    public int findcountfaceid(String face_id){return userFaceInfoMapper.findcountfaceid(face_id);}
+
+    public int findidbyfaceid(String face_id){return userFaceInfoMapper.findidbyfaceid(face_id); }
 
 }

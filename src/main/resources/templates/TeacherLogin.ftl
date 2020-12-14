@@ -89,7 +89,7 @@
 
     function getMedia2() {
         $("#regcoDiv").empty();
-        let vedioComp = "<video id='video2' width='600px' height='400px' autoplay='autoplay' style='margin-top: 20px'></video><canvas id='canvas2' width='500px' height='500px' style='display: none'></canvas>";
+        let vedioComp = "<video  muted id='video2' width='600px' height='400px' autoplay='autoplay' style='margin-top: 20px'></video><canvas id='canvas2' width='500px' height='500px' style='display: none'></canvas>";
         $("#regcoDiv").append(vedioComp);
         let constraints = {
             video: {width: 500, height: 500},

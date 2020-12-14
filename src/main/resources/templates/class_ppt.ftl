@@ -73,7 +73,9 @@
 
 <!--中间题目主体部分-->
 <div class="center" id="cp_content" style="background-color: white;z-index:-1;">
-
+        <div>
+            <font size="7">请点击左侧实训标题，此处将显示实训内容</font>
+        </div>
 </div>
 
 
@@ -321,6 +323,7 @@
 
     //页面加载前方法
     window.onload =function () {
+        welcome();
         $("#lastpage").css("background-color","#A5A5A5");
         findalltask();
         /*getcommand();*/
@@ -329,6 +332,11 @@
             getcommand();
         }, 8000);
     }
+
+    function welcome() {
+
+    }
+
 
 
 //所有任务

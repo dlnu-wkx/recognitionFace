@@ -7,8 +7,16 @@
     filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;
     background-color: #2A60B5;
     left: -10%;
-
 }
+
+.c_welecome{
+    right: 20%;
+    top: 30%;
+    height: 40%;
+    width: 60%;
+    position: absolute;
+}
+
 
 .cp_button2{
     background-color: #70AD47;

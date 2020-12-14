@@ -33,7 +33,8 @@ public class ZstudentController {
     @RequestMapping("/findallbystudentname")
     @ResponseBody
     public Zstudent findallbystudentname(String name){
-
+        //System.out.println(name);
+        //System.out.println(zstudentService.findallbystudentname(name));
         return zstudentService.findallbystudentname(name);
     }
 

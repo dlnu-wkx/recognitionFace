@@ -29,6 +29,8 @@ public class ZcommandController {
     @ResponseBody
     public List<Zteacher_command> findcommand(HttpSession session,String chagangID,String gundongID){
 
+        System.out.println(chagangID+gundongID);
+
         ztraining_room ztraining_room=(ztraining_room)session.getAttribute("ztraining_room");
         String zid=ztraining_room.getZid();
         List<Zteacher_command> data=zteacher_commandService.selectcommand(zid);

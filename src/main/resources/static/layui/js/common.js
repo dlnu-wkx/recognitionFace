@@ -526,6 +526,7 @@ function powerController() {
 
 //获取命令
 function getcommand() {
+    alert(1)
     var rolling_barrage=$("#rolling_barrage");
    var chagangID =document.getElementById("chagangID").innerHTML;
     var gundongID =document.getElementById("gundongID").innerHTML;
@@ -544,6 +545,7 @@ function getcommand() {
         async: false,
         success: function (data){
 
+            alert(data)
             for(var i=0;i<data.length;i++){
                 if(data[i].ztype=="查岗"){//data[i].ztype =="签到"||
                     document.getElementById("chagangID").innerHTML=data[i].zid;

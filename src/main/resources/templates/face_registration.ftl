@@ -47,6 +47,14 @@
              </select>
          </th>
      </tr>
+     <tr id="idcardtr">
+         <th id="idcardtitle">
+             学号:
+         </th>
+         <th>
+             <input type="text" class="t_select" id="zidentity">
+         </th>
+     </tr>
      <tr id="nametr">
          <th>
              姓名:
@@ -59,17 +67,9 @@
              性别:
          </th>
          <th>
-             <label><input type="checkbox" id="sex" value="男">男</label>
+             <label><input type="checkbox" id="sex" class="sex1" value="男">男</label>
              &#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;
-             <label><input type="checkbox" id="sex" value="女">女</label>
-         </th>
-     </tr>
-     <tr id="idcardtr">
-         <th id="idcardtitle">
-            学号:
-         </th>
-         <th>
-             <input type="text" class="t_select" id="zidentity">
+             <label><input type="checkbox" id="sex" class="sex2" value="女">女</label>
          </th>
      </tr>
     <tr id="passtr">
@@ -112,13 +112,15 @@
 
 
         $("#reg_namelike").hide()
-        $("#userName").val(cname)
+        $("#zidentity").val(cname)
+
 
         //按键修改
         $("#r_button").css('background-color','#FFC000');
         $("#r_button").text('修改信息');
 
         var t_test=$('#r_userkind').val();
+        //alert(t_test);
         if(t_test=="教师"){
             $.ajax({
                 type: "post",
@@ -126,8 +128,11 @@
                 async: false,
                 data: { "name": cname},
                 success: function (data) {
-                    $("#sex").val(data.zsex)
-                    $("#zidentity").val(data.zidentity)
+                    if (data.zsex=="男")
+                        $(".sex1").prop("checked",true);
+                    else
+                        $(".sex2").prop("checked",true);
+                    $("#userName").val(data.zname)
                     $("#password").val(data.zpass)
                     $("#zphone").val(data.zphone)
                     //专业在此处更新
@@ -140,8 +145,12 @@
                 async: false,
                 data: { "name": cname},
                 success: function (data) {
-                    $("#sex").val(data.zsex)
-                    $("#zidentity").val(data.zidentity)
+                   // alert(data)
+                    if (data.zsex=="男")
+                        $(".sex1").prop("checked",true);
+                    else
+                        $(".sex2").prop("checked",true);
+                    $("#userName").val(data.zname)
                     $("#password").val(data.zpass)
                     $("#zphone").val(data.zphone)
                     //班级在此处更新
@@ -155,7 +164,7 @@
                 data: { "name": cname},
                 success: function (data) {
                     //$("#sex").val(data.zsex)
-                    $("#zidentity").val(data.zidentity)
+                    $("#userName").val(data.zname)
                     $("#password").val(data.zpass)
                     $("#zphone").val(data.zphone)
 
@@ -172,9 +181,9 @@
         $("#reg_namelike").hide()
     }
 
-    $('#userName').bind('input propertychange', function () {
+    $('#zidentity').bind('input propertychange', function () {
         //alert(1)
-        var name=$("#userName").val()
+        var zidentity=$("#zidentity").val()
         $("#reg_namelike").show()
         var reg_namelike =$("#reg_namelike")
         var str="<table align='center' class='registername_table'>"
@@ -185,7 +194,7 @@
                 type: "post",
                 url: "/findstudentnamelike",
                 async: false,
-                data: { "name": name},
+                data: { "name": zidentity},
                 success: function (data) {
                     // alert(data)
                     for (var i=0;i<data.length;i++){
@@ -204,7 +213,7 @@
                 type: "post",
                 url: "/findteachernamelike",
                 async: false,
-                data: { "name": name},
+                data: { "name": zidentity},
                 success: function (data) {
                     // alert(data)
                     for (var i=0;i<data.length;i++){
@@ -223,7 +232,7 @@
                 type: "post",
                 url: "/findmanagernamelike",
                 async: false,
-                data: { "name": name},
+                data: { "name": zidentity},
                 success: function (data) {
                     // alert(data)
                     for (var i=0;i<data.length;i++){
@@ -307,7 +316,7 @@
     function getMedia() {
        // alert(1)
         $("#mainDiv").empty();
-        let videoComp = " <video id='video' autoplay='autoplay' class='left_video'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
+        let videoComp = " <video id='video' muted autoplay='autoplay' class='left_video'></video><canvas id='canvas' width='500px' height='500px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
 
         let constraints = {
