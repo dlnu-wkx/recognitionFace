@@ -69,4 +69,10 @@ public class QbankServiceImpl implements QbankService {
 
     }
 
+    @Override
+    public List<Zsafe_testingDto> findrandbynumber(int number){return cmapper.findrandbynumber(number);}
+
+
+
+
 }

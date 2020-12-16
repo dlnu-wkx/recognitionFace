@@ -14,7 +14,7 @@
         <result column="zpowerPort" property="zpowerPort" javaType="String"/>
         <result column="zcameraName" property="zcameraName" javaType="String"/>
         <result column="zoperationstatus" property="zoperationstatus" javaType="int"/>
-
+        <result column="zcameraName" property="zcamerName" javaType="int"/>
     </resultMap>
 
 

@@ -1,6 +1,13 @@
 /*
 特定类
  */
+.pagesnumber{
+    bottom: 4%;
+    left: 49%;
+    position: fixed;
+}
+
+
 
 .right1 {
     top: 0%;

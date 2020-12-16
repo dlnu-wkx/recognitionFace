@@ -17,10 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.itboyst.facedemo.base.UUIDutil.getUUID;
 
@@ -110,6 +107,109 @@ public class QbankController {
         return zstudent_cookie.getZpassingscore();
     }
 
+    @RequestMapping("/findtestnumber")
+    @ResponseBody
+    public int findtestnumber(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        //System.out.println(zstudent_cookie);
+        return zstudent_cookie.getZsafetestingNum();
+    }
+
+    @RequestMapping("/findtesttotal")
+    @ResponseBody
+    public int findtesttotal(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        //System.out.println(zstudent_cookie);
+        return zstudent_cookie.getZsafetestingTotal();
+    }
+
+
+
+    @RequestMapping("/findtestbynumber")
+    @ResponseBody
+    public Map<String,Object> findtestbynumber(HttpSession session,int number){
+        //System.out.println(number);
+        List<Zsafe_testingDto> data1=Qservice.findrandbynumber(number);
+        //用于排序
+        List<Zsafe_testingDto> data3=new ArrayList<>();
+
+        List<Ztesting_input> data2 =new ArrayList<>();
+
+
+        //System.out.println(data1);
+        //初始化定义选择题与判断题题集与题集答案
+        List<Zsafe_testingDto> cbank = new ArrayList<>();
+        List<Zsafe_testingDto> jbank = new ArrayList<>();
+        List<String> answer = new ArrayList<>();
+        //生成number个数的uuid
+        String uuid[]=getUUID(number);
+
+        /*for (int i=0;i<uuid.length;i++){
+            System.out.println(uuid[i]);
+        }*/
+
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        //System.out.println(zstudent_cookie);
+        int order =0;
+
+        //将所有题目从选择题到判断题进行排序，然后方便存入ztestinginput
+        for (int i=0;i<data1.size();i++){
+            if (data1.get(i).getZtitletype().equals("选择")){
+               data3.add(data1.get(i));
+            }
+        }
+        for (int i=0;i<data1.size();i++){
+            if (data1.get(i).getZtitletype().equals("判断")){
+                data3.add(data1.get(i));
+            }
+        }
+
+        //将所有的题目分别放入选择题与判断中,并把加载的所有题都放入ztesting_input里面
+        for (int i=0;i<data3.size();i++){
+            Ztesting_input ztesting_input=new Ztesting_input();
+
+            ztesting_input.setZstudentscheduleID(zstudent_cookie.getZstudent_scheduleid());
+            ztesting_input.setZid(uuid[i]);
+            ztesting_input.setZsafetestingID(data3.get(i).getZid());
+            ztesting_input.setZstate("未做");
+            ztesting_input.setZorder(i+1);
+            data2.add(ztesting_input);
+
+            Zsafe_testingDto zsafe_testingDto=data3.get(i);
+            answer.add(data3.get(i).getZresult());
+
+            if (data3.get(i).getZtitletype().equals("选择")){
+                cbank.add(zsafe_testingDto);
+            }else if(data3.get(i).getZtitletype().equals("判断")){
+                jbank.add(zsafe_testingDto);
+            }
+
+        }
+
+
+        Map<String, Object> safetest=new HashMap<>();
+        safetest.put("cbank",cbank);
+        safetest.put("jbank",jbank);
+        //System.out.println(data2);
+
+        int q=ztesting_inputService.addtestinput(data2);
+       // System.out.println(q);
+        //System.out.println(safetest);
+        session.setAttribute("answer",answer);
+        return safetest;
+
+    }
+
+
+    @RequestMapping("/getsafetestanswer")
+    @ResponseBody
+    public List<Zsafe_testingDto> getsafetestanswer(HttpSession session){
+        return (List<Zsafe_testingDto>) session.getAttribute("answer");
+    }
+
+
+
+
 
 
     /*
@@ -162,13 +262,13 @@ public class QbankController {
      */
     @RequestMapping("/updatetestinput")
     @ResponseBody
-    public int updatetestinput(@RequestParam(value = "questionid[]")String [] questionid,@RequestParam(value = "ananswer[]")String [] ananswer,@RequestParam(value = "answercode[]")String [] answercode,HttpSession session){
+    public int updatetestinput(@RequestParam(value = "number")int number,@RequestParam(value = "questionid[]")String [] questionid,@RequestParam(value = "ananswer[]")String [] ananswer,@RequestParam(value = "answercode[]")String [] answercode,HttpSession session){
 
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
         String zstudentscheduleID=zstudent_cookie.getZstudent_scheduleid();
         int j=0,k=0;
 
-        for (int i=0;i<5;i++){
+        for (int i=0;i<number;i++){
             Ztesting_input ztesting_input=new Ztesting_input();
             ztesting_input.setZstudentscheduleID(zstudentscheduleID);
             ztesting_input.setZorder(i);
@@ -181,7 +281,6 @@ public class QbankController {
             if(k==1){
                 j++;
             }
-
         }
 
         return j;

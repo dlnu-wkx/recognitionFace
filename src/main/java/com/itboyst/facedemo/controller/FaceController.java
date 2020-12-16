@@ -505,7 +505,7 @@ public class FaceController {
             String ip2 = addr.getHostAddress().toString();
 
             zsl.setZcheck("实操");
-            zsl.setZrecognizeIP(ip);
+            zsl.setZrecognizeIP(ip2);
             //插入学生登陆信息
             int  i=zstudent_loginService.updateloginmessage(zsl);
 

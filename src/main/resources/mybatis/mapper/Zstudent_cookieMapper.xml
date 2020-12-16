@@ -26,7 +26,7 @@
 
 
     <select id="findscookiemes"  resultType="com.itboyst.facedemo.dto.Zstudent_cookie">
-          SELECT A.*,B.zcourseID as zcourseID,B.ztrainingroomID as ztrainingroomID,B.zstartdate as zstartdate,B.zenddate as zenddate,B.zsafetestingType as zsafetestingType,B.zsafetestingTotal as zsafetestingTotal,B.zpassingscore as zpassingscore,B.zselecttest as zselecttest,B.zpowerstart as zpowerstart,C.zid as zstudent_scheduleid,C.zscheduleID as zscheduleID, C.zstudentID as zstudentID,C.zstate as zstate FROM zcourse A,zschedule B,zstudent_schedule C WHERE A.zid=B.zcourseID AND B.ztrainingroomID=#{ztrainingroomID} AND #{zrecongnizetime} BETWEEN B.zstartdate AND B.zenddate AND B.zid=C.zscheduleID AND C.zstudentID=#{zstudentID}
+          SELECT A.*,B.zcourseID as zcourseID,B.ztrainingroomID as ztrainingroomID,B.zstartdate as zstartdate,B.zenddate as zenddate,B.zsafetestingType as zsafetestingType,B.zsafetestingTotal as zsafetestingTotal,B.zsafetestingNum as zsafetestingNum,B.zpassingscore as zpassingscore,B.zselecttest as zselecttest,B.zpowerstart as zpowerstart,C.zid as zstudent_scheduleid,C.zscheduleID as zscheduleID, C.zstudentID as zstudentID,C.zstate as zstate FROM zcourse A,zschedule B,zstudent_schedule C WHERE A.zid=B.zcourseID AND B.ztrainingroomID=#{ztrainingroomID} AND #{zrecongnizetime} BETWEEN B.zstartdate AND B.zenddate AND B.zid=C.zscheduleID AND C.zstudentID=#{zstudentID}
     </select>
 
 

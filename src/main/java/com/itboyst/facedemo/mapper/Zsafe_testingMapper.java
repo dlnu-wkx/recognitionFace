@@ -16,5 +16,5 @@ public interface Zsafe_testingMapper {
 
     public List<Zsafe_testingDto> findrand10(String zstudentID,String ztestingtype);
 
-
+    public List<Zsafe_testingDto> findrandbynumber(int number);
 }

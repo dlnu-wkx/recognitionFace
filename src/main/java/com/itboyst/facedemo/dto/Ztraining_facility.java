@@ -6,13 +6,13 @@ public class Ztraining_facility {
     private int zidentity;
     private String ztype;
     private String zpowerIP;
-    private String zcamerIP;
+    private String zcameraIP;
     private String zstudentPCIP;
     private String zlocation;
     private String zoperationstatus;
     private String zpowerstatus;
     private int zpowerPort;
-    private String zcamerName;
+    private String zcameraName;
 
     public String getZid() {
         return zid;
@@ -54,12 +54,12 @@ public class Ztraining_facility {
         this.zpowerIP = zpowerIP;
     }
 
-    public String getZcamerIP() {
-        return zcamerIP;
+    public String getZcameraIP() {
+        return zcameraIP;
     }
 
-    public void setZcamerIP(String zcamerIP) {
-        this.zcamerIP = zcamerIP;
+    public void setZcameraIP(String zcameraIP) {
+        this.zcameraIP = zcameraIP;
     }
 
     public String getZstudentPCIP() {
@@ -102,12 +102,12 @@ public class Ztraining_facility {
         this.zpowerPort = zpowerPort;
     }
 
-    public String getZcamerName() {
-        return zcamerName;
+    public String getZcameraName() {
+        return zcameraName;
     }
 
-    public void setZcamerName(String zcamerName) {
-        this.zcamerName = zcamerName;
+    public void setZcameraName(String zcameraName) {
+        this.zcameraName = zcameraName;
     }
 
     @Override
@@ -118,13 +118,13 @@ public class Ztraining_facility {
                 ", zidentity=" + zidentity +
                 ", ztype='" + ztype + '\'' +
                 ", zpowerIP='" + zpowerIP + '\'' +
-                ", zcamerIP='" + zcamerIP + '\'' +
+                ", zcameraIP='" + zcameraIP + '\'' +
                 ", zstudentPCIP='" + zstudentPCIP + '\'' +
                 ", zlocation='" + zlocation + '\'' +
                 ", zoperationstatus='" + zoperationstatus + '\'' +
                 ", zpowerstatus='" + zpowerstatus + '\'' +
                 ", zpowerPort=" + zpowerPort +
-                ", zcamerName='" + zcamerName + '\'' +
+                ", zcameraName='" + zcameraName + '\'' +
                 '}';
     }
 }

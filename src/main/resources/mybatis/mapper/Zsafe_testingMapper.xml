@@ -40,5 +40,10 @@
         SELECT * from zsafe_testing WHERE zid NOT IN (SELECT zsafetestingID FROM ztesting_input WHERE zstudentscheduleID =#{zstudentscheduleID }) AND ztestingtype=#{ztestingtype}  ORDER BY RAND() LIMIT 10;
     </select>
 
+    <select id="findrandbynumber" resultMap="zsafe_testing" resultType="com.itboyst.facedemo.dto.Zsafe_testingDto">
+        SELECT * from zsafe_testing  ORDER BY RAND() LIMIT #{number};
+    </select>
+
+
 
 </mapper>

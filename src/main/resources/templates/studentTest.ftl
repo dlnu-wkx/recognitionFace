@@ -79,16 +79,31 @@
 </div>
 
 
+<div class="pagesnumber" id="pagesnumber">
 
+</div>
 
 
 </body>
 
 <script>
+
+    function loadpagenumber(i) {
+        //先清空里面的
+        $("#pagesnumber").empty();
+        var str=" <font size='5'>"+i+"/"+static_questionnum+"</font>"
+        var pagesnumber=$("#pagesnumber")
+        pagesnumber.html(str)
+
+    }
+
+
     //分数
     var code=0;
 
     var static_questionnum=0;
+    var static_singlecode=0;
+    var static_total=0;
 
     //学生题解
     var ananswer=new Array();
@@ -109,6 +124,41 @@
 
     //页面加载前方法
     window.onload =function () {
+        //通过的分数
+        $.ajax({
+            type: "post",
+            url: "/findpassingcode",
+            success: function (data){
+                static_passingcode=data;
+            }
+        });
+
+
+        var pagesnumber=$("#pagesnumber")
+        //题目数量
+        $.ajax({
+            type: "post",
+            url: "/findtestnumber",
+            async: false,
+            success: function (data){
+                static_questionnum=data;
+                var str=" <font size='5'>1/"+static_questionnum+"</font>"
+                pagesnumber.html(str)
+                static_singlecode=100/static_questionnum;
+            }
+        });
+
+        //总分
+        $.ajax({
+            type: "post",
+            url: "/findtesttotal",
+            async: false,
+            success: function (data){
+                static_total=data;
+            }
+        });
+
+
         load();
     }
 
@@ -131,42 +181,21 @@
         $("#qbank").removeAttr("align");
 
         var str = "";
-
         //测试cookie
         //alert($.cookie('name'));
-
-
-        //通过的分数
-        $.ajax({
-            type: "post",
-            url: "/findpassingcode",
-            success: function (data){
-                static_passingcode=data;
-            }
-        });
-
-        //题目数量
-        $.ajax({
-            type: "post",
-            url: "/findtestnumber",
-            success: function (data){
-                static_questionnum=data;
-            }
-        });
-
 
 
         //连接Servlet
         $.ajax({
             type: "post",
-            url: "/findallquestion",
-            contentType: false,
-            processData: false,
-            data:{"questionnum":static_questionnum},
+            url: "/findtestbynumber",
+            data:{"number":static_questionnum},
             async: false,
             success: function (question) {
                // alert(question[0].zid)
 
+                //alert("选择题个数"+question.cbank.length)
+                //alert("判断题个数"+question.jbank.length)
                 //选择题循环取出并加载
                for (var w =0; w<question.cbank.length;w++) {
                     var k=w+1;
@@ -174,8 +203,8 @@
                    questionid[w]=question.cbank[w].zid;
                     str+="<div class='qbank"+w+"' id='qbank"+w+"'>";
 
-                    str+="<font size='5' class='title'>安全测试题,每题20分，"+static_passingcode+"分及格</font>";
-                    str+="<font size='5' class='questiontitle'>选择题</font>";
+                    str+="<font size='5' class='title'>安全测试题，"+static_questionnum+"个，共"+static_total+"，"+static_passingcode+"分及格</font>";
+                    str+="<font size='5' class='questiontitle'>选择题("+question.cbank.length+"个)</font>";
 
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";
 
@@ -187,18 +216,18 @@
                     str += " </p></div>";
 
                     str+="</div>";
-
+                    str+=""
                 }
 
                 //判断题循环取出并加载
                 for(var j=0; j<question.jbank.length;j++){
-                    var k=j+4;
-                    var p=j+3;
+                    var k=j+question.cbank.length+1;
+                    var p=j+question.cbank.length;
 
                     questionid[p]=question.jbank[j].zid;
                     str+="<div class='qbank"+p+"' id='qbank"+p+"'>";
 
-                    str+="<font size='5' class='questiontitle'>判断题</font>";
+                    str+="<font size='5' class='questiontitle'>判断题("+question.jbank.length+"个)</font>";
 
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.jbank[j].ztitlecontent + "</font></div><br><br><br>";
 
@@ -217,12 +246,10 @@
                 //再将所有html放入
                 $("#qbank").html(str);
 
+                for (var c=1;c<question.cbank.length+question.jbank.length;c++) {
+                    $("#qbank"+c+"").hide();
+                }
                 //隐藏其它题
-                $("#qbank1").hide();
-                $("#qbank2").hide();
-
-                $("#qbank3").hide();
-                $("#qbank4").hide();
 
                 //单选方法加载
                 onechose();
@@ -274,20 +301,29 @@
         var qbank=$("#qbank");
         var str3="";
 
-        //从cookie中拿出正确答案（可循环取出优化）
-        answer[0]=$.cookie('answer0');
-        answer[1]=$.cookie('answer1');
-        answer[2]=$.cookie('answer2');
-        answer[3]=$.cookie('answer3');
-        answer[4]=$.cookie('answer4');
+        //获取正确答案
+        $.ajax({
+            type: "post",
+            url: "/getsafetestanswer",
+            contentType: false,
+            processData: false,
+            data:{},
+            async: false,
+            success: function (data) {
+                for (var b=0;b<data.size();b++){
+                    answer[b]=data[b]
+                }
+            }
+        });
 
-        //每答对一题加20分
-        for (var j=0;j<5;j++){
+
+        //总分
+        for (var j=0;j<static_questionnum;j++){
 
             //正确答案与学生题解对比
             if(ananswer[j]==answer[j]){
-                code+=20;
-                answercode[j]=20;
+                code+=static_singlecode;
+                answercode[j]=static_singlecode;
             }else{
                 answercode[j]=0;
             }
@@ -296,8 +332,8 @@
         $("#qbank"+i+"").hide();
         str3+="<br><br><br><br><br>"
         str3+="<div><font size='3' >安全测试评分</font></div>";
-        str3+="<div><font size='3' >题目数量：5题</font></div>";
-        str3+="<div><font size='3' >每题分数：20分</font></div>";
+        str3+="<div><font size='3' >题目数量："+static_questionnum+"题</font></div>";
+        str3+="<div><font size='3' >每题分数："+static_singlecode+"分</font></div>";
         str3+="<div><font size='3' >测试总分：100分</font></div>";
         str3+="<div><font size='3' >合格分数："+static_passingcode+"分</font></div>";
         str3+="<br><br><br>"
@@ -320,17 +356,21 @@
         //提交按键隐藏（防止分数多次叠加）
         $("#nextpage").hide();
 
+        /*alert(ananswer)
+        alert(answercode)
+        alert(questionid)
+        alert(static_questionnum)*/
      //  更改输入
       $.ajax({
             type: "post",
             url: "/updatetestinput",
-            data: {"ananswer":ananswer,"answercode":answercode,"questionid":questionid},
+            data: {"ananswer":ananswer,"answercode":answercode,"questionid":questionid,"number":static_questionnum},
             success: function (data) {
 
-                if(data==5){
+                if(data==static_questionnum){
                     layer.msg("提交成功", { icon: 1, offset: "auto", time:2000 });
                 }else{
-                    alert("出错")
+                    alert("提交出错")
                 }
 
             }
@@ -358,17 +398,18 @@
 
         //加载题目
         load();
+        loadpagenumber(1);
 
     }
 
     //下一页
     function nextpage() {
+        //alert(i+1)
         //翻页前先存储一下题解
         ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
 
 
-        if(i!=4){
-
+        if(i!=(static_questionnum-1)){
 
             //清除前一个题
             $("#qbank"+i+"").hide();
@@ -381,7 +422,7 @@
                 $("#lastpage").css("background-color","#4472C4");
             }
 
-            if(i==4){
+            if(i==(static_questionnum-1)){
                 var button4 =  $("#nextpage")
                 button4.attr("onclick","submit()");
                 button4.text('交卷');
@@ -393,12 +434,12 @@
         }
         //当前页面单选
         onechose();
-
+        loadpagenumber(i+1)
     }
 
     //上一页
     function lastpage(){
-
+       // alert(i+1)
         //翻页前先存储一下题解
         ananswer[i]= $("#cbooks"+i+"").find(':checkbox:checked').val();
         if(i!=0){
@@ -416,7 +457,7 @@
                 $("#lastpage").css("background-color","#A5A5A5");
                 $("#lastpage").css("daoborder-color","#f8fff9");
             }
-            if(i==3){
+            if(i==(static_questionnum-2)){
                 var button4 =  $("#nextpage")
                 button4.attr("onclick","nextpage()");
                 button4.text('下一页');
@@ -426,9 +467,11 @@
 
             alert("没有上一页了")
         }
-
+        loadpagenumber(i+1)
 
     }
+
+
 
 
 
