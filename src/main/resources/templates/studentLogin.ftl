@@ -199,7 +199,7 @@
                             alert("人脸信息表（user_face_info表）里没有地址信息");
                         }
                         else if(text.code==17){
-                            alert("学生表（zstudent表）里没有人脸id(faceid),请添加人脸信息");
+                            alert("学生表（zstudent表）里没有人脸id(faceid)或者没有审核通过,请添加人脸信息");
                         }
                         else if (text.code==18){
                             alert("设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)");

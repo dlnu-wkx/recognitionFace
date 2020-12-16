@@ -11,6 +11,8 @@ public class Ztraining_facility {
     private String zlocation;
     private String zoperationstatus;
     private String zpowerstatus;
+    private int zpowerPort;
+    private String zcamerName;
 
     public String getZid() {
         return zid;
@@ -92,6 +94,22 @@ public class Ztraining_facility {
         this.zpowerstatus = zpowerstatus;
     }
 
+    public int getZpowerPort() {
+        return zpowerPort;
+    }
+
+    public void setZpowerPort(int zpowerPort) {
+        this.zpowerPort = zpowerPort;
+    }
+
+    public String getZcamerName() {
+        return zcamerName;
+    }
+
+    public void setZcamerName(String zcamerName) {
+        this.zcamerName = zcamerName;
+    }
+
     @Override
     public String toString() {
         return "Ztraining_facility{" +
@@ -105,6 +123,8 @@ public class Ztraining_facility {
                 ", zlocation='" + zlocation + '\'' +
                 ", zoperationstatus='" + zoperationstatus + '\'' +
                 ", zpowerstatus='" + zpowerstatus + '\'' +
+                ", zpowerPort=" + zpowerPort +
+                ", zcamerName='" + zcamerName + '\'' +
                 '}';
     }
 }

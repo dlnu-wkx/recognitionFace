@@ -6,8 +6,6 @@
         <id column="zid" property="zid" javaType="String"/>
         <result column="zscheduleID" property="zscheduleID" javaType="String"/>
         <result column="zstudentID" property="zstudentID" javaType="String"/>
-        <result column="zselecttest" property="zselecttest" javaType="String"/>
-        <result column="zpassingscore" property="zpassingscore" javaType="int"/>
         <result column="zstate" property="zstate" javaType="String"/>
     </resultMap>
 

@@ -123,9 +123,6 @@ public class FaceController {
 
 
 
-
-
-
     /*
     人脸添加
      */
@@ -503,7 +500,7 @@ public class FaceController {
           /*  zsl.setZrecognizeIP();
 */          InetAddress addr = InetAddress.getLocalHost();
 
-            System.out.println(addr.getHostAddress().toString());
+            //System.out.println(addr.getHostAddress().toString());
 
             String ip2 = addr.getHostAddress().toString();
 

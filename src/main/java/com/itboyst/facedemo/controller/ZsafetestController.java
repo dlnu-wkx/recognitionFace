@@ -34,4 +34,11 @@ public class ZsafetestController {
 
     }
 
+    @RequestMapping("/findtestnumber")
+    @ResponseBody
+    public int findtestnumber(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        return zstudent_cookie.getZsafetestingNum();
+    }
+
 }

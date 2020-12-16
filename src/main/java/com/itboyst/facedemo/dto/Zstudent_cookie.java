@@ -13,6 +13,9 @@ public class Zstudent_cookie {
     private String ztrainingroomID;
     private Timestamp zstartdate;
     private Timestamp zenddate;
+    private int zsafetestingNum;
+    private int zsafetestingTotal;
+    private String zpowerstart;
     private String zstudent_scheduleid;
     private String zscheduleID;
     private String zstudentID;
@@ -100,6 +103,30 @@ public class Zstudent_cookie {
         this.zenddate = zenddate;
     }
 
+    public int getZsafetestingNum() {
+        return zsafetestingNum;
+    }
+
+    public void setZsafetestingNum(int zsafetestingNum) {
+        this.zsafetestingNum = zsafetestingNum;
+    }
+
+    public int getZsafetestingTotal() {
+        return zsafetestingTotal;
+    }
+
+    public void setZsafetestingTotal(int zsafetestingTotal) {
+        this.zsafetestingTotal = zsafetestingTotal;
+    }
+
+    public String getZpowerstart() {
+        return zpowerstart;
+    }
+
+    public void setZpowerstart(String zpowerstart) {
+        this.zpowerstart = zpowerstart;
+    }
+
     public String getZstudent_scheduleid() {
         return zstudent_scheduleid;
     }
@@ -148,6 +175,7 @@ public class Zstudent_cookie {
         this.zstate = zstate;
     }
 
+
     @Override
     public String toString() {
         return "Zstudent_cookie{" +
@@ -161,6 +189,9 @@ public class Zstudent_cookie {
                 ", ztrainingroomID='" + ztrainingroomID + '\'' +
                 ", zstartdate=" + zstartdate +
                 ", zenddate=" + zenddate +
+                ", zsafetestingNum=" + zsafetestingNum +
+                ", zsafetestingTotal=" + zsafetestingTotal +
+                ", zpowerstart='" + zpowerstart + '\'' +
                 ", zstudent_scheduleid='" + zstudent_scheduleid + '\'' +
                 ", zscheduleID='" + zscheduleID + '\'' +
                 ", zstudentID='" + zstudentID + '\'' +
@@ -169,4 +200,6 @@ public class Zstudent_cookie {
                 ", zstate='" + zstate + '\'' +
                 '}';
     }
+
+
 }

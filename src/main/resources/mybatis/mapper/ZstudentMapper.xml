@@ -5,7 +5,6 @@
     <resultMap id="zstudent" type="com.itboyst.facedemo.dto.Zstudent">
         <id column="zid" property="zid" javaType="String"/>
         <result column="zgradeID" property="zgradeID" javaType="String"/>
-        <result column="zauthorityID" property="zauthorityID" javaType="String"/>
         <result column="zidentity" property="zidentity" javaType="String"/>
         <result column="zpass" property="zpass" javaType="String"/>
         <result column="zname" property="zname" javaType="String"/>

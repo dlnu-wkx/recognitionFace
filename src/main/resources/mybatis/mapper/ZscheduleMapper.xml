@@ -8,6 +8,13 @@
         <result column="ztrainingroomID" property="ztrainingroomID" javaType="String"/>
         <result column="zstartdate" property="zstartdate" jdbcType="TIMESTAMP"/>
         <result column="zenddate" property="zenddate" jdbcType="TIMESTAMP"/>
+        <result column="zsafetestingType" property="zsafetestingType" javaType="String"/>
+        <result column="zsafetestingNum" property="zsafetestingNum" javaType="int"/>
+        <result column="zsafetestingTotal" property="zsafetestingTotal" javaType="int"/>
+        <result column="zpassingscore" property="zpassingscore" javaType="int"/>
+        <result column="zselecttest" property="zselecttest" javaType="String"/>
+        <result column="zpowerstart" property="zpowerstart" javaType="String"/>
+
     </resultMap>
 
 

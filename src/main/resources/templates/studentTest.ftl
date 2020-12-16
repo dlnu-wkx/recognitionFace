@@ -88,6 +88,8 @@
     //分数
     var code=0;
 
+    var static_questionnum=0;
+
     //学生题解
     var ananswer=new Array();
     //正确题解
@@ -143,12 +145,24 @@
             }
         });
 
+        //题目数量
+        $.ajax({
+            type: "post",
+            url: "/findtestnumber",
+            success: function (data){
+                static_questionnum=data;
+            }
+        });
+
+
+
         //连接Servlet
         $.ajax({
             type: "post",
             url: "/findallquestion",
             contentType: false,
             processData: false,
+            data:{"questionnum":static_questionnum},
             async: false,
             success: function (question) {
                // alert(question[0].zid)
@@ -189,8 +203,8 @@
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.jbank[j].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+p+"'>";
-                    str += " <p><input type='checkbox' name='message'  class='choose'  value='对' ><font size='5'>对</font><br><br><br>";
-                    str += " <input type='checkbox' name='message'   class='choose'  value='错' ><font size='5'>错</font><br><br><br>";
+                    str += " <p><input type='checkbox' name='message' id='t"+p+"'  class='choose'  value='对' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font onclick='checkquestion(\"t"+p+"\")' size='5'>对</font><br><br><br></p>";
+                    str += " <p onclick='checkquestion(\"f"+p+"\")'><input type='checkbox' name='message'  id='f"+p+"'  class='choose'  value='错' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>错</font><br><br><br>";
 
                     str += " </p></div>";
 
@@ -222,7 +236,7 @@
 
     //点击题目选中选项
    function checkquestion(id){
-       // alert(id)
+        //alert(id)
        //alert($("#"+id+"").val());
        if ($("#"+id+"").prop('checked'))
            $("#"+id+"").prop("checked",false);

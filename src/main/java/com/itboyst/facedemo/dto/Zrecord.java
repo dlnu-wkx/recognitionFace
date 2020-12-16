@@ -13,7 +13,7 @@ public class Zrecord {
     private String ztype;
     private String zcontent;
 
-    /*public String getZid() {
+    public String getZid() {
         return zid;
     }
 
@@ -60,7 +60,7 @@ public class Zrecord {
     public void setZcontent(String zcontent) {
         this.zcontent = zcontent;
     }
-*/
+
     @Override
     public String toString() {
         return "Zrecord{" +

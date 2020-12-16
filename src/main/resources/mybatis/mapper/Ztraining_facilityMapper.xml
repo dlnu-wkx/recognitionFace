@@ -11,6 +11,8 @@
         <result column="zcameraIP" property="zcameraIP" javaType="String"/>
         <result column="zstudentPCIP" property="zstudentPCIP" javaType="String"/>
         <result column="zlocation" property="zlocation" javaType="String"/>
+        <result column="zpowerPort" property="zpowerPort" javaType="String"/>
+        <result column="zcameraName" property="zcameraName" javaType="String"/>
         <result column="zoperationstatus" property="zoperationstatus" javaType="int"/>
 
     </resultMap>
