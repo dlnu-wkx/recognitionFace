@@ -176,7 +176,7 @@ public class QbankController {
             data2.add(ztesting_input);
 
             Zsafe_testingDto zsafe_testingDto=data3.get(i);
-            answer.add(data3.get(i).getZresult());
+            answer.add(i,data3.get(i).getZresult());
 
             if (data3.get(i).getZtitletype().equals("选择")){
                 cbank.add(zsafe_testingDto);
@@ -194,7 +194,7 @@ public class QbankController {
 
         int q=ztesting_inputService.addtestinput(data2);
        // System.out.println(q);
-        //System.out.println(safetest);
+        //System.out.println(answer);
         session.setAttribute("answer",answer);
         return safetest;
 
@@ -203,8 +203,9 @@ public class QbankController {
 
     @RequestMapping("/getsafetestanswer")
     @ResponseBody
-    public List<Zsafe_testingDto> getsafetestanswer(HttpSession session){
-        return (List<Zsafe_testingDto>) session.getAttribute("answer");
+    public List<String> getsafetestanswer(HttpSession session){
+        //System.out.println(session.getAttribute("answer"));
+        return (List<String>) session.getAttribute("answer");
     }
 
 

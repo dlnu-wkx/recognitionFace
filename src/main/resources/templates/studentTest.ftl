@@ -251,6 +251,20 @@
                 }
                 //隐藏其它题
 
+                //获取正确答案
+                $.ajax({
+                    type: "post",
+                    url: "/getsafetestanswer",
+                    async: false,
+                    success: function (data){
+                        for (var c=1;c<data.length;c++) {
+                            answer[c]=data[c]
+                        }
+                        alert(answer)
+                    }
+                });
+
+
                 //单选方法加载
                 onechose();
 
@@ -273,11 +287,17 @@
 
 
 
+   function submit() {
+
+       submit2()
+   }
+
+
     /**
      * 提交方法
      */
 
-    function submit() {
+    function submit2() {
 
         //学生题解记录
         ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
@@ -300,21 +320,6 @@
         //中间题目获取
         var qbank=$("#qbank");
         var str3="";
-
-        //获取正确答案
-        $.ajax({
-            type: "post",
-            url: "/getsafetestanswer",
-            contentType: false,
-            processData: false,
-            data:{},
-            async: false,
-            success: function (data) {
-                for (var b=0;b<data.size();b++){
-                    answer[b]=data[b]
-                }
-            }
-        });
 
 
         //总分
@@ -356,8 +361,10 @@
         //提交按键隐藏（防止分数多次叠加）
         $("#nextpage").hide();
 
-        /*alert(ananswer)
-        alert(answercode)
+
+        /*alert(answercode)
+        alert(ananswer)
+        alert(answer)
         alert(questionid)
         alert(static_questionnum)*/
      //  更改输入
