@@ -17,4 +17,7 @@ public class ZscheduleServiceImpl implements ZscheuleService {
     public Zschedule selectbynt(String zname, Timestamp time){
         return zscheduleMapper.selectbynt(zname,time);
     }
+
+    @Override
+    public int updatetestbyscheduleid(String zselecttest,int zpassingscore,String zid){return zscheduleMapper.updatetestbyscheduleid(zselecttest,zpassingscore,zid);}
 }

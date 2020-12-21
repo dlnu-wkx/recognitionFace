@@ -502,17 +502,25 @@ public class FaceController {
 
             //System.out.println(addr.getHostAddress().toString());
 
-            String ip2 = addr.getHostAddress().toString();
+            //String ip2 = addr.getHostAddress();
 
+            //String ip3=Iputil.getIPAddress(request);
+
+            String ip4=Iputil.getClientIpAddress(request);
+            //System.out.println(ip3);
+
+            System.out.println(ip4);
+
+            //System.out.println(ip2);
             zsl.setZcheck("实操");
-            zsl.setZrecognizeIP(ip2);
+            zsl.setZrecognizeIP(ip4);
             //插入学生登陆信息
             int  i=zstudent_loginService.updateloginmessage(zsl);
 
             //将相关信息存入session中
             //设备
             //System.out.println("本机的ip："+ip);
-            Ztraining_facility ztrfac = ztrinfser.findbyip(ip2);
+            Ztraining_facility ztrfac = ztrinfser.findbyip(ip4);
             if (ztrfac == null) return Results.newFailedResult(ErrorCodeEnum.NO_FACILITY_STUDENTPCIP);
 
             session.setAttribute("ztraining_facility",ztrfac);
@@ -531,7 +539,7 @@ public class FaceController {
             if (zsc==null)return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
 
             session.setAttribute("zstudent_cookie",zsc);
-            //System.out.println(session.getAttribute("zstudent_cookie"));
+            System.out.println(session.getAttribute("zstudent_cookie"));
 
             Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 

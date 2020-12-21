@@ -107,8 +107,6 @@
 
 
 <script>
-
-
     //全部开启
     function startallfacti() {
        //alert(1)

@@ -18,4 +18,8 @@ public interface Ztraining_facilityService {
     public List<Ztraining_facility> findfactibyztrainingroomID(String ztrainingroomID);
 
     public String  findOpenPower(String zid);
+
+    public List<Ztraining_facility> findcontrollerbyroomid(String ztrainingroomID);
+
+    public Ztraining_facility findcontrollerbyid(String zid);
 }

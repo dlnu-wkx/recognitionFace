@@ -45,4 +45,10 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
         return ztran_facmap.updateallfacilitybyzid(zid, zpowerstatus);
     }
 
+    public List<Ztraining_facility> findcontrollerbyroomid(String ztrainingroomID){
+        return ztran_facmap.findcontrollerbyroomid(ztrainingroomID);
+    }
+
+
+    public Ztraining_facility findcontrollerbyid(String zid){return ztran_facmap.findcontrollerbyid(zid);}
 }

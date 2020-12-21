@@ -2,6 +2,7 @@ package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.QbankService;
+import com.itboyst.facedemo.service.ZscheuleService;
 import com.itboyst.facedemo.service.Zstudent_scheduleService;
 import com.itboyst.facedemo.service.Ztesting_inputService;
 import org.apache.http.client.HttpClient;
@@ -34,6 +35,8 @@ public class QbankController {
     @Autowired
     Zstudent_scheduleService zstudent_scheduleService;
 
+    @Autowired
+    ZscheuleService zscheuleService;
 
 
     /*
@@ -79,7 +82,7 @@ public class QbankController {
     @ResponseBody
     public int updatetestbyscheduleid(HttpSession session,int zpassingscore){
         Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
-        return zstudent_scheduleService.updatetestbyscheduleid(zteacher_cookie.getZscheduleID(),"是",zpassingscore);
+        return zscheuleService.updatetestbyscheduleid("是",zpassingscore,zteacher_cookie.getZscheduleID());
     }
 
 
@@ -91,7 +94,7 @@ public class QbankController {
     public int updatenotestbyscheduleid(HttpSession session){
         Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
         //System.out.println(zteacher_cookie.getZscheduleID());
-        return zstudent_scheduleService.updatetestbyscheduleid(zteacher_cookie.getZscheduleID(),"否",0);
+        return zscheuleService.updatetestbyscheduleid("否",0,zteacher_cookie.getZscheduleID());
     }
 
 

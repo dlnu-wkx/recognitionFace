@@ -22,19 +22,22 @@
           SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} AND zpowerstatus="已开机";
     </select>
 
+    <select id="findcontrollerbyroomid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
+          SELECT zpowerPort,zpowerIP FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
+    </select>
+
+    <select id="findcontrollerbyid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
+          SELECT zpowerPort,zpowerIP FROM ztraining_facility WHERE zid=#{zid};
+    </select>
 
     <select id="findtrain_fac"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
           SELECT * FROM ztraining_facility WHERE zstudentPCIP=#{zstudentPCIP};
     </select>
 
-
-    <!--<insert id="registerstu" parameterType="com.itboyst.facedemo.dto.Zstudent" >
-               INSERT INTO zstudent (zid, zidentity, zname, zphone ,zfaceinfoID, zstatus) VALUES(#{zid}, #{zidentity}, #{zname}, #{zphone} ,#{zfaceinfoID}, #{zstatus});
-        </insert>
--->
     <select id="findfactibyrid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
           SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
     </select>
+
     <select id="findfactibyztrainingroomID"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
           SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
     </select>

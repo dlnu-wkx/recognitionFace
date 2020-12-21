@@ -257,10 +257,10 @@
                     url: "/getsafetestanswer",
                     async: false,
                     success: function (data){
-                        for (var c=1;c<data.length;c++) {
+                        for (var c=0;c<data.length;c++) {
                             answer[c]=data[c]
                         }
-                        alert(answer)
+                       // alert(answer)
                     }
                 });
 

@@ -61,6 +61,8 @@
 </div>
     </div>
 </div>
+
+
 <script>
 
     $(document).on("change", "#file1", function () {
@@ -157,10 +159,17 @@
         },2000);*/
     }
 
+
+    //获取内网ip
+
+
+
     //去后台查询人脸数据
     function chooseFileChangeComp() {
 
         var ip=returnCitySN["cip"];
+
+        //alert(getUserIP(ip));
 
         //document.write(returnCitySN["cip"]+','+returnCitySN["cname"] + "真实IP地址")
 

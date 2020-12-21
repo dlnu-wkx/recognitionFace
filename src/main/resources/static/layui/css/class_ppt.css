@@ -101,26 +101,27 @@
 }
 
 .r_table2{
-    border-collapse: collapse;
-    text-align:center;
-    background-color: #FFFFFF;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    border:solid 1px #FFC000;
     overflow-y:auto;
-    display: block;
-    border-spacing: 0;
-    table-layout: fixed;
 }
-.r_table2 tbody tr th {
-    padding: 8px 12px;
-    text-align: center;
-    color: #333;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    width: 100%;
+
+.r_tableth1{
+    width: 50px;
+    height: 50px;
+    border: 2px solid burlywood;
 }
+.r_tableth2{
+    width: 100px;
+    height: 50px;
+    border: 2px solid burlywood;
+}
+
+.r_tableth3{
+    width: 200px;
+    height: 50px;
+    border: 2px solid burlywood;
+}
+
+
 .r_table2 tbody tr{
     height: 10%;
 }
@@ -161,4 +162,5 @@
     position: absolute;
     border: 1px solid;
     top: 8%;
+    overflow-y: auto;
 }

@@ -22,7 +22,13 @@
            select B.* from zteacher A ,zschedule B,zteacher_schedule C where A.zid=C.zteacherID and C.zscheduleID=B.zid  and #{time} BETWEEN B.zstartdate AND B.zenddate  and A.zname=#{zname};
     </select>
 
+    <update id="updatetestbyscheduleid" parameterType="com.itboyst.facedemo.dto.Zschedule" >
+        update zschedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zid=#{zid}
+    </update>
 
+    <update id="updatetestbychose" parameterType="com.itboyst.facedemo.dto.Zschedule" >
+        update zschedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zid=#{zid} and  zstudentID=(select zstudentID from zstudent_login where zrecognizeIP =(select zstudentPCIP from ztraining_facility where zid =#{zid}));
+    </update>
 
 
 </mapper>

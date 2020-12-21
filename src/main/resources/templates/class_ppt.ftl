@@ -216,13 +216,20 @@
                     }else if(data.ztype=="文字"){
                         str+="<font class='cp_message2' size='3'>"+data.zcontent+"</font>"
                         //数据测量需要额外加载右侧测量值的Id
-                    }else if(data.ztype=="数据测量"){
+                    }else if(data.ztype=="评分表"){
                         var zcontent = data.zcontent;
-                        var content=zcontent.substr(43);
-                        str+=" <div class='left_table2'><img src='"+content+"'  alt='测试用' class='right_message' /></div>"
+                        var content = zcontent.split(";");
+                        var  arr = content[1].split(",");
+
+                        /*alert(zcontent);
+                        alert(content[0]);
+                        alert(content[1]);
+                        alert(arr);*/
+
+                        str+=" <div class='left_table2'><img src='"+content[0]+"'  alt='测试用' class='right_message' /></div>"
                         str+=" <div class='reight_mes2'>"
                         str+=" <table class='r_table2'>";
-                        str+="<tr><th>测量值</th><th>序列</th></tr>"
+                        str+="<tr><th class='r_tableth1'>序号</th><th class='r_tableth2'>尺寸值</th><th class='r_tableth3'>输入尺寸</th></tr>"
 
                         //加载测量值的个数及id
                         $.ajax({
@@ -235,7 +242,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th><input class='rmes_input' type='input' id='"+data[i].zid+"'></th><th>"+j+"</th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth2'>"+data[i].ztechnicaldemand+"</th><th class='r_tableth3'><input class='rmes_input' type='input' id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });
@@ -256,15 +263,22 @@
                         str+="<video src='"+content+"' controls='controls' class='cp_message'>您的浏览器不支持 video 标签。</video>"
                     }else if(data.ztype=="文字"){
                         str+="<font class='cp_message' size='3'>"+data.zcontent+"</font>"
-                    }else if(data.ztype=="数据测量"){
+                    }else if(data.ztype=="评分表"){
                         var zcontent = data.zcontent;
-                        var content=zcontent.substr(43);
-                        str+=" <div class='left_table'><img src='"+content+"'  alt='测试用' class='right_message' /></div>"
-                        str+=" <div class='reight_mes'>"
+                        var content = zcontent.split(";");
+                        var  arr = content[1].split(",");
+
+                        /*alert(zcontent);
+                        alert(content[0]);
+                        alert(content[1]);
+                        alert(arr);*/
+
+                        str+=" <div class='left_table2'><img src='"+content[0]+"'  alt='测试用' class='right_message' /></div>"
+                        str+=" <div class='reight_mes2'>"
                         str+=" <table class='r_table2'>";
-                        str+="<tr><th>测量值</th><th>序列</th></tr>"
+                        str+="<tr><th class='r_tableth1'>序号</th><th class='r_tableth2'>尺寸值</th><th class='r_tableth3'>输入尺寸</th></tr>"
 
-
+                        //加载测量值的个数及id
                         $.ajax({
                             type: "post",
                             url: "/findtaskassessbytrainingid",
@@ -275,7 +289,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th><input class='rmes_input' type='input' id='"+data[i].zid+"'></th><th>"+j+"</th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth2'>"+data[i].ztechnicaldemand+"</th><th class='r_tableth3'><input class='rmes_input' type='input' id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });
@@ -329,7 +343,7 @@
         /*getcommand();*/
         //循环查找老师的命令
         window.setInterval(function () {
-            getcommand();
+         //   getcommand();
         }, 8000);
     }
 
