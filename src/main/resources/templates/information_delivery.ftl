@@ -130,28 +130,31 @@
                     for(var i=0; i<data.length;i++){
 
                         if (data[i].zpowerstatus=="已开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_sbox'><input name='zid' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
+                            findHaveStudent(data[i].zid)
                         }else if (data[i].zpowerstatus=="未开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div class='delivery_unpowerbox'><input name='zid' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
+                            findHaveStudent(data[i].zid)
                         }
                    }
                    str+="</tr>";
                    str+="</table>";
-                   str+="<button class='d_button1' onclick='allchose()'>全选</button>"
-
+                   //str+="<button class='d_button1' onclick='allchose()'>全选</button>"
+                   str+="<div class='d_button1'><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
               }else {
                  var j=0;
                  str+="<table class='p_bbbox' id='p_bbox'>"
-
                  for (var i=0;i<(data.length/6+1);i++){
 
                      str+=" <tr>";
                      for(;j<6*(i+1);j++){
                         if(j==data.length){break;}
                          if (data[j].zpowerstatus=="已开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_sbox'><input name='zid' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                             findHaveStudent(data[j].zid)
                          }else if (data[j].zpowerstatus=="未开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div class='delivery_unpowerbox'><input name='zid' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'></div></th>";
+                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' onclick='addchoice(this)' class='p_check'/></div></th>";
+                             findHaveStudent(data[j].zid)
                          }
 
                      }
@@ -160,7 +163,9 @@
                  }
 
                  str+="</table>";
-                 str+="<button class='d_button1' onclick='allchose()'>全选</button>"
+                 //str+="<button  id='quanxuan' class='d_button1' onclick='allchose()'>全选</button>"
+                 str+="<div class='d_button1' ><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
+
              }
 
                 p_center.html(str)
@@ -172,7 +177,29 @@
     window.onload =function () {
         onloadallroom();
     }
+    function  findHaveStudent(zid){
+        $.ajax({
+            type: 'post',
+            url: '/findStudentName',
+            data:  {"zid": zid} ,
+            success: function (name){
+                if(name!=""){
+                    $("#div"+zid).css('background-color','rgba(112,167,71)');
+                }else{
+                    $("#div"+zid).css('background-color','rgba(128,128,128)');
+                }
 
+            }
+        });
+    }
+function addchoice(checkbox) {
+        if(checkbox.checked==true){
+            $(checkbox).prop("checked", true)
+        }else{
+            $(checkbox).prop("checked", false)
+        }
+
+}
     function onloadallroom(){
       var p_left=$("#p_left");
       var str=""
@@ -193,7 +220,18 @@
     }
 
     function allchose() {
-        $("#p_center  input[type='checkbox']").attr("checked","true");
+        if($("input[name='checkall']").is(':checked')){
+            /*$("[name='checkall']:checkbox").attr('checked', true);*/
+            $("[type='checkbox']:checkbox").prop("checked", true);
+            //$("#p_center  input[type='checkbox']").attr("checked","")
+        }
+        else{
+            /*$("[name='checkall']:checkbox").attr('checked', false);*/
+            $("[type='checkbox']:checkbox").prop('checked', false);
+            /*$("#p_center  input[type='checkbox']").attr("checked",false)*/
+        }
+
+        /*$("#p_center  input[type='checkbox']").attr("checked","true");*/
     }
 
 

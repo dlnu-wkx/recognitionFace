@@ -89,6 +89,7 @@
 
     //如果cookie中不需要安全测试，更改按键的值以及方法
     if(zselecttest!="是"){
+        alert(zselecttest)
         $("#e_test").attr('onclick', 'simulationtasks()')
 
         $("#e_test").text("实训任务");

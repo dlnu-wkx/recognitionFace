@@ -11,10 +11,10 @@
         <result column="zcameraIP" property="zcameraIP" javaType="String"/>
         <result column="zstudentPCIP" property="zstudentPCIP" javaType="String"/>
         <result column="zlocation" property="zlocation" javaType="String"/>
-        <result column="zpowerPort" property="zpowerPort" javaType="String"/>
+        <result column="zpowerPort" property="zpowerPort" javaType="int"/>
         <result column="zcameraName" property="zcameraName" javaType="String"/>
-        <result column="zoperationstatus" property="zoperationstatus" javaType="int"/>
-        <result column="zcameraName" property="zcamerName" javaType="int"/>
+        <result column="zoperationstatus" property="zoperationstatus" javaType="String"/>
+        <result column="zpowerstatus" property="zpowerstatus" javaType="String"/>
     </resultMap>
 
 
@@ -35,11 +35,11 @@
     </select>
 
     <select id="findfactibyrid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
-          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
+          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID} ORDER BY zidentity;
     </select>
 
     <select id="findfactibyztrainingroomID"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
-          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID};
+          SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID} ORDER BY zidentity;
     </select>
 
     <update id="updateallfacility" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >

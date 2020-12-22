@@ -166,7 +166,14 @@ public class FaceController {
                 return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);
             }
             //System.err.println(path);
-            String path = "C:\\SchoolTrainFiles\\FacePic\\images\\" + System.currentTimeMillis() + ".jpg";
+            String path="";
+            if(userkind.equals("学生")){
+                path = "D:\\SchoolTrainFiles\\FacePic\\student\\" + System.currentTimeMillis() + ".jpg";
+            }
+            if(userkind.equals("教师")){
+                path = "D:\\SchoolTrainFiles\\FacePic\\teacher\\" + System.currentTimeMillis() + ".jpg";
+            }
+
             if ("".equals(path)) {
                 return Results.newFailedResult("picture sava failure");
             }
@@ -382,14 +389,13 @@ public class FaceController {
         if (imgStr == null) // 图像数据为空
             return false;
         //去掉头部的data:image/png;base64,
-        int start = imgStr.indexOf(',') + 1;
-
-            imgStr=imgStr.substring(start);
-
-        BASE64Decoder decoder = new BASE64Decoder();
+        /*int start = imgStr.indexOf(',') + 1;
+            imgStr=imgStr.substring(start);*/
+        //BASE64Decoder decoder = new BASE64Decoder();
         try {
             // Base64解码
-            byte[] bytes = decoder.decodeBuffer(imgStr);
+            byte[] bytes = Base64.decode(base64Process(imgStr));
+            //byte[] bytes = decoder.decodeBuffer(imgStr);
             for (int i = 0; i < bytes.length; ++i) {
                 if (bytes[i] < 0) {// 调整异常数据
                     bytes[i] += 256;
@@ -418,7 +424,7 @@ public class FaceController {
     @ResponseBody
     public Result<FaceSearchResDto> faceSearch(HttpServletRequest request,String ztype,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session,Model model) throws Exception {
 
-        //System.out.println(ip+ztype+file+groupId);
+        System.out.println(ip+","+ztype+","+groupId);
 
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
@@ -429,11 +435,13 @@ public class FaceController {
         ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);
         //人脸特征获取
         byte[] bytes = faceEngineService.extractFaceFeature(imageInfo);
+
         if (bytes == null) {
             return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);//没检测到人脸数据
         }
         //人脸比对，获取比对结果
         List<FaceUserInfo> userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);
+        System.out.println("符合条件的人脸"+userFaceInfoList.size());
         if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
             FaceUserInfo faceUserInfo = userFaceInfoList.get(0);
             //获取目标文件路径以备上传照片使用
@@ -478,7 +486,7 @@ public class FaceController {
             //System.out.println(faceid);
             // System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
-            //System.out.println(zstudent);
+            System.out.println(zstudent);
 
             if(zstudent==null) return Results.newFailedResult(ErrorCodeEnum.NO_STUDENT_FACEID);
             //学生登陆信息
@@ -566,7 +574,7 @@ public class FaceController {
                 Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
                 //替换“\”为“/”否则存不到Cookie中
                 String path1 =fpath.replace("\\","/");
-                String path =path1.substring(35);
+                String path =path1.substring(36);
                 //输出看是否有空格
                 Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值
                 name.setMaxAge(86400);
@@ -705,6 +713,9 @@ public class FaceController {
                 int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
                 //教师信息、课程信息和实训室信息
                 Zteacher_cookie zteacher_cookie=zteacher_cookieSerice.findbyfaceid(faceid);
+                if(null==zteacher_cookie){
+                    return Results.newFailedResult(ErrorCodeEnum.NO_IS_TEACHER);
+                }
                 session.setAttribute("zteacher_cookie",zteacher_cookie);
                 System.out.println(session.getAttribute("zteacher_cookie"));
 
@@ -724,7 +735,7 @@ public class FaceController {
                 Cookie faceId=new Cookie("faceId",faceSearchResDto.getFaceId());
                 //替换“\”为“/”否则存不到Cookie中
                 String path1 =fpath.replace("\\","/");
-                String path =path1.substring(35);
+                String path =path1.substring(36);
 
                 //输出看是否有空格
                 Cookie aimPath1 = new Cookie("path",path);//设置路径在cookie中的值

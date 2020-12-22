@@ -193,7 +193,7 @@ public class QbankController {
         Map<String, Object> safetest=new HashMap<>();
         safetest.put("cbank",cbank);
         safetest.put("jbank",jbank);
-        //System.out.println(data2);
+        System.out.println(data2);
 
         int q=ztesting_inputService.addtestinput(data2);
        // System.out.println(q);
@@ -351,7 +351,8 @@ public class QbankController {
     @RequestMapping(value = "/teacher")
     public String teacher(){return "TeacherLogin";}
 
-
+    @RequestMapping(value = "/teacher_LoginTest")
+    public String teacher_LoginTest(){return "teacher_LoginTest";}
     /**
      * 查十个题目，备用
      * @param response

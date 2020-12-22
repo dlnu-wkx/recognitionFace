@@ -136,45 +136,39 @@
             var formData = new FormData();
             formData.append("file", base64);
             formData.append("groupId", "101");
-            //操作系统
-            formData.append("ztype", "windows");
+           /* //操作系统
+            formData.append("ztype", "windows");*/
             //ip地址
             formData.append("ip", ip);
 
             //alert(formData);
             $.ajax({
                 type: "post",
-                url: "/faceSearch",
+                url: "/faceTeacherSearch",
                 data: formData,
                 contentType: false,
                 processData: false,
                 async: false,
                 success: function (text) {
-                   // alert(1)
+                    // alert(1)
                     var res = JSON.stringify(text)
 
                     if (text.code == 0) {
-                        location.href = "/login";
+                        location.href = "/teacherlogin";
                     } else {
-                        if (text.code == 16) {
-                            alert("人脸信息表（user_face_info表）里没有地址信息");
-                        } else if (text.code == 17) {
-                            alert("学生表（zstudent表）里没有人脸id(faceid),请添加人脸信息");
-                        } else if (text.code == 18) {
-                            alert("设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)");
-                        } else if (text.code == 19) {
-                            alert("设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)");
-                        } else if (text.code == 23) {
-                            alert("学生上课表(zstudent_schedule)没有该名学生的信息");
-                        } else {
-                            alert(text.code)
+                        if(text.code==14){
+                            alert("14未检出到人脸")
                         }
-
+                        if(text.code==24){
+                            alert(text.message)
+                        }
+                          if (text.code==15) {
+                            alert(text.message)
+                          }
                     }
 
                 },
                 error: function (error) {
-                    //alert(0)
                     alert(JSON.stringify(error))
                 }
             });

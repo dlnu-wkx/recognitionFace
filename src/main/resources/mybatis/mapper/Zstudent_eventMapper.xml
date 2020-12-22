@@ -41,9 +41,8 @@
 
 
     <select id="findRaiseHandByFacility" resultType="com.itboyst.facedemo.dto.Zstudent_event">
-     select max(a.zapplicationtime),a.zid,a.zstudentID,a.ztype,a.zstatus,a.zcontent,a.zhandletime
-     FROM zstudent_event a,(SELECT zstudentID,max(zrecognizetime) FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid})) c
-     WHERE zstatus ="申请中" AND (TIME_TO_SEC(NOW())- TIME_TO_SEC(zapplicationtime)>0) AND a.zstudentID=c.zstudentID and date(zapplicationtime) = curdate()
-
-    </select>
+    select max(a.zapplicationtime),a.zid,a.zstudentID,a.ztype,a.zstatus,a.zcontent,a.zhandletime
+    FROM zstudent_event a,(select * from (SELECT zstudentID,zrecognizetime FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid}) ORDER BY zrecognizetime desc)c LIMIT 1)b
+    WHERE zstatus ='申请中' AND (TIME_TO_SEC(NOW())- TIME_TO_SEC(zapplicationtime)>0) AND a.zstudentID=b.zstudentID and date(zapplicationtime) = curdate()
+     </select>
 </mapper>

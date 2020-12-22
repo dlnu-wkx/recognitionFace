@@ -13,7 +13,7 @@ public class Ztraining_cameraServiceImpl implements Ztraining_cameraService {
     @Autowired
     Ztraining_cameraMapper ztraining_cameraMapper;
     @Override
-    public List<Ztraining_camera> findAllByZtrainingroomID(String ZtrainingroomID) {
-        return ztraining_cameraMapper.findAllByZtrainingroomID(ZtrainingroomID);
+    public List<Ztraining_camera> findAllByZtrainingroomID(String ZtrainingroomID,String type) {
+        return ztraining_cameraMapper.findAllByZtrainingroomID(ZtrainingroomID,type);
     }
 }

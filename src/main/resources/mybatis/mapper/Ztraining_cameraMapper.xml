@@ -5,7 +5,7 @@
 
     <select id="findAllByZtrainingroomID" resultType="com.itboyst.facedemo.dto.Ztraining_camera">
 
-        select * from ztraining_camera where ztrainingroomID=#{ZtrainingroomID}
+        select * from ztraining_camera where ztrainingroomID=#{ZtrainingroomID} and ztitle=#{type}
 
     </select>
 

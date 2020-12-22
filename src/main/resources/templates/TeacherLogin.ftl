@@ -171,7 +171,7 @@
                         $("#ageDiv").html("");
                         $("#genderDiv").html("");
 
-                        showTips("人脸不匹配");
+                        showTips(text.message);
                     }
 
                 },

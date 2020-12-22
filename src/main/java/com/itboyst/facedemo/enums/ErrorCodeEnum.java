@@ -30,7 +30,7 @@ public enum ErrorCodeEnum {
     FAIL_UPDATE_TEACHER(21,"更新教师信息失败"),
     FAIL_UPDATE_MANAGER(22,"更新管理员信息失败"),
     NO_STUDENTSCHDULE_MESSAGE(23,"学生上课表没有该名学生的信息"),
-
+    NO_IS_TEACHER(24,"请确认您的老师身份或者您还没有添加课程信息"),
 
     INVALID_APP_ID(28673, "无效的AppId"),
     INVALID_SDK_ID(28674, "无效的SdkKey"),

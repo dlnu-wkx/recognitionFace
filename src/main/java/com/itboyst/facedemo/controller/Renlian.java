@@ -138,11 +138,11 @@ public class Renlian extends SelectorComposer<Component> {
             // 判断是否连接成功，未成功后面发送消息时会报错
             if (!myClient.getReadyState().equals(ReadyState.OPEN)) {
                 System.out.println("连接中···请稍后");
-                try {
-                    Thread.sleep(3000);
+              /*  try {
+                   // Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
             myClient.send("MyClient");
             System.out.println("发送成功");

@@ -16,8 +16,8 @@
 <body  class="body" >
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >实时状态</font></div>
-    <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
+    <div class="leftfont">实时状态</div>
+    <div class="rightfont">安浩智能学习工厂</div>
 </div>
 
 
@@ -33,7 +33,7 @@
     <br><br>
     <button onclick="informationService()" class="p_button3">信息查询</button>
     <br><br>
-    <button class="p_button4">实时状态</button>
+    <button class="t_button4">实时状态</button>
     <br><br>
     <button onclick="informationDelivery()" class="p_button3">信息发布</button>
     <br><br>
@@ -177,7 +177,9 @@
 <script>
     //弹框
     window.onload=showStudentStatus();
-
+        var times=setInterval(function(){
+        showStudentStatus()
+    }, 5000)
 
 
 
@@ -192,7 +194,6 @@
 
     //学生实时视频
     function diagram(id) {
-        alert(id)
         findRaiseHand(id);
         findStudentName(id);
         presentProgess(id);

@@ -257,7 +257,7 @@
                     processData: false,
                     async: false,
                     success: function (text) {
-                        //alert(1)
+                        alert(1)
                         var res = JSON.stringify(text)
 
                         if (text.code == 0) {

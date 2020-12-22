@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.zkoss.zhtml.S;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -147,5 +148,17 @@ public class ZcommandController {
         return zteacher_commandService.insertcommand(zteacher_command);
     }
 
+
+    @RequestMapping("/delCheckPoint")
+    @ResponseBody
+    public void delCheckPoint(HttpSession session){
+        Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String ztrainingroomid =zteacher_cookie.getZtrainingroomid();
+        //通过查岗和所在的房间id对所有的查岗进行更新
+        int a =zteacher_commandService.updateCommandByroomandZtype("查岗",ztrainingroomid);
+        //插入一条最新的更新
+
+
+    }
 
 }

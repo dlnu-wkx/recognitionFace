@@ -1,17 +1,18 @@
 
 .t_button1{
-    background-color: #4472C4;
+     /*#4472C4*/
+    background-color: #A5A5A5;
     border: none;
     color: white;
     padding: 15px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 19px;
+    /*font-size: 19px;*/
     /*圆角控制器*/
     /* border-radius: 10px; */
-    height: 12%;
-    width: 6%;
+    height: 14%;
+    width: 10%;
     position: absolute;
 }
 
@@ -26,7 +27,7 @@
     font-size: 19px;
     /*圆角控制器*/
     /* border-radius: 10px; */
-    height: 7%;
+    height: 10%;
     width: 24%;
     position: absolute;
 }
@@ -56,13 +57,13 @@
 }
 
 .t_message{
-    height: 80%;
-    width: 80%;
-    background-color: #D9E3F2;
-    position: fixed;
-    left: 10%;
-    top: 10%;
-    z-index: 3;
+    height: 20%;
+    width: 200%;
+    /*background-color: #D9E3F2;*/
+    left: -30%;
+    top: -15%;
+    /*z-index: 3;*/
+    position: relative;
 }
 .t_hiddenArea{
     position: absolute;
@@ -78,31 +79,45 @@
 
 
 .t_button2{
-    left: 15%;
-    top: 1%;
+   /* left: 15%;*/
+    left: 10%;
+    top: 18%;
     position: absolute;
-    background-color: #ED7D31;
+    background-color: #808080;
     border-radius: 50%;
-    height: 5%;
-    width: 2.8125%;
+    height: 100%;
+    width: 7.8125%;
 }
 
 .t_id{
-    height: 5%;
-    left: 25%;
-    width: 10%;
+    height: 100%;
+    left: 20%;
+    width: 20%;
     position: absolute;
     background-color: #4472C4;
-    top: 1%;
+    top: 10%;
+    font-size: 13px;
+    border: 1px #447302 solid;
 }
 
 .t_name{
-    right: 15%;
-    height: 5%;
-    width: 20%;
+    right: 30%;
+    height: 100%;
+    width: 25%;
     position: absolute;
     background-color:#4472C4 ;
-    top: 1%;
+    top: 10%;
+    font-size: 13px;
+    border: 1px #447302 solid;
+}
+
+.t_student1{
+    background-color: #4472C4;
+    width: 118%;
+    height: 74%;
+    left: -9%;
+    position: relative;
+    top:-7%;
 }
 
 
@@ -133,11 +148,12 @@
 }
 
 .t_staets{
-    height: 5%;
-    width: 40%;
+    height: 15%;
+    width: 90%;
     position: absolute;
-    top: 85%;
-    left: 30%;
+    top: 79%;
+    left: 3%;
+    border: 1px #ED7D31 solid;
 }
 
 
@@ -156,4 +172,19 @@
     height: 8%;
     width: 8%;
     left: 45%;
+}
+.t_button4{
+    background-color:  #ED7D31;
+    border: none;
+    color: white;
+    /*padding: 10px 10px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 27px;
+    border-radius: 14px;
+    height: 80px;
+    width: 80px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }

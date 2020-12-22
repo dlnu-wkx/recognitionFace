@@ -1,6 +1,6 @@
 .delivery_sbox{
     bottom: 0%;
-    background-color: #4472C4;
+    background-color: #70A747;
     height: 70%;
     width: 80%;
     position: absolute;
@@ -11,12 +11,12 @@
 
 .delivery_unpowerbox{
     bottom: 0%;
-    background-color: #C8C8C8;
+    background-color: #A5A5A5;
     height: 70%;
     width: 80%;
     position: absolute;
     border-style:solid;
-    border-color: #0a0b0b;
+    border: 3px #0a0b0b solid;
 }
 
 .i_time{
@@ -24,24 +24,17 @@
     width: 25px;
 }
 
+.delivery_quanxuan{
+    width: 36%;
+    height: 70%;
+    margin: 0%;
+}
 
 .d_button1{
-    background-color:  #4472C4;
-    border:1px;
-    color: white;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 10px;
     position: absolute;
-    bottom: 0%;
     height: 15%;
     width: 8%;
     right: 2%;
-    top: 2%;
-    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
 
 .d_popup{

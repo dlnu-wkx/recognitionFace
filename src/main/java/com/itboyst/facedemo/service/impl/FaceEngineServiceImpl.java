@@ -228,6 +228,17 @@ public class FaceEngineServiceImpl implements FaceEngineService {
         return resultFaceInfoList;
     }
 
+    private static String bytes2HexString(byte[] b) {
+        String ret = "";
+        for (int i = 0; i < b.length; i++) {
+            String hex = Integer.toHexString(b[i] & 0xFF);
+            if (hex.length() == 1) {
+                hex = "0" + hex;
+            }
+            ret += hex;
+        }
+        return ret;
+    }
 
     private class CompareFaceTask implements Callable<List<FaceUserInfo>> {
 
@@ -239,6 +250,7 @@ public class FaceEngineServiceImpl implements FaceEngineService {
             this.faceUserInfoList = faceUserInfoList;
             this.targetFaceFeature = targetFaceFeature;
         }
+
 
         @Override
         public List<FaceUserInfo> call() throws Exception {
@@ -252,6 +264,7 @@ public class FaceEngineServiceImpl implements FaceEngineService {
                     FaceSimilar faceSimilar = new FaceSimilar();
                     faceEngine.compareFaceFeature(targetFaceFeature, sourceFaceFeature, faceSimilar);
                     Integer similarValue = plusHundred(faceSimilar.getScore());//获取相似值
+                    System.err.println("similarValue："+similarValue+"  id :"+faceUserInfo.getName());
                     if (similarValue > passRate) {//相似值大于配置预期，加入到识别到人脸的列表
                         FaceUserInfo info = new FaceUserInfo();
                         info.setName(faceUserInfo.getName());

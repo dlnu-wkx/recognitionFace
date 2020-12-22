@@ -141,24 +141,35 @@
                     </table>-->
                 </div>
             </div>
-            <div>
+            <#--人脸识别时显示的开始和结束按钮-->
+            <div id="openAndstart"style="display: none">
                 <div style="float:left;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:left;width: 50%">
-                    <button onclick="OpenOrCloseTimer(this.value)" value="1" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
+                    <button id="startID" onclick="OpenOTimer(this.value)" value="1" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
                 </div>
                 <div style="text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:right;width: 50%">
-                    <button onclick="OpenOrCloseTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
+                    <button id="endID"onclick="CloseTimer(this.value)" value="1" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
                 </div>
             </div>
+            <#--查岗时候显示的开始和结束按钮-->
+            <div id="openAndstart2"style="display: none">
+                <div style="float:left;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:left;width: 50%">
+                    <button id="startID2" onclick="OpenOTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
+                </div>
+                <div style="text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:right;width: 50%">
+                    <button id="endID2"onclick="CloseTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
+                </div>
+            </div>
+
         </div>
         <#--右边功能按钮-->
         <div class="layui-col-xs1" align="right" style="height:100%;width: 9%;border-left: 1px solid #c2c2c2;">
             <div>
-                <button id='colorType'   style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                <button id='colorType'  onclick="fieldManagement()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
                     现场管理
                 </button>
             </div>
             <div>
-                <button onclick="informationService()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+                <button onclick="informationService()"  style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
                     信息查询
                 </button>
             </div>
@@ -209,10 +220,13 @@
 
        /* var b =$("#zcameraIP"+e).val();
         alert(b)*/
-        document.getElementById("threeMenu").style.display="none";
 
+        document.getElementById("threeMenu").style.display="none";
+        //摄像头下面的显示的五个人
         document.getElementById("fourMenu").style.display="block";
+        //显示开始和结束按钮
         document.getElementById("fourMenu1").style.display="block";
+        document.getElementById("openAndstart").style.display="block";
         getMedia();
 
         $("#left").hide();
@@ -221,11 +235,13 @@
     }
     //数控铣讨论区显示每台机的人脸识别情况
     function studentShow1(e){
-
-        insertCheckPoint();
         document.getElementById("checkPointMenu").style.display="none";
+        //摄像头下面显示的五个人
         document.getElementById("fourMenu").style.display="block";
+        //显示开始结束按钮
         document.getElementById("fourMenu1").style.display="block";
+        document.getElementById("openAndstart2").style.display="block";
+
         getMedia();
         $("#left").hide();
         $("#middle").hide();
@@ -303,7 +319,9 @@
         location.href="/power_controller";
     }
 
-
+    function fieldManagement() {
+        location.href="/field_management";
+    }
 
 
 </script>

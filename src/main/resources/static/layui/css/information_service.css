@@ -1,10 +1,10 @@
 .i_center{
-    left: 0%;
-    top: 6.7%;
+    left: 0.6%;
+    top: 8.4%;
     width: 90%;
     height: 93%;
     position: fixed;
-
+    background-color: #CDCDCD;
 }
 .i_text{
     border:0.5px solid #ED7D31;
