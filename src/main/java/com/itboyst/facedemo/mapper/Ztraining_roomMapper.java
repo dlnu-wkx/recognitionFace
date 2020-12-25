@@ -10,4 +10,7 @@ public interface Ztraining_roomMapper {
         public ztraining_room findbyrid(String ztrainingroomID);
 
         public List<ztraining_room> findallztrainroom();
+
+        String findztrainroomNamebyfacilityID(String cameraID);
+
 }

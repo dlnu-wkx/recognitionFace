@@ -37,6 +37,10 @@ public class TimeStatusController {
 
     @Autowired
     Ztraining_cameraService ztraining_cameraService;
+
+    @Autowired
+    Ztraining_roomService ztraining_roomService;
+
     /**
      * 根据老师的教室查找该教室所有的机床
      * 魏凯旋 2020-11-16
@@ -166,7 +170,10 @@ public class TimeStatusController {
                 }
             });
         }
-
+        for(Ztraining_camera b:ztrainingCameraList){
+            String name =ztraining_roomService.findztrainroomNamebyfacilityID(b.getZid());
+            b.setZtrainingroomID(name);
+        }
 
         return ztrainingCameraList;
     }

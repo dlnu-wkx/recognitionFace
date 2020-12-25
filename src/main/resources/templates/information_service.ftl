@@ -34,7 +34,7 @@
     <br><br>
     <button onclick="informationDelivery()"class="p_button3">信息发布</button>
     <br><br>
-    <button class="p_button3" onclick="powerController()">退出</button>
+    <button class="p_button3" id="exit" onclick="outpower()">退出</button>
 
 </div>
 
@@ -79,7 +79,16 @@
 
     function lockscreen() {
         $("#parent").show()
+        $("#popup").hide();
+        $("#exit").css('background-color','#FFC000');
+        $("#exit").text('解锁');
+        $("#exit").attr("onclick","removescreer();");
     }
+    function removescreer(){
+        $("#parent").hide();
+        $("#exit").css('background-color','#4472c4');
+    }
+
     //信息发布
     function informationDelivery() {
         location.href="/information_delivery";

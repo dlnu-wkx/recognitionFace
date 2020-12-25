@@ -6,10 +6,12 @@
         <id column="zid" property="zstudentID" javaType="java.lang.String"/>
         <result column="zname" property="zstudentName" javaType="java.lang.String"/>
         <result column="grade_name" property="zgradeName" javaType="java.lang.String"/>
+        <result column="zrecognizetime" property="zrecognizetime"/>
+
     </resultMap>
     <select id="findStudentByDateAndTrainingId" resultMap="inspectSitStudent" resultType="com.itboyst.facedemo.dto.InspectSitStudent">
         select * from (select c.zrecognizetime,d.zid,d.zname,f.zname grade_name from zstudent_login c,zstudent_schedule a,zschedule b ,zstudent d,zgrade f
-                                                               where d.zgradeID=f.zid and b.zid=a.zscheduleID and b.ztrainingroomID=#{ztrainingroomID} and d.zid=c.zstudentID and c.zstudentID=a.zstudentID  and c.zrecognizetime BETWEEN #{timestamp} and NOW()) m
+                                                               where d.zgradeID=f.zid and b.zid=a.zscheduleID and b.ztrainingroomID=#{ztrainingroomID} and d.zid=c.zstudentID and c.zstudentID=a.zstudentID  and c.zrecognizetime BETWEEN '2020-11-01' and NOW()) m
                                                                ORDER BY m.zrecognizetime DESC
 
     </select>

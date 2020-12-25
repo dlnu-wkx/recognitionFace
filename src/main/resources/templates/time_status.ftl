@@ -42,7 +42,7 @@
 
 <!--机床信息示意-->
 <div id="center" class="i_center" >
-    <table class="t_table">
+   <#-- <table class="t_table">
         <tr>
             <th>
                <button class="t_button1" id="1" onclick="diagram(1)">机床示意</button>
@@ -135,8 +135,8 @@
                 <button class="t_button1">机床示意</button>
             </th>
         </tr>
-    </table>
-    <input type="text" class="t_text">
+    </table>-->
+   <#-- <input type="text" class="t_text">-->
 
 </div>
 <div class ="t_hiddenArea" id="hiddenArea">
@@ -177,9 +177,9 @@
 <script>
     //弹框
     window.onload=showStudentStatus();
-        var times=setInterval(function(){
+       /* var times=setInterval(function(){
         showStudentStatus()
-    }, 5000)
+    }, 5000)*/
 
 
 

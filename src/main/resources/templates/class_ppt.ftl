@@ -343,7 +343,7 @@
         /*getcommand();*/
         //循环查找老师的命令
         window.setInterval(function () {
-         //   getcommand();
+            getcommand();
         }, 8000);
     }
 

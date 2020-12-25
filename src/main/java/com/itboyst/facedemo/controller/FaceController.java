@@ -602,7 +602,7 @@ public class FaceController {
      */
     @RequestMapping(value = "/faceFind", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceFind( String file, Integer groupId, HttpSession session) throws Exception {
+    public Result<FaceSearchResDto> faceFind( String file, Integer groupId, HttpSession session,HttpServletRequest request) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -651,6 +651,21 @@ public class FaceController {
             zstudent=zstuservice.findadoptstudent(faceid);
             Zstudent presentZstudent=(Zstudent)session.getAttribute("zstudent");
             if(presentZstudent.getZidentity().equals(zstudent.getZidentity())){
+                Zstudent_login zsl = new Zstudent_login();
+                String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
+                zsl.setZid(uuid2);
+                zsl.setZstudentID(presentZstudent.getZid());
+                Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+                zsl.setZrecongnizetime(timestamp);
+                String ip4=Iputil.getClientIpAddress(request);
+                zsl.setZtype("机床");
+                System.out.println(ip4);
+                //System.out.println(ip2);
+                zsl.setZcheck("实操");
+                zsl.setZrecognizeIP(ip4);
+                //插入学生登陆信息
+                int  i=zstudent_loginService.updateloginmessage(zsl);
+
                 return Results.newSuccessResult(faceSearchResDto);
             }
             System.out.println("测试是不是一直都在循环找寻人脸");

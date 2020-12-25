@@ -33,6 +33,9 @@ public class Ztraining_roomController {
     @Autowired
     TimeStatusStudentService timeStatusStudentService;
 
+
+
+
     @RequestMapping("/findalltrainroom")
     @ResponseBody
     public List<ztraining_room> findalltrainroom(){

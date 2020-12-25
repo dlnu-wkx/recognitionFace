@@ -2,12 +2,14 @@ package com.itboyst.facedemo.dto;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class InspectSitStudent {
     private String zstudentID;
     private String zstudentName;
     private String zgradeName;
-
+    private Timestamp zrecognizetime;
    /* public String getZstudentID() {
         return zstudentID;
     }

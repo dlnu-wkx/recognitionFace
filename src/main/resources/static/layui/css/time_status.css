@@ -24,11 +24,11 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 19px;
+    font-size: 20px;
     /*圆角控制器*/
     /* border-radius: 10px; */
-    height: 10%;
-    width: 24%;
+    height: 12%;
+    width: 21%;
     position: absolute;
 }
 
@@ -42,9 +42,9 @@
 }
 .f_table{
     left: -8%;
-    top: 15%;
+    top: 4%;
     right: 2%;
-    height: 50%;
+    height: 27%;
     width: 90%;
     position: absolute;
 }
@@ -112,7 +112,7 @@
 }
 
 .t_student1{
-    background-color: #4472C4;
+   /* background-color: #4472C4;*/
     width: 118%;
     height: 74%;
     left: -9%;

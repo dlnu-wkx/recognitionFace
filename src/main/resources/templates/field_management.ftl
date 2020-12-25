@@ -6,6 +6,7 @@
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
+    <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
     <script type="text/javascript" src="./layui/js/common.js "></script>
@@ -105,7 +106,7 @@
         <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
             <div id="mainDiv"></div>
             <#--这个地方到时候要循环遍历出来拼接字符串-->
-            <div id="identifyAreas"style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red">
+            <div id="identifyAreas"style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red;overflow: auto">
                 <#--<div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">李四  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">王二  机电19班</div>
@@ -184,14 +185,52 @@
                 </button>
             </div>
             <div>
-                <button onclick="powerController()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:70px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
+                <button id="exit" onclick="outpower()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:70px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px;left:20%;position:absolute;z-index:10;">
                     退出系统
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<!--弹框-->
+<div hidden class="popup" id="popup" align="center">
+    <br><br>
+    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
+    <font size="3">弹窗</font><br>
+    <button class="p_button2" onclick="overclass()">下课</button>
+</div>
+
+<!--蒙版-->
+<div id="parent" class="parent" hidden></div>
+
+
 <script>
+
+    //退出
+    function outpower(){
+        $("#popup").show()
+    }
+
+    function lockscreen() {
+        //蒙版出现
+        $("#parent").show();
+        //弹框消失
+        $("#popup").hide();
+        //按键文字改变，颜色改变，方法改变
+        $("#exit").css('background-color','#FFC000');
+        $("#exit").text('解锁');
+        $("#exit").attr("onclick","removescreer();");
+
+    }
+
+    function removescreer(){
+        $("#parent").hide();
+        $("#exit").text('退出系统');
+        $("#exit").css('background-color','#4472c4');
+        $("#exit").attr("onclick","outpower();");
+    }
+
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;

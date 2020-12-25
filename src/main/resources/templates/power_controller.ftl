@@ -48,7 +48,7 @@
 </div>
 <!--右侧按键-->
 <div class="p_right" align="center">
-    <button onclick="fieldManagement()" class="p_button3">现场管理</button>
+    <button onclick="fieldManagement()" class="p_button4">现场管理</button>
 <br><br>
     <button onclick="informationService()" class="p_button3">信息查询</button>
 <br><br>
@@ -58,7 +58,7 @@
     <br><br>
 </div>
 <div class="outdiv">
-    <button class="p_button4" id="p_button4" onclick="outpower()">退出</button></div>
+    <button class="p_button3" id="p_button4" onclick="outpower()">退出</button></div>
 
 
 <!--下方按键及内容-->

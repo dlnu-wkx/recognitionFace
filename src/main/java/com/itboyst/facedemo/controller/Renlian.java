@@ -61,6 +61,7 @@ public class Renlian extends SelectorComposer<Component> {
     @Listen("onCreate = #renlianwin")
     public void renlianwinCreate() {
         try {
+
             myClient = new WebSocketClient(new URI(url)) {
 
                 @Override

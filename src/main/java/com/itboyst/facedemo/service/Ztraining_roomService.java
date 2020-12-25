@@ -10,4 +10,6 @@ public interface Ztraining_roomService {
     public ztraining_room findbyip(String zid);
 
     public List<ztraining_room> findallztrainroom();
+
+    String findztrainroomNamebyfacilityID(String cameraID);
 }

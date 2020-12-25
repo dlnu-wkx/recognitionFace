@@ -22,7 +22,10 @@
           SELECT * FROM ztraining_room ;
     </select>
 
-
+    <select id="findztrainroomNamebyfacilityID"  resultType="java.lang.String">
+          SELECT b.zname from ztraining_camera a,ztraining_room  b
+         WHERE a.ztrainingroomID =b.zid   and a.zid=#{cameraID}
+    </select>
 
 
 
