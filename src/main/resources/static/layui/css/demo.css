@@ -2,10 +2,11 @@
 特定类
  */
 .pagesnumber{
-    bottom: 4%;
-    left: 49%;
+    top: 12%;
+    right: 18%;
     position: fixed;
 }
+
 
 
 
@@ -237,12 +238,38 @@
 }
 
 
+.sbutton{
+    background-color: #4472C4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    bottom: 0%;
+    right: 55%;
+    position: absolute;
+    height: 80%;
+    width: 10%;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
+}
+
+
+/*按键动态*/
+.sbutton:active {
+    box-shadow: 0px 2px 0px rgba(0,0,0,.2);
+    top:0.5px;
+}
+
 
 .button4{
     background-color: #4472C4;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 28px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -298,10 +325,43 @@
     position: fixed;
 }
 
-.choose {
+.t_choose1 {
     width: 30px;
     height: 30px;
+    left: 0%;
+    top: 1%;
+    position: absolute;
 }
+.t_choose2 {
+    width: 30px;
+    height: 30px;
+    top: 26%;
+    left: 0%;
+    position: absolute;
+}
+.t_choose3 {
+    width: 30px;
+    height: 30px;
+    top: 51%;
+    left: 0%;
+    position: absolute;
+}
+.t_choose4 {
+    width: 30px;
+    height: 30px;
+    top: 76%;
+    left: 0%;
+    position: absolute;
+}
+.t_choose5 {
+    width: 30px;
+    height: 30px;
+    top: 53%;
+    left: 0%;
+    position: absolute;
+}
+
+
 /*
 .choose:checked:after {
 
@@ -395,9 +455,9 @@
 .co_mes{
     top: 25%;
     position: absolute;
-    height: 30%;
-    width: 80%;
-    left: 10%;
+    height: 20%;
+    width: 50%;
+    left: 30%;
     border-radius: 10%;
 }
 

@@ -30,7 +30,13 @@
 <!--请假弹框-->
 <div class="co_leavemes" hidden id="co_leavemes" align="center">
     <font size="5">请假原因</font>
-    <textarea type="text" class="co_mes" id="co_mes"></textarea>
+    <#--<textarea type="text" class="co_mes" id="co_mes"></textarea>-->
+    <select id="co_mes" class="co_mes">
+        <option value ="事假">事假</option>
+        <option value ="病假">病假</option>
+        <option value="卫生间">卫生间</option>
+        <option value="其它">其它</option>
+    </select>
     <button class="co_button" onclick="common_leave()">确认</button>
 </div>
 

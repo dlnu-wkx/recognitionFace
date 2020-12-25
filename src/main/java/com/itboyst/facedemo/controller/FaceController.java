@@ -479,6 +479,7 @@ public class FaceController {
             if (faceUserInfo.getPath()==null)
                 return Results.newFailedResult(ErrorCodeEnum.NO_FACE_PATH);
 
+            session.setAttribute("faceUserInfo",faceUserInfo);
 
             int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
             //判定int类型为空,设备表出问题返回1
@@ -517,7 +518,7 @@ public class FaceController {
             String ip4=Iputil.getClientIpAddress(request);
             //System.out.println(ip3);
 
-            System.out.println(ip4);
+           // System.out.println(ip4);
 
             //System.out.println(ip2);
             zsl.setZcheck("实操");
@@ -538,7 +539,7 @@ public class FaceController {
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);
 
-
+            System.out.println(ztr);
 
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
@@ -547,7 +548,7 @@ public class FaceController {
             if (zsc==null)return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
 
             session.setAttribute("zstudent_cookie",zsc);
-            System.out.println(session.getAttribute("zstudent_cookie"));
+           // System.out.println(session.getAttribute("zstudent_cookie"));
 
             Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 

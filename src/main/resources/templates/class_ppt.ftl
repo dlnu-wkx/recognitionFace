@@ -49,7 +49,13 @@
 <!--请假弹框-->
 <div class="co_leavemes" hidden id="co_leavemes" align="center">
     <font size="5">请假原因</font>
-    <textarea type="text" class="co_mes" id="co_mes"></textarea>
+    <#--<textarea type="text" class="co_mes" id="co_mes"></textarea>-->
+    <select id="co_mes" class="co_mes">
+        <option value ="事假">事假</option>
+        <option value ="病假">病假</option>
+        <option value="卫生间">卫生间</option>
+        <option value="其它">其它</option>
+    </select>
     <button class="co_button" onclick="common_leave()">确认</button>
 </div>
 
@@ -66,16 +72,14 @@
     </div>
 
     <div class="right3">
-        <button class="button5">退出系统</button>
+        <button class="button5" onclick="leaveclass()">退出系统</button>
     </div>
 </div>
 
 
 <!--中间题目主体部分-->
 <div class="center" id="cp_content" style="background-color: white;z-index:-1;">
-        <div>
-            <font size="7">请点击左侧实训标题，此处将显示实训内容</font>
-        </div>
+
 </div>
 
 
@@ -152,9 +156,9 @@
 
         //如果这个任务只有一页
         if(last_page==1){
-            //下一页按键变提交按键，并加载提交按键方法
-            $("#nextpage").attr("onclick","sumbmitpages()");
-            $("#nextpage").text('交卷');
+            //下一面变灰，并移除下一页方法
+            $("#nextpage").css("background-color","#A5A5A5");
+            $("#nextpage").removeAttr("onclick");
 
         }else {
             //除了上述特殊情况外，正常加载下一页方法及颜色
@@ -219,12 +223,9 @@
                     }else if(data.ztype=="评分表"){
                         var zcontent = data.zcontent;
                         var content = zcontent.split(";");
+                        content[0]=content[0].substr(43);
                         var  arr = content[1].split(",");
 
-                        /*alert(zcontent);
-                        alert(content[0]);
-                        alert(content[1]);
-                        alert(arr);*/
 
                         str+=" <div class='left_table2'><img src='"+content[0]+"'  alt='测试用' class='right_message' /></div>"
                         str+=" <div class='reight_mes2'>"
@@ -266,12 +267,10 @@
                     }else if(data.ztype=="评分表"){
                         var zcontent = data.zcontent;
                         var content = zcontent.split(";");
+                        content[0]=content[0].substr(43);
                         var  arr = content[1].split(",");
+                       // alert(content[0]);
 
-                        /*alert(zcontent);
-                        alert(content[0]);
-                        alert(content[1]);
-                        alert(arr);*/
 
                         str+=" <div class='left_table2'><img src='"+content[0]+"'  alt='测试用' class='right_message' /></div>"
                         str+=" <div class='reight_mes2'>"
@@ -348,7 +347,21 @@
     }
 
     function welcome() {
+        var cp_content=$("#cp_content")
+        var str="";
+        $.ajax({
+            type: "post",
+            url: "/getnameandpath",
+            data: {},
+            success: function (data) {
+                // alert(data)
+                var content=data.path.substr(35);
 
+                str+=" <div><img src='"+content+"' class='c_centerimg'>"
+                str+="<font class='c_centerfont' size='5'>欢迎"+data.name+"同学进入实训,请点击左侧实训任务,开始实训。</font></div>"
+                cp_content.html(str);
+            }
+        });
     }
 
 
@@ -368,7 +381,6 @@
             success: function (data){
                 for(var i=0;i<data.length;i++){
                     str+="<button onclick='loadcontentbypages2(\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
-
                 }
             }
         });
@@ -383,10 +395,8 @@
                 for(var i=0;i<data.length;i++){
                     str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
                 }
-
             }
         });
-
         leftbutton.html(str)
     }
     
@@ -394,7 +404,7 @@
         //上一页方法
         function lastpage() {
         //如果是数据测量的表，将插入学生输入的测量数据
-        if(static_ztype=="数据测量"){
+        if(static_ztype=="评分表"){
 
         for(var i=0;i<static_assessnum;i++){
             //对每个传过来的字符串去空格
@@ -414,7 +424,6 @@
                 zselfcheck[i]=removenull
             }
         }
-
             $.ajax({
                 type: "post",
                 url: "/inserttaskinput",
@@ -425,10 +434,7 @@
                     layer.msg("成功提交测量数据", { icon: 1, offset: "auto", time:1000 });
                 }
             });
-
-
         }
-
 
         //固定任务更新content_log时间
         if(static_kindid==1){
@@ -441,8 +447,6 @@
                 }
             });
         }
-
-
 
         //如果此时页面值为2
            if(pages==2){
@@ -459,11 +463,9 @@
                 $("#nextpage").text('下一页');
             }
 
-
             //加载上一页
             loadcontentbypages(static_taskid,static_kindid,zassign_scheduleid);
-
-            if(static_ztype=="数据测量" && zselfcheck){
+            if(static_ztype=="评分表" && zselfcheck){
                 //alert(1)
                 for (var i=0;i<zselfcheck.length;i++) {
                     $("#"+ztrainingtaskassessID[i]+"").val(zselfcheck[i]);
@@ -475,8 +477,7 @@
 
         //下一页方法
         function nextpage(){
-            if(static_ztype=="数据测量"){
-
+            if(static_ztype=="评分表"){
                 for(var i=0;i<static_assessnum;i++){
                     var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val())
                     if(!removenull){
@@ -515,9 +516,9 @@
             }
 
           if(pages==last_page-1){
+              $("#nextpage").text("结束任务")
               $("#nextpage").attr("onclick","sumbmitpages()");
-              $("#nextpage").text('交卷');
-            }
+          }
             pages++;
             //下一页到第二页，上一页按键变蓝，并加载上一页方法
             if(pages==2){
@@ -527,15 +528,12 @@
 
 
             loadcontentbypages(static_taskid,static_kindid,zassign_scheduleid);
-            if(static_ztype=="数据测量" && zselfcheck){
+            if(static_ztype=="评分表" && zselfcheck){
                 //alert(1)
                 for (var i=0;i<zselfcheck.length;i++) {
                     $("#"+ztrainingtaskassessID[i]+"").val(zselfcheck[i]);
                 }
-
             }
-
-
         }
 
 
@@ -560,7 +558,6 @@
             }else {
                 layer.msg("已提交成功", { icon: 1, offset: "auto", time:1000 });
             }
-
         }
 
 

@@ -1,7 +1,9 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.dto.FaceUserInfo;
 import com.itboyst.facedemo.dto.Zschedule;
 import com.itboyst.facedemo.dto.Zstudent;
+import com.itboyst.facedemo.dto.Zstudent_cookie;
 import com.itboyst.facedemo.service.ZstudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,5 +46,12 @@ public class ZstudentController {
         return zstudentService.findstudentnamelike(name);
     }
 
+    @RequestMapping("/getnameandpath")
+    @ResponseBody
+    public FaceUserInfo getnameandpath(HttpSession session){
+        FaceUserInfo faceUserInfo=(FaceUserInfo) session.getAttribute("faceUserInfo");
+        //System.out.println(faceUserInfo);
+        return faceUserInfo;
+    }
 
 }

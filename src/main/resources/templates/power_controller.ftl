@@ -76,7 +76,8 @@
 <!--关闭时间控制-->
 <div class="closetime" align="center">
     <font size="3">关闭电源时作用：</font><br><br>
-    <input type="checkbox" name="closetime" id="closetime"><font size="3">关闭时延时</font><input type="number" class="p_input" id="timenumber"><font size="3">分钟</font>
+    <input type="checkbox" name="closetime" id="closetime" class="p_chose1">&emsp;&emsp;&emsp;
+    <font size="3">关闭时延时</font><input type="number" class="p_input" id="timenumber"><font size="3">分钟</font>
 
 </div>
 
@@ -84,7 +85,7 @@
 <!--测试题控制-->
 <div class="p_testchose" align="center">
      <font size="3">开启电源时作用:</font><br><br>
-    &emsp;&emsp;<input type="checkbox" name="istest" id="istest">
+    &emsp;&emsp;<input type="checkbox" name="istest" id="istest" class="p_chose1">&emsp;&emsp;&emsp;
     <font>测试合格分数</font><input type="number" class="p_input" id="testcode">分
 </div>
 

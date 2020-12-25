@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 题库 </title>
+    <title> 安全测试题 </title>
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./layui/css/layui.css">
 
@@ -30,7 +30,7 @@
 
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >登陆后界面</font></div>
+    <div class="leftfont"><font size="5" >安全测试题</font></div>
     <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
 </div>
 
@@ -42,7 +42,13 @@
 <!--请假弹框-->
 <div class="co_leavemes" hidden id="co_leavemes" align="center">
     <font size="5">请假原因</font>
-    <textarea type="text" class="co_mes" id="co_mes"></textarea>
+    <#--<textarea type="text" class="co_mes" id="co_mes"></textarea>-->
+    <select id="co_mes" class="co_mes">
+        <option value ="事假">事假</option>
+        <option value ="病假">病假</option>
+        <option value="卫生间">卫生间</option>
+        <option value="其它">其它</option>
+    </select>
     <button class="co_button" onclick="common_leave()">确认</button>
 </div>
 
@@ -57,7 +63,7 @@
     </div>
 
     <div class="right3">
-        <button class="button5" onclick="outsystem()" id="outsystem">退出系统</button>
+        <button class="button5" onclick="leaveclass()" id="outsystem">退出系统</button>
     </div>
 </div>
 
@@ -75,6 +81,7 @@
 <!--翻页-->
 <div class="pages">
     <button class="button3" id="lastpage" onclick="lastpage()">上一页</button>
+    <button class="sbutton" id="submit" onclick="submit()">提交</button>
     <button class="button4" id="nextpage" onclick="nextpage()">下一页</button>
 </div>
 
@@ -128,8 +135,10 @@
         $.ajax({
             type: "post",
             url: "/findpassingcode",
+            async: false,
             success: function (data){
                 static_passingcode=data;
+                //alert(static_passingcode)
             }
         });
 
@@ -192,6 +201,7 @@
             data:{"number":static_questionnum},
             async: false,
             success: function (question) {
+                //alert(static_passingcode)
                // alert(question[0].zid)
 
                 //alert("选择题个数"+question.cbank.length)
@@ -209,11 +219,11 @@
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+w+"'>";
-                    str += " <p><input type='checkbox' class='choose' name='message' id='A"+w+"' value='A' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>A.</font><font onclick='checkquestion(\"A"+w+"\")' size='5' >" + question.cbank[w].zoptionA + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message' id='B"+w+"'    value='B' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>B.</font><font onclick='checkquestion(\"B"+w+"\")' size='5' >" + question.cbank[w].zoptionB + "</font><br><br><br>";
-                    str += " <input type='checkbox' class='choose' name='message' id='C"+w+"'   value='C'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>C.</font><font onclick='checkquestion(\"C"+w+"\")' size='5' >" + question.cbank[w].zoptionC + "</font><br><br><br>";
-                    str += " <input type='checkbox'class='choose' name='message' id='D"+w+"'   value='D' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>D.</font><font onclick='checkquestion(\"D"+w+"\")' size='5' >" + question.cbank[w].zoptionD + "</font><br><br><br>";
-                    str += " </p></div>";
+                    str += " <p onclick='checkquestion(\"qbank"+w+"\",\"A"+w+"\")'><input type='checkbox' class='t_choose1' name='message' id='A"+w+"' value='A' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>A.</font><font  size='5' >" + question.cbank[w].zoptionA + "</font></p><br><br><br>";
+                    str += " <p onclick='checkquestion(\"qbank"+w+"\",\"B"+w+"\")'><input type='checkbox' class='t_choose2' name='message' id='B"+w+"'    value='B' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>B.</font><font  size='5' >" + question.cbank[w].zoptionB + "</font></p><br><br><br>";
+                    str += " <p onclick='checkquestion(\"qbank"+w+"\",\"C"+w+"\")'><input type='checkbox' class='t_choose3' name='message' id='C"+w+"'   value='C'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>C.</font><font size='5' >" + question.cbank[w].zoptionC + "</font></p><br><br><br>";
+                    str += " <p onclick='checkquestion(\"qbank"+w+"\",\"D"+w+"\")'><input type='checkbox' class='t_choose4' name='message' id='D"+w+"'   value='D' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>D.</font><font  size='5' >" + question.cbank[w].zoptionD + "</font></p><br><br><br>";
+                    str += "</div>";
 
                     str+="</div>";
                     str+=""
@@ -232,10 +242,10 @@
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.jbank[j].ztitlecontent + "</font></div><br><br><br>";
 
                     str += " <div class='cbooks' id='cbooks"+p+"'>";
-                    str += " <p><input type='checkbox' name='message' id='t"+p+"'  class='choose'  value='对' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font onclick='checkquestion(\"t"+p+"\")' size='5'>对</font><br><br><br></p>";
-                    str += " <p onclick='checkquestion(\"f"+p+"\")'><input type='checkbox' name='message'  id='f"+p+"'  class='choose'  value='错' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>错</font><br><br><br>";
+                    str += " <p onclick='checkquestion(\"qbank"+p+"\",\"t"+p+"\")'><input type='checkbox' name='message' id='t"+p+"'  class='t_choose1'  value='对' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>对</font></p><br><br><br>";
+                    str += " <p onclick='checkquestion(\"qbank"+p+"\",\"f"+p+"\")'><input type='checkbox' name='message'  id='f"+p+"'  class='t_choose5'  value='错' >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size='5'>错</font></p><br><br><br>";
 
-                    str += " </p></div>";
+                    str += " </div>";
 
                     str+="</div>";
 
@@ -276,12 +286,15 @@
     }
 
     //点击题目选中选项
-   function checkquestion(id){
-        //alert(id)
+   function checkquestion(id2,id){
+
+        //alert(id2)
        //alert($("#"+id+"").val());
        if ($("#"+id+"").prop('checked'))
+
            $("#"+id+"").prop("checked",false);
        else
+           $("#"+id2+" input[type='checkbox']").each(function(){$(this).prop("checked",false);});
            $("#"+id+"").prop("checked",true);
    }
 
@@ -427,12 +440,13 @@
             $("#qbank"+i+"").show();
             if(i==1){
                 $("#lastpage").css("background-color","#4472C4");
+                $("#lastpage").attr("onclick","lastpage()");
             }
 
             if(i==(static_questionnum-1)){
                 var button4 =  $("#nextpage")
-                button4.attr("onclick","submit()");
-                button4.text('交卷');
+                $("#nextpage").css("background-color","#A5A5A5");
+                $("#nextpage").removeAttr("onclick");
             }
 
         }else {
@@ -462,11 +476,12 @@
             onechose();
             if(i==0){
                 $("#lastpage").css("background-color","#A5A5A5");
-                $("#lastpage").css("daoborder-color","#f8fff9");
+                $("#lastpage").removeAttr("onclick");
             }
             if(i==(static_questionnum-2)){
                 var button4 =  $("#nextpage")
                 button4.attr("onclick","nextpage()");
+                button4.css("background-color","#4472C4");
                 button4.text('下一页');
             }
 

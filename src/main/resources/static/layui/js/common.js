@@ -17,6 +17,11 @@ function upheads() {
 
 }
 
+function leaveclass() {
+    location.href="/student"
+}
+
+
 //申请退出系统
 function outsystem() {
     //alert(1)
@@ -624,6 +629,7 @@ function powerController() {
 
 //获取命令
 function getcommand() {
+    //alert(1)
     var rolling_barrage=$("#rolling_barrage");
    var chagangID =document.getElementById("chagangID").innerHTML;
     var gundongID =document.getElementById("gundongID").innerHTML;
@@ -642,6 +648,7 @@ function getcommand() {
         async: false,
         success: function (data){
 
+            //alert(data)
             for(var i=0;i<data.length;i++){
                 if(data[i].ztype=="查岗"){//data[i].ztype =="签到"||
                     document.getElementById("chagangID").innerHTML=data[i].zid;
@@ -701,7 +708,7 @@ var mediaStreamTrack;
 
 function getMedia2() {
     $("#regcoDiv").empty();
-    let vedioComp = "<video id='video2' width='600px' height='400px' autoplay='autoplay' style='margin-top: 20px;z-index:1000;position:relative;left:90%;margin-top:20%' ></video><canvas id='canvas2' width='500px' height='500px' style='display: none'></canvas>";
+    let vedioComp = "<video muted id='video2' width='600px' height='400px' autoplay='autoplay' style='margin-top: 20px;z-index:1000;position:relative;left:90%;margin-top:20%' ></video><canvas id='canvas2' width='500px' height='500px' style='display: none'></canvas>";
     $("#regcoDiv").append(vedioComp);
     let constraints = {
         video: {width: 500, height: 500},

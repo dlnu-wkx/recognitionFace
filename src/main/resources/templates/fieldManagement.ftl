@@ -178,7 +178,7 @@
     //获取摄像头
     function getMedia() {
         $("#mainDiv").empty();
-        let videoComp = " <video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
+        let videoComp = " <video muted id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
         $("#mainDiv").append(videoComp);
 
         let constraints = {
