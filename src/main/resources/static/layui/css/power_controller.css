@@ -1,3 +1,17 @@
+.facebox{
+    width:50%;
+    height: 50%;
+    /* 以下属性垂直居中 */
+    position: fixed;
+    top: 25%;
+    bottom: 0;
+    left: 25%;
+    right: 0;
+    background-color: white;
+    z-index: 90;
+}
+
+
 .p_testchose{
     left: 10%;
     bottom: 5%;
@@ -41,7 +55,6 @@
     left: 0;
     right: 0;
     margin: auto;
-    opacity:1;
     background-color: #AEC2E6;
     opacity:0.5;
     z-index: 9;

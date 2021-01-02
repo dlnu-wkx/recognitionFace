@@ -379,6 +379,7 @@
             processData: false,
             async: false,
             success: function (data){
+                str+="<br><br><br>"
                 for(var i=0;i<data.length;i++){
                     str+="<button onclick='loadcontentbypages2(\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
                 }
@@ -410,12 +411,12 @@
             //对每个传过来的字符串去空格
             var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val());
             //空字符串与空格判断
-            if(!removenull){
+           /* if(!removenull){
                 alert("你还有未输入的测量数据！")
                 return;
-            }
+            }*/
             //长度长于数据库字体长度，直接返回
-            else if(titleLength(removenull)>20){
+           if(titleLength(removenull)>20){
                 alert("你输入的长度过长！")
                 return;
             }
@@ -480,10 +481,11 @@
             if(static_ztype=="评分表"){
                 for(var i=0;i<static_assessnum;i++){
                     var removenull=Trim($("#"+ztrainingtaskassessID[i]+"").val())
-                    if(!removenull){
+                   /* if(!removenull){
                         alert("你还有未输入的测量数据！")
                         return;
-                    }else if(titleLength(removenull)>20){
+                    }else */
+                        if(titleLength(removenull)>20){
                         alert("你输入的长度过长！")
                         return;
                     }else{
@@ -558,6 +560,23 @@
             }else {
                 layer.msg("已提交成功", { icon: 1, offset: "auto", time:1000 });
             }
+            var cp_content=$("#cp_content")
+            var str="";
+            $.ajax({
+                type: "post",
+                url: "/getnameandpath",
+                data: {},
+                success: function (data) {
+                    // alert(data)
+                    var content=data.path.substr(35);
+
+                    str+=" <div><img src='"+content+"' class='c_centerimg'>"
+                    str+="<font class='c_centerfont2' size='5'>"+data.name+"同学,请点击左侧实训任务,开始实训。</font></div>"
+                    cp_content.html(str);
+                }
+            });
+
+            $("#nextpage").css("background-color","#A5A5A5");
         }
 
 

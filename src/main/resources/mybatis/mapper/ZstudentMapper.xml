@@ -20,6 +20,10 @@
             select zidentity from zstudent where zidentity like CONCAT('%',#{name},'%')
         </select>
 
+        <select id="findastudentbynamelike"  resultType="java.lang.String">
+            SELECT zname FROM zstudent WHERE zname  like CONCAT('%',#{zname},'%') AND  zstatus='审核通过';
+        </select>
+
 
         <select id="findadoptstudent"  resultType="com.itboyst.facedemo.dto.Zstudent">
             SELECT * FROM zstudent WHERE zfaceinfoID=#{zfaceinfoID}  AND  zstatus='审核通过';
@@ -29,6 +33,9 @@
             select count(*) from zstudent where zidentity=#{zname}
         </select>
 
+        <select id="findcountbystuname"  resultType="java.lang.Integer">
+            select count(*) from zstudent where zname=#{zname}
+        </select>
 
         <select id="findnamebyzscheduleID"  resultType="java.lang.String">
           select A.zname from zstudent A ,zstudent_schedule B where B.zstudentID=A.zid   and B.zscheduleID=#{zscheduleID} and zstate="在上课";

@@ -18,6 +18,10 @@
         SELECT * from zgrade
     </select>
 
+    <select id="findgradebynamelike"  resultType="java.lang.String">
+       select zname from zgrade where zname like CONCAT('%',#{zname},'%')
+    </select>
+
 
 
 </mapper>

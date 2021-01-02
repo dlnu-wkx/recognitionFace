@@ -5,9 +5,12 @@
     <resultMap id="Zstudent_event" type="com.itboyst.facedemo.dto.Zstudent_event">
         <id column="zid" property="zid" javaType="String"/>
         <result column="zstudentID" property="zstudentID" javaType="String"/>
+        <result column="zscheduleID" property="zscheduleID" javaType="String"/>
+        <result column="zrecognizeIP" property="zrecognizeIP" javaType="String"/>
         <result column="ztype" property="ztype" javaType="String"/>
         <result column="zcontent" property="zcontent" javaType="String"/>
         <result column="zapplicationtime" property="zapplicationtime" jdbcType="TIMESTAMP"/>
+        <result column="zteacherID" property="zteacherID" javaType="String"/>
         <result column="zhandletime" property="zhandletime" jdbcType="TIMESTAMP"/>
         <result column="zstatus" property="zstatus" javaType="String"/>
     </resultMap>
@@ -24,7 +27,7 @@
 
 
     <insert id="insertevent" parameterType="com.itboyst.facedemo.dto.Zstudent_event" >
-               INSERT INTO zstudent_event (zid, zstudentID, ztype, zcontent ,zapplicationtime, zhandletime,zstatus) VALUES(#{zid}, #{zstudentID}, #{ztype}, #{zcontent} ,#{zapplicationtime}, #{zhandletime},#{zstatus});
+               INSERT INTO zstudent_event (zid, zstudentID, zscheduleID,zrecognizeIP,ztype, zcontent ,zapplicationtime,zstatus) VALUES(#{zid}, #{zstudentID}, #{zscheduleID},#{zrecognizeIP},#{ztype}, #{zcontent} ,#{zapplicationtime},#{zstatus});
     </insert>
 
 

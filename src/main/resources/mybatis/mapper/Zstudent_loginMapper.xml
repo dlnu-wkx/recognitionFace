@@ -40,7 +40,7 @@
   	</delete>
 
     <insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
-        INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime,zcheck, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime},#{zcheck}, #{ztype}, #{zrecognizeIP});
+        INSERT INTO zstudent_login (zid,zstudentID,zscheduleID,zrecognizetime,zcheck, ztype, zrecognizeIP,zstatus) VALUES(#{zid}, #{zstudentID}, #{zscheduleID},#{zrecongnizetime},#{zcheck}, #{ztype}, #{zrecognizeIP},#{zstatus});
     </insert>
 
 </mapper>

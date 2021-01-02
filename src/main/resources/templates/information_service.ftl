@@ -41,20 +41,31 @@
 <!--中间信息查询-->
 <div class="i_center" >
    <div class="i_service">
-        <font size="5">人员：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input type="text" class="i_text"><br><br>
+        <font size="5">人员：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input type="text"   id="i_name" class="i_text"><br><br>
         <font size="5">事件：</font> &emsp;&emsp;&emsp;&emsp;&emsp;
-        <select class="i_text3">
-           <option value="">全部</option>
-           <option value ="">成绩</option>
-           <option value ="">签到情况</option>
-           <option value="">课堂表现</option>
-           <option value="">其它</option>
+        <select class="i_text3" id="selecttype">
+           <option value="签到">签到</option>
+           <option value ="查岗">查岗</option>
+           <option value ="登陆（退出）">登陆（退出）</option>
+           <option value="举手">举手</option>
+           <option value="请假/销假">请假/销假</option>
+            <option value="测试成绩">测试成绩</option>
         </select><br><br>
-       <font size="5">时间：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input class="i_text1" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" type="time" />
-       &emsp;&emsp;&emsp;  &emsp;&emsp;<font size="5">----</font> <input class="i_text1" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" type="time" />
+       <font size="5">时间：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input class="i_text1" id="startday" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" id="starttime" type="time" />
+       &emsp;&emsp;&emsp;  &emsp;&emsp;<font size="5">----</font> <input class="i_text1" id="endday" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" id="endtime" type="time" />
        <br><br>
-       <button class="i_button">查询</button>
+       <button class="i_button" onclick="selectmes()">查询</button>
    </div>
+</div>
+
+<!--模糊查询框-->
+<div id="i_namelike" class="i_namelike" hidden>
+
+</div>
+
+<!--中间表格-->
+<div class="i_excel" id="i_excel" hidden>
+
 </div>
 
 
@@ -73,6 +84,218 @@
 </body>
 
 <script>
+    function selectmes(){
+        //alert(0)
+        var i_name=$("#i_name").val()
+        var selecttype=$("#selecttype").val()
+        var startday=$("#startday").val()
+        var endday=$("#endday").val()
+        var starttime=$("#starttime").val()
+        var endtime=$("#endtime").val()
+        var i_excel=$("#i_excel")
+        var str=""
+
+        starttime=startday+" "+starttime+":00";
+        endtime=endday+" "+endtime+":59";
+
+        //初始值学生数为0
+        var studntcount=0;
+        $.ajax({
+            type: "post",
+            url: "/findcountbystudentname",
+            data:{"zname":i_name},
+            async: false,
+            success: function (data){
+                studntcount=data
+            }
+        });
+
+        if(!i_name){
+            alert(1)
+
+        }
+
+      else if (selecttype=="签到"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"签到查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"签到信息查询</font></th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
+            $.ajax({
+                type: "post",
+                url: "/selectattandancemes",
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"zcheck":"人脸识别"},
+                async: false,
+                success: function (data){
+                   // alert(createTime(data[0].mestime))
+                    for (var i=0;i<data.length;i++){
+
+                         //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th></tr>"
+                    }
+                }
+            });
+        }else if(selecttype=="查岗"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"查岗查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"查岗信息查询</font></th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
+            $.ajax({
+                type: "post",
+                url: "/selectattandancemes",
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"zcheck":"查岗"},
+                async: false,
+                success: function (data){
+                    for (var i=0;i<data.length;i++){
+                        //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th></tr>"
+                    }
+                }
+            });
+        }else if(selecttype=="登陆（退出）"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"登陆(退出)查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='6'><font size='5'>"+i_name+"登陆（退出）信息查询</font></th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>登陆/退出</th><th class='i_tableth2'>签到时间</th></tr>"
+            $.ajax({
+                type: "post",
+                url: "/selectinandout",
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime},
+                async: false,
+                success: function (data){
+                    for (var i=0;i<data.length;i++){
+                        //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].facilityname+"</th><th class='i_tableth2'>"+data[i].isintype+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th></tr>"
+                    }
+                }
+            });
+        }else if (selecttype=="举手"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"举手查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='6'><font size='5'>"+i_name+"举手信息查询</font></th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>实时状态</th><th class='i_tableth2'>签到时间</th></tr>"
+            $.ajax({
+                type: "post",
+                url: "/selectheadsup",
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"ztype":"举手"},
+                async: false,
+                success: function (data){
+                    for (var i=0;i<data.length;i++){
+                        //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].facilityname+"</th><th class='i_tableth2'>"+data[i].isintype+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th></tr>"
+                    }
+                }
+            });
+        }else if(selecttype=="请假/销假"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"请假（销假）查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='7'><font size='5'>"+i_name+"请假信息查询</font></th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>请假原因</th><th class='i_tableth2'>请假状态</th><th class='i_tableth2'>时间</th><th class='i_tableth2'>审批人</th></tr>"
+            $.ajax({
+                type: "post",
+                url: "/selectleave",
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime},
+                async: false,
+                success: function (data){
+                    for (var i=0;i<data.length;i++){
+                        //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].leavereason+"</th><th class='i_tableth2'>"+data[i].isintype+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th><th class='i_tableth2'>"+data[i].approver+"</th></tr>"
+                    }
+                }
+            });
+        }else  if(selecttype=="测试成绩"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"测试成绩查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='7'><font size='5'>"+i_name+"测试成绩查询</font></th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>测试类型</th><th class='i_tableth2'>成绩</th><th class='i_tableth2'>测试时间</th></tr>"
+            $.ajax({
+                type: "post",
+                url: "/selectscore",
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime},
+                async: false,
+                success: function (data){
+                    for (var i=0;i<data.length;i++){
+                        //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].facilityname+"</th><th class='i_tableth2'>"+data[i].testtype+"</th><th class='i_tableth2'>"+data[i].score+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th></tr>"
+                    }
+                }
+            });
+        }
+        str+="</table>"
+        i_excel.html(str)
+        i_excel.show()
+    }
+
+    function loadexcel(name) {
+
+            //alert(name)
+            var exportFileContent = document.getElementById("i_table").outerHTML;
+
+            //使用Blob
+            var blob = new Blob([exportFileContent], {type: "text/plain;charset=utf-8"});         //解决中文乱码问题
+            blob =  new Blob([String.fromCharCode(0xFEFF), blob], {type: blob.type});
+            //设置链接
+            var link = window.URL.createObjectURL(blob);
+            var a = document.createElement("a");    //创建a标签
+            //a.download = "信息查询表格.xls";
+             a.download = name;
+            // 设置被下载的超链接目标（文件名）
+            a.href = link;                            //设置a标签的链接
+            document.body.appendChild(a);            //a标签添加到页面
+            a.click();                                //设置a标签触发单击事件
+            document.body.removeChild(a);            //移除a标签
+    }
+    
+    function hideexcel(){
+        $("#i_excel").hide()
+    }
+
+//Timestamp转字符串
+    function createTime(v){
+        var now = new Date(v);
+        var yy = now.getFullYear();      //年
+        var mm = now.getMonth() + 1;     //月
+        var dd = now.getDate();          //日
+        var hh = now.getHours();         //时
+        var ii = now.getMinutes();       //分
+        var ss = now.getSeconds();       //秒
+        var clock = yy + "-";
+        if(mm < 10) clock += "0";
+        clock += mm + "-";
+        if(dd < 10) clock += "0";
+        clock += dd + " ";
+        if(hh < 10) clock += "0";
+        clock += hh + ":";
+        if (ii < 10) clock += '0';
+        clock += ii + ":";
+        if (ss < 10) clock += '0';
+        clock += ss;
+        return clock;
+    }
+
+
+
+    //输入姓名发生改变
+    $('#i_name').bind('input propertychange', function () {
+        var i_namelike=$("#i_namelike")
+        var str="";
+        var i_name=$("#i_name").val();
+        str+="<ul align='center'>"
+        $.ajax({
+            type: "post",
+            url: "/findgradeandnamelike",
+            data:{"zname":i_name},
+            async: false,
+            success: function (data){
+                for (var i=0;i<data.length;i++){
+                    str+="<li onclick='i_inputname(\""+data[i]+"\")'>"+data[i]+"</li>"
+                }
+            }
+        });
+        str+="</ul>"
+        i_namelike.html(str)
+        i_namelike.show();
+    });
+    //点击补全姓名
+    function i_inputname(name) {
+        $("#i_name").val(name);
+        $("#i_namelike").hide();
+    }
+
+
     function outpower(){
         $("#popup").show()
     }

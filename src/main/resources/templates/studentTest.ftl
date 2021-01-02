@@ -319,21 +319,16 @@
                 alert("你还有未做的题，请仔细检查")
                 return ;
             }
-
         }
-
-
         //分数信息居中显示
         $("#qbank").attr("align","center");
 
         $("#lastpage").css("background-color","#A5A5A5");
         $("#nexttpage").css("background-color","#A5A5A5");
 
-
         //中间题目获取
         var qbank=$("#qbank");
         var str3="";
-
 
         //总分
         for (var j=0;j<static_questionnum;j++){
@@ -374,6 +369,16 @@
         //提交按键隐藏（防止分数多次叠加）
         $("#nextpage").hide();
 
+        $.ajax({
+            type: "post",
+            url: "/insertscore",
+            data: {"zscore":code},
+            async: false,
+            success: function (data) {
+                //alert(data)
+            }
+        });
+
 
         /*alert(answercode)
         alert(ananswer)
@@ -392,7 +397,6 @@
                 }else{
                     alert("提交出错")
                 }
-
             }
         });
         code=0;

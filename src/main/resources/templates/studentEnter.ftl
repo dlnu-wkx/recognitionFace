@@ -43,11 +43,10 @@
 
 
 <div class="layui-layout layui-layout-admin" >
-    <div class="layui-header" style="border-bottom: 1px solid #c2c2c2;background-color: #C6C6C6">
-        <div class="layui-logo" style="osition: absolute;left: 0;top: 0;width: 200px;height: 100%;line-height: 60px;text-align: center;font-size: 16px;left:14px;letter-spacing:4px;color: #0C0C0C">登录界面</div>
-        <ul class="layui-nav layui-layout-right" style="right: 35px">
-            <li class="layui-nav-item" style="letter-spacing:4px;left:30px;color: #0C0C0C">安浩智能学习工厂</li>
-        </ul>
+    <!--头部导航条-->
+    <div class="top">
+        <div class="leftfont"><font size="5" ></font></div>
+        <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
     </div>
     <div class="layui-row ">
         <div class="layui-col-xs1" align="center" style="width: 17%;font-size: 70px;margin-top: 40px">
@@ -66,24 +65,24 @@
                     </button>
             </div>
         </div>
-        <div class="layui-col-xs1" align="right" style="right:-3%;left:80px;height:100%;width: 10%;border-left: 1px solid #c2c2c2;">
-            <div>
-                <button onclick="upheads()"  id="upheads" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
-                    举手
-                </button>
-            </div>
-            <div>
-                <button onclick="showleave()" id="leave" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
-                    请假
-                </button>
+
+
+        <div class="right">
+            <!--右侧按键-->
+            <div class="right1">
+                <button class="button5" onclick="upheads()" id="upheads">举手</button>
             </div>
 
-            <div>
-                <button onclick="outsystem()" id="outsystem" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:300px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px">
-                    退出系统
-                </button>
+            <div class="right2">
+                <button class="button5" onclick="showleave()"  id="leave">请假</button>
+            </div>
+
+            <div class="right3">
+                <button class="button5" onclick="leaveclass()" id="outsystem">退出系统</button>
             </div>
         </div>
+
+
     </div>
 </div>
 <script>

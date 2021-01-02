@@ -1,0 +1,1984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d602b363-1d62-4173-842a-bb98849fb8c0" name="Default Changelist" comment="1/2测试提交">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/rt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Java-WebSocket-1.5.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/arcsoft-sdk-face-2.2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/fastjson-1.2.75.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/libarcsoft_face.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/libarcsoft_face_engine.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/libarcsoft_face_engine_jni.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/rt.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/slf4j-api-1.7.30.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Iputil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Powerutil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Results.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/UUIDutil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/zmain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/config/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/config/MyMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/CheckStudentLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/InspectSitStudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Renlian.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/TasktempController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/TimeStatusController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/UserListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZcommandController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZeventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Zfixed_taskController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZgradeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZmajorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZmanagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZpowerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZrecordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZsafetestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Zslect_messageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZstudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Zstudent_loginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZteacherController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztesting_scoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztraining_roomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztraining_task_contentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/domain/UserFaceInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/FaceSearchResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/FaceUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/InspectSitStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/ProcessInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/TimeStatusStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Useridname.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zassign_schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zfixed_task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zgrade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zmajor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zmanager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zrecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zsafe_testingDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zschedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zselect_message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_cookie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_facility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_journal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztask_content_log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztask_input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zteacher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zteacher_command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zteacher_cookie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zteacher_journal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zteacher_temporary_task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztesting_input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztesting_score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_camera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_facility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_task_assess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_task_content.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/ztraining_room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/enums/ErrorCodeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/factory/FaceEngineFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/InspectSitStudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/MybatisUserFaceInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/TimeStatusStudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zassign_scheduleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zfixed_taskMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZgradeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZmajorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZmanagerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zname_facilityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZrecordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zsafe_testingMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZscheduleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zselect_messageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZstudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_cookieMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_eventMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_journalMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_loginMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_scheduleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztask_content_logMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztask_inputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZteacherMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zteacher_commandMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zteacher_cookieMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zteacher_journalMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zteacher_temporary_taskMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztesting_inputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztesting_scoreMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztraining_cameraMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztraining_facilityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztraining_roomMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztraining_taskMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztraining_task_assessMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztraining_task_contentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/FaceEngineService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/QbankService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/TimeStatusStudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/UserFaceInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zassign_scheduleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zfixed_taskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZgradeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZmajorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZmanagerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zname_facilityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZrecordService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZscheuleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zselect_messageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZstudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_cooikeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_eventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_journalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_loginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_scheduleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztask_content_logService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztask_inputService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZteacherService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zteacher_commandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zteacher_cookieSerice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zteacher_journalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zteacher_temporary_taskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztesting_inputService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztesting_scoreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztraining_cameraService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztraining_facilityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztraining_roomService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztraining_taskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztraining_task_assessService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztraining_task_contentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/InspectSitStudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/InspectSitStudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/QbankServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/TimeStatusStudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/UserFaceInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zassign_scheduleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zfixed_taskServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZgradeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZmajorServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZmanagerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zname_facilityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZrecordServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZscheduleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zselect_messageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstesting_inputServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZstudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_cookieServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_eventServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_journalServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_loginServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_scheduleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztask_content_logServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztask_inputServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZteacherServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zteacher_commandServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zteacher_cookieServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zteacher_journalServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zteacher_temporary_taskServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztestng_scoreServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztraining_cameraServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztraining_facilityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztraining_roomServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztraining_taskServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztraining_task_assessServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztraining_task_contentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zselect_messageMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Ztesting_scoreMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/Application.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/Iputil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/Powerutil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/Result.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/Results.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/UUIDutil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/base/zmain.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/config/ApplicationConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/config/MyMvcConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/CheckStudentLogin.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/FaceController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/InspectSitStudentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/QbankController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Renlian$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Renlian.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/TasktempController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/TimeStatusController$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/TimeStatusController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/UserListController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZcommandController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZeventController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Zfixed_taskController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZgradeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZmajorController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZmanagerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZpowerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZrecordController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZsafetestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Zslect_messageController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZstudentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Zstudent_loginController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/ZteacherController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Ztesting_scoreController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Ztraining_roomController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/controller/Ztraining_task_contentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/domain/UserFaceInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/FaceSearchResDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/FaceUserInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/InspectSitStudent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/ProcessInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/TimeStatusStudent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Useridname.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zassign_schedule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zfixed_task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zgrade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zmajor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zmanager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zrecord.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zsafe_testingDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zschedule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zselect_message.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent_cookie.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent_event.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent_facility.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent_journal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent_login.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zstudent_schedule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztask_content_log.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztask_input.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zteacher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zteacher_command.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zteacher_cookie.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zteacher_journal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Zteacher_temporary_task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztesting_input.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztesting_score.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztraining_camera.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztraining_facility.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztraining_task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztraining_task_assess.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/Ztraining_task_content.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/dto/ztraining_room.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/enums/ErrorCodeEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/factory/FaceEngineFactory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/InspectSitStudentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/MybatisUserFaceInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/TimeStatusStudentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zassign_scheduleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zfixed_taskMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZgradeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZmajorMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZmanagerMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zname_facilityMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZrecordMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zsafe_testingMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZscheduleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zselect_messageMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZstudentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zstudent_cookieMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zstudent_eventMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zstudent_journalMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zstudent_loginMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zstudent_schedule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zstudent_scheduleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztask_content_logMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztask_inputMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/ZteacherMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zteacher_commandMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zteacher_cookieMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zteacher_journalMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Zteacher_temporary_taskMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztesting_inputMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztesting_scoreMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztraining_cameraMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztraining_facilityMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztraining_roomMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztraining_taskMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztraining_task_assessMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/mapper/Ztraining_task_contentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/FaceEngineService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/QbankService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/TimeStatusStudentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/UserFaceInfoService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zassign_scheduleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zfixed_taskService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZgradeService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZmajorService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZmanagerService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zname_facilityService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZrecordService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZscheuleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zselect_messageService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZstudentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zstudent_cooikeService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zstudent_eventService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zstudent_journalService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zstudent_loginService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zstudent_scheduleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztask_content_logService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztask_inputService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/ZteacherService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zteacher_commandService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zteacher_cookieSerice.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zteacher_journalService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Zteacher_temporary_taskService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztesting_inputService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztesting_scoreService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztraining_cameraService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztraining_facilityService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztraining_roomService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztraining_taskService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztraining_task_assessService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/Ztraining_task_contentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl$CompareFaceTask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/FaceEngineServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/InspectSitStudentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/InspectSitStudentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/QbankServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/TimeStatusStudentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/UserFaceInfoServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zassign_scheduleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zfixed_taskServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZgradeServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZmajorServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZmanagerServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zname_facilityServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZrecordServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZscheduleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zselect_messageServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zstesting_inputServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZstudentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zstudent_cookieServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zstudent_eventServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zstudent_journalServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zstudent_loginServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zstudent_scheduleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztask_content_logServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztask_inputServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/ZteacherServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zteacher_commandServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zteacher_cookieServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zteacher_journalServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Zteacher_temporary_taskServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztestng_scoreServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztraining_cameraServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztraining_facilityServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztraining_roomServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztraining_taskServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztraining_task_assessServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/itboyst/facedemo/service/impl/Ztraining_task_contentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/InspectSitStudentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/TimeStatusStudentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserInfoFaceMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zassign_scheduleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zfixed_taskMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZgradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZmajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZmanagerMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zname_facilityMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZrecordMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zsafe_testingMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZscheduleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zselect_messageMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZstudentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zstudent_cookieMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zstudent_eventMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zstudent_journalMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zstudent_loginMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zstudent_scheduleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztask_content_logMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztask_inputMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/ZteacherMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zteacher_commandMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zteacher_cookieMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zteacher_journalMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Zteacher_temporary_taskMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztesting_inputMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztesting_scoreMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztraining_cameraMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztraining_facilityMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztraining_roomMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztraining_taskMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztraining_task_assessMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/Ztraining_task_contentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1603711704377.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604276226312.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604470163034.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604470275345.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604470404828.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604470631373.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604471185810.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604471308471.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604471500718.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604471624156.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604471724552.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604471884818.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604472213341.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604472450989.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604495545074.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604495546089.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604496628593.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1604578437884.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/1605231329019.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/images/test005.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/class_ppt.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/fixed_task.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/information_delivery.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/register.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/css/time_status.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/layui/js/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/video/test002.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/video/test004.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/TeacherLogin.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/class_ppt.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/fieldManagement.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/field_management.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/fixed_task.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/information_delivery.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/studentEnter.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/studentLogin.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/studentTest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/student_LoginTest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/teacherEnter.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/teacher_LoginTest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/temporary_task.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/time_status.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__cn_hutool_hutool_all_4_6_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__cn_hutool_hutool_all_4_6_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_18.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_spring_boot_starter_1_1_18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_spring_boot_starter_1_1_18.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_59.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_59.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_10_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_10_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_10_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_10_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_10_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_10_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_26_0_jre.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_26_0_jre.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_3_4_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_3_4_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_2_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_2_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_17.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_6_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_6_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_12_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_12_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_12_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_12_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_31.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_31.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_31.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_31.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_31.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_31.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_beanshell_bsh_2_0b4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_beanshell_bsh_2_0b4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_2_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_2_5_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_29.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_0_18_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_0_18_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_18_2_GA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_18_2_GA.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_2_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_2_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_starter_2_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_starter_2_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_jdk14_1_7_30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_jdk14_1_7_30.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_freemarker_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_freemarker_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_2_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_2_5_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_2_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_2_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_common_zcommon_8_0_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_common_zcommon_8_0_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_common_zel_8_0_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_common_zel_8_0_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_common_zweb_8_0_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_common_zweb_8_0_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zhtml_8_0_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zhtml_8_0_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zk_8_0_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zk_8_0_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zkbind_8_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zkbind_8_0_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zkplus_8_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zkplus_8_0_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zul_8_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zk_zul_8_0_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zsoup_1_8_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_zkoss_zsoup_1_8_2_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/recognitionFace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/recognitionFace.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZgradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZgradeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZstudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZstudentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_eventMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_eventMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_loginMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_loginMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layui/css/class_ppt.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/class_ppt.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layui/css/information_service.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/information_service.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layui/css/power_controller.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/power_controller.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/class_ppt.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/class_ppt.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/information_service.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/information_service.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/power_controller.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/power_controller.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentEnter.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentEnter.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentTest.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentTest.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/layui/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/layui/css/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/layui/css/information_service.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/layui/css/information_service.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/layui/css/layui.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/layui/css/layui.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/layui/css/power_controller.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/layui/css/power_controller.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/demo2.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/demo2.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/face_registration.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/face_registration.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/face_search.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/teachLogin.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/information_service.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/information_service.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/power_controller.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/power_controller.ftl" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/TimeStatusController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="136" column="36" selection-start-line="136" selection-start-column="36" selection-end-line="136" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_camera.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>结束任务</find>
+      <find>r_tableth2</find>
+      <find>请假</find>
+      <find>co_mes</find>
+      <find>弹</find>
+      <find>getcom</find>
+      <find>getMedia2</find>
+      <find>ztraining_room</find>
+      <find>left</find>
+      <find>right</find>
+      <find>center</find>
+      <find>static_passingcode</find>
+      <find>开启电源时</find>
+      <find>p_chose</find>
+      <find>zstudent_login</find>
+      <find>overclass()</find>
+      <find>ztrainroomid</find>
+      <find>top</find>
+      <find>layui-heade</find>
+      <find>layui-col-xs1</find>
+      <find>rightfont</find>
+      <find>body</find>
+      <find>layui-l</find>
+      <find>leftbutton</find>
+      <find>.right</find>
+      <find>parent</find>
+      <find>Ztesting_input</find>
+      <find>sumbmitpages()</find>
+      <find>c_centerfont</find>
+      <find>cp_content</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztraining_roomController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZscheduleMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZscheuleService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZscheduleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Iputil.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zteacher_commandMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/fieldManagement.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/js/common.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZgradeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZgradeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZgradeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZgradeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZstudentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/ZstudentMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/ZstudentService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/ZstudentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZstudentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zselect_message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_loginService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_loginServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZgradeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztesting_score.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Ztesting_scoreMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztesting_scoreMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztesting_scoreService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztestng_scoreServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztesting_scoreController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_login.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_loginMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZeventController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_eventMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zselect_messageMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zselect_messageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Zslect_messageController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zselect_messageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zselect_messageMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/css/information_service.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/information_service.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/studentLogin.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/power_controller.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/css/power_controller.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/studentEnter.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/studentTest.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layui/css/class_ppt.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/class_ppt.ftl" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\Administrator\.m2\repository" />
+        <option name="mavenHome" value="D:/apache-maven-3.5.3" />
+        <option name="userSettingsFile" value="C:\Users\Administrator\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="arcsoft-face-demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="arcsoft-face-demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="arcsoft-face-demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="121" />
+    <option name="y" value="82" />
+    <option name="width" value="1704" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recognitionFace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recognitionFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="facedemo" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mybatis/mapper" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15316206" />
+    <property name="project.structure.side.proportion" value="0.4895259" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\recognitionFace\src\main\java\com\itboyst\facedemo\base" />
+      <recent name="F:\recognitionFace\src\main\resources\static\layui\css" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.itboyst.facedemo.mapper" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\recognitionFace\src\main\resources\mybatis\mapper" />
+      <recent name="F:\recognitionFace\src\main\java\com\itboyst\facedemo\base" />
+      <recent name="F:\recognitionFace\src\main\java\com\itboyst\facedemo" />
+      <recent name="F:\recognitionFace\lib" />
+      <recent name="F:\recognitionFace\src\main\resources\static\images" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.itboyst.facedemo.Application" />
+      <module name="recognitionFace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itboyst.facedemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Powerutil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.itboyst.facedemo.base.Powerutil" />
+      <module name="recognitionFace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itboyst.facedemo.base.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="zmain (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.itboyst.facedemo.base.zmain" />
+      <module name="recognitionFace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itboyst.facedemo.base.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="zmain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.itboyst.facedemo.zmain" />
+      <module name="recognitionFace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itboyst.facedemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="recognitionFace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itboyst.facedemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itboyst.facedemo.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat7" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.106" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/recognitionFace/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <file path="$PROJECT_DIR$/target/arcsoft-face-1.0.0-SNAPSHOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/arcsoft_face_1_0_0_SNAPSHOT_war" />
+          </settings>
+        </file>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_recognitionFace" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="2495" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.zmain" />
+      <item itemvalue="Application.Application" />
+      <item itemvalue="Application.Powerutil" />
+      <item itemvalue="Application.zmain (1)" />
+      <item itemvalue="Spring Boot.Application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+        <item itemvalue="Application.zmain (1)" />
+        <item itemvalue="Application.zmain" />
+        <item itemvalue="Application.Powerutil" />
+        <item itemvalue="Spring Boot.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d602b363-1d62-4173-842a-bb98849fb8c0" name="Default Changelist" comment="" />
+      <created>1604736404030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604736404030</updated>
+      <workItem from="1604736405173" duration="16709000" />
+      <workItem from="1604796361342" duration="3881000" />
+      <workItem from="1604800793172" duration="9061000" />
+      <workItem from="1604821102067" duration="8345000" />
+      <workItem from="1604881096706" duration="5053000" />
+      <workItem from="1604901144299" duration="12493000" />
+      <workItem from="1604986284667" duration="4261000" />
+      <workItem from="1605004919248" duration="8703000" />
+      <workItem from="1605055706735" duration="27208000" />
+      <workItem from="1605166878691" duration="20725000" />
+      <workItem from="1605190579234" duration="1872000" />
+      <workItem from="1605192499561" duration="464000" />
+      <workItem from="1605225837820" duration="30680000" />
+      <workItem from="1605311660835" duration="25661000" />
+      <workItem from="1605401105779" duration="11818000" />
+      <workItem from="1605443840669" duration="1316000" />
+      <workItem from="1605486534303" duration="10720000" />
+      <workItem from="1605510450359" duration="1484000" />
+      <workItem from="1605511981515" duration="19821000" />
+      <workItem from="1605573663324" duration="26367000" />
+      <workItem from="1605663662047" duration="23566000" />
+      <workItem from="1605753226516" duration="18612000" />
+      <workItem from="1605830976722" duration="7828000" />
+      <workItem from="1605845004789" duration="6745000" />
+      <workItem from="1605918946522" duration="6678000" />
+      <workItem from="1606006291207" duration="8072000" />
+      <workItem from="1606113103761" duration="13719000" />
+      <workItem from="1606186003264" duration="13665000" />
+      <workItem from="1606273088120" duration="21123000" />
+      <workItem from="1606358797750" duration="1190000" />
+      <workItem from="1606475367051" duration="662000" />
+      <workItem from="1606479880231" duration="1371000" />
+      <workItem from="1606481403634" duration="484000" />
+      <workItem from="1606482482708" duration="2326000" />
+      <workItem from="1606654108710" duration="3783000" />
+      <workItem from="1606659256175" duration="1613000" />
+      <workItem from="1606662593107" duration="1817000" />
+      <workItem from="1606694471270" duration="597000" />
+      <workItem from="1606695101787" duration="3060000" />
+      <workItem from="1606793463269" duration="2986000" />
+      <workItem from="1607052031956" duration="696000" />
+      <workItem from="1607055274216" duration="654000" />
+      <workItem from="1607057545442" duration="23000" />
+      <workItem from="1607057630465" duration="3000" />
+      <workItem from="1607057760325" duration="1214000" />
+      <workItem from="1607346060217" duration="1625000" />
+      <workItem from="1607386004884" duration="7526000" />
+      <workItem from="1607411797876" duration="2690000" />
+      <workItem from="1607575962257" duration="22126000" />
+      <workItem from="1607646321249" duration="10071000" />
+      <workItem from="1607685275350" duration="3367000" />
+      <workItem from="1607732821704" duration="15066000" />
+      <workItem from="1607818849622" duration="7650000" />
+      <workItem from="1607849096963" duration="2470000" />
+      <workItem from="1607930464997" duration="13012000" />
+      <workItem from="1607955548458" duration="1351000" />
+      <workItem from="1607990192664" duration="76000" />
+      <workItem from="1608006584802" duration="1088000" />
+      <workItem from="1608011974037" duration="12161000" />
+      <workItem from="1608095277186" duration="19514000" />
+      <workItem from="1608121409075" duration="5201000" />
+      <workItem from="1608179552358" duration="73000" />
+      <workItem from="1608189035768" duration="5354000" />
+      <workItem from="1608278622663" duration="2441000" />
+      <workItem from="1608516198321" duration="8925000" />
+      <workItem from="1608528474677" duration="14648000" />
+      <workItem from="1608549024143" duration="7128000" />
+      <workItem from="1608605267999" duration="4300000" />
+      <workItem from="1608728556367" duration="1645000" />
+      <workItem from="1608730258801" duration="1569000" />
+      <workItem from="1608860242979" duration="1608000" />
+      <workItem from="1608862561645" duration="2225000" />
+      <workItem from="1608865478775" duration="18531000" />
+      <workItem from="1608895840731" duration="2068000" />
+      <workItem from="1608976089636" duration="112000" />
+      <workItem from="1609066953709" duration="1879000" />
+      <workItem from="1609290652869" duration="18799000" />
+      <workItem from="1609378605350" duration="1234000" />
+      <workItem from="1609380804276" duration="1685000" />
+      <workItem from="1609383808521" duration="7675000" />
+      <workItem from="1609463028561" duration="7827000" />
+      <workItem from="1609472022929" duration="2649000" />
+      <workItem from="1609551425360" duration="1152000" />
+      <workItem from="1609553552457" duration="12149000" />
+    </task>
+    <task id="LOCAL-00001" summary="更新">
+      <created>1605091341369</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605091341369</updated>
+    </task>
+    <task id="LOCAL-00002" summary="新增的老师端内容">
+      <created>1605191147810</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605191147810</updated>
+    </task>
+    <task id="LOCAL-00003" summary="更新教师端登录的内容">
+      <created>1605324243927</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605324243928</updated>
+    </task>
+    <task id="LOCAL-00004" summary="提交整合">
+      <created>1605753409292</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605753409292</updated>
+    </task>
+    <task id="LOCAL-00005" summary="提交整合">
+      <created>1605925045744</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605925045744</updated>
+    </task>
+    <task id="LOCAL-00006" summary="注册及软件测试更新">
+      <created>1606480075996</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606480075996</updated>
+    </task>
+    <task id="LOCAL-00007" summary="登陆错误信息警示">
+      <created>1607411993903</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1607411993903</updated>
+    </task>
+    <task id="LOCAL-00008" summary="注册提示和图片登陆">
+      <created>1607743258516</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607743258516</updated>
+    </task>
+    <task id="LOCAL-00009" summary="学生端的微调">
+      <created>1607956714108</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1607956714108</updated>
+    </task>
+    <task id="LOCAL-00010" summary="数据库的更新错误">
+      <created>1608095729677</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608095729677</updated>
+    </task>
+    <task id="LOCAL-00011" summary="测试题">
+      <created>1608114345179</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1608114345180</updated>
+    </task>
+    <task id="LOCAL-00012" summary="小错误">
+      <created>1608126420657</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1608126420657</updated>
+    </task>
+    <task id="LOCAL-00013" summary="bug以及继电器">
+      <created>1608556141711</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1608556141712</updated>
+    </task>
+    <task id="LOCAL-00014" summary="25学生端修复bug">
+      <created>1608896715071</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1608896715071</updated>
+    </task>
+    <task id="LOCAL-00015" summary="1/1  bug以及信息查询">
+      <created>1609472231483</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1609472231483</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="639799000" />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Web" order="4" side_tool="true" />
+      <window_info id="Designer" order="5" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.23819743" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.42776525" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50160944" side_tool="true" weight="0.17155756" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.36343116" />
+      <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.3295711" />
+      <window_info anchor="bottom" id="Database Changes" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.46726862" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.4537246" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.513544" />
+      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.49839056" weight="0.40293455" />
+      <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
+      <window_info anchor="bottom" id="Application Servers" order="14" weight="0.23137698" />
+      <window_info anchor="bottom" id="TODO" order="15" weight="0.3295711" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Database" order="2" weight="0.3299356" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Bean Validation" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.22532189" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="更新" />
+    <MESSAGE value="新增的老师端内容" />
+    <MESSAGE value="更新教师端登录的内容" />
+    <MESSAGE value="提交整合" />
+    <MESSAGE value="注册及软件测试更新" />
+    <MESSAGE value="登陆错误信息警示" />
+    <MESSAGE value="注册提示和图片登陆" />
+    <MESSAGE value="学生端的微调" />
+    <MESSAGE value="数据库的更新错误" />
+    <MESSAGE value="测试题" />
+    <MESSAGE value="小错误" />
+    <MESSAGE value="bug以及继电器" />
+    <MESSAGE value="25学生端修复bug" />
+    <MESSAGE value="1/1 bug与信息查询" />
+    <MESSAGE value="1/1  bug以及信息查询" />
+    <MESSAGE value="1/2" />
+    <MESSAGE value="1/2测试提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="1/2测试提交" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zstudent_loginService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zstudent_loginServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="49" column="113" selection-start-line="49" selection-start-column="113" selection-end-line="49" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zselect_message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="29" />
+          <folding>
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#471#472#0" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#943#944#0" expanded="true" />
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1190#1191#0" expanded="true" />
+            <element signature="e#1238#1239#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+            <element signature="e#1304#1305#0" expanded="true" />
+            <element signature="e#1352#1353#0" expanded="true" />
+            <element signature="e#1392#1393#0" expanded="true" />
+            <element signature="e#1430#1431#0" expanded="true" />
+            <element signature="e#1464#1465#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1564#1565#0" expanded="true" />
+            <element signature="e#1600#1601#0" expanded="true" />
+            <element signature="e#1632#1633#0" expanded="true" />
+            <element signature="e#1682#1683#0" expanded="true" />
+            <element signature="e#1724#1725#0" expanded="true" />
+            <element signature="e#1759#1760#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1838#1839#0" expanded="true" />
+            <element signature="e#1878#1879#0" expanded="true" />
+            <element signature="e#1913#1914#0" expanded="true" />
+            <element signature="e#1944#1945#0" expanded="true" />
+            <element signature="e#1992#1993#0" expanded="true" />
+            <element signature="e#2032#2033#0" expanded="true" />
+            <element signature="e#2064#2065#0" expanded="true" />
+            <element signature="e#2092#2093#0" expanded="true" />
+            <element signature="e#2134#2135#0" expanded="true" />
+            <element signature="e#2168#2169#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZgradeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_scheduleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztesting_score.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Ztesting_scoreMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Ztesting_scoreMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="58" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztesting_scoreService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="58" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Ztestng_scoreServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Zstudent_loginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#362#363#0" expanded="true" />
+            <element signature="e#388#389#0" expanded="true" />
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#660#661#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#748#749#0" expanded="true" />
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
+            <element signature="e#877#878#0" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
+            <element signature="e#996#997#0" expanded="true" />
+            <element signature="e#1029#1030#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1170#1171#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+            <element signature="e#1240#1241#0" expanded="true" />
+            <element signature="e#1274#1275#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="e#1348#1349#0" expanded="true" />
+            <element signature="e#1404#1405#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+            <element signature="e#1486#1487#0" expanded="true" />
+            <element signature="e#1516#1517#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
+            <element signature="e#1600#1601#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_loginMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/ZscheduleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zstudent_eventMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZeventController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="68" column="72" lean-forward="true" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zstudent_eventMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="29" column="232" selection-start-line="29" selection-start-column="232" selection-end-line="29" selection-end-column="232" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Zselect_messageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="101" selection-start-line="17" selection-start-column="101" selection-end-line="17" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/impl/Zselect_messageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="30" column="147" selection-start-line="30" selection-start-column="147" selection-end-line="30" selection-end-column="147" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/information_service.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Zstudent_event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztesting_score.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#275#276#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#897#898#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#970#971#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapper/Zselect_messageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="30" column="529" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="529" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/mapper/Zselect_messageMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Zslect_messageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/information_service.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="219" column="5" selection-start-line="219" selection-start-column="5" selection-end-line="219" selection-end-column="5" />
+          <folding>
+            <element signature="e#99#105#0" expanded="true" />
+            <element signature="e#106#112#0" expanded="true" />
+            <element signature="e#95#101#0" expanded="true" />
+            <element signature="e#102#108#0" expanded="true" />
+            <element signature="e#28#34#0" expanded="true" />
+            <element signature="e#35#41#0" expanded="true" />
+            <element signature="e#99#105#0" expanded="true" />
+            <element signature="e#106#112#0" expanded="true" />
+            <element signature="e#99#105#0" expanded="true" />
+            <element signature="e#106#112#0" expanded="true" />
+            <element signature="e#99#105#0" expanded="true" />
+            <element signature="e#106#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/FaceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="695" column="16" lean-forward="true" selection-start-line="695" selection-start-column="16" selection-end-line="695" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/studentLogin.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="633">
+          <caret line="60" column="6" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="60" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#2;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#canvas#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/power_controller.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/power_controller.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2001">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/studentEnter.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="51" column="102" lean-forward="true" selection-start-line="51" selection-start-column="102" selection-end-line="51" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/studentTest.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="371" column="16" lean-forward="true" selection-start-line="371" selection-start-column="16" selection-end-line="371" selection-end-column="16" />
+          <folding>
+            <element signature="e#119#125#0" expanded="true" />
+            <element signature="e#125#131#0" expanded="true" />
+            <element signature="e#131#137#0" expanded="true" />
+            <element signature="e#137#143#0" expanded="true" />
+            <element signature="e#143#149#0" expanded="true" />
+            <element signature="e#149#155#0" expanded="true" />
+            <element signature="e#122#128#0" expanded="true" />
+            <element signature="e#128#134#0" expanded="true" />
+            <element signature="e#134#140#0" expanded="true" />
+            <element signature="e#140#146#0" expanded="true" />
+            <element signature="e#146#152#0" expanded="true" />
+            <element signature="e#152#158#0" expanded="true" />
+            <element signature="e#120#126#0" expanded="true" />
+            <element signature="e#126#132#0" expanded="true" />
+            <element signature="e#132#138#0" expanded="true" />
+            <element signature="e#138#144#0" expanded="true" />
+            <element signature="e#144#150#0" expanded="true" />
+            <element signature="e#150#156#0" expanded="true" />
+            <element signature="e#121#127#0" expanded="true" />
+            <element signature="e#127#133#0" expanded="true" />
+            <element signature="e#133#139#0" expanded="true" />
+            <element signature="e#139#145#0" expanded="true" />
+            <element signature="e#145#151#0" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#121#127#0" expanded="true" />
+            <element signature="e#127#133#0" expanded="true" />
+            <element signature="e#133#139#0" expanded="true" />
+            <element signature="e#139#145#0" expanded="true" />
+            <element signature="e#145#151#0" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#122#128#0" expanded="true" />
+            <element signature="e#128#134#0" expanded="true" />
+            <element signature="e#134#140#0" expanded="true" />
+            <element signature="e#140#146#0" expanded="true" />
+            <element signature="e#146#152#0" expanded="true" />
+            <element signature="e#152#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZsafetestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-109">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztesting_scoreController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="753">
+          <caret line="39" column="16" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/QbankController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="201" column="24" lean-forward="true" selection-start-line="201" selection-start-column="24" selection-end-line="201" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/Ztraining_task_contentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#marquee#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#canvas#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/bootstrap-3.3.7-dist/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="55" column="22" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layui/css/class_ppt.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="59" column="10" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/service/Ztask_inputService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/ZstudentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+          <folding>
+            <element signature="e#1693#1694#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/base/Powerutil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/class_ppt.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="525" column="25" lean-forward="true" selection-start-line="525" selection-start-column="25" selection-end-line="525" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#div#9;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.m2/repository/org/projectlombok/lombok/1.18.8/lombok-1.18.8.pom">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/projectlombok/lombok/1.18.8/lombok-1.18.8-sources.jar!/lombok/Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/dto/Ztraining_camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://G:/jdk1.8.0_101/jre/lib/rt.jar!/java/util/Comparator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itboyst/facedemo/controller/TimeStatusController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="136" column="36" selection-start-line="136" selection-start-column="36" selection-end-line="136" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>recognitionFace:war exploded</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.4895259" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.4895259" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.4895259" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>14</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.4895259" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>recognitionFace</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.4895259" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>rt</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.4895259" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
