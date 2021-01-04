@@ -343,7 +343,8 @@ public class QbankController {
     @RequestMapping(value = "/temporary_task")
     public String temporary_task(){return "temporary_task";}
 
-
+    @RequestMapping(value = "/index")
+    public String index(){return "index";}
 
     @RequestMapping(value = "/class_ppt")
     public String class_ppt(){return "class_ppt";}

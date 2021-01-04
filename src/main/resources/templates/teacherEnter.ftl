@@ -37,18 +37,19 @@
             </div>
         </div>
         <!--右侧按键-->
-        <div class="p_right" align="center">
-            <button onclick="fieldManagement()" class="p_button3">现场管理</button>
+        <div class="te_right" align="center">
+            <button onclick="fieldManagement()" class="te_field_management">现场管理</button>
             <br><br>
-            <button onclick="informationService()" class="p_button3">信息查询</button>
+            <button onclick="informationService()" class="te_information_service">信息查询</button>
             <br><br>
-            <button onclick="timeStatus()" class="p_button3">实时状态</button>
+            <button onclick="timeStatus()" class="te_time_status">实时状态</button>
             <br><br>
-            <button onclick="informationDelivery()" class="p_button3">信息发布</button>
+            <button onclick="informationDelivery()" class="te_information_delivery">信息发布</button>
             <br><br>
+            <button class="te_exit" id="p_button3" onclick="powerController()">退出</button>
         </div>
-        <div class="outdiv">
-            <button class="p_button3" id="p_button3" onclick="powerController()">退出</button></div>
+       <#-- <div class="outdiv">
+            </div>-->
     </div>
 </div>
 <script>

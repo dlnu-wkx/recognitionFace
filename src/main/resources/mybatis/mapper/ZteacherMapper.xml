@@ -34,5 +34,9 @@
             UPDATE zteahcer SET zmajorID=#{zmajorID} ,zname=#{zname},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto} WHERE zidentity=#{zidentity}
     </update>
 
+    <select id="findteacherByzidentity" resultType="com.itboyst.facedemo.dto.Zteacher">
+
+            SELECT * FROM zteacher WHERE zidentity=#{zidentity};
+    </select>
 
 </mapper>

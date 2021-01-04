@@ -27,6 +27,9 @@ public class Ztraining_task_contentServiceImpl implements Ztraining_task_content
     @Override
     public int findendpages(String ztraingingtaskID){
         //System.out.println(ztraingingtaskID);
+        //**有空的情况需要处理
+
+
         return ztraining_task_contentMapper.findendpages(ztraingingtaskID);
     }
 

@@ -25,16 +25,16 @@
 
 
 <!--右侧按键-->
-<div class="p_right" align="center">
-    <button onclick="fieldManagement()" class="p_button3">现场管理</button>
+<div class="i_right" align="center">
+    <button onclick="fieldManagement()" class="i_field_management">现场管理</button>
     <br><br>
-    <button class="p_button4">信息查询</button>
+    <button class="i_information_service">信息查询</button>
     <br><br>
-    <button onclick="timeStatus()" class="p_button3">实时状态</button>
+    <button onclick="timeStatus()" class="i_time_status">实时状态</button>
     <br><br>
-    <button onclick="informationDelivery()"class="p_button3">信息发布</button>
+    <button onclick="informationDelivery()"class="i_information_delivery">信息发布</button>
     <br><br>
-    <button class="p_button3" id="exit" onclick="outpower()">退出</button>
+    <button class="i_exit" id="exit" onclick="outpower()">退出</button>
 
 </div>
 
@@ -73,7 +73,7 @@
 <div hidden class="popup" id="popup" align="center">
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-    <font size="3">弹窗</font><br>
+
     <button class="p_button2">下课</button>
 </div>
 
@@ -306,10 +306,13 @@
         $("#exit").css('background-color','#FFC000');
         $("#exit").text('解锁');
         $("#exit").attr("onclick","removescreer();");
+
     }
     function removescreer(){
         $("#parent").hide();
+        $("#exit").text('退出系统');
         $("#exit").css('background-color','#4472c4');
+        $("#exit").attr("onclick","outpower();");
     }
 
     //信息发布

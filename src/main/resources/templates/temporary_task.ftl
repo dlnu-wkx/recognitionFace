@@ -39,16 +39,16 @@
 
 
 <!--右侧按键-->
-<div class="p_right" align="center">
-    <button  onclick="fieldManagement()" class="p_button3">现场管理</button>
+<div class="d_right" align="center">
+    <button  onclick="fieldManagement()" class="d_field_management">现场管理</button>
     <br><br>
-    <button onclick="informationService()" class="p_button3">信息查询</button>
+    <button onclick="informationService()" class="d_information_service">信息查询</button>
     <br><br>
-    <button onclick="timeStatus()"class="p_button3">实时状态</button>
+    <button onclick="timeStatus()"class="d_time_status">实时状态</button>
     <br><br>
-    <button class="p_button4" onclick="outmessage()">信息发布</button>
+    <button class="d_information_delivery" onclick="outmessage()">信息发布</button>
     <br><br>
-    <button onclick="powerController()"class="p_button3">退出</button>
+    <button onclick="outpower()" id="exit" class="d_exit">退出</button>
 </div>
 
 <!--左侧人员信息-->
@@ -89,12 +89,37 @@
     <button class="p_button2" onclick="inserttemptask()">任务发送</button>
 </div>
 
+<div hidden class="popup" id="popup" align="center">
+    <br><br>
+    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
 
+    <button class="p_button2">下课</button>
+</div>
+<!--蒙版-->
+<div id="parent" class="parent" hidden></div>
 
 
 </body>
 
 <script>
+
+    function outpower(){
+        $("#popup").show()
+    }
+
+    function lockscreen() {
+        $("#parent").show()
+        $("#popup").hide();
+        $("#exit").css('background-color','#FFC000');
+        $("#exit").text('解锁');
+        $("#exit").attr("onclick","removescreer();");
+    }
+    function removescreer(){
+        $("#parent").hide();
+        $("#exit").text('退出系统');
+        $("#exit").css('background-color','#4472c4');
+        $("#exit").attr("onclick","outpower();");
+    }
 
     function informationDelivery() {
         location.href="/information_delivery"

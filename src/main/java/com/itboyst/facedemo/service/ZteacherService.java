@@ -13,4 +13,6 @@ public interface ZteacherService {
     public int updateteacher(Zteacher zteacher);
 
     public List<String> findteachernamelike(String name);
+
+    Zteacher findteacherByzidentity(String zidentity);
 }

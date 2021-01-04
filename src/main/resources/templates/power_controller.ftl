@@ -48,17 +48,18 @@
 </div>
 <!--右侧按键-->
 <div class="p_right" align="center">
-    <button onclick="fieldManagement()" class="p_button4">现场管理</button>
+    <button onclick="fieldManagement()" class="p_field_management">现场管理</button>
 <br><br>
-    <button onclick="informationService()" class="p_button3">信息查询</button>
+    <button onclick="informationService()" class="p_information_service">信息查询</button>
 <br><br>
-    <button onclick="timeStatus()" class="p_button3">实时状态</button>
+    <button onclick="timeStatus()" class="p_time_status">实时状态</button>
 <br><br>
-    <button onclick="informationDelivery()" class="p_button3">信息发布</button>
+    <button onclick="informationDelivery()" class="p_information_delivery">信息发布</button>
     <br><br>
+    <button class="p_exit" id="p_button4" onclick="outpower()">退出</button>
 </div>
-<div class="outdiv">
-    <button class="p_button3" id="p_button4" onclick="outpower()">退出</button></div>
+<#--<div class="outdiv">
+   </div>-->
 
 
 <!--下方按键及内容-->
@@ -95,7 +96,6 @@
 <div hidden class="popup" id="popup" align="center">
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-    <font size="3">弹窗</font><br>
     <button class="p_button2" onclick="overclass()">下课</button>
 </div>
 
@@ -103,7 +103,6 @@
 <div id="parent" class="parent" hidden></div>
 
 
-<div id="facebox" class="facebox"></div>
 
 </body>
 
@@ -340,7 +339,10 @@
     }
 
     function removescreer() {
-        location.href = "/teacher";
+        $("#parent").hide();
+        $("#p_button4").text('退出系统');
+        $("#p_button4").css('background-color','#4472c4');
+        $("#p_button4").attr("onclick","outpower();");
     }
 
     function removemes() {

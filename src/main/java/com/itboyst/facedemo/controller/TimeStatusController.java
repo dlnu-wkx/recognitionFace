@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -52,7 +53,14 @@ public class TimeStatusController {
     @ResponseBody
     public List<Ztraining_facility> findfacilitybytrainingroom(HttpSession session, String ztraining_room){
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
-        String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
+        //**同130行一样做判空处理，异常处理
+        String ztrainingroomID ="";
+        try {
+            ztrainingroomID=zteacher_cookie.getZtrainingroomid();
+        }catch (Exception e){
+            System.out.println("TimeStatusController中/findfacilitybytrainingroom中的zteacher_cookie失活");
+        }
+
         return ztraining_facilityService.findfactibyztrainingroomID(ztrainingroomID);
 
     }
@@ -109,7 +117,7 @@ public class TimeStatusController {
     @RequestMapping("/presentProgess")
     @ResponseBody
     public Ztraining_task_content  presentProgess(String zid) {
-        System.err.println("zid ："+zid);
+        //System.err.println("zid ："+zid);
         List<Ztraining_task_content> ztraining_task_content = ztraining_task_contentService.findpresentProgessByfacilityID(zid);
         if(ztraining_task_content.size()>0){
             return ztraining_task_content.get(0);
@@ -126,8 +134,15 @@ public class TimeStatusController {
     @ResponseBody
     public List<Ztraining_camera> findAllCameras(HttpSession session,String type){
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
-        System.out.println(zteacher_cookie);
-        String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
+        //System.out.println(zteacher_cookie);
+        //**这个地方对于zteacher_cookie为空要做一些处理，异常处理
+        String ztrainingroomID ="";
+        try {
+            ztrainingroomID =zteacher_cookie.getZtrainingroomid();
+        }catch(Exception e){
+            System.out.println("zteacher_cookie.getZtrainingroomid()为空，TimeStatusController中的/findAllCameras");
+        }
+
         //把数据库中用","形式写的摄像头遍历出来并且组装成一个新的摄像头
         List<Ztraining_camera> ztrainingCameraList =ztraining_cameraService.findAllByZtrainingroomID(ztrainingroomID,type);
         if(ztrainingCameraList.size()>0){
@@ -178,5 +193,92 @@ public class TimeStatusController {
         return ztrainingCameraList;
     }
 
+    /**
+     *
+     * @param zid
+     * @param session
+     * @return
+     */
+    @RequestMapping("/disagree")
+    @ResponseBody
+        public int disagree(HttpSession session,String zid,String content){
+        Zstudent_event zstudent_event =zstudent_eventService.findRaiseHandByFacility(zid);
+        Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String zteacherid ="";
+        try {
+            zteacherid =zteacher_cookie.getZteacherid();
+        }catch(Exception e){
+            System.out.println("zteacher_cookie.getZteacherid()为空，TimeStatusController中的/disagree");
+        }
+        if(zstudent_event !=null){
+            zstudent_event.setZteacherID(zteacherid);
+            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+            zstudent_event.setZhandletime(timestamp);
+            zstudent_event.setZhandlecontent(content);
+            System.out.println("disagree"+zstudent_event);
+            int j =zstudent_eventService.updateTeacherIDandStatus(zstudent_event);
+            return j;
+        }
+        return 0;
+        }
+
+
+    /**
+     *
+     * @param zid
+     * @param session
+     * @return
+     */
+    @RequestMapping("/agree")
+    @ResponseBody
+    public int agree(HttpSession session,String zid,String content){
+        Zstudent_event zstudent_event =zstudent_eventService.findRaiseHandByFacility(zid);
+        Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String zteacherid ="";
+        try {
+            zteacherid =zteacher_cookie.getZteacherid();
+        }catch(Exception e){
+            System.out.println("zteacher_cookie.getZteacherid()为空，TimeStatusController中的/agree");
+        }
+        if(zstudent_event !=null){
+            zstudent_event.setZteacherID(zteacherid);
+            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+            zstudent_event.setZhandletime(timestamp);
+            zstudent_event.setZhandlecontent(content);
+            System.out.println("agree :"+zstudent_event);
+            int i =zstudent_eventService.updateTeacherIDandStatus(zstudent_event);
+            return i;
+        }
+        return 0;
+    }
+
+    /**
+     *
+     * @param session
+     * @param id
+     * @return
+     */
+    @RequestMapping("/cancelRaisehand")
+    @ResponseBody
+    public int cancelRaisehand(HttpSession session,String id){
+        Zstudent_event zstudent_event =zstudent_eventService.findRaiseHandByFacility(id);
+        Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String zteacherid ="";
+        try {
+            zteacherid =zteacher_cookie.getZteacherid();
+        }catch(Exception e){
+            System.out.println("zteacher_cookie.getZteacherid()为空，TimeStatusController中的/cancelRaisehand");
+        }
+        if(zstudent_event !=null){
+            zstudent_event.setZteacherID(zteacherid);
+            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+            zstudent_event.setZhandletime(timestamp);
+            zstudent_event.setZhandlecontent("已知晓");
+            System.out.println("取消举手 :"+zstudent_event);
+            int i =zstudent_eventService.updateTeacherIDandStatus(zstudent_event);
+            return i;
+        }
+        return 0;
+    }
 
 }

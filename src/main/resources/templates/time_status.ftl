@@ -9,11 +9,23 @@
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
-    <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
+    <script src="/layui/layui.js"></script>
+    <script type="text/javascript" src="jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
 
 </head>
 <body  class="body" >
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
+
+</div>
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont">实时状态</div>
@@ -28,16 +40,16 @@
 
 
 <!--右侧按键-->
-<div class="p_right" align="center">
-    <button  onclick="fieldManagement()"class="p_button3">现场管理</button>
+<div class="t_right" align="center">
+    <button  onclick="fieldManagement()"class="t_field_management">现场管理</button>
     <br><br>
-    <button onclick="informationService()" class="p_button3">信息查询</button>
+    <button onclick="informationService()" class="t_information_service">信息查询</button>
     <br><br>
     <button class="t_button4">实时状态</button>
     <br><br>
-    <button onclick="informationDelivery()" class="p_button3">信息发布</button>
+    <button onclick="informationDelivery()" class="t_information_delivery">信息发布</button>
     <br><br>
-    <button class="p_button3" onclick="powerController()">退出</button>
+    <button class="t_exit" id="exit" onclick="outpower()">退出</button>
 </div>
 
 <!--机床信息示意-->
@@ -164,10 +176,15 @@
 <div hidden class="popup" id="popup" align="center">
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-    <font size="3">弹窗</font><br>
     <button class="p_button2">下课</button>
 </div>
 
+<div hidden class="popup" id="popup" align="center">
+    <br><br>
+    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
+
+    <button class="p_button2">下课</button>
+</div>
 <!--蒙版-->
 <div id="parent" class="parent" hidden></div>
 
@@ -175,29 +192,63 @@
 </body>
 
 <script>
+
     //弹框
-    window.onload=showStudentStatus();
-       /* var times=setInterval(function(){
-        showStudentStatus()
-    }, 5000)*/
-
-
-
     function outpower(){
         $("#popup").show()
     }
 
-    //锁屏
     function lockscreen() {
         $("#parent").show()
+        $("#popup").hide();
+        $("#exit").css('background-color','#FFC000');
+        $("#exit").text('解锁');
+        $("#exit").attr("onclick","removescreer();");
     }
+    function removescreer(){
+        $("#parent").hide();
+        $("#exit").text('退出系统');
+        $("#exit").css('background-color','#4472c4');
+        $("#exit").attr("onclick","outpower();");
+    }
+
+
+    window.onload=showStudentStatus();
+       var times=setInterval(function(){
+        showStudentStatus()
+    }, 5000)
+
+
+
+
 
     //学生实时视频
     function diagram(id) {
-        findRaiseHand(id);
-        findStudentName(id);
-        presentProgess(id);
-        $("#t_message"+id).show()
+
+        var str =$("#status"+id).val();
+        var raisehand = new RegExp("举手");
+        var leave = new RegExp("请假")
+        if(raisehand.test(str)){
+            //处理学生的举手请求
+            cancelRaisehand(id);
+        }
+        if(leave.test(str)){
+            document.getElementById(id).style.display="block";
+        }
+    //取消举手
+    function cancelRaisehand(id) {
+        $.ajax({
+            type: 'post',
+            url: '/cancelRaisehand',
+            data:{"id":id},
+            success:function (data) {
+                if(data == 1){
+                    layer.msg("已处理", { icon: 1, offset: "auto", time:1000 });
+                }
+            }
+        })
+        }
+
 
     }
     //关闭

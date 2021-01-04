@@ -33,7 +33,14 @@ public class ZcommandController {
         System.out.println(chagangID+gundongID);
 
         ztraining_room ztraining_room=(ztraining_room)session.getAttribute("ztraining_room");
-        String zid=ztraining_room.getZid();
+        //**这个为空的情况要处理主要是session失活
+        String zid="";
+        try{
+         zid=ztraining_room.getZid();
+        }catch (Exception e){
+            System.out.println("ztraining_room的session失活,请重新登录");
+            return null;
+        }
         List<Zteacher_command> data=zteacher_commandService.selectcommand(zid);
         System.err.println("befor data :"+data.size());
         System.out.println(data.toString());

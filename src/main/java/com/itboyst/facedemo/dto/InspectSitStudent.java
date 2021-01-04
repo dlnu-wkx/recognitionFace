@@ -7,9 +7,10 @@ import java.sql.Timestamp;
 @Data
 public class InspectSitStudent {
     private String zstudentID;
-    private String zstudentName;
+    private String zName;
     private String zgradeName;
     private Timestamp zrecognizetime;
+    private String ztrainingroomID;
    /* public String getZstudentID() {
         return zstudentID;
     }

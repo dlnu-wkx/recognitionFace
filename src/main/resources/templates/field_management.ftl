@@ -104,7 +104,11 @@
         </div>
         <#--四级菜单-->
         <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
-            <div id="mainDiv"></div>
+            <div id="mainDiv">
+                <iframe src="http://127.0.0.1/stream" width="400" height="400">
+                    <a href="included.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+                </iframe>
+            </div>
             <#--这个地方到时候要循环遍历出来拼接字符串-->
             <div id="identifyAreas"style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red;overflow: auto">
                 <#--<div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
@@ -119,11 +123,11 @@
                 <#--这个也要用遍历写出来的，显示最先出现的三个人-->
                 <div style="width: 100%;margin-top: 2px;">
                     <div id="left" style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
-                    <div id="middle" style="width: 27%;position: absolute;left:35%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
+                    <div id="middle" style="width: 27%;position: absolute;left:36%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
                     <div id="right" style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
                 </div>
                 <#--按照顺序排出识别的人脸，顺序是最早的在最下最右边-->
-                <div id="mainBody"style="width: 100%;margin: 53px auto">
+                <div id="mainBody"style="width: 100%;margin: 53px auto;height: 78%">
                     <#--<table>
                         <tr>
                             <th>
@@ -197,15 +201,50 @@
 <div hidden class="popup" id="popup" align="center">
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-    <font size="3">弹窗</font><br>
     <button class="p_button2" onclick="overclass()">下课</button>
 </div>
 
 <!--蒙版-->
-<div id="parent" class="parent" hidden></div>
-
+<div id="parent" class="facebox" hidden></div>
+<div id="showVdieo" style="position: absolute;z-index:10;top: 24%;left: 41%"></div>
 
 <script>
+    //教师解锁时的人脸识别
+    var mediaStreamTrack;
+    var time=null;
+    function getMedia1() {
+        $("#showVdieo").empty();
+        let videoComp = "<video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
+        $("#showVdieo").append(videoComp);
+
+        let constraints = {
+            video: {width: 500, height: 500},
+            audio: true
+        };
+        //获得video摄像头区域
+        let video = document.getElementById("video");
+        //这里介绍新的方法，返回一个 Promise对象
+        // 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+        // then()是Promise对象里的方法
+        // then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+        // 避免数据没有获取到
+        let promise = navigator.mediaDevices.getUserMedia(constraints);
+        promise.then(function (stream) {
+            mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+            video.srcObject = stream;
+            video.play();
+        });
+
+        // var t1 = window.setTimeout(function() {
+        //     takePhoto();
+        // },2000)
+       time= window.setInterval(function () {//每隔几秒查询对比一次结果，循环对比
+            chooseFileChangeCompF_M()
+        }, 5000);
+
+    }
+
+
 
     //退出
     function outpower(){
@@ -225,10 +264,9 @@
     }
 
     function removescreer(){
-        $("#parent").hide();
-        $("#exit").text('退出系统');
-        $("#exit").css('background-color','#4472c4');
-        $("#exit").attr("onclick","outpower();");
+        //解锁时进行人脸识别
+        getMedia1();
+
     }
 
     //JavaScript代码区域
@@ -266,7 +304,7 @@
         //显示开始和结束按钮
         document.getElementById("fourMenu1").style.display="block";
         document.getElementById("openAndstart").style.display="block";
-        getMedia();
+       // getMedia();
 
         $("#left").hide();
         $("#middle").hide();
@@ -281,7 +319,7 @@
         document.getElementById("fourMenu1").style.display="block";
         document.getElementById("openAndstart2").style.display="block";
 
-        getMedia();
+       // getMedia();
         $("#left").hide();
         $("#middle").hide();
         $("#right").hide();
@@ -362,7 +400,127 @@
         location.href="/field_management";
     }
 
+    function chooseFileChangeCompF_M() {
 
+       /* var ip=returnCitySN["cip"];*/
+
+
+        let showVdieo = $("#showVdieo");
+        if (showVdieo.has('video').length) {
+            let video = document.getElementById("video");
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, 500, 500);
+            var base64File = canvas.toDataURL();
+            var formData = new FormData();
+            formData.append("groupId", "101")
+            formData.append("file", base64File);
+
+            //var data=getOsInfo();
+
+            //操作系统
+
+            //ip地址
+            formData.append("ip",1);
+
+            $.ajax({
+                type: "post",
+                url: "/faceTeacherSearch",
+                data: formData,
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (text) {
+                    var res = JSON.stringify(text)
+                    if (text.code == 0) {
+                        var name = text.data.name;
+                        $("#nameDiv").html("姓名：" + name);
+                        var similar = text.data.similarValue;
+                        $("#similarDiv").html("相似度：" + similar + "%");
+                        var age = text.data.age;
+                        $("#ageDiv").html("年龄：" + age);
+                        var gender = text.data.gender;
+                        $("#genderDiv").html("性别：" + gender);
+                        mediaStreamTrack.stop();
+                        $("#showVdieo").hide();
+                        $("#parent").hide();
+                        $("#exit").text('退出系统');
+                        $("#exit").css('background-color','#4472c4');
+                        $("#exit").attr("onclick","outpower();");
+                        clearInterval(time);
+                    } else {
+                        $("#nameDiv").html("");
+                        $("#similarDiv").html("");
+                        $("#ageDiv").html("");
+                        $("#genderDiv").html("");
+
+                        showTips(text.message);
+                    }
+
+                },
+                error: function (error) {
+                    $("#nameDiv").html("");
+                    $("#similarDiv").html("");
+                    $("#ageDiv").html("");
+                    $("#genderDiv").html("");
+                    alert(JSON.stringify(error))
+                }
+            });
+        }
+        else {//这个对比根据图片进行查找的
+            var file = $("#file1")[0].files[0];
+            if (file == undefined) {
+                alert("请选择有人脸的图片进行识别");
+                return;
+            }
+            var formData = new FormData();
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                var base64 = reader.result;
+                formData.append("file", base64);
+                formData.append("groupId", 101);
+
+                $.ajax({
+                    type: "post",
+                    url: "/faceSearch",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    success: function (text) {
+                        var res = JSON.stringify(text)
+                        if (text.code == 0) {
+                            var name = text.data.name;
+
+                            var similar = text.data.similarValue;
+
+                            var age = text.data.age;
+
+                            var gender = text.data.gender;
+
+                            showTips("姓名：" + name + "\n相似度：" + similar + "%" + "\n年龄：" + age + "\n性别：" + gender);
+                        } else {
+                            $("#nameDiv").html("");
+                            $("#similarDiv").html("");
+                            $("#ageDiv").html("");
+                            $("#genderDiv").html("");
+                            alert("人脸不匹配")
+                            showTips("人脸不匹配");
+                        }
+
+                    },
+                    error: function (error) {
+                        $("#nameDiv").html("");
+                        $("#similarDiv").html("");
+                        $("#ageDiv").html("");
+                        $("#genderDiv").html("");
+                        alert(JSON.stringify(error))
+                    }
+                });
+            }
+        }
+    }
 </script>
 </body>
 </html>

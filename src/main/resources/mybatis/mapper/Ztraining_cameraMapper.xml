@@ -9,4 +9,21 @@
 
     </select>
 
+    <select id="findAllByZcameraIP" resultType="com.itboyst.facedemo.dto.Ztraining_camera">
+
+        SELECT * FROM ztraining_camera where zcameraIP =#{zcameraIP} and ztitle =#{ztitle} and ztrainingroomID=#{ztrainingroomID}
+
+    </select>
+
+    <update id="updateecamera" parameterType="com.itboyst.facedemo.dto.Ztraining_camera">
+
+        update ztraining_camera set zcameraName=#{zcameraName} where zcameraIP=#{zcameraIP}
+
+    </update>
+
+    <insert id="insertCamera" parameterType="com.itboyst.facedemo.dto.Ztraining_camera">
+        insert into ztraining_camera (zid,ztrainingroomID,zidentity,ztitle,zcameraIP,zcameraName,zwebaddress,zstatus)
+        values (#{zid},#{ztrainingroomID},#{zidentity},#{ztitle},#{zcameraIP},#{zcameraName},#{zwebaddress},#{zstatus})
+    </insert>
+
 </mapper>

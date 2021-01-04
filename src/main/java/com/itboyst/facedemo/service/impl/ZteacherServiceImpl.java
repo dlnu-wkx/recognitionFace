@@ -29,4 +29,9 @@ public class ZteacherServiceImpl implements ZteacherService {
 
     @Override
     public List<String> findteachernamelike(String name){return zteacherMapper.findteachernamelike(name);}
+
+    @Override
+    public Zteacher findteacherByzidentity(String zidentity) {
+        return zteacherMapper.findteacherByzidentity(zidentity);
+    }
 }

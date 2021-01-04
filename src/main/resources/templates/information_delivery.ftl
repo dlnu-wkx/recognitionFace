@@ -48,16 +48,16 @@
 
 </div>
 <!--右侧按键-->
-<div class="p_right" align="center">
-    <button  onclick="fieldManagement()" class="p_button3">现场管理</button>
+<div class="d_right" align="center">
+    <button  onclick="fieldManagement()" class="d_field_management">现场管理</button>
     <br><br>
-    <button onclick="informationService()" class="p_button3">信息查询</button>
+    <button onclick="informationService()" class="d_information_service">信息查询</button>
     <br><br>
-    <button onclick="timeStatus()"class="p_button3">实时状态</button>
+    <button onclick="timeStatus()"class="d_time_status">实时状态</button>
     <br><br>
-    <button class="p_button4" onclick="outmessage()">信息发布</button>
+    <button class="d_information_delivery" onclick="outmessage()">信息发布</button>
     <br><br>
-    <button onclick="powerController()"class="p_button3">退出</button>
+    <button onclick="outpower()" id="exit" class="d_exit">退出</button>
 </div>
    
 <!--下方按键及内容-->
@@ -75,13 +75,19 @@
 
 
 <!--弹框-->
-<div hidden class="d_popup" id="de_popup" align="center">
+<div  class="d_popup" id="de_popup" align="center">
     <br>
     <button class="p_button2" onclick="fixed_task()">固定任务</button><br><br>
     <button class="p_button2" onclick="temporary_task()">临时任务</button><br><br>
     <button class="p_button2" onclick="">信息发送</button>
 </div>
 
+<div hidden class="popup" id="popup" align="center">
+    <br><br>
+    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
+
+    <button class="p_button2">下课</button>
+</div>
 <!--蒙版-->
 <div id="parent" class="parent" hidden></div>
 
@@ -95,6 +101,24 @@
 </body>
 
 <script>
+
+    function outpower(){
+        $("#popup").show()
+    }
+
+    function lockscreen() {
+        $("#parent").show()
+        $("#popup").hide();
+        $("#exit").css('background-color','#FFC000');
+        $("#exit").text('解锁');
+        $("#exit").attr("onclick","removescreer();");
+    }
+    function removescreer(){
+        $("#parent").hide();
+        $("#exit").text('退出系统');
+        $("#exit").css('background-color','#4472c4');
+        $("#exit").attr("onclick","outpower();");
+    }
 
     function removemes() {
         $("#inputmes").val("");
@@ -319,19 +343,9 @@ function addchoice(checkbox) {
 
 
 
-
-
-
-    function outpower(){
-        $("#popup").show()
-    }
-
-    function lockscreen() {
-        $("#parent").show()
-    }
     
     function outmessage() {
-        $("#de_popup").show()
+        //$("#de_popup").show()
     }
 
     function temporary_task() {

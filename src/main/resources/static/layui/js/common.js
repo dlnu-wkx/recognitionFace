@@ -226,7 +226,6 @@ function OpenOTimer(a) {
         timer = setInterval(function(){
             showRecognitionFace(mytime)
         }, 3000)
-
   /*  alert("执行完了start的功能")
     if (a == 2) {
 
@@ -244,8 +243,7 @@ function CloseTimer(a) {
         $("#endID").css('background-color','rgba(237,125,49)')
         $("#startID").css('background-color','rgba(0,0,255)')
     }
-
-    clearInterval(timer);
+    window.clearInterval(timer);
 }
 
 //从数据库中找出教室的所有设备
@@ -264,7 +262,7 @@ function showStudentStatus(){
                 //var类型，不能写成int
                 for(var i=0; i<data.length;i++){
                     str+=   "<th>";
-                    str+=   "<div class='t_button1'>";
+                    str+=   "<div class='t_button1' id='"+data[i].zid+"' onclick=''>";
                     //str+="<th><button class='t_button1'onclick='diagram(\""+data[i].zid+"\")' >"+data[i].zidentity+"</button></th>";
                     str+="<div class='t_message'  align='center' id='t_message"+data[i].zid+"'>";
                     str+=  "<button class='t_button2' id='button"+data[i].zid+"'></button>";
@@ -278,6 +276,11 @@ function showStudentStatus(){
                     //str+= "<input type='text' class='t_progress' id='progress"+data[i].zid+"' value='当前进度:'>";
                     str+= "<div><input type='text' class='t_staets' id='status"+data[i].zid+"' value='状态信息 :'></div>";
                     //str+= "<button class='t_button3' onclick='closemessage(\""+data[i].zid+"\")'>关闭</button>";
+                    //举手请假的部分
+                    str+="<div class='t_event' id='"+data[i].zid+"'>"
+                    str+=   "<div class='t_even_message'><div class='t_even_id'align='center' >请假理由：</div><div class='t_even_name' align='center'id='even"+data[i].zid+"'></div></div>";
+                    str+=   "<div class='t_even_staets'><button class='even_button1' align='center' onclick='agree(\""+data[i].zid+"\")'>同意</button><button class='even_button2' align='center'onclick='disagree(\""+data[i].zid+"\")'>不同意</button></div>";
+                    str+=   "</div>";
                     str+=   "</div>";
                     str+=   "</th>";
                     findStudentName(data[i].zid);
@@ -311,7 +314,7 @@ function showStudentStatus(){
                     for(;j<7*(i+1);j++){
                         if(j==data.length){break;}
                         str+=   "<th>";
-                        str+=   "<div class='t_button1'>";
+                        str+=   "<div class='t_button1' onclick='diagram(\""+data[j].zid+"\")'>";
                         //str+="<th><button class='t_button1' >"+data[j].zidentity+"</button></th>";
                         str+="<div class='t_message'  align='center' id='t_message"+data[j].zid+"'>";
                         str+=  "<button class='t_button2' id='button"+data[j].zid+"'></button>";
@@ -325,7 +328,11 @@ function showStudentStatus(){
                         //str+= "<input type='text' class='t_progress' id='progress"+data[j].zid+"' value='当前进度:'>";
                         str+= "<div><input type='text' class='t_staets' id='status"+data[j].zid+"' value='状态信息 :'></div>";
                         //str+= "<button class='t_button3' onclick='closemessage(\""+data[j].zid+"\")'>关闭</button>";
-
+                        //举手请假的部分
+                        str+="<div class='t_event' id='"+data[j].zid+"'>"
+                        str+=   "<div class='t_even_message'><div class='t_even_id'align='center' >请假理由：</div><div class='t_even_name' align='center'id='even"+data[j].zid+"'></div></div>";
+                        str+=   "<div class='t_even_staets'><button class='even_button1' align='center' onclick='agree(\""+data[j].zid+"\")'>同意</button><button class='even_button2' align='center'onclick='disagree(\""+data[j].zid+"\")'>不同意</button></div>";
+                        str+=   "</div>";
                         str+=   "</div>";
                         str+=   "</th>";
                         findStudentName(data[j].zid);
@@ -343,6 +350,42 @@ function showStudentStatus(){
     });
 
 }
+//任课教师同意学生的批准请假
+function agree(zid){
+    var formData = new FormData();
+    formData.append("zid",zid );
+    formData.append("zstatus", "同意");
+    $.ajax({
+        type: 'post',
+        url: '/agree',
+        data:  {"zid":zid,"content":"同意"} ,
+        success:function (data) {
+        if(data==1){
+            layer.msg("已批准", { icon: 1, offset: "auto", time:1000 });
+            document.getElementById(zid).style.display="none";
+        }
+        }
+
+    })
+}
+
+//任课教师不同意学生请假
+function disagree(zid) {
+    var formData = new FormData();
+    formData.append("zid",zid );
+    formData.append("zstatus", "不同意");
+    $.ajax({
+        type: 'post',
+        url: '/disagree',
+        data:  {"zid":zid,"content":"不同意"},
+        success:function (data) {
+        if(data==1){
+            layer.msg("已否决", { icon: 1, offset: "auto", time:1000 });
+            document.getElementById(zid).style.display="none";
+        }
+        }
+    })
+}
 
 //从数据库中找出举手的同学
 function findRaiseHand(zid) {
@@ -355,12 +398,15 @@ function findRaiseHand(zid) {
             if(data!=""){
                 $("#button"+zid).css('background-color','rgba(237,125,49)');
                 $("#status"+zid).val("状态信息："+data.ztype);
-                $(function(){
+                if(data.ztype=="请假"){
+                    $("#even"+zid).append(data.zcontent);
+                }
+               /* $(function(){
                     $("#student"+zid).on('click',function(){
                         $(this).css("background-color","green");
                     });
 
-                });
+                });*/
 
             }/*else{
                     //查看电源是否打开
@@ -463,13 +509,18 @@ function showRecognitionFace(mytime) {
                     }
                 }*/
                 //直接在左侧下方显示已经识别的人
+                /*var data1 =data
+                data1.sort(function(a,b){
+                    return b.zrecognizetime-a.zrecognizetime
+                })
+                findAllLoginpeople(mytime);
                 $("#identifyAreas").empty();
                 //alert("data :")
-                for(var i=0;i<data.length;i++){
-                    content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zstudentName+data[i].zgradeName+"</div>";
+                for(var i=0;i<data1.length;i++){
+                    content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data1[i].zstudentName+data1[i].zgradeName+"</div>";
                     $("#identifyAreas").append(content);
-                }
-
+                }*/
+                findAllLoginpeople(mytime);
                  if(data.length==0){
                      $("#left").hide();
                      $("#middle").hide();
@@ -479,9 +530,9 @@ function showRecognitionFace(mytime) {
                      $("#left").empty();
                      $("#middle").hide();
                      $("#right").hide();
-                     var  zstudentName =data[0].zstudentName;
+                     var  zName =data[0].zname;
                      var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
-                     $("#left").append(zstudentName1+data1);
+                     $("#left").append(zName+"("+data1+")");
                      //$("#mainBody").hide()
                      $("#left").show();
                  }
@@ -489,12 +540,12 @@ function showRecognitionFace(mytime) {
                      $("#left").empty();
                      $("#middle").empty();
                      $("#right").hide();
-                     var  zstudentName1 =data[0].zstudentName;
-                     var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
-                     $("#left").append(zstudentName1+data1);
-                     var  zstudentName2 =data[1].zstudentName;
-                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
-                     $("#middle").append(zstudentName2+data2);
+                     var  zName1 =data[1].zname;
+                     var data1 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
+                     $("#left").append(zName1+"("+data1+")");
+                     var  zName2 =data[0].zname;
+                     var data2 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
+                     $("#middle").append(zName2+"("+data2+")");
                      //$("#mainBody").hide();
                      $("#left").show();
                      $("#middle").show();
@@ -503,15 +554,15 @@ function showRecognitionFace(mytime) {
                     $("#left").empty();
                     $("#middle").empty();
                     $("#right").empty();
-                    var  zstudentName1 =data[0].zstudentName;
-                    var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
-                    $("#left").append(zstudentName1+data1);
-                    var  zstudentName2 =data[1].zstudentName;
+                    var  zName1 =data[2].zname;
+                    var data1 = formatterDatetimeLocalToApprication(data[2].zrecognizetime);
+                    $("#left").append(zName1+"("+data1+")");
+                    var  zName2 =data[1].zname;
                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
-                    $("#middle").append(zstudentName2+data2);
-                    var  zstudentName3 =data[2].zstudentName;
-                    var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
-                    $("#right").append(zstudentName3+data3);
+                    $("#middle").append(zName2+"("+data2+")");
+                    var  zName3 =data[0].zname;
+                    var data3 = formatterDatetimeLocalToApprication(data[0].zrecognizetime)
+                    $("#right").append(zName3+"("+data3+")");
                     //$("#mainBody").hide();
                     $("#left").show();
                     $("#middle").show();
@@ -521,16 +572,16 @@ function showRecognitionFace(mytime) {
                      $("#left").empty();
                      $("#middle").empty();
                      $("#right").empty();
-                     var  zstudentName1 =data[0].zstudentName;
-                     var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
+                     var  zName1 =data[data.length-1].zname;
+                     var data1 = formatterDatetimeLocalToApprication(data[data.length-1].zrecognizetime);
 
-                     $("#left").append(zstudentName1+data1);
-                     var  zstudentName2 =data[1].zstudentName;
-                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
-                     $("#middle").append(zstudentName2+data2);
-                     var  zstudentName3 =data[2].zstudentName;
-                     var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
-                     $("#right").append(zstudentName3+data3)
+                     $("#left").append(zName1+"("+data1+")");
+                     var  zName2 =data[data.length-2].zname;
+                     var data2 = formatterDatetimeLocalToApprication(data[data.length-2].zrecognizetime);
+                     $("#middle").append(zName2+"("+data2+")");
+                     var  zName3 =data[data.length-3].zname;
+                     var data3 = formatterDatetimeLocalToApprication(data[data.length-3].zrecognizetime)
+                     $("#right").append(zName3+"("+data3+")")
                      //$("#mainBody").hide();
                      $("#left").show();
                      $("#middle").show();
@@ -544,14 +595,15 @@ function showRecognitionFace(mytime) {
                  center.empty();
                  var j=0;
                  str+="<table class='f_table' id='p_bbox'>";
-                 var arr=data.slice(3,data.length);
+                 var arr =data
+                 //var arr=data.slice(3,data.length);
                  for (var i=0;i<(arr.length/4+1);i++) {
 
                      str += " <tr>";
                      for (; j < 4 * (i + 1); j++) {
                          if (j == arr.length) {break;}
                         var data1 = formatterDatetimeLocalToApprication(arr[j].zrecognizetime)
-                         str += "<th><div class='f_button1'>" + arr[j].zstudentName + (data1) + "</div></th>";
+                         str += "<th><div class='f_button1'>" + arr[j].zname +"("+ data1 + ")"+"</div></th>";
                      }
 
                  }
@@ -565,6 +617,31 @@ function showRecognitionFace(mytime) {
         }
     })
 }
+//查找所有的人包括学生和教师
+function findAllLoginpeople(mytime) {
+    var formData = new FormData();
+    formData.append("mytime",mytime );
+    $.ajax({
+        type:"post",
+        url:"/InspectSitStudentandTeacher",
+        data:formData,
+        contentType: false,
+        processData: false,
+        async: false,
+        success:function (data) {
+            if(""!=data){
+                $("#identifyAreas").empty();
+                for(var i=0;i<data.length;i++){
+                    content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zname+data[i].zgradeName+"</div>";
+                    $("#identifyAreas").append(content);
+                }
+            }
+        }
+
+    })
+
+}
+
 //对TimeStamp时间格式进行处理
 function formatterDatetimeLocalToApprication(date){
     //把Timestamp转换成data
@@ -647,6 +724,7 @@ function getcommand() {
         processData: false,
         async: false,
         success: function (data){
+            if(""!=data){
 
             //alert(data)
             for(var i=0;i<data.length;i++){
@@ -663,6 +741,7 @@ function getcommand() {
                 }
             }
             //location.href = "/student_test";
+            }
         }
 
     });

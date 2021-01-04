@@ -43,5 +43,10 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
         return zstudent_eventMapper.updateeventstatus(zstudent_event);
     }
 
+    @Override
+    public int updateTeacherIDandStatus(Zstudent_event zstudent_event) {
+        return zstudent_eventMapper.updateTeacherIDandStatus(zstudent_event);
+    }
+
 
 }

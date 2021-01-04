@@ -14,4 +14,6 @@ public interface ZteacherMapper {
     public int updateteacher(Zteacher zteacher);
 
     public List<String> findteachernamelike(String zname);
+
+    Zteacher findteacherByzidentity(String zidentity);
 }

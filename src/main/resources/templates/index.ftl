@@ -23,10 +23,22 @@
         </div>
         <div class="layui-col-xs9" align="center" style="width: 69%">
             <div style="margin: 0,auto;margin-top:40px;height: 80px;text-align:center;line-height:40px;font-size: 40px;color: #E51C23">
-                ${name}
             </div>
-            <div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='${path}'style='width: 15rem;height: 16rem;'></div>
+            <div style=";margin:0 auto;margin-top:0px;height: 100px"><img src='<#--${path}-->'style='width: 15rem;height: 16rem;'></div>
             <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C"> 进入安浩智能学习工厂</div>
+            <div style="position: absolute">
+               <iframe src="http://127.0.0.1/stream" width="450" height="400">
+                    <a href="included.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+                </iframe>
+                <#--<object type="application/x-vlc-plugin" pluginspage="http://www.videolan.org/" id="vlc" events="false" width="95%" height="85%">
+                    <param name="mrl" value="rtsp://admin:djtu13840903462@192.168.1.64:554/h264/ch1/main/av_stream" />
+                    <param name="controls" value="false" />
+                    <param name="fullscreen" value="false" />
+                    <param name="loop" value="false" />
+                    <param name="autoplay" value="true" />
+
+                </object>-->
+            </div>
             <div>
                <button style="color:#FFFFFF;height: 75px;display:block;margin:0 auto;margin-top:0px;width:211px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 32px" onclick="test()">
                 开始测试
@@ -63,6 +75,11 @@
   </div>
 </div>
 <script>
+
+   /* let vlc = document.getElementById('vlc')
+    let ar = '14:9'
+    vlc.video.aspectRatio = ar
+*/
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;

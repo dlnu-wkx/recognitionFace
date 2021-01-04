@@ -33,7 +33,14 @@ public class TasktempController {
     public List<Zteacher_temporary_task> findalltemporarytask(HttpSession session){
 
         Zstudent zstudent=(Zstudent)session.getAttribute("zstudent");
-        String zid=zstudent.getZid();
+        //**session失活是为null,异常处理
+        String zid ="";
+        try{
+            zid=zstudent.getZid();
+        }catch (Exception e){
+            System.out.println("TasktempController中/findalltemporarytask zstudent的session失活");
+        }
+
 
         return zteacher_temporary_taskService.findtaskname(zid);
 

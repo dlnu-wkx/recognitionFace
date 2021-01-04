@@ -1,13 +1,14 @@
 package com.itboyst.facedemo.controller;
 import com.alibaba.fastjson.JSONObject;
-import com.itboyst.facedemo.dto.Zstudent;
-import com.itboyst.facedemo.dto.Zstudent_login;
-import com.itboyst.facedemo.service.ZstudentService;
-import com.itboyst.facedemo.service.Zstudent_loginService;
+import com.itboyst.facedemo.base.SpringUtil;
+import com.itboyst.facedemo.dto.*;
+import com.itboyst.facedemo.service.*;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.enums.ReadyState;
 import org.java_websocket.handshake.ServerHandshake;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.context.ApplicationContext;
 import org.zkoss.zk.ui.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,19 +25,56 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 
-@Controller
-public class Renlian extends SelectorComposer<Component> {
+
+public class Renlian  {
     public final static Logger logger = LoggerFactory.getLogger(Renlian.class);
     private static final long serialVersionUID = 1L;
+    //普通的类实力化springboot管理的类
+    ApplicationContext appCtx = SpringUtil.getApplicationContext();
+    Zstudent_loginService zstudentLoginService = appCtx.getBean(Zstudent_loginService.class);
+    ZstudentService zstudentService  = appCtx.getBean(ZstudentService.class);
+    Zteacher_loginService zteacher_loginService = appCtx.getBean(Zteacher_loginService.class);
+    ZteacherService zteacherService = appCtx.getBean(ZteacherService.class);
+    Ztraining_cameraService ztraining_cameraService = appCtx.getBean(Ztraining_cameraService.class);
 
     // 自定义局部变量
-    private static final String jieshiip = "192.168.1.156"; // 杰视设备的IP地址
-    private static final String url = "ws://" + jieshiip + ":8080/webapi/websocket";
+    //private static final String jieshiip = "192.168.1.156"; // 杰视设备的IP地址
+    //private static final String url = "ws://" + jieshiip + ":8080/webapi/websocket";
     //只能自定义接口类
 
-    private static Zstudent_loginService zstudentLoginService;
-    private static ZstudentService zstudentService;
+   /* private static Zstudent_loginService zstudentLoginService;
+    private static ZstudentService zstudentService;*/
 
+   /* private static Zteacher_loginService zteacher_loginService;
+    private static ZteacherService zteacherService;*/
+
+    private String jieshiip;
+    private String url ;
+    private String ztrainingroomID;
+
+    public String getZtrainingroomID() {
+        return ztrainingroomID;
+    }
+
+    public void setZtrainingroomID(String ztrainingroomID) {
+        this.ztrainingroomID = ztrainingroomID;
+    }
+
+    public void setJieshiip(String jieshiip) {
+        this.jieshiip = jieshiip;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getJieshiip() {
+        return jieshiip;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 
     // 界面变量
     @Wire
@@ -48,7 +86,7 @@ public class Renlian extends SelectorComposer<Component> {
 
     WebSocketClient myClient = null;
 
-    @Autowired
+   /* @Autowired
    public void setZstudentLoginService (Zstudent_loginService zstudentLoginService){
         Renlian.zstudentLoginService=zstudentLoginService;
     }
@@ -56,7 +94,17 @@ public class Renlian extends SelectorComposer<Component> {
    @Autowired
     public void setZstudentService (ZstudentService zstudentService){
         Renlian.zstudentService=zstudentService;
+    }*/
+
+
+   /* @Autowired
+    public void setZteacherService (ZteacherService  zteacherService){
+        Renlian.zteacherService=zteacherService;
     }
+
+    public void setZteacher_loginService(Zteacher_loginService zteacher_loginService){
+        Renlian.zteacher_loginService=zteacher_loginService;
+    }*/
 
     @Listen("onCreate = #renlianwin")
     public void renlianwinCreate() {
@@ -82,6 +130,8 @@ public class Renlian extends SelectorComposer<Component> {
                     JSONObject dongtai = JSONObject.parseObject(arg0);
                     JSONObject dongtaipayload = dongtai.getJSONObject("payload");
                     String xuehao = dongtaipayload.getString("personIdCard");
+                    String cameraName =dongtaipayload.getString("cameraName");
+
                     System.out.println("识别:" + xuehao + " , " + dongtaipayload.getString("personName"));
 
                     if ((xuehao != null) && (xuehao.length() > 0)) {
@@ -94,15 +144,44 @@ public class Renlian extends SelectorComposer<Component> {
                         zsl.setZrecognizeIP(jieshiip);
                         zsl.setZcheck("人脸识别");
                         Zstudent abc =zstudentService.findstudentByZidentity(xuehao);
-                        System.out.println(abc);
-                        if(abc.getZid()!=null){
+                        //**这个地方的判空处理有问题
+                        Zteacher zteacher =zteacherService.findteacherByzidentity(xuehao);
+
+                        if(null!=abc){
                             zsl.setZstudentID(abc.getZid());
                             zsl.setZtype("入口签到");
                             Timestamp timestamp=new Timestamp(System.currentTimeMillis());
                             zsl.setZrecongnizetime(timestamp);
                             int a =zstudentLoginService.updateloginmessage(zsl);
                         }
+                        //把识别的老师信息加入到登录日志中
+                        if(null!=zteacher){
+                            Zteacher_login zteacher_login = new Zteacher_login();
+                            String uuid = UUID.randomUUID().toString().replaceAll("-","");
+                            zteacher_login.setZid(uuid);
+                            zteacher_login.setZteacherID(zteacher.getZid());
+                            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+                            zteacher_login.setZrecognizetime(timestamp);
+                            zteacher_login.setZtype("入口签到");
+                            zteacher_login.setZcheck("人脸识别");
+                            zteacher_login.setZrecognizeIP(jieshiip);
 
+                           int b = zteacher_loginService.delAndinsertteacher(zteacher_login);
+                        }
+                        if(cameraName != null){
+                            Ztraining_camera ztraining_camera = new Ztraining_camera();
+                            String uuid3 = UUID.randomUUID().toString().replaceAll("-","");
+                            ztraining_camera.setZid(uuid3);
+                            ztraining_camera.setZtrainingroomID(ztrainingroomID);
+                            ztraining_camera.setZtitle("签到");
+                            ztraining_camera.setZcameraIP(jieshiip);
+                            ztraining_camera.setZcameraName(cameraName);
+                            /*int zidentity = Integer.parseInt(cameraName);*/
+                            ztraining_camera.setZidentity(1);
+                            ztraining_camera.setZstatus("可用");
+
+                           int c= ztraining_cameraService.insertCamera(ztraining_camera);
+                        }
 
 
                        /* String sqlstr = "";
@@ -152,7 +231,9 @@ public class Renlian extends SelectorComposer<Component> {
 
     @Listen("onClick = #stopBtn")
     public void stopBtnClick() {
+        System.out.println("进入到stopBtnClick()");
         if (myClient != null) {
+            System.out.println("关闭连接");
             myClient.close();
         }
     }

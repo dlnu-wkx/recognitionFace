@@ -13,6 +13,7 @@ public class Zstudent_event {
     private Timestamp zapplicationtime;
     private String zteacherID;
     private Timestamp zhandletime;
+    private String zhandlecontent;
     private String zstatus;
 
     public String getZid() {
@@ -95,6 +96,14 @@ public class Zstudent_event {
         this.zstatus = zstatus;
     }
 
+    public String getZhandlecontent() {
+        return zhandlecontent;
+    }
+
+    public void setZhandlecontent(String zhandlecontent) {
+        this.zhandlecontent = zhandlecontent;
+    }
+
     @Override
     public String toString() {
         return "Zstudent_event{" +
@@ -107,6 +116,8 @@ public class Zstudent_event {
                 ", zapplicationtime=" + zapplicationtime +
                 ", zteacherID='" + zteacherID + '\'' +
                 ", zhandletime=" + zhandletime +
+                ", zteacherID=" + zteacherID +
+                ", zhandlecontent=" + zhandlecontent +
                 ", zstatus='" + zstatus + '\'' +
                 '}';
     }

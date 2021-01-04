@@ -21,7 +21,7 @@
 
 .i_time{
     height: 25px;
-    width: 25px;
+    width: 50px;
 }
 
 .delivery_quanxuan{
@@ -41,7 +41,7 @@
     height: 35%;
     width: 10%;
     right: 9%;
-    bottom: 15%;
+    bottom: -2%;
     position: fixed;
     background-color: #C8C8C8 ;
 }
@@ -73,4 +73,111 @@
     top: 35%;
     left: 80%;
     position: absolute;
+}
+
+.d_exit{
+    background-color:  #4472C4;
+    border: none;
+    color: white;
+    /*padding: 10px 10px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 27px;
+    border-radius: 14px;
+    height: 80px;
+    width: 80px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
+    position: absolute;
+    margin-top: 300%;
+    margin-left: -19%;
+    z-index: 10;
+}
+
+.d_information_delivery{
+    background-color:  #ED7D31;
+    border: none;
+    color: white;
+    /*padding: 10px 10px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 27px;
+    border-radius: 14px;
+    height: 80px;
+    width: 80px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
+    position: absolute;
+    margin-top: 210%;
+    margin-left: -19%;
+    /* z-index: 10;*/
+}
+
+.d_information_service{
+    background-color:  #4472C4;
+    border: none;
+    color: white;
+    /*padding: 10px 10px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 27px;
+    border-radius: 14px;
+    height: 80px;
+    width: 80px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
+    position: absolute;
+    margin-top: 65%;
+    margin-left: -19%;
+}
+
+.d_field_management{
+    background-color:  #4472C4;
+    border: none;
+    color: white;
+    /*padding: 10px 10px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 27px;
+    border-radius: 14px;
+    height: 80px;
+    width: 80px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
+    position: absolute;
+    margin-top: 10%;
+    margin-left: -19%;
+}
+.d_time_status{
+    background-color:  #4472C4;
+    border: none;
+    color: white;
+    /*padding: 10px 10px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 27px;
+    border-radius: 14px;
+    height: 80px;
+    width: 80px;
+    border-right: 1px solid white;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.2);
+    position: absolute;
+    margin-top: 140%;
+    margin-left: -19%;
+}
+.d_right{
+    width:9%;
+    /* height:93%;*/
+    right: 4px;
+    /* top: 8.5%;*/
+    position: absolute;
+    background-color: #CDCDCD;
+    border-left: 1px solid #BBBBBB;
+    margin-top: 60px;
+    height: 640px;
 }

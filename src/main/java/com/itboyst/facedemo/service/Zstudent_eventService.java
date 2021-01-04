@@ -14,4 +14,6 @@ public interface Zstudent_eventService {
     public Zstudent_event  findRaiseHandByFacility(String zid);
 
     public int updateeventstatus(Zstudent_event zstudent_event);
+
+    int updateTeacherIDandStatus(Zstudent_event zstudent_event);
 }
