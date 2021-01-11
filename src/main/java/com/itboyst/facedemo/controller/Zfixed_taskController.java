@@ -48,7 +48,7 @@ public class Zfixed_taskController {
 
     @RequestMapping("/findallfixedtasks")
     @ResponseBody
-    public List<Zfixed_task> findalltemporarytask(HttpSession session){
+    public List<Zfixed_task> findallfixedtasks(HttpSession session){
 
         Zstudent_cookie zstudent_cookie =(Zstudent_cookie)session.getAttribute("zstudent_cookie");
 

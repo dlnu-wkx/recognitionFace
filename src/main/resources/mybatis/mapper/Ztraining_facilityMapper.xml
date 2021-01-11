@@ -17,6 +17,11 @@
         <result column="zpowerstatus" property="zpowerstatus" javaType="String"/>
     </resultMap>
 
+<!--
+    <select id="findOpenPower"  resultType="java.lang.String">
+          SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} AND zpowerstatus="已开机";
+    </select>-->
+
 
     <select id="findOpenPower"  resultType="java.lang.String">
           SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} AND zpowerstatus="已开机";

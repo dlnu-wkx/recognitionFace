@@ -1,5 +1,6 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.base.Iputil;
 import com.itboyst.facedemo.base.Powerutil;
 import com.itboyst.facedemo.dto.TimeStatusStudent;
 import com.itboyst.facedemo.dto.Zteacher_cookie;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.util.List;
@@ -34,6 +36,12 @@ public class Ztraining_roomController {
     TimeStatusStudentService timeStatusStudentService;
 
 
+    @RequestMapping("/findstunamebyfacid")
+    @ResponseBody
+    public String findstunamebyfacid(String zid){
+        return ztraining_facilityService.findstunamebyfacid(zid);
+    }
+
 
 
     @RequestMapping("/findalltrainroom")
@@ -50,6 +58,78 @@ public class Ztraining_roomController {
     }
 
 
+    @RequestMapping("/findteststatebyfid")
+    @ResponseBody
+    public String findteststatebyfid(String id){
+        Ztraining_facility ztraining_facility=ztraining_facilityService.findcontrollerbyid(id);
+        //所有的状态
+        String allstate =Powerutil.powerstate(ztraining_facility.getZpowerIP());
+
+        //System.out.println(allstate);
+        //第六个的状态
+        String singlesix=allstate.substring(5, 6);
+      // System.out.println(singlesix);
+        return singlesix;
+
+    }
+
+
+    @RequestMapping("/findteststatebyIP")
+    @ResponseBody
+    public String findteststatebyIP(HttpServletRequest request,HttpSession session){
+
+        Ztraining_facility ztraining_facility=ztraining_facilityService.findbyip(Iputil.getClientIpAddress(request));
+        String allstate =Powerutil.powerstate(ztraining_facility.getZpowerIP());
+        //第六个的状态
+        String singlesix=allstate.substring(5, 6);
+        session.setAttribute("sixstate",singlesix);
+
+        return singlesix;
+
+    }
+
+
+    @RequestMapping("/updatesixstateaftertest")
+    @ResponseBody
+    public int updatesixstateaftertest(HttpSession session){
+        System.out.println("通过测试后继电器:");
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
+
+        String IP=ztraining_facility.getZpowerIP();
+
+        return Powerutil.powercontroller(IP,"26");
+
+    }
+
+
+
+    @RequestMapping("/usixout")
+    @ResponseBody
+    public void usixout(HttpSession session){
+
+        String sixstate=(String)session.getAttribute("sixstate");
+        System.out.println("登陆时6的状态:"+sixstate);
+        System.out.println("退出后继电器:");
+        if (sixstate.equals("1")){
+
+            Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
+
+            String IP=ztraining_facility.getZpowerIP();
+
+            Powerutil.powercontroller(IP,"16");
+        }
+    }
+
+
+    @RequestMapping("/findloginnamebyfaid")
+    @ResponseBody
+    public String findloginnamebyfaid(String id){
+        return ztraining_facilityService.findstunamebyfacid(id);
+    }
+
+
+
+
     @RequestMapping("/updateallfacility")
     @ResponseBody
     public int updateallfacility(String ztrainroomid,String zpowerstatus){
@@ -59,42 +139,37 @@ public class Ztraining_roomController {
 
        // System.out.println(data);
         int j=0;int k=0;
-        String powerid="";
+       // String powerid="";
         //想要关机
         if (zpowerstatus.equals("未开机")){
             for (int i=0;i<data.size();i++){
-                powerid="2"+data.get(i).getZpowerPort();
+              //  powerid="2"+data.get(i).getZpowerPort();
                // System.out.println(powerid);
-                j = Powerutil.powercontroller(data.get(i).getZpowerIP(),powerid);
+                j = Powerutil.powercontroller(data.get(i).getZpowerIP(),"26");
                 if (j>0)k++;
             }
             //想要开机
         }else{
             for (int u=0;u<data.size();u++){
-                powerid="1"+data.get(u).getZpowerPort();
+               // powerid="1"+data.get(u).getZpowerPort();
                 //System.out.println(powerid);
-                j = Powerutil.powercontroller(data.get(u).getZpowerIP(),powerid);
+                j = Powerutil.powercontroller(data.get(u).getZpowerIP(),"16");
                 if (j>0)k++;
 
             }
         }
 
-
         return ztraining_facilityService.updateallfacility(ztrainroomid,zpowerstatus);
-
 
     }
 
 
-    /**
-     * 根据Id更新实训设备的通电情况
-     * @param zid
-     * @param zpowerstatus
-     * @return
-     */
+
     @RequestMapping("/updateallfacilitybyzid")
     @ResponseBody
-    public int updateallfacilitybyzid(@RequestParam(value = "zid[]")String [] zid, @RequestParam(value = "zpowerstatus")String  zpowerstatus){
+    public int updateallfacilitybyzid(@RequestParam(value = "zid[]")String [] zid, @RequestParam(value = "zpowerstatus")String  zpowerstatus, @RequestParam(value = "kind")String  kind){
+        System.out.println(zid+zpowerstatus+kind);
+
         int j,k=0;
         int q,p=0;
         String powerid="";
@@ -105,10 +180,10 @@ public class Ztraining_roomController {
            Ztraining_facility ztraining_facility=ztraining_facilityService.findcontrollerbyid(zid[i]);
 
            // System.out.println(ztraining_facility);
-           if (zpowerstatus.equals("未开机")){
-               powerid="2"+ztraining_facility.getZpowerPort();
-           }else {
-               powerid="1"+ztraining_facility.getZpowerPort();
+           if (kind.equals("关闭")){
+               powerid="26";
+           }else if(kind.equals("开启")){
+               powerid="16";
            }
 
            //System.out.println(powerid);

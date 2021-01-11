@@ -18,6 +18,26 @@ function upheads() {
 }
 
 function leaveclass() {
+
+    //删除临时任务
+    $.ajax({
+        type: "post",
+        url: "/deletemes",
+        data:{},
+        success: function (data){
+
+        }
+    });
+
+    $.ajax({
+        type: "post",
+        url: "/usixout",
+        data:{},
+        success: function (data){
+
+        }
+    });
+
     location.href="/student"
 }
 
@@ -226,6 +246,7 @@ function OpenOTimer(a) {
         timer = setInterval(function(){
             showRecognitionFace(mytime)
         }, 3000)
+
   /*  alert("执行完了start的功能")
     if (a == 2) {
 
@@ -726,7 +747,6 @@ function getcommand() {
         success: function (data){
             if(""!=data){
 
-            //alert(data)
             for(var i=0;i<data.length;i++){
                 if(data[i].ztype=="查岗"){//data[i].ztype =="签到"||
                     document.getElementById("chagangID").innerHTML=data[i].zid;
@@ -734,17 +754,27 @@ function getcommand() {
 
                 }
                 else if(data[i].ztype == "滚屏信息"){
-                    str+=" <marquee><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>"+data[i].zcontent+"</font></span></marquee>"
+                    str+=" <marquee  id='marquee'><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>"+data[i].zcontent+"</font></span></marquee>"
                     rolling_barrage.html(str)
                     rolling_barrage.show()
                     document.getElementById("gundongID").innerHTML=data[i].zid;
                 }
             }
-            //location.href = "/student_test";
+        }
+    });
+
+    $.ajax({
+        type: "post",
+        url: "/findcommand",
+        data: {},
+        async: false,
+        success: function (data){
+           // alert(data)
+            if (data==0){
+                $("#rolling_barrage").hide()
             }
         }
-
-    });
+    })
 
 }
 //在数据库中插入查岗信息

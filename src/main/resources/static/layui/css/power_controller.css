@@ -141,6 +141,9 @@
     right: 2px;
    /* top: 8.5%;*/
     position: absolute;
+    top: 6.5%;
+    border-left: 1px solid #BBBBBB;
+    position: fixed;
     background-color: #CDCDCD;
     border-left: 1px solid #BBBBBB;
     margin-top: 60px;

@@ -15,8 +15,8 @@ public class Zteacher_temporary_taskServiceImpl implements Zteacher_temporary_ta
     Zteacher_temporary_taskMapper zteacher_temporary_taskMapper;
 
     @Override
-    public List<Zteacher_temporary_task> findtaskname (String id){
-        return zteacher_temporary_taskMapper.findtitle(id);
+    public List<Zteacher_temporary_task> findtaskname (String id,String zscheduleID){
+        return zteacher_temporary_taskMapper.findtitle(id,zscheduleID);
     }
 
     @Override
@@ -28,5 +28,7 @@ public class Zteacher_temporary_taskServiceImpl implements Zteacher_temporary_ta
     public int inserttemptask(Zteacher_temporary_task zteacher_temporary_task){
         return zteacher_temporary_taskMapper.inserttemptask(zteacher_temporary_task);
     }
+
+    public int temporarybydid(String zstudentID,String zscheduleID){return zteacher_temporary_taskMapper.detemporarybydid(zstudentID, zscheduleID);}
 
 }

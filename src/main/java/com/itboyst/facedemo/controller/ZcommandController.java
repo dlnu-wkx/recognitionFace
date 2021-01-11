@@ -30,7 +30,7 @@ public class ZcommandController {
     @ResponseBody
     public List<Zteacher_command> findcommand(HttpSession session,String chagangID,String gundongID){
 
-        System.out.println(chagangID+gundongID);
+       // System.out.println(chagangID+gundongID);
 
         ztraining_room ztraining_room=(ztraining_room)session.getAttribute("ztraining_room");
         //**这个为空的情况要处理主要是session失活
@@ -42,15 +42,15 @@ public class ZcommandController {
             return null;
         }
         List<Zteacher_command> data=zteacher_commandService.selectcommand(zid);
-        System.err.println("befor data :"+data.size());
-        System.out.println(data.toString());
+       // System.err.println("befor data :"+data.size());
+        //System.out.println(data);
         for(int i=0;i<data.size();i++){
             if(data.get(i).getZid().equals(chagangID)|| data.get(i).getZid().equals(gundongID)){
 
             data.remove(i);
             }
         }
-        System.err.println(data.size());
+       // System.err.println(data.size());
         return data;
     }
 
@@ -70,9 +70,11 @@ public class ZcommandController {
         zteacher_command.setZpublishtime(timestamp);
         zteacher_command.setZstatus("有效");
         zteacher_command.setZtype("滚屏信息");
+        zteacher_command.setZscheduleID(zteacher_cookie.getZscheduleID());
         zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
 
         Zteacher_command zteacher_command1=new Zteacher_command();
+        zteacher_command1.setZscheduleID(zteacher_cookie.getZscheduleID());
         zteacher_command1.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
         zteacher_command1.setZstatus("失效");
         zteacher_command1.setZtype("滚屏信息");
@@ -124,6 +126,7 @@ public class ZcommandController {
         zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
         zteacher_command.setZtype("滚屏信息");
         zteacher_command.setZstatus("失效");
+        zteacher_command.setZscheduleID(zteacher_cookie.getZscheduleID());
 
         return zteacher_commandService.updatestate(zteacher_command);
     }
@@ -167,5 +170,20 @@ public class ZcommandController {
 
 
     }
+
+    @RequestMapping("/findcountgp")
+    @ResponseBody
+    public int findcountgp(HttpSession session){
+       Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
+
+       Zteacher_command zteacher_command=new Zteacher_command();
+       zteacher_command.setZscheduleID(zteacher_command.getZscheduleID());
+       zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
+       zteacher_command.setZtype("滚屏信息");
+       return zteacher_commandService.findcountgp(zteacher_command);
+
+    }
+
+
 
 }

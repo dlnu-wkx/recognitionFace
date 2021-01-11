@@ -14,7 +14,7 @@
 
 
     <select id="findnameandf"  resultType="com.itboyst.facedemo.dto.Zstudent_facility">
-      select A.zid zid, A.zname zname,B.zidentity zidentity from zstudent A,ztraining_facility B,zstudent_login C,zstudent_schedule D ,zschedule E where A.zid=C.zstudentID and C.zrecognizeIP=B.zstudentPCIP and D.zstudentID=A.Zid and D.zstate="在上课" and D.zscheduleID=E.zid and E.ztrainingroomID =#{ztrainingroomID} and E.zid=#{zscheduleid}
+      select A.zid zid, A.zname zname,B.zidentity zidentity from zstudent A,ztraining_facility B,zstudent_login C,zstudent_schedule D ,zschedule E where A.zid=C.zstudentID and C.zrecognizeIP=B.zstudentPCIP and D.zstudentID=A.Zid and D.zstate="在上课" and D.zscheduleID=E.zid and E.ztrainingroomID =#{ztrainingroomID} and E.zid=#{zscheduleid} group  by A.zname
     </select>
 
 

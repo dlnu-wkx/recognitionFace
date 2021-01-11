@@ -330,7 +330,46 @@
                 }
             });
         }
+    }
 
+
+
+    function gettemporary(){
+
+        $.ajax({
+            type: "post",
+            url: "/findalltemporarytask",
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (data){
+
+                if (data.length>static_temleng){
+                    var leftbutton=$("#leftbutton");
+                    var str="";
+
+                    //固定任务按键
+                    $.ajax({
+                        type: "post",
+                        url: "/findallfixedtasks",
+                        contentType: false,
+                        processData: false,
+                        async: false,
+                        success: function (data){
+                            str+="<br><br><br>"
+                            for(var i=0;i<data.length;i++){
+                                str+="<button onclick='loadcontentbypages2(\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
+                            }
+                        }
+                    });
+
+                    for(var i=0;i<data.length;i++){
+                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
+                    }
+                    leftbutton.html(str)
+                }
+            }
+        });
     }
 
 
@@ -343,7 +382,8 @@
         //循环查找老师的命令
         window.setInterval(function () {
             getcommand();
-        }, 8000);
+            gettemporary();
+        }, 3000);
     }
 
     function welcome() {
@@ -364,7 +404,7 @@
         });
     }
 
-
+var static_temleng=0
 
 //所有任务
     function findalltask() {
@@ -393,6 +433,7 @@
             processData: false,
             async: false,
             success: function (data){
+                static_temleng=data.length
                 for(var i=0;i<data.length;i++){
                     str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
                 }

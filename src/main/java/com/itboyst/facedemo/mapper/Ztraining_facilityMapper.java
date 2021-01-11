@@ -24,4 +24,8 @@ public interface Ztraining_facilityMapper {
 
     public Ztraining_facility findcontrollerbyid(String zid);
 
+    public String findstunamebyfacid(String zid);
+
+
+
 }

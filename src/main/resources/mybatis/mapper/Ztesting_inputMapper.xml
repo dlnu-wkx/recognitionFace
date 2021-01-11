@@ -31,14 +31,15 @@
 
     <insert id="addlist" parameterType="list" useGeneratedKeys="true">
         INSERT into ztesting_input
-        (zid,zstudentscheduleID, zsafetestingID, zorder, zstate)
+        (zid,zstudentscheduleID, zsafetestingID, zorder, zstate,zscore)
         VALUES
         <foreach collection="list" item="test" separator=",">
             (#{test.zid},
             #{test.zstudentscheduleID},
             #{test.zsafetestingID},
             #{test.zorder},
-            #{test.zstate}
+            #{test.zstate},
+            0
            )
         </foreach>
     </insert>
@@ -46,7 +47,7 @@
 
 
     <update id="updatelist" parameterType="com.itboyst.facedemo.dto.Ztesting_input" >
-        UPDATE ztesting_input SET zinput=#{zinput} ,zstate=#{zstate},zscore=#{zscore} WHERE zstudentscheduleID=#{zstudentscheduleID} AND zsafetestingID = #{zsafetestingID}
+        UPDATE ztesting_input SET zinput=#{zinput} ,zstate=#{zstate},zscore=#{zscore} WHERE zid=#{zid}
     </update>
 
 

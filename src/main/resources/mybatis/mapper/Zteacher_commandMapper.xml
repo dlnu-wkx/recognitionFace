@@ -9,19 +9,26 @@
         <result column="zcontent" property="zcontent" javaType="String"/>
         <result column="zpublishtime" property="zpublishtime" jdbcType="TIMESTAMP"/>
         <result column="zstatus" property="zstatus" javaType="String"/>
+        <result column="zscheduleID" property="zscheduleID" javaType="String"/>
+
     </resultMap>
 
 
 
 <!--zstatus='有效'-->
    <select id="findcommand"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
-        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ((ztype="签到" OR ztype="查岗") AND zstatus="有效") OR (ztype="滚屏信息" AND TimeStampDiff(MINUTE,zpublishtime,NOW())&lt;= 3);
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ((ztype="签到" OR ztype="查岗" OR ztype="滚屏信息") AND zstatus="有效") ;
+    </select>
+
+
+    <select id="findcountgp"  resultType="int">
+        SELECT count(*) FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND  ztype="滚屏信息" AND zstatus="有效") ;
     </select>
 
 
 
     <insert id="insertcommand" parameterType="com.itboyst.facedemo.dto.Zteacher_command" >
-               INSERT INTO zteacher_command (zid, ztrainingroomID, ztype, zcontent ,zpublishtime, zstatus) VALUES(#{zid},#{ztrainingroomID} , #{ztype}, #{zcontent} ,#{zpublishtime}, #{zstatus});
+               INSERT INTO zteacher_command (zid, ztrainingroomID, ztype, zcontent ,zpublishtime, zstatus,zscheduleID) VALUES(#{zid},#{ztrainingroomID} , #{ztype}, #{zcontent} ,#{zpublishtime}, #{zstatus},#{zscheduleID});
     </insert>
 
     <delete id="deletebefore" parameterType="com.itboyst.facedemo.dto.Zteacher_command">
@@ -29,7 +36,7 @@
 	</delete>
 
     <update id="updatestate" parameterType="com.itboyst.facedemo.dto.Zteacher_command">
-        update zteacher_command set zstatus =#{zstatus} where ztrainingroomID=#{ztrainingroomID} and ztype=#{ztype}
+        update zteacher_command set zstatus =#{zstatus} where ztrainingroomID=#{ztrainingroomID} and ztype=#{ztype} and zscheduleID=#{zscheduleID}
     </update>
 
     <select id="findcommandById"  resultType="com.itboyst.facedemo.dto.Zteacher_command">

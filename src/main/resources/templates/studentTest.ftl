@@ -171,6 +171,9 @@
         load();
     }
 
+    var static_testinputnum=new Array();
+
+
     /*
        将所有问题都加载，显示一题，隐藏其它
         */
@@ -201,11 +204,8 @@
             data:{"number":static_questionnum},
             async: false,
             success: function (question) {
-                //alert(static_passingcode)
-               // alert(question[0].zid)
+                static_testinputnum=question.testinputid;
 
-                //alert("选择题个数"+question.cbank.length)
-                //alert("判断题个数"+question.jbank.length)
                 //选择题循环取出并加载
                for (var w =0; w<question.cbank.length;w++) {
                     var k=w+1;
@@ -350,18 +350,26 @@
         str3+="<div><font size='3' >测试总分：100分</font></div>";
         str3+="<div><font size='3' >合格分数："+static_passingcode+"分</font></div>";
         str3+="<br><br><br>"
-        //如果分数小于60，加载小于60的信息
+
         if(code<static_passingcode){
             str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>需要重新答题</font>";
             str3+="<br><br>"
             str3+=" <button class='button7' onclick='reanswer()'>重新答题</button>"
         }else{
-            //加载大于60分的信息
+
             str3+="<font size='3' >您的分数是：</font><font size='7' class='code'>"+code+"分</font> <font size='3'>已经</font><font size='3'color='red'>合格</font>";
             str3+="<br><br>"
             str3+="  <button class='start_button' onclick='begintrain()'>开始实训</button>";
 
-            //左侧按键颜色改变(可循环优化)
+            $.ajax({
+                type: "post",
+                url: "/updatesixstateaftertest",
+                data: {},
+                success: function (data) {
+                   // alert(data)
+                }
+            });
+
 
         }
         //放入
@@ -379,17 +387,11 @@
             }
         });
 
-
-        /*alert(answercode)
-        alert(ananswer)
-        alert(answer)
-        alert(questionid)
-        alert(static_questionnum)*/
      //  更改输入
       $.ajax({
             type: "post",
             url: "/updatetestinput",
-            data: {"ananswer":ananswer,"answercode":answercode,"questionid":questionid,"number":static_questionnum},
+            data: {"ananswer":ananswer,"answercode":answercode,"questionid":questionid,"number":static_questionnum,"id":static_testinputnum},
             success: function (data) {
 
                 if(data==static_questionnum){

@@ -74,20 +74,20 @@
     <button class="p_button5" onclick="endallfacti()">全部关闭</button>
 </div>
 
-<!--关闭时间控制-->
+<#--<!--关闭时间控制&ndash;&gt;
 <div class="closetime" align="center">
     <font size="3">关闭电源时作用：</font><br><br>
     <input type="checkbox" name="closetime" id="closetime" class="p_chose1">&emsp;&emsp;&emsp;
     <font size="3">关闭时延时</font><input type="number" class="p_input" id="timenumber"><font size="3">分钟</font>
 
-</div>
+</div>-->
 
 
 <!--测试题控制-->
 <div class="p_testchose" align="center">
      <font size="3">开启电源时作用:</font><br><br>
-    &emsp;&emsp;<input type="checkbox" name="istest" id="istest" class="p_chose1">&emsp;&emsp;&emsp;
-    <font>测试合格分数</font><input type="number" class="p_input" id="testcode">分
+    &emsp;&emsp;<input type="checkbox" name="istest" id="istest" hidden class="p_chose1">&emsp;&emsp;&emsp;
+    <font>测试合格分数</font>&emsp;&emsp;<input type="number" class="p_input" id="testcode">&emsp;分
 </div>
 
 
@@ -160,7 +160,7 @@
     function endallfacti() {
        // alert(2)
         //延时按键有被选中，加载延时关闭选项
-        if($('#closetime').prop('checked')){
+       /* if($('#closetime').prop('checked')){
 
             var timenumber=$("#timenumber").val();
             setTimeout(function (){
@@ -181,7 +181,7 @@
 
             }, 60000*timenumber);
         }//延时按键没有被选中，加载直接关闭方法
-        else{
+        else{*/
             $.ajax({
                 type: "post",
                 url: "/updateallfacility",
@@ -195,24 +195,23 @@
                     }
                 }
             });
-        }
+      //  }
         setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
 
     }
 
     //开启选中的
     function startchose() {
-       // alert(3)
         var j=0;
         var startchose =[];
-        $("input[name='npowerchose']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+        $("input[name='check']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             startchose[i] =$(this).val();
         });
           //  alert(startchose[i]);
             $.ajax({
                 type: "post",
                 url: "/updateallfacilitybyzid",
-                data:{"zid":startchose,"zpowerstatus":"已开机"},
+                data:{"zid":startchose,"zpowerstatus":"已开机","kind":"开启"},
                 async: false,
                 success: function (data) {
                     if(data>0){
@@ -223,12 +222,8 @@
                 }
             });
 
-
-
-
-        //可以在这里加入一个钩选的开启安全测试
-        if($('#istest').prop('checked')){
-            var zpassingscore=$("#testcode").val()
+            //同时开启安全测试
+          /*  var zpassingscore=$("#testcode").val()
             $.ajax({
                 type: "post",
                 url: "/updatetestbychose",
@@ -239,26 +234,7 @@
                         layer.msg("已开启安全测试", { icon: 1, offset: "auto", time:1000 });
                     }
                 }
-            });
-        }else{
-            $.ajax({
-                type: "post",
-                url: "/updatenotestbychose",
-                data:{"zid":startchose},
-                async: false,
-                success: function (data) {
-                    //alert(data)
-                    if(data>0){
-                        layer.msg("不开启安全测试", { icon: 1, offset: "auto", time:1000 });
-                    }
-                }
-            });
-        }
-
-
-
-
-
+            });*/
 
         setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
     }
@@ -266,21 +242,17 @@
 
     //关闭选中
     function closechose() {
+
         var j=0;
         var closechose =[];
-        $("input[name='ypowerchose']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+        $("input[name='check']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             closechose[i] =$(this).val();
         });
-
-        if($("input[name='closetime']:checked")){
-
-            var timenumber=$("#timenumber").val();
-            setTimeout(function (){
-
+               alert(closechose);
                 $.ajax({
                     type: "post",
                     url: "/updateallfacilitybyzid",
-                    data:{"zid":closechose,"zpowerstatus":"未开机"},
+                    data: {"zid": closechose, "zpowerstatus": "未开机","kind":"关闭"},
                     async: false,
                     success: function (data) {
                         if(data>0){
@@ -290,29 +262,6 @@
                         }
                     }
                 });
-
-            }, 60000*timenumber);
-        }//延时按键没有被选中，加载直接关闭方法
-        else{
-            for (var i=0;i<closechose.length;i++) {
-               // alert(closechose[i]);
-                $.ajax({
-                    type: "post",
-                    url: "/updateallfacilitybyzid",
-                    data: {"zid": closechose[i], "zpowerstatus": "未开机"},
-                    async: false,
-                    success: function (data) {
-                        if(data>0){
-                            layer.msg("已关闭选中，等待电源关闭", { icon: 1, offset: "auto", time:1000 });
-                        }else{
-                            alert("出错")
-                        }
-                    }
-                });
-            }
-
-        }
-
         setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
     }
 
@@ -351,10 +300,10 @@
 
     var ztrainroomid="";
 
+    var static_teststate=new Array();
 
     //查到被点击实训室的所有设备
     function findfacbyrid(id) {
-
         ztrainroomid =id;
 
         $("#p_left button").css("background-color","#70AD47");
@@ -366,8 +315,8 @@
             type: "post",
             url: "/findfacilitybyrid",
             data:{"id":id},
+            async: false,
             success: function (data) {
-
 
                 $("#"+id+"").css("background-color","#FFC000")
 
@@ -376,18 +325,11 @@
                     str+="<table class='p_bbbox' id='p_bbox'>"
                     str+=" <tr>";
                     for(var i=0; i<data.length;i++){
-
-                        if (data[i].zpowerstatus=="已开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
-                            findHaveStudent(data[i].zid)
-                        }else if (data[i].zpowerstatus=="未开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
-                            findHaveStudent(data[i].zid)
-                        }
+                        str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
+                        static_teststate[j]=data[i].zid
                     }
                     str+="</tr>";
                     str+="</table>";
-                    //str+="<button class='d_button1' onclick='allchose()'>全选</button>"
                     str+="<div class='d_button1'><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
 
                 }else {
@@ -398,14 +340,11 @@
                         str+=" <tr>";
                         for(;j<6*(i+1);j++){
                             if(j==data.length){break;}
-                            if (data[j].zpowerstatus=="已开机"){
-                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
-                                findHaveStudent(data[j].zid)
-                            }else if (data[j].zpowerstatus=="未开机"){
+                            else {
                                 str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' onclick='addchoice(this)' class='p_check'/></div></th>";
-                                findHaveStudent(data[j].zid)
-                            }
 
+                                static_teststate[j]=data[j].zid
+                            }
                         }
                         str+="</tr>";
                         //  j+=6;
@@ -417,6 +356,23 @@
                 }
 
                 p_center.html(str)
+
+                for (var i=0;i<static_teststate.length;i++){
+                    $.ajax({
+                        type: "post",
+                        url: "/findteststatebyfid",
+                        data:{"id":static_teststate[i]},
+                        async: false,
+                        success: function (data) {
+                            if(data=="0"){
+                                $("#div"+static_teststate[i]+"").css('background-color','rgba(112,167,71)');
+                            }
+                        }
+                    });
+
+
+                }
+
 
             }
         });

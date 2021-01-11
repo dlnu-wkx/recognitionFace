@@ -9,9 +9,7 @@ import java.net.Socket;
 public class Powerutil
 {
 
-	/**
-	 * @param args
-	 */
+
 	public static int powercontroller(String powerip,String powerid)
 	{
 		// 设备购买及使用网址：https://item.taobao.com/item.htm?spm=a1z10.3-c.w4002-3280522495.9.58594b84tCw1Nf&id=40751680668
@@ -41,7 +39,6 @@ public class Powerutil
 			bw.write(powerid);
 			bw.flush();
 			// bw.close(); //切记，缓冲流写数据，需要刷空！！！
-
 			// 告诉服务器。客户端这边数据写入完毕
 			s.shutdownOutput();
 
@@ -57,8 +54,37 @@ public class Powerutil
 			e.printStackTrace();
 			return 0;
 		}
-
 		return 1;
 	}
+
+
+	//查看继电器的状态,返回八个字符串，0代表关闭，1代表开启
+	public static String powerstate(String powerip)
+	{
+		try {
+			Socket s = new Socket(powerip, 6722);
+
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+			// 3 获取输入流
+			BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+			bw.write("00");
+			bw.flush();
+
+			s.shutdownOutput();
+
+			String info = br.readLine();
+			s.close();
+			return info;
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+
 
 }

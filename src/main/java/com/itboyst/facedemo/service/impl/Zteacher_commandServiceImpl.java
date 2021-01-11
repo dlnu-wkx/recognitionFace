@@ -43,4 +43,7 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
     public int updateCommandByroomandZtype(String ztype, String ztrainingroomID) {
         return zteacher_commandMapper.updateCommandByroomandZtype(ztype,ztrainingroomID);
     }
+
+
+    public int findcountgp(Zteacher_command zteacher_command){return zteacher_commandMapper.findcountgp(zteacher_command);}
 }

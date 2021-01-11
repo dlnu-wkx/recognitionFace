@@ -9,7 +9,7 @@ public class Zteacher_command {
     private String zcontent;
     private Timestamp zpublishtime;
     private String zstatus;
-
+    private String zscheduleID;
 
     public String getZid() {
         return zid;
@@ -59,6 +59,14 @@ public class Zteacher_command {
         this.zstatus = zstatus;
     }
 
+    public String getZscheduleID() {
+        return zscheduleID;
+    }
+
+    public void setZscheduleID(String zscheduleID) {
+        this.zscheduleID = zscheduleID;
+    }
+
     @Override
     public String toString() {
         return "Zteacher_command{" +
@@ -68,6 +76,7 @@ public class Zteacher_command {
                 ", zcontent='" + zcontent + '\'' +
                 ", zpublishtime=" + zpublishtime +
                 ", zstatus='" + zstatus + '\'' +
+                ", zscheduleID='" + zscheduleID + '\'' +
                 '}';
     }
 }

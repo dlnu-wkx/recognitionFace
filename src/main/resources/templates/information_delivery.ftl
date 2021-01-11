@@ -68,7 +68,7 @@
     </div>
     <div class="d_choose">
     <div class="d_font">
-        <font >显示:</font> <input id="i_time" class="i_time" type="number" value="" size="4"><font>秒</font>
+        <font >显示:</font>&emsp;&emsp;&emsp;<input id="i_time" class="i_time" type="number" value="" size="4">&emsp;&emsp;&emsp;<font>秒</font>
     </div>
 </div>
 </div>
@@ -141,6 +141,7 @@
             type: "post",
             url: "/findfacilitybyrid",
             data:{"id":id},
+            async: false,
             success: function (data) {
 
 
@@ -154,11 +155,23 @@
                     for(var i=0; i<data.length;i++){
 
                         if (data[i].zpowerstatus=="已开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
-                            findHaveStudent(data[i].zid)
+                            $.ajax({
+                                type: "post",
+                                url: "/findstunamebyfacid",
+                                data:{"zid":data[i].zid},
+                                async: false,
+                                success: function (data2) {
+                                    if (data2){
+                                        str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'>"+data2+"<input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                    }else{
+                                        str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                    }
+                                }
+                            })
+                         //   findHaveStudent(data[i].zid)
                         }else if (data[i].zpowerstatus=="未开机"){
                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
-                            findHaveStudent(data[i].zid)
+                          //  findHaveStudent(data[i].zid)
                         }
                    }
                    str+="</tr>";
@@ -174,11 +187,25 @@
                      for(;j<6*(i+1);j++){
                         if(j==data.length){break;}
                          if (data[j].zpowerstatus=="已开机"){
-                             str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
-                             findHaveStudent(data[j].zid)
+
+                             $.ajax({
+                                 type: "post",
+                                 url: "/findstunamebyfacid",
+                                 data:{"zid":data[j].zid},
+                                 async: false,
+                                 success: function (data2) {
+                                     if (data2){
+                                         str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'>"+data2+"<input name='check' id='"+data[j].zid+"' value='"+data[j].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                     }else{
+                                         str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'><input name='check' id='"+data[j].zid+"' value='"+data[j].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                     }
+                                 }
+                             })
+                            // str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                           //  findHaveStudent(data[j].zid)
                          }else if (data[j].zpowerstatus=="未开机"){
                              str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' onclick='addchoice(this)' class='p_check'/></div></th>";
-                             findHaveStudent(data[j].zid)
+                            // findHaveStudent(data[j].zid)
                          }
 
                      }
@@ -198,9 +225,12 @@
         });
     }
 
+
     window.onload =function () {
         onloadallroom();
     }
+
+
     function  findHaveStudent(zid){
         $.ajax({
             type: 'post',

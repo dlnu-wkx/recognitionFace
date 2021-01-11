@@ -8,10 +8,11 @@ import java.util.List;
 @Mapper
 public interface Zteacher_temporary_taskMapper {
 
-  List<Zteacher_temporary_task> findtitle(String zstudentID);
+  List<Zteacher_temporary_task> findtitle(String zstudentID,String zscheduleID);
 
   public int findisintemp(String zcontentID,String zstudentID);
 
   public int inserttemptask(Zteacher_temporary_task zteacher_temporary_task);
 
+  public int detemporarybydid(String zstudentID,String zscheduleID);
 }

@@ -20,4 +20,6 @@ public interface Zteacher_commandMapper {
    Zteacher_command findcommandById(String zid);
 
    int updateCommandByroomandZtype(String ztype,String ztrainingroomID);
+
+   public int findcountgp(Zteacher_command zteacher_command);
 }

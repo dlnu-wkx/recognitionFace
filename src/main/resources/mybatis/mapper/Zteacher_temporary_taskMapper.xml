@@ -5,6 +5,7 @@
     <resultMap id="Zteacher_temporary_task" type="com.itboyst.facedemo.dto.Zteacher_temporary_task">
         <id column="zid" property="zid" javaType="String"/>
         <result column="zstudentID" property="zstudentID" javaType="String"/>
+        <result column="zscheduleID" property="zscheduleID" javaType="String"/>
         <result column="ztype" property="ztype" javaType="String"/>
         <result column="ztitle" property="ztitle" javaType="String"/>
         <result column="zpublishtime" property="zpublishtime" javaType="String"/>
@@ -13,16 +14,19 @@
 
 
         <select id="findtitle"  resultType="com.itboyst.facedemo.dto.Zteacher_temporary_task">
-            SELECT zid,ztitle,zcontentID FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} AND TO_DAYS(NOW())-TO_DAYS(zpublishtime)<![CDATA[ <= ]]>1 ORDER BY zpublishtime;
+            SELECT zid,ztitle,zcontentID FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} ORDER BY zpublishtime;
         </select>
 
         <select id="findisintemp"  resultType="java.lang.Integer">
             SELECT COUNT(*) FROM zteacher_temporary_task WHERE ztype='临时任务' AND zcontentID=#{zcontentID} AND zstudentID=#{zstudentID};
         </select>
+
         <insert id="inserttemptask" parameterType="com.itboyst.facedemo.dto.Zteacher_temporary_task" >
-            INSERT INTO zteacher_temporary_task(zid,zstudentID,ztype,ztitle,zpublishtime,zcontentID) VALUES(#{zid},#{zstudentID},'临时任务','临时任务',#{zpublishtime},#{zcontentID});
+            INSERT INTO zteacher_temporary_task(zid,zstudentID,zscheduleID,ztype,ztitle,zpublishtime,zcontentID) VALUES(#{zid},#{zstudentID},#{zscheduleID},'临时任务',(select zname from ztraining_task where zid=#{zcontentID}),#{zpublishtime},#{zcontentID});
         </insert>
 
-
+        <delete id="detemporarybydid" parameterType="java.lang.String">
+    	    DELETE FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID}
+  	    </delete>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.Zstudent;
+import com.itboyst.facedemo.dto.Zstudent_cookie;
 import com.itboyst.facedemo.dto.Zteacher_cookie;
 import com.itboyst.facedemo.dto.Zteacher_temporary_task;
 import com.itboyst.facedemo.service.Zassign_scheduleService;
@@ -33,16 +34,11 @@ public class TasktempController {
     public List<Zteacher_temporary_task> findalltemporarytask(HttpSession session){
 
         Zstudent zstudent=(Zstudent)session.getAttribute("zstudent");
-        //**session失活是为null,异常处理
-        String zid ="";
-        try{
-            zid=zstudent.getZid();
-        }catch (Exception e){
-            System.out.println("TasktempController中/findalltemporarytask zstudent的session失活");
-        }
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
+        String zid=zstudent.getZid();
+        System.out.println(zid+zstudent_cookie.getZscheduleID());
 
-
-        return zteacher_temporary_taskService.findtaskname(zid);
+        return zteacher_temporary_taskService.findtaskname(zid,zstudent_cookie.getZscheduleID());
 
     }
 
@@ -65,21 +61,34 @@ public class TasktempController {
 
     @RequestMapping("/inserttemptask")
     @ResponseBody
-    public int inserttemptask(String studentid,String taskid){
+    public int inserttemptask(String studentid,String taskid,HttpSession session){
 
         String zid = UUID.randomUUID().toString().replaceAll("-","");
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie) session.getAttribute("zteacher_cookie") ;
 
         Zteacher_temporary_task zteacher_temporary_task=new Zteacher_temporary_task();
         zteacher_temporary_task.setZid(zid);
         zteacher_temporary_task.setZcontentID(taskid);
         zteacher_temporary_task.setZpublishtime(timestamp);
         zteacher_temporary_task.setZstudentID(studentid);
+        zteacher_temporary_task.setZscheduleID(zteacher_cookie.getZscheduleID());
         //System.out.println(zteacher_temporary_task);
 
         return zteacher_temporary_taskService.inserttemptask(zteacher_temporary_task);
     }
+
+
+    @RequestMapping("/deletemes")
+    @ResponseBody
+    public int deletemes(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+
+        return zteacher_temporary_taskService.temporarybydid(zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID());
+    }
+
 
 
 
