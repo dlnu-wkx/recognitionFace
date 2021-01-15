@@ -370,6 +370,9 @@ public class QbankController {
 
     @RequestMapping(value = "/teacher_LoginTest")
     public String teacher_LoginTest(){return "teacher_LoginTest";}
+
+    @RequestMapping(value = "/video")
+    public String video(){return "video";}
     /**
      * 查十个题目，备用
      * @param response

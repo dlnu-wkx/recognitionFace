@@ -518,9 +518,9 @@ public class FaceController {
             String ip4=Iputil.getClientIpAddress(request);
             //System.out.println(ip3);
 
-           // System.out.println(ip4);
+            System.out.println("ip4"+ip4);
 
-            //System.out.println(ip2);
+            //System.out.println("ip2"+ip2);
             zsl.setZcheck("实操");
             zsl.setZrecognizeIP(ip4);
 
@@ -779,7 +779,7 @@ public class FaceController {
         model.addAttribute("name",name);
         String indPath  =path.replace("F:/recognitionFace/src/main/resources/static/","");
         model.addAttribute("path",indPath);
-
+        System.out.println("inPath"+indPath);
         return "teacherEnter";
     }
 

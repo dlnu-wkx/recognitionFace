@@ -28,4 +28,6 @@ public interface MybatisUserFaceInfoMapper {
     public int findcountfaceid(String face_id);
 
     public int findidbyfaceid(String face_id);
+
+    String findfopathByfaceid(int id);
 }

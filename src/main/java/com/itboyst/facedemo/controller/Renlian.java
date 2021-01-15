@@ -22,6 +22,7 @@ import org.zkoss.zul.Window;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -36,6 +37,7 @@ public class Renlian  {
     Zteacher_loginService zteacher_loginService = appCtx.getBean(Zteacher_loginService.class);
     ZteacherService zteacherService = appCtx.getBean(ZteacherService.class);
     Ztraining_cameraService ztraining_cameraService = appCtx.getBean(Ztraining_cameraService.class);
+    FaceEngineService faceEngineService = appCtx.getBean(FaceEngineService.class);
 
     // 自定义局部变量
     //private static final String jieshiip = "192.168.1.156"; // 杰视设备的IP地址
@@ -130,13 +132,18 @@ public class Renlian  {
                     JSONObject dongtai = JSONObject.parseObject(arg0);
                     JSONObject dongtaipayload = dongtai.getJSONObject("payload");
                     String xuehao = dongtaipayload.getString("personIdCard");
+                    //相似的程度，1代表很相似2代表比较相似3代表有点相似
+                    String typestr= dongtaipayload.getString("type");
+                    Integer type =Integer.parseInt(typestr);
+                    String originalPictureUrl =dongtaipayload.getString("originalPictureUrl");
+                    //如果type的类型为1则进入允许执行写入登录日志
+                    if(1==type){
+
                     String cameraName =dongtaipayload.getString("cameraName");
 
                     System.out.println("识别:" + xuehao + " , " + dongtaipayload.getString("personName"));
 
                     if ((xuehao != null) && (xuehao.length() > 0)) {
-
-                        //int i =zstudentLoginService.deleteStudentLoginByzidentity(xuehao);
 
                         Zstudent_login zsl=new Zstudent_login();
                         String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
@@ -144,6 +151,7 @@ public class Renlian  {
                         zsl.setZrecognizeIP(jieshiip);
                         zsl.setZcheck("人脸识别");
                         Zstudent abc =zstudentService.findstudentByZidentity(xuehao);
+
                         //**这个地方的判空处理有问题
                         Zteacher zteacher =zteacherService.findteacherByzidentity(xuehao);
 
@@ -152,6 +160,15 @@ public class Renlian  {
                             zsl.setZtype("入口签到");
                             Timestamp timestamp=new Timestamp(System.currentTimeMillis());
                             zsl.setZrecongnizetime(timestamp);
+                            String fpath =faceEngineService.findfopathByfaceid(abc.getZfaceinfoID());
+                            zsl.setOriginalPictureUrl(fpath);
+                            //设置课程信息
+                            List<String> list =zstudentLoginService.findScheduleBytimeandzstudentID(abc.getZid(),timestamp);
+
+                            if(!list.isEmpty()){
+                                zsl.setZscheduleID(list.get(0));
+                            }
+
                             int a =zstudentLoginService.updateloginmessage(zsl);
                         }
                         //把识别的老师信息加入到登录日志中
@@ -165,37 +182,13 @@ public class Renlian  {
                             zteacher_login.setZtype("入口签到");
                             zteacher_login.setZcheck("人脸识别");
                             zteacher_login.setZrecognizeIP(jieshiip);
-
+                            String teacherpath =faceEngineService.findfopathByfaceid(zteacher.getZfaceinfoID());
+                            zteacher_login.setOriginalPictureUrl(teacherpath);
                            int b = zteacher_loginService.delAndinsertteacher(zteacher_login);
                         }
-                        if(cameraName != null){
-                            Ztraining_camera ztraining_camera = new Ztraining_camera();
-                            String uuid3 = UUID.randomUUID().toString().replaceAll("-","");
-                            ztraining_camera.setZid(uuid3);
-                            ztraining_camera.setZtrainingroomID(ztrainingroomID);
-                            ztraining_camera.setZtitle("签到");
-                            ztraining_camera.setZcameraIP(jieshiip);
-                            ztraining_camera.setZcameraName(cameraName);
-                            /*int zidentity = Integer.parseInt(cameraName);*/
-                            ztraining_camera.setZidentity(1);
-                            ztraining_camera.setZstatus("可用");
-
-                           int c= ztraining_cameraService.insertCamera(ztraining_camera);
-                        }
 
 
-                       /* String sqlstr = "";
-                        // 查DB
-                        sqlstr = "DELETE FROM zstudent_login WHERE zstudentID=(SELECT zid FROM zstudent WHERE zidentity LIKE '"
-                                + xuehao + "')";
-                        //ORMOperate.ExecSQL(sqlstr, null, null);
-                        sqlstr = "INSERT INTO zstudent_login(zid,zstudentID,zrecognizetime,ztype,zrecognizeIP,zstatus) VALUES('"
-                                //+ UUID.randomUUID().toString().replaceAll("-", "")
-                                + "',(SELECT zid FROM zstudent WHERE zidentity='" + xuehao + "'),NOW(),'表camera','"
-                                + jieshiip + "','正常');";
-                       // ORMOperate.ExecSQL(sqlstr, null, null);*/
-
-
+                     }
                     }
                 }
 

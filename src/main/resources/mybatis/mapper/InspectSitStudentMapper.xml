@@ -8,30 +8,39 @@
         <result column="grade_name" property="zgradeName" javaType="java.lang.String"/>
         <result column="zrecognizetime" property="zrecognizetime" javaType="java.sql.Timestamp"/>
         <result column="ztrainingroomID" property="ztrainingroomID" javaType="java.lang.String"/>
+        <result column="originalPictureUrl" property="originalPictureUrl" javaType="java.lang.String"/>
     </resultMap>
     <select id="findStudentByDateAndTrainingId" resultMap="inspectSitStudent" resultType="com.itboyst.facedemo.dto.InspectSitStudent">
-
-        SELECT * FROM	(select MAX(h.zrecognizetime)as zrecognizetime,h.grade_name,h.zid,h.zname,h.ztrainingroomID from (select c.zrecognizetime,d.zid,d.zname,f.zname grade_name,b.ztrainingroomID from zstudent_login c,zstudent_schedule a,zschedule b ,zstudent d,zgrade f
-						 where d.zgradeID=f.zid and b.zid=a.zscheduleID and b.ztrainingroomID='1' and d.zid=c.zstudentID and c.zstudentID=a.zstudentID  and c.zrecognizetime BETWEEN #{timestamp} and NOW()) h
-						 GROUP BY h.zid) n  ORDER BY n.zrecognizetime desc
+		SELECT * FROM (select MAX(h.zrecognizetime) zrecognizetime ,h.grade_name,h.zid,h.zname,h.ztrainingroomID,h.originalPictureUrl from
+								(select m.zrecognizetime,m.zid,m.zname,m.grade_name,n.ztrainingroomID,m.originalPictureUrl from
+												(select c.zrecognizetime,d.zid,d.zname,f.zname grade_name,c.originalPictureUrl,c.zscheduleID from zstudent_login c ,zstudent d,zgrade f
+												where d.zgradeID=f.zid  and d.zid=c.zstudentID  and c.zrecognizetime BETWEEN #{timestamp} and NOW())m LEFT OUTER JOIN zschedule n
+								on m.zscheduleID=n.zid)h
+						GROUP BY h.zid,h.ztrainingroomID) j   where j.ztrainingroomID=#{ztrainingroomID}
+        ORDER BY j.zrecognizetime ASC
 
 
 
     </select>
 
     <select id="findStudentByDateAndTrainingIdASC" resultMap="inspectSitStudent" resultType="com.itboyst.facedemo.dto.InspectSitStudent">
-
-        SELECT * FROM (select MAX(h.zrecognizetime) zrecognizetime ,h.grade_name,h.zid,h.zname,h.ztrainingroomID from (select c.zrecognizetime,d.zid,d.zname,f.zname grade_name,b.ztrainingroomID from zstudent_login c,zstudent_schedule a,zschedule b ,zstudent d,zgrade f
-					  where d.zgradeID=f.zid and b.zid=a.zscheduleID  and d.zid=c.zstudentID and c.zstudentID=a.zstudentID  and c.zrecognizetime BETWEEN #{timestamp} and NOW()) h
-	                  GROUP BY h.zid,h.ztrainingroomID) n
-	    ORDER BY n.zrecognizetime desc
-
+SELECT * FROM (select MAX(h.zrecognizetime) zrecognizetime ,h.grade_name,h.zid,h.zname,h.ztrainingroomID,h.originalPictureUrl from
+								(select m.zrecognizetime,m.zid,m.zname,m.grade_name,n.ztrainingroomID,m.originalPictureUrl from
+												(select c.zrecognizetime,d.zid,d.zname,f.zname grade_name,c.originalPictureUrl,c.zscheduleID from zstudent_login c ,zstudent d,zgrade f
+												where d.zgradeID=f.zid  and d.zid=c.zstudentID  and c.zrecognizetime BETWEEN #{timestamp} and NOW())m LEFT OUTER JOIN zschedule n
+								on m.zscheduleID=n.zid)h
+						GROUP BY h.zid,h.ztrainingroomID) j
+        ORDER BY j.zrecognizetime desc
 
     </select>
 
     <select id="findTeacherByDateAndTrainingIdASC" resultType="com.itboyst.facedemo.dto.InspectSitTeacher">
-        select a.zteacherID,b.zname as zName,b.zidentity as zgradeName,a.zrecognizetime from zteacher_login a, zteacher b where a.zteacherID=b.zid and a.zrecognizeIP ='192.168.1.156' and a.zrecognizetime between #{timestamp} and NOW()
-
+    select  * from (select a.zteacherID,b.zname as zName,b.zidentity as zgradeName,a.zrecognizetime,a.originalPictureUrl
+                    from zteacher_login a, zteacher b
+                    where a.zteacherID=b.zid and a.zrecognizeIP =#{camerasIP} and a.zrecognizetime between #{timestamp} and NOW())m
+    GROUP BY m.zgradeName
 
     </select>
+
+
 </mapper>

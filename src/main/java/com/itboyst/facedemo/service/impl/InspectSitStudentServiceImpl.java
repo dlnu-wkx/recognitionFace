@@ -28,4 +28,6 @@ public class InspectSitStudentServiceImpl implements InspectSitStudentService{
     public List<InspectSitTeacher> findTeacherByDateAndTrainingIdASC(String camerasIP, Timestamp timestamp) {
         return inspectSitStudentMapper.findTeacherByDateAndTrainingIdASC(camerasIP,timestamp);
     }
+
+
 }

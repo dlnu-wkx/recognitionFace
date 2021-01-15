@@ -5,14 +5,22 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="./jquery/video-js.min.css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
+    <link href="http://vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
 
-    <script type="text/javascript" src="./layui/js/common.js "></script>
     <script type="text/javascript" src="./layui/js/common.js "></script>
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
     <script src="jquery/jquery.cookie.js"></script>
+    <script src="./layui/js/field_management.js "></script>
+    <#--<script type="text/javascript" src="./jquery/video.min.js"></script>-->
+   <#-- <script src="http://vjs.zencdn.net/5.20.1/video.js"></script>-->
+   <#-- <script src="https://cdn.bootcdn.net/ajax/libs/videojs-flash/2.2.0/videojs-flash.min.js"></script>-->
+    <#--<script>
+        videojs.options.flash.swf='./jquery/video-js.swf'
+    </script>-->
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
 <div class="layui-layout layui-layout-admin" >
@@ -36,7 +44,7 @@
             <div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
                     <li style="margin: 0 auto;margin-left: 10% "><button onclick="faceShow()" style="float:left;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">人脸识别</button></li>
-                    <li style=" margin: 0 auto;margin-right: 10%"><button onclick="powerController()" style="float:right;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">设备电源</button></li>
+                    <li style=" margin: 0 auto;margin-right: 10%"><button onclick="powerController()" style="float:right;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">测试管理</button></li>
                 </ul>
             </div>
             <div>
@@ -105,12 +113,13 @@
         <#--四级菜单-->
         <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
             <div id="mainDiv">
-                <iframe src="http://127.0.0.1/stream" width="400" height="400">
-                    <a href="included.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
-                </iframe>
+                <img id="img" style="width: 400px;height: 300px;" src="">
+                <#--<video id="video"   width="400px" height="300px"  >
+                    <source id="videosrc" src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv">
+                </video>-->
             </div>
             <#--这个地方到时候要循环遍历出来拼接字符串-->
-            <div id="identifyAreas"style="width: 80%;height:200px;background-color: #ffff;border: 1px solid red;overflow: auto">
+            <div id="identifyAreas"style="width: 80%;height:289px;background-color: #ffff;border: 1px solid red;overflow: auto;margin-top: 5%;">
                 <#--<div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">李四  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">王二  机电19班</div>
@@ -209,40 +218,10 @@
 <div id="showVdieo" style="position: absolute;z-index:10;top: 24%;left: 41%"></div>
 
 <script>
+
     //教师解锁时的人脸识别
-    var mediaStreamTrack;
-    var time=null;
-    function getMedia1() {
-        $("#showVdieo").empty();
-        let videoComp = "<video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
-        $("#showVdieo").append(videoComp);
 
-        let constraints = {
-            video: {width: 500, height: 500},
-            audio: true
-        };
-        //获得video摄像头区域
-        let video = document.getElementById("video");
-        //这里介绍新的方法，返回一个 Promise对象
-        // 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
-        // then()是Promise对象里的方法
-        // then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
-        // 避免数据没有获取到
-        let promise = navigator.mediaDevices.getUserMedia(constraints);
-        promise.then(function (stream) {
-            mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
-            video.srcObject = stream;
-            video.play();
-        });
 
-        // var t1 = window.setTimeout(function() {
-        //     takePhoto();
-        // },2000)
-       time= window.setInterval(function () {//每隔几秒查询对比一次结果，循环对比
-            chooseFileChangeCompF_M()
-        }, 5000);
-
-    }
 
 
 
@@ -275,6 +254,7 @@
 
     });
    window.onload=show();
+   /*window.onLoad=showCamera();*/
     //展示现场管理的二级菜单
     function show() {
         document.getElementById("colorType").style.backgroundColor="#ED7D31";
@@ -304,11 +284,33 @@
         //显示开始和结束按钮
         document.getElementById("fourMenu1").style.display="block";
         document.getElementById("openAndstart").style.display="block";
-       // getMedia();
-
+       //显示摄像头的信息
+        showCamera(e)
+      /* document.getElementById("mainDiv").style.display="block"*/
         $("#left").hide();
         $("#middle").hide();
         $("#right").hide();
+    }
+    function showCamera(e) {
+        var info ={username:"admin",password:"djtu13840903462",channel:"1",ip:"192.168.1.64",stream:"main"}
+        $.ajax({
+            type: 'post',
+            url: '/cameras',
+            contentType:'application/json',
+            data:  JSON.stringify(info) ,
+            dataType:'json',
+            success:function (data) {
+                if(data.code==0){
+                    var src=data.url;
+                    console.log(src)
+                    document.getElementById("videosrc").src=src;
+                    document.getElementById("video").load();
+                    var player = videojs('video', {autoplay:true,preload:"auto"}, function onPlayerReady(){ console.log("视频准备好了")})
+
+                }
+
+            }
+        })
     }
     //数控铣讨论区显示每台机的人脸识别情况
     function studentShow1(e){
@@ -318,7 +320,9 @@
         //显示开始结束按钮
         document.getElementById("fourMenu1").style.display="block";
         document.getElementById("openAndstart2").style.display="block";
-
+        //显示摄像头的信息
+        showCamera(e);
+       /* document.getElementById("mainDiv").style.display="block"*/
        // getMedia();
         $("#left").hide();
         $("#middle").hide();
@@ -400,9 +404,44 @@
         location.href="/field_management";
     }
 
+
+    var mediaStreamTrack;
+    var time=null;
+    function getMedia1() {
+        $("#showVdieo").empty();
+        let videoComp = "<video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
+        $("#showVdieo").append(videoComp);
+
+        let constraints = {
+            video: {width: 500, height: 500},
+            audio: true
+        };
+        //获得video摄像头区域
+        let video = document.getElementById("video");
+        //这里介绍新的方法，返回一个 Promise对象
+        // 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+        // then()是Promise对象里的方法
+        // then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+        // 避免数据没有获取到
+        let promise = navigator.mediaDevices.getUserMedia(constraints);
+        promise.then(function (stream) {
+            mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+            video.srcObject = stream;
+            video.play();
+        });
+
+        // var t1 = window.setTimeout(function() {
+        //     takePhoto();
+        // },2000)
+        time= window.setInterval(function () {//每隔几秒查询对比一次结果，循环对比
+            chooseFileChangeCompF_M()
+        }, 5000);
+
+    }
+
     function chooseFileChangeCompF_M() {
 
-       /* var ip=returnCitySN["cip"];*/
+        /* var ip=returnCitySN["cip"];*/
 
 
         let showVdieo = $("#showVdieo");
@@ -467,60 +506,9 @@
                 }
             });
         }
-        else {//这个对比根据图片进行查找的
-            var file = $("#file1")[0].files[0];
-            if (file == undefined) {
-                alert("请选择有人脸的图片进行识别");
-                return;
-            }
-            var formData = new FormData();
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function () {
-                var base64 = reader.result;
-                formData.append("file", base64);
-                formData.append("groupId", 101);
-
-                $.ajax({
-                    type: "post",
-                    url: "/faceSearch",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    async: false,
-                    success: function (text) {
-                        var res = JSON.stringify(text)
-                        if (text.code == 0) {
-                            var name = text.data.name;
-
-                            var similar = text.data.similarValue;
-
-                            var age = text.data.age;
-
-                            var gender = text.data.gender;
-
-                            showTips("姓名：" + name + "\n相似度：" + similar + "%" + "\n年龄：" + age + "\n性别：" + gender);
-                        } else {
-                            $("#nameDiv").html("");
-                            $("#similarDiv").html("");
-                            $("#ageDiv").html("");
-                            $("#genderDiv").html("");
-                            alert("人脸不匹配")
-                            showTips("人脸不匹配");
-                        }
-
-                    },
-                    error: function (error) {
-                        $("#nameDiv").html("");
-                        $("#similarDiv").html("");
-                        $("#ageDiv").html("");
-                        $("#genderDiv").html("");
-                        alert(JSON.stringify(error))
-                    }
-                });
-            }
-        }
     }
+
+
 </script>
 </body>
 </html>

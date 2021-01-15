@@ -98,6 +98,11 @@ public class FaceEngineServiceImpl implements FaceEngineService {
         return userFaceInfoMapper.selectidbyname(fpath);
     }
 
+    @Override
+    public String findfopathByfaceid(int id) {
+        return userFaceInfoMapper.findfopathByfaceid(id);
+    }
+
 
     @Override
     public List<FaceInfo> detectFaces(ImageInfo imageInfo) {

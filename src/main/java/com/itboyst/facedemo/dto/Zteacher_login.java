@@ -12,17 +12,6 @@ public class Zteacher_login {
     private String zcheck;
     private String ztype;
     private String  zrecognizeIP;
+    private String originalPictureUrl;
 
-    @Override
-    public String toString() {
-        return "Zteacher_login{" +
-                "zid='" + zid + '\'' +
-                ", zteacherID='" + zteacherID + '\'' +
-                ", zscheduleID='" + zscheduleID + '\'' +
-                ", zrecongnizetime=" + zrecognizetime +
-                ", zcheck='" + zcheck + '\'' +
-                ", ztype='" + ztype + '\'' +
-                ", zrecognizeIP='" + zrecognizeIP + '\'' +
-                '}';
-    }
 }

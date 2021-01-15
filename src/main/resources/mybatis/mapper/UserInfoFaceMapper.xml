@@ -66,5 +66,8 @@
         select id from user_face_info where face_id=#{face_id}
     </select>
 
+    <select id="findfopathByfaceid" resultType="java.lang.String">
 
+         select  fpath from user_face_info where id=#{id}
+    </select>
 </mapper>

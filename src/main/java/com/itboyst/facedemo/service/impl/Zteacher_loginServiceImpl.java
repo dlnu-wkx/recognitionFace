@@ -16,7 +16,7 @@ public class Zteacher_loginServiceImpl implements Zteacher_loginService {
     public synchronized int delAndinsertteacher(Zteacher_login zteacher_login) {
        //先删除所有的login记录
 
-        int i =zteacher_loginMapper.delteacher(zteacher_login.getZteacherID());
+        /*int i =zteacher_loginMapper.delteacher(zteacher_login.getZteacherID());*/
         //增加一条登录记录
         int j =zteacher_loginMapper.insertteacher(zteacher_login);
         return j;

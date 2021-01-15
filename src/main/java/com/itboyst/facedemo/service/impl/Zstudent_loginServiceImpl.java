@@ -7,6 +7,7 @@ import com.itboyst.facedemo.service.Zstudent_loginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -28,12 +29,12 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
 
     @Override
     public  synchronized int updateloginmessage(Zstudent_login zstl){
-        List<Zstudent_login> zsl=zstulogma.findfront(zstl.getZstudentID());
+       /* List<Zstudent_login> zsl=zstulogma.findfront(zstl.getZstudentID());
 
         if(zsl.size()!=0){
 
             int i=zstulogma.deletefront(zstl.getZstudentID());
-        }
+        }*/
 
         int j=0;
         j= zstulogma.insertnowmessage(zstl);
@@ -48,5 +49,10 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
 
 
     public int insertnowmessage(Zstudent_login zstudent_login){return zstulogma.insertnowmessage(zstudent_login);}
+
+    @Override
+    public List<String> findScheduleBytimeandzstudentID(String zstudentID, Timestamp timestamp) {
+        return zstulogma.findScheduleBytimeandzstudentID(zstudentID,timestamp);
+    }
 
 }

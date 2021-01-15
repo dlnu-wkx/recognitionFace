@@ -17,6 +17,7 @@ public interface FaceEngineService {
 
     int selectidbyname(String fpath);
 
+    String findfopathByfaceid(int id);
     /**
      * 人脸特征
      *

@@ -45,7 +45,6 @@ public class InspectSitStudentController {
         renlian.setZtrainingroomID(ztrainingroomID);
         renlian.setUrl("ws://" + jieshiip + ":8080/webapi/websocket");
         renlian.renlianwinCreate();
-        System.err.println(renlian.getUrl());
         try {
             renlian.startBtnClick();
         }catch (RuntimeException e){
@@ -82,7 +81,9 @@ public class InspectSitStudentController {
         String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
         zstudentList =inspectSitStudentService.findStudentByDateAndTrainingIdASC(ztrainingroomID,timestamp);
         //查找摄像头识别成功的教师
-        List<InspectSitTeacher> zteacherList =inspectSitStudentService.findTeacherByDateAndTrainingIdASC("摄像头的ip",timestamp);
+        Zsysconfig zsysconfig =zsysconfigService.findIPByZname("杰视服务器IP地址");
+        String jieshiip =zsysconfig.getZvalue();
+        List<InspectSitTeacher> zteacherList =inspectSitStudentService.findTeacherByDateAndTrainingIdASC(jieshiip,timestamp);
         if(null!=zteacherList){
 
             for(InspectSitTeacher a:zteacherList){
@@ -91,10 +92,12 @@ public class InspectSitStudentController {
                 inspectSitStudent.setZName(a.getZName());
                 inspectSitStudent.setZstudentID(a.getZteacherID());
                 inspectSitStudent.setZrecognizetime(a.getZrecognizetime());
+                inspectSitStudent.setOriginalPictureUrl(a.getOriginalPictureUrl());
+                //把老师的信息变形添加到学生数组中
                 zstudentList.add(inspectSitStudent);
             }
         }
-
+                //最后把学生的信息和变形后的教师信息一起排序
         if(zstudentList.size()>1){
             Collections.sort(zstudentList, new Comparator<InspectSitStudent>() {
                 @Override
@@ -111,7 +114,7 @@ public class InspectSitStudentController {
         }
 
         for(InspectSitStudent a:zstudentList){
-            System.err.println(a);
+            System.err.println("识别出来的人"+a);
         }
 
         return zstudentList;

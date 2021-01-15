@@ -11,6 +11,7 @@ public class Zstudent_login {
     private String ztype;
     private String  zrecognizeIP;
     private String zstatus;
+    private String originalPictureUrl;
 
     public String getZid() {
         return zid;
@@ -76,6 +77,14 @@ public class Zstudent_login {
         this.zstatus = zstatus;
     }
 
+    public String getOriginalPictureUrl() {
+        return originalPictureUrl;
+    }
+
+    public void setOriginalPictureUrl(String originalPictureUrl) {
+        this.originalPictureUrl = originalPictureUrl;
+    }
+
     @Override
     public String toString() {
         return "Zstudent_login{" +
@@ -87,6 +96,7 @@ public class Zstudent_login {
                 ", ztype='" + ztype + '\'' +
                 ", zrecognizeIP='" + zrecognizeIP + '\'' +
                 ", zstatus='" + zstatus + '\'' +
+                ", originalPictureUrl='" + originalPictureUrl + '\'' +
                 '}';
     }
 }

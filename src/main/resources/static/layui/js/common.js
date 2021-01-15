@@ -610,7 +610,7 @@ function showRecognitionFace(mytime) {
                  }
 
 
-             if(data.length>1){//不大于三个则显示现有的个数
+             if(data.length>0){//不大于三个则显示现有的个数
                  var str="";
                  var center=$("#mainBody");
                  center.empty();
@@ -652,6 +652,13 @@ function findAllLoginpeople(mytime) {
         success:function (data) {
             if(""!=data){
                 $("#identifyAreas").empty();
+                //显示最后一个识别成功的人的图片
+                console.log(data)
+                if(""!=data[data.length-1].originalPictureUrl){
+                    var str =data[data.length-1].originalPictureUrl;
+                    var path =str.substring(36);
+                    document.getElementById("img").src=path;
+                }
                 for(var i=0;i<data.length;i++){
                     content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zname+data[i].zgradeName+"</div>";
                     $("#identifyAreas").append(content);
@@ -744,20 +751,20 @@ function getcommand() {
         contentType: false,
         processData: false,
         async: false,
-        success: function (data){
-            if(""!=data){
+        success: function (data) {
+            if ("" != data) {
 
-            for(var i=0;i<data.length;i++){
-                if(data[i].ztype=="查岗"){//data[i].ztype =="签到"||
-                    document.getElementById("chagangID").innerHTML=data[i].zid;
-                    getMedia2();
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].ztype == "查岗") {//data[i].ztype =="签到"||
+                        document.getElementById("chagangID").innerHTML = data[i].zid;
+                        getMedia2();
 
-                }
-                else if(data[i].ztype == "滚屏信息"){
-                    str+=" <marquee  id='marquee'><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>"+data[i].zcontent+"</font></span></marquee>"
-                    rolling_barrage.html(str)
-                    rolling_barrage.show()
-                    document.getElementById("gundongID").innerHTML=data[i].zid;
+                    } else if (data[i].ztype == "滚屏信息") {
+                        str += " <marquee  id='marquee'><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>" + data[i].zcontent + "</font></span></marquee>"
+                        rolling_barrage.html(str)
+                        rolling_barrage.show()
+                        document.getElementById("gundongID").innerHTML = data[i].zid;
+                    }
                 }
             }
         }

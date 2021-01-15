@@ -2,6 +2,7 @@ package com.itboyst.facedemo.service;
 
 import com.itboyst.facedemo.dto.Zstudent_login;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface Zstudent_loginService {
@@ -14,4 +15,7 @@ public interface Zstudent_loginService {
     int deleteStudentLoginByzidentity(String zidentity);
 
     public int insertnowmessage(Zstudent_login zstudent_login);
+
+    //查找学生的课程
+    List<String> findScheduleBytimeandzstudentID(String zstudentID, Timestamp timestamp);
 }
