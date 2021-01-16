@@ -105,25 +105,25 @@ public class QbankController {
     @RequestMapping("/findpassingcode")
     @ResponseBody
     public int findpassingcode(HttpSession session){
-        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
         //System.out.println(zstudent_cookie);
-        return zstudent_cookie.getZpassingscore();
+        return ztraining_facility.getZpassingscore();
     }
 
     @RequestMapping("/findtestnumber")
     @ResponseBody
     public int findtestnumber(HttpSession session){
-        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
         //System.out.println(zstudent_cookie);
-        return zstudent_cookie.getZsafetestingNum();
+        return ztraining_facility.getZsafetestingNum();
     }
 
     @RequestMapping("/findtesttotal")
     @ResponseBody
     public int findtesttotal(HttpSession session){
-        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
         //System.out.println(zstudent_cookie);
-        return zstudent_cookie.getZsafetestingTotal();
+        return ztraining_facility.getZsafetestingTotal();
     }
 
 
@@ -339,6 +339,8 @@ public class QbankController {
     @RequestMapping(value = "/information_delivery")
     public String information_delivery(){return "information_delivery";}
 
+    @RequestMapping(value = "/information_delivery2")
+    public String information_delivery2(){return "information_delivery2";}
 
     @RequestMapping(value = "/test2")
     public String test2(){return "test2";}

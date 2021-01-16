@@ -57,4 +57,13 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
     public String findstunamebyfacid(String zid){return ztran_facmap.findstunamebyfacid(zid);}
 
 
+    public int updatefatestbyroomid(Ztraining_facility ztraining_facility){return ztran_facmap.updatefatestbyroomid(ztraining_facility);}
+
+    public int updatefatestbyid(Ztraining_facility ztraining_facility){return ztran_facmap.updatefatestbyid(ztraining_facility);}
+
+
+    public int updatesixportbyid(Ztraining_facility ztraining_facility){return  ztran_facmap.updatesixportbyid(ztraining_facility);}
+
+
+    public int updatesixportbyroomid(String ztrainingroomID,int zpowerStatus6){return ztran_facmap.updatesixportbyroomid(ztrainingroomID, zpowerStatus6);}
 }

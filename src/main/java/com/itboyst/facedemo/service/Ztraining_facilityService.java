@@ -25,5 +25,11 @@ public interface Ztraining_facilityService {
 
     public String findstunamebyfacid(String zid);
 
+    public int updatefatestbyroomid(Ztraining_facility ztraining_facility);
 
+    public int updatefatestbyid(Ztraining_facility ztraining_facility);
+
+    public int updatesixportbyid(Ztraining_facility ztraining_facility);
+
+    public int updatesixportbyroomid(String ztrainingroomID,int zpowerStatus6);
 }

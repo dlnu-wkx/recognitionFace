@@ -34,6 +34,7 @@
       UPDATE zstudent_login SET zstatus=#{zstatus} WHERE ztype='机床' AND zstatus='正常' AND zrecognizeIP IN (SELECT zstudentPCIP FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID});
     </update>
 
+
     <!--删除登录表的相关学生之前的信息-->
     <delete id="deleteStudentLoginByzidentity" parameterType="java.lang.String">
     	DELETE FROM zstudent_login WHERE zstudentID=(SELECT zid FROM zstudent WHERE zidentity LIKE #{zidentity})

@@ -41,21 +41,23 @@
 <!--中间信息查询-->
 <div class="i_center" >
    <div class="i_service">
-        <font size="5">人员：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input type="text"   id="i_name" class="i_text"><br><br>
+        <font size="5">人员：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input type="text"   id="i_name" class="i_text"><br><br><br><br>
         <font size="5">事件：</font> &emsp;&emsp;&emsp;&emsp;&emsp;
         <select class="i_text3" id="selecttype">
-           <option value="签到">签到</option>
-           <option value ="查岗">查岗</option>
-           <option value ="登陆（退出）">登陆（退出）</option>
+           <option value="人脸识别">人脸识别</option>
+           <option value ="实操">实操</option>
+           <option value ="登陆">登陆</option>
            <option value="举手">举手</option>
            <option value="请假/销假">请假/销假</option>
             <option value="测试成绩">测试成绩</option>
-        </select><br><br>
-       <font size="5">时间：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input class="i_text1" id="startday" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" id="starttime" type="time" />
-       &emsp;&emsp;&emsp;  &emsp;&emsp;<font size="5">----</font> <input class="i_text1" id="endday" type="date" />&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input class="i_text2" id="endtime" type="time" />
-       <br><br>
-       <button class="i_button" onclick="selectmes()">查询</button>
+        </select><br><br><br><br>
    </div>
+    <div class="i_timechose">
+       <font size="5" class="i_font">时间：</font> <input class="i_text4" id="startday" type="date" /><input class="i_text5" id="starttime" type="time" />
+       <input class="i_text6" id="endday" type="date" /><input class="i_text7" id="endtime" type="time" />
+       <br><br><br><br>
+       <button class="i_button" onclick="selectmes()">查询</button>
+    </div>
 </div>
 
 <!--模糊查询框-->
@@ -115,8 +117,8 @@
 
         }
 
-      else if (selecttype=="签到"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"签到查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+      else if (selecttype=="人脸识别"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"人脸识别查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"签到信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
@@ -133,14 +135,14 @@
                     }
                 }
             });
-        }else if(selecttype=="查岗"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"查岗查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+        }else if(selecttype=="实操"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"实操查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"查岗信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
                 type: "post",
                 url: "/selectattandancemes",
-                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"zcheck":"查岗"},
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"zcheck":"实操"},
                 async: false,
                 success: function (data){
                     for (var i=0;i<data.length;i++){
@@ -149,9 +151,9 @@
                     }
                 }
             });
-        }else if(selecttype=="登陆（退出）"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"登陆(退出)查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
-            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='6'><font size='5'>"+i_name+"登陆（退出）信息查询</font></th></tr>"
+        }else if(selecttype=="登陆"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"登陆查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='6'><font size='5'>"+i_name+"登陆信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>登陆/退出</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
                 type: "post",

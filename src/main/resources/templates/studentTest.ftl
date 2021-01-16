@@ -213,7 +213,7 @@
                    questionid[w]=question.cbank[w].zid;
                     str+="<div class='qbank"+w+"' id='qbank"+w+"'>";
 
-                    str+="<font size='5' class='title'>安全测试题，"+static_questionnum+"个，共"+static_total+"，"+static_passingcode+"分及格</font>";
+                    str+="<font size='5' class='title'>安全测试题，"+static_questionnum+"个，共"+static_total+"分，"+static_passingcode+"分及格</font>";
                     str+="<font size='5' class='questiontitle'>选择题("+question.cbank.length+"个)</font>";
 
                     str += " <div id='question' class='question'><font size='5' >"+k+"." + question.cbank[w].ztitlecontent + "</font></div><br><br><br>";

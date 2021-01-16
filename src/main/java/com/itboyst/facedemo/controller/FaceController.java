@@ -506,18 +506,12 @@ public class FaceController {
             //首次电脑界面登陆设置类型为机床
             zsl.setZtype("机床");
 
-          /*  zsl.setZrecognizeIP();
-*/          InetAddress addr = InetAddress.getLocalHost();
 
-            //System.out.println(addr.getHostAddress().toString());
-
-            //String ip2 = addr.getHostAddress();
-
-            //String ip3=Iputil.getIPAddress(request);
+            InetAddress addr = InetAddress.getLocalHost();
 
             String ip4=Iputil.getClientIpAddress(request);
-            //System.out.println(ip3);
 
+            zsl.setZcheck("登陆");
             System.out.println("ip4"+ip4);
 
             //System.out.println("ip2"+ip2);
@@ -525,9 +519,6 @@ public class FaceController {
             zsl.setZrecognizeIP(ip4);
 
 
-            //将相关信息存入session中
-            //设备
-            //System.out.println("本机的ip："+ip);
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip4);
             if (ztrfac == null) return Results.newFailedResult(ErrorCodeEnum.NO_FACILITY_STUDENTPCIP);
 
@@ -542,7 +533,7 @@ public class FaceController {
 
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
-            //System.out.println(zsc);
+            System.out.println(zsc);
 
             zsl.setZscheduleID(zsc.getZscheduleID());
             zsl.setZstatus("正常");

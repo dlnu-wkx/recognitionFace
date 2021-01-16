@@ -36,7 +36,7 @@
     </select>
 
     <select id="findscorebyname"  resultType="com.itboyst.facedemo.dto.Zselect_message">
-        select B.zname as studentname,C.zname as trainingroomname,D.zidentity as facilityname,F.zsafetestingType as testtype, A.zscore as score,A.zchecktime as mestime from ztesting_score A,zstudent B, ztraining_room C,ztraining_facility D, zstudent_schedule E,zschedule F where  (B.zname =#{zname} or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.zrecognizeIP=D.zcameraIP and D.ztrainingroomID=C.zid and A.zstudentscheduleID=E.zid and B.zid=E.zstudentID and E.zscheduleID=F.zid and A.zchecktime  between #{starttime} and #{endtime} order by B.zgradeID,B.zidentity, A.zchecktime desc
+        select B.zname as studentname,C.zname as trainingroomname,D.zidentity as facilityname,D.zsafetestingType as testtype, A.zscore as score,A.zchecktime as mestime from ztesting_score A,zstudent B, ztraining_room C,ztraining_facility D, zstudent_schedule E,zschedule F where  (B.zname =#{zname} or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.zrecognizeIP=D.zcameraIP and D.ztrainingroomID=C.zid and A.zstudentscheduleID=E.zid and B.zid=E.zstudentID and E.zscheduleID=F.zid and A.zchecktime  between #{starttime} and #{endtime} order by B.zgradeID,B.zidentity, A.zchecktime desc
     </select>
 
 

@@ -22,4 +22,10 @@ public interface Zteacher_commandMapper {
    int updateCommandByroomandZtype(String ztype,String ztrainingroomID);
 
    public int findcountgp(Zteacher_command zteacher_command);
+
+   public Zteacher_command findscrenclose(String ztrainingroomID,String zscheduleID);
+
+   public int updateCommandByid(String zid,String zstatus);
+
+   public int updatecontentbyid(String zid,String zcontent);
 }

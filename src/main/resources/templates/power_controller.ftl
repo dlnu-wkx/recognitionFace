@@ -6,6 +6,7 @@
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
@@ -31,7 +32,7 @@
 
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >机床控制器电源管理</font></div>
+    <div class="leftfont"><font size="5" >测试管理</font></div>
     <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
 </div>
 
@@ -84,10 +85,59 @@
 
 
 <!--测试题控制-->
-<div class="p_testchose" align="center">
-     <font size="3">开启电源时作用:</font><br><br>
+<div class="p_testchose" >
     &emsp;&emsp;<input type="checkbox" name="istest" id="istest" hidden class="p_chose1">&emsp;&emsp;&emsp;
-    <font>测试合格分数</font>&emsp;&emsp;<input type="number" class="p_input" id="testcode">&emsp;分
+    <div class="p_chose2">
+        <font>测试合格分数</font>&emsp;&emsp;
+
+        <#--<input type="number" class="p_input" id="testcode">-->
+        <select class="p_input" id="p_passcode">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60" selected="selected">60</option>
+            <option value="70">70</option>
+            <option value="80">80</option>
+            <option value="90">90</option>
+            <option value="100">100</option>
+        </select>
+
+        &emsp;分
+   </div>
+
+
+    <div class="p_chose3">
+        <font>题目数量</font>&emsp;&emsp;
+
+        <#--<input type="number" class="p_input" id="testcode">-->
+        <select class="p_input" id="p_testnum">
+            <option value="5">5</option>
+            <option value="10" selected="selected">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+
+        &emsp;个
+    </div>
+
+
+    <div class="p_chose4">
+        <font>题库选择</font>&emsp;&emsp;
+
+        <#--<input type="number" class="p_input" id="testcode">-->
+        <select class="p_input" id="p_testtype">
+            <option value="机床安全操作">机床安全操作</option>
+            <option value="铣床安全操作">铣床安全操作</option>
+            <option value="车间注意事项">车间注意事项</option>
+        </select>
+
+    </div>
+
+
+
 </div>
 
 
@@ -112,12 +162,19 @@
     //全部开启
     function startallfacti() {
        //alert(1)
-        if($('#istest').prop('checked')){
-            var zpassingscore=$("#testcode").val()
-            $.ajax({
+
+        //更改实训室中每一个设备对应的测试值
+            var p_passcode=$("#p_passcode").val()
+            var p_testnum=$("#p_testnum").val()
+            var p_testtype=$("#p_testtype").val()
+
+            $.ajax({/*alert(p_passcode)
+            alert(p_testnum)
+            alert(p_testtype)
+            alert(ztrainroomid)*/
                 type: "post",
-                url: "/updatetestbyscheduleid",
-                data:{"zpassingscore":zpassingscore},
+                url: "/updatefatestbyroomid",
+                data:{"ztrainingroomID":ztrainroomid,"zpassingscore":p_passcode,"zsafetestingNum":p_testnum,"zsafetestingType":p_testtype},
                 async: false,
                 success: function (data) {
                     if(data>0){
@@ -126,7 +183,7 @@
                 }
             });
 
-        }else{
+        /*else{
             $.ajax({
                 type: "post",
                 url: "/updatenotestbyscheduleid",
@@ -138,9 +195,9 @@
                     }
                 }
             });
-        }
+        }*/
 
-        $.ajax({
+       $.ajax({
             type: "post",
             url: "/updateallfacility",
             data:{"ztrainroomid":ztrainroomid,"zpowerstatus":"已开机"},
@@ -204,11 +261,18 @@
     function startchose() {
         var j=0;
         var startchose =[];
+        var p_passcode=$("#p_passcode").val()
+        var p_testnum=$("#p_testnum").val()
+        var p_testtype=$("#p_testtype").val()
         $("input[name='check']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             startchose[i] =$(this).val();
         });
           //  alert(startchose[i]);
-            $.ajax({
+
+
+
+        //电源管理
+          $.ajax({
                 type: "post",
                 url: "/updateallfacilitybyzid",
                 data:{"zid":startchose,"zpowerstatus":"已开机","kind":"开启"},
@@ -222,19 +286,19 @@
                 }
             });
 
-            //同时开启安全测试
-          /*  var zpassingscore=$("#testcode").val()
+
+        //更改电源被选中设备的电源管理
             $.ajax({
                 type: "post",
-                url: "/updatetestbychose",
-                data:{"zid":startchose,"zpassingscore":zpassingscore},
+                url: "/updateftestbych",
+                data:{"zid":startchose,"zpassingscore":p_passcode,"zsafetestingNum":p_testnum,"zsafetestingType":p_testtype},
                 async: false,
                 success: function (data) {
                     if(data>0){
                         layer.msg("已开启安全测试", { icon: 1, offset: "auto", time:1000 });
                     }
                 }
-            });*/
+            });
 
         setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
     }
@@ -328,10 +392,25 @@
                     for(var i=0; i<data.length;i++){
                         str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
                         static_teststate[i]=data[i].zid
+
+                        $.ajax({
+                            type: "post",
+                            url: "/findstunamebyfacid",
+                            data:{"zid":data[i].zid},
+                            async: false,
+                            success: function (data2) {
+                                if (data2){
+                                    str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'>"+data2+"<input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                }else{
+                                    str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                }
+                            }
+                        })
+                        static_teststate[i]=data[i].zid
                     }
                     str+="</tr>";
                     str+="</table>";
-                    str+="<div class='d_button1'><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
+                    str+="<div class='d_button1'><font size='5'>全选：</font><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
 
                 }else {
                     var j=0;
@@ -342,8 +421,19 @@
                         for(;j<6*(i+1);j++){
                             if(j==data.length){break;}
                             else {
-                                str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[j].zid+"' value='"+data[i].zid+"' type='checkbox' onclick='addchoice(this)' class='p_check'/></div></th>";
-
+                                $.ajax({
+                                    type: "post",
+                                    url: "/findstunamebyfacid",
+                                    data:{"zid":data[j].zid},
+                                    async: false,
+                                    success: function (data2) {
+                                        if (data2){
+                                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'>"+data2+"<input name='check' id='"+data[j].zid+"' value='"+data[j].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                        }else{
+                                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[j].zidentity+"</font><div id='div"+data[j].zid+"' class='delivery_sbox'><input name='check' id='"+data[j].zid+"' value='"+data[j].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                        }
+                                    }
+                                })
                                 static_teststate[j]=data[j].zid
                             }
                         }
@@ -353,12 +443,12 @@
 
                     str+="</table>";
                     //str+="<button class='d_button1' onclick='allchose()'>全选</button>"
-                    str+="<div class='d_button1' ><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
+                    str+="<div class='d_button1' ><font size='5'>全选：</font><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
                 }
 
                 p_center.html(str)
-
-                for (var i=0;i<static_teststate.length;i++){
+               //电源管理
+             for (var i=0;i<static_teststate.length;i++){
                     $.ajax({
                         type: "post",
                         url: "/findteststatebyfid",

@@ -46,4 +46,11 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
 
 
     public int findcountgp(Zteacher_command zteacher_command){return zteacher_commandMapper.findcountgp(zteacher_command);}
+
+
+    public int updateCommandByid(String zid,String zstatus){return zteacher_commandMapper.updateCommandByid(zid, zstatus);}
+
+    public int updatecontentbyid(String zid,String zcontent){return zteacher_commandMapper.updatecontentbyid(zid,zcontent);}
+
+    public Zteacher_command findscrenclose(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclose(ztrainingroomID, zscheduleID);}
 }

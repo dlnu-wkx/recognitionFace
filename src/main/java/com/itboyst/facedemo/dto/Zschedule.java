@@ -9,60 +9,6 @@ public class Zschedule {
     private String ztrainingroomID;
     private Timestamp zstartdate;
     private Timestamp zenddate;
-    private String zsafetestingType;
-    private int zsafetestingNum;
-    private int zsafetestingTotal;
-    private int zpassingscore;
-    private String zselecttest;
-    private String zpowerstart;
-
-    public String getZsafetestingType() {
-        return zsafetestingType;
-    }
-
-    public void setZsafetestingType(String zsafetestingType) {
-        this.zsafetestingType = zsafetestingType;
-    }
-
-    public int getZsafetestingNum() {
-        return zsafetestingNum;
-    }
-
-    public void setZsafetestingNum(int zsafetestingNum) {
-        this.zsafetestingNum = zsafetestingNum;
-    }
-
-    public int getZsafetestingTotal() {
-        return zsafetestingTotal;
-    }
-
-    public void setZsafetestingTotal(int zsafetestingTotal) {
-        this.zsafetestingTotal = zsafetestingTotal;
-    }
-
-    public int getZpassingscore() {
-        return zpassingscore;
-    }
-
-    public void setZpassingscore(int zpassingscore) {
-        this.zpassingscore = zpassingscore;
-    }
-
-    public String getZselecttest() {
-        return zselecttest;
-    }
-
-    public void setZselecttest(String zselecttest) {
-        this.zselecttest = zselecttest;
-    }
-
-    public String getZpowerstart() {
-        return zpowerstart;
-    }
-
-    public void setZpowerstart(String zpowerstart) {
-        this.zpowerstart = zpowerstart;
-    }
 
     public String getZid() {
         return zid;
@@ -112,12 +58,6 @@ public class Zschedule {
                 ", ztrainingroomID='" + ztrainingroomID + '\'' +
                 ", zstartdate=" + zstartdate +
                 ", zenddate=" + zenddate +
-                ", zsafetestingType='" + zsafetestingType + '\'' +
-                ", zsafetestingNum=" + zsafetestingNum +
-                ", zsafetestingTotal=" + zsafetestingTotal +
-                ", zpassingscore=" + zpassingscore +
-                ", zselecttest='" + zselecttest + '\'' +
-                ", zpowerstart='" + zpowerstart + '\'' +
                 '}';
     }
 }

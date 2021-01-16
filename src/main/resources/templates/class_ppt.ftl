@@ -30,6 +30,10 @@
 </div>
 
 
+<!--分屏-->
+<div class=""></div>
+
+
 <!--头部导航条-->
 <div class="top">
     <div class="leftfont"><font size="5" >实训任务</font></div>

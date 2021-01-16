@@ -22,9 +22,13 @@
 
 
     <select id="findcountgp"  resultType="int">
-        SELECT count(*) FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND  ztype="滚屏信息" AND zstatus="有效") ;
+        SELECT count(*) FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND  ztype="滚屏信息" AND zstatus="有效" ;
     </select>
 
+
+    <select id="findscrenclose"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} and zscheduleID=#{zscheduleID} AND  ztype='分屏信息' ORDER BY zpublishtime desc LIMIT 1 ;
+    </select>
 
 
     <insert id="insertcommand" parameterType="com.itboyst.facedemo.dto.Zteacher_command" >
@@ -46,5 +50,14 @@
     <update id="updateCommandByroomandZtype" parameterType="java.lang.String">
         update zteacher_command set zstatus ="失效" where ztrainingroomID=#{ztrainingroomID} and ztype=#{ztype}
     </update>
+
+    <update id="updatecontentbyid" parameterType="java.lang.String">
+        update zteacher_command set zcontent =#{zcontent} where zid=#{zid}
+    </update>
+
+    <update id="updateCommandByid" parameterType="java.lang.String">
+        update zteacher_command set zstatus =#{zstatus} where zid=#{zid}
+    </update>
+
 
 </mapper>

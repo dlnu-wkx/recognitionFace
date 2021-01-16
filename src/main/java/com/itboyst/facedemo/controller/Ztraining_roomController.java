@@ -36,9 +36,41 @@ public class Ztraining_roomController {
     TimeStatusStudentService timeStatusStudentService;
 
 
+    /*
+   勾选开启安全测试
+  */
+    @RequestMapping("/updateftestbych")
+    @ResponseBody
+    public int updateftestbych(HttpSession session,@RequestParam(value = "zpassingscore")int zpassingscore,@RequestParam(value = "zid[]")String [] zid,@RequestParam(value = "zsafetestingNum")int zsafetestingNum,@RequestParam(value = "zsafetestingType")String zsafetestingType){
+        int j=0;
+        for (int i=0;i<zid.length;i++){
+                Ztraining_facility ztraining_facility=new Ztraining_facility();
+                ztraining_facility.setZid(zid[i]);
+                ztraining_facility.setZpassingscore(zpassingscore);
+                ztraining_facility.setZsafetestingNum(zsafetestingNum);
+                ztraining_facility.setZsafetestingType(zsafetestingType);
+                j=ztraining_facilityService.updatefatestbyid(ztraining_facility);
+                System.out.println(ztraining_facility);
+            }
+        return j;
+    }
+
+
+
+
+
+    @RequestMapping("/updatefatestbyroomid")
+    @ResponseBody
+    public int updatefatestbyroomid(Ztraining_facility ztraining_facility){
+        //System.out.println(ztraining_facility);
+        return ztraining_facilityService.updatefatestbyroomid(ztraining_facility);
+    }
+
+
     @RequestMapping("/findstunamebyfacid")
     @ResponseBody
     public String findstunamebyfacid(String zid){
+        //System.out.println(zid);
         return ztraining_facilityService.findstunamebyfacid(zid);
     }
 
@@ -142,6 +174,7 @@ public class Ztraining_roomController {
        // String powerid="";
         //想要关机
         if (zpowerstatus.equals("未开机")){
+            int a=ztraining_facilityService.updatesixportbyroomid(ztrainroomid,0);
             for (int i=0;i<data.size();i++){
               //  powerid="2"+data.get(i).getZpowerPort();
                // System.out.println(powerid);
@@ -150,6 +183,7 @@ public class Ztraining_roomController {
             }
             //想要开机
         }else{
+            int b=ztraining_facilityService.updatesixportbyroomid(ztrainroomid,1);
             for (int u=0;u<data.size();u++){
                // powerid="1"+data.get(u).getZpowerPort();
                 //System.out.println(powerid);
@@ -176,15 +210,22 @@ public class Ztraining_roomController {
 
         for (int i=0;i<zid.length;i++){
 
+            Ztraining_facility ztraining_facility2=new Ztraining_facility();
+            ztraining_facility2.setZid(zid[i]);
+
            j= ztraining_facilityService.updateallfacilitybyzid(zid[i], zpowerstatus);
            Ztraining_facility ztraining_facility=ztraining_facilityService.findcontrollerbyid(zid[i]);
 
            // System.out.println(ztraining_facility);
            if (kind.equals("关闭")){
                powerid="26";
+               ztraining_facility2.setZpowerStatus6(0);
            }else if(kind.equals("开启")){
                powerid="16";
+               ztraining_facility2.setZpowerStatus6(1);
            }
+           //更新数据库继电器6端口的值
+            p=ztraining_facilityService.updatesixportbyid(ztraining_facility2);
 
            //System.out.println(powerid);
            q = Powerutil.powercontroller(ztraining_facility.getZpowerIP(),powerid);

@@ -15,12 +15,34 @@
         <result column="zcameraName" property="zcameraName" javaType="String"/>
         <result column="zoperationstatus" property="zoperationstatus" javaType="String"/>
         <result column="zpowerstatus" property="zpowerstatus" javaType="String"/>
+
+        <result column="zpowerStatus1" property="zpowerStatus1" javaType="int"/>
+        <result column="zpowerStatus2" property="zpowerStatus2" javaType="int"/>
+        <result column="zpowerStatus3" property="zpowerStatus3" javaType="int"/>
+        <result column="zpowerStatus4" property="zpowerStatus4" javaType="int"/>
+        <result column="zpowerStatus5" property="zpowerStatus5" javaType="int"/>
+        <result column="zpowerStatus6" property="zpowerStatus6" javaType="int"/>
+        <result column="zpowerStatus7" property="zpowerStatus7" javaType="int"/>
+        <result column="zpowerStatus8" property="zpowerStatus8" javaType="int"/>
+        <result column="zsafetestingType" property="zsafetestingType" javaType="String"/>
+
+        <result column="zpassingscore" property="zpassingscore" javaType="int"/>
+        <result column="zsafetestingNum" property="zsafetestingNum" javaType="int"/>
+        <result column="zsafetestingTotal" property="zsafetestingTotal" javaType="int"/>
+        <result column="zselecttest" property="zselecttest" javaType="String"/>
+        <result column="zpowerstart" property="zpowerstart" javaType="String"/>
+        <result column="zprogress" property="zprogress" javaType="String"/>
     </resultMap>
 
 <!--
     <select id="findOpenPower"  resultType="java.lang.String">
           SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} AND zpowerstatus="已开机";
     </select>-->
+
+    <select id="findstunamebyfacid"  resultType="java.lang.String">
+          select zname from zstudent where zid=( select zstudentID from zstudent_login where zrecognizeIP=( select zstudentPCIP from ztraining_facility where zid=#{zid}) ORDER BY zrecognizetime desc LIMIT 1)
+    </select>
+
 
 
     <select id="findOpenPower"  resultType="java.lang.String">
@@ -55,5 +77,22 @@
         update ztraining_facility set zpowerstatus = #{zpowerstatus} where zid = #{zid}
     </update>
 
+
+    <update id="updatesixportbyid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus6 = #{zpowerStatus6} where zid = #{zid}
+    </update>
+
+
+    <update id="updatesixportbyroomid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus6 = #{zpowerStatus6} where ztrainingroomID = #{ztrainingroomID}
+    </update>
+
+    <update id="updatefatestbyroomid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zsafetestingType = #{zsafetestingType} , zsafetestingNum=#{zsafetestingNum} , zpassingscore=#{zpassingscore} where ztrainingroomID = #{ztrainingroomID}
+    </update>
+
+    <update id="updatefatestbyid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zsafetestingType = #{zsafetestingType} , zsafetestingNum=#{zsafetestingNum} , zpassingscore=#{zpassingscore} where zid = #{zid}
+    </update>
 
 </mapper>

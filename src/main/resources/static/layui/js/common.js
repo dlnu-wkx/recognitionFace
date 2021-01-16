@@ -28,7 +28,7 @@ function leaveclass() {
 
         }
     });
-
+    //将继电器6号端口断开
     $.ajax({
         type: "post",
         url: "/usixout",
@@ -37,6 +37,10 @@ function leaveclass() {
 
         }
     });
+
+    //学生退出日志  
+
+
 
     location.href="/student"
 }
