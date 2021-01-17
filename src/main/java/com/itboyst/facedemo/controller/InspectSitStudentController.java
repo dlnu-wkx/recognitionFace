@@ -30,30 +30,30 @@ public class InspectSitStudentController {
 
     @RequestMapping(value = "/InspectSitStudent", method = RequestMethod.POST)
     @ResponseBody
-    public List<InspectSitStudent> InspectSitStudent(HttpSession session,String mytime) throws IOException, ParseException {
+    public List<InspectSitStudent> InspectSitStudent(HttpSession session,String mytime,String zcheck) throws IOException, ParseException {
 
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
         String ztrainingroomID ="";
         if(ztrainingroomID !=null){
             ztrainingroomID = zteacher_cookie.getZtrainingroomid();
         }
+        if(zcheck.equals("人脸识别")) {
+            Zsysconfig zsysconfig = zsysconfigService.findIPByZname("杰视服务器IP地址");
+            String jieshiip = zsysconfig.getZvalue();
+            Renlian renlian = new Renlian();
+            renlian.setJieshiip(jieshiip);
+            renlian.setZtrainingroomID(ztrainingroomID);
+            renlian.setUrl("ws://" + jieshiip + ":8080/webapi/websocket");
+            renlian.renlianwinCreate();
+            try {
+                renlian.startBtnClick();
+            } catch (RuntimeException e) {
+                System.out.println("远程没有连接上");
+            } finally {
+                renlian.stopBtnClick();
 
-        Zsysconfig zsysconfig =zsysconfigService.findIPByZname("杰视服务器IP地址");
-        String jieshiip =zsysconfig.getZvalue();
-        Renlian renlian =new Renlian();
-        renlian.setJieshiip(jieshiip);
-        renlian.setZtrainingroomID(ztrainingroomID);
-        renlian.setUrl("ws://" + jieshiip + ":8080/webapi/websocket");
-        renlian.renlianwinCreate();
-        try {
-            renlian.startBtnClick();
-        }catch (RuntimeException e){
-            System.out.println("远程没有连接上");
-        }finally {
-            renlian.stopBtnClick();
-
+            }
         }
-
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         if(mytime!=null){
@@ -61,7 +61,7 @@ public class InspectSitStudentController {
             timestamp.setTime(time);
         }
         List<InspectSitStudent>  zstudentList = new ArrayList<>();
-        zstudentList =inspectSitStudentService.findStudentByDateAndTrainingId(ztrainingroomID,timestamp);
+        zstudentList =inspectSitStudentService.findStudentByDateAndTrainingId(ztrainingroomID,timestamp,zcheck);
 
         return zstudentList;
     }
@@ -69,7 +69,7 @@ public class InspectSitStudentController {
 
     @RequestMapping(value = "/InspectSitStudentandTeacher", method = RequestMethod.POST)
     @ResponseBody
-    public List<InspectSitStudent> InspectSitStudentandTeacher(HttpSession session,String mytime) throws IOException, ParseException {
+    public List<InspectSitStudent> InspectSitStudentandTeacher(HttpSession session,String mytime,String zcheck) throws IOException, ParseException {
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         if(mytime!=null){
@@ -79,11 +79,11 @@ public class InspectSitStudentController {
         List<InspectSitStudent>  zstudentList = new ArrayList<>();
         Zteacher_cookie zteacher_cookie =(Zteacher_cookie) session.getAttribute("zteacher_cookie");
         String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
-        zstudentList =inspectSitStudentService.findStudentByDateAndTrainingIdASC(ztrainingroomID,timestamp);
+        zstudentList =inspectSitStudentService.findStudentByDateAndTrainingIdASC(ztrainingroomID,timestamp,zcheck);
         //查找摄像头识别成功的教师
         Zsysconfig zsysconfig =zsysconfigService.findIPByZname("杰视服务器IP地址");
         String jieshiip =zsysconfig.getZvalue();
-        List<InspectSitTeacher> zteacherList =inspectSitStudentService.findTeacherByDateAndTrainingIdASC(jieshiip,timestamp);
+        List<InspectSitTeacher> zteacherList =inspectSitStudentService.findTeacherByDateAndTrainingIdASC(jieshiip,timestamp,zcheck);
         if(null!=zteacherList){
 
             for(InspectSitTeacher a:zteacherList){

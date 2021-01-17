@@ -269,7 +269,7 @@ public class FaceEngineServiceImpl implements FaceEngineService {
                     FaceSimilar faceSimilar = new FaceSimilar();
                     faceEngine.compareFaceFeature(targetFaceFeature, sourceFaceFeature, faceSimilar);
                     Integer similarValue = plusHundred(faceSimilar.getScore());//获取相似值
-                    //System.err.println("similarValue："+similarValue+"  id :"+faceUserInfo.getName());
+                    System.err.println("similarValue："+similarValue+"  id :"+faceUserInfo.getName());
                     if (similarValue > passRate) {//相似值大于配置预期，加入到识别到人脸的列表
                         FaceUserInfo info = new FaceUserInfo();
                         info.setName(faceUserInfo.getName());

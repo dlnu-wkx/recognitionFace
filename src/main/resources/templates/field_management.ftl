@@ -128,15 +128,15 @@
             </div>
         </div>
         <div id='fourMenu1' class="layui-col-xs8" align="center" style="display:none;width: 64%">
-            <div style="height: 500px;text-align:center;line-height:40px;font-size: 40px;background-color: #ffff;overflow:scroll;border: 1px solid red">
+            <div style="height: 500px;text-align:center;line-height:40px;font-size: 40px;background-color: #ffff;border: 1px solid red">
                 <#--这个也要用遍历写出来的，显示最先出现的三个人-->
-                <div style="width: 100%;margin-top: 2px;">
-                    <div id="left" style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
-                    <div id="middle" style="width: 27%;position: absolute;left:36%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
-                    <div id="right" style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid"></div>
+                <div style="width: 100%;margin-top: 2px;height: 9%;">
+                    <div id="left" style="width: 33%;position: absolute;left:1%;background-color: #BDD7EE;color: red;border: 1px solid;font-size:30px"></div>
+                    <div id="middle" style="width: 27%;position: absolute;left:36%;background-color: #BDD7EE;color: red;border: 1px solid;;font-size:30px"></div>
+                    <div id="right" style="width: 33%;position: absolute;left:65%;background-color: #BDD7EE;color: red;border: 1px solid;;font-size:30px"></div>
                 </div>
                 <#--按照顺序排出识别的人脸，顺序是最早的在最下最右边-->
-                <div id="mainBody"style="width: 100%;margin: 53px auto;height: 78%">
+                <div id="mainBody"style="width: 100%;height: 90%;overflow: auto">
                     <#--<table>
                         <tr>
                             <th>

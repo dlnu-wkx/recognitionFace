@@ -94,6 +94,8 @@ public class FaceController {
     @Autowired
     ZmanagerService zmanagerService;
 
+    @Autowired
+    Zstudent_loginService zstudentLoginService;
     /**
      * 跳转测试
      * @return
@@ -656,16 +658,23 @@ public class FaceController {
                 zsl.setZrecongnizetime(timestamp);
                 String ip4=Iputil.getClientIpAddress(request);
                 zsl.setZtype("机床");
+                List<String> list =zstudentLoginService.findScheduleBytimeandzstudentID(presentZstudent.getZid(),timestamp);
+
+                if(!list.isEmpty()){
+                    zsl.setZscheduleID(list.get(0));
+                }
                 System.out.println(ip4);
                 //System.out.println(ip2);
-                zsl.setZcheck("实操");
+                zsl.setZcheck("查岗");
                 zsl.setZrecognizeIP(ip4);
+                String studentfpath =faceEngineService.findfopathByfaceid(zstudent.getZfaceinfoID());
+                zsl.setOriginalPictureUrl(studentfpath);
                 //插入学生登陆信息
                 int  i=zstudent_loginService.updateloginmessage(zsl);
 
                 return Results.newSuccessResult(faceSearchResDto);
             }
-            System.out.println("测试是不是一直都在循环找寻人脸");
+            System.out.println("当前登录人员和查岗人员不匹配");
             return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
 
         }

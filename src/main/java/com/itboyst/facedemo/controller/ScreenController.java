@@ -31,7 +31,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
-import static com.itboyst.facedemo.controller.FaceController.base64Process;
+
 import static com.itboyst.facedemo.controller.Renlian.logger;
 
 

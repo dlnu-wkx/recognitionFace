@@ -32,6 +32,17 @@
     position: absolute;
 }
 
+.ff_button1{
+    /* background-color: #BDD7EE;*/
+    border: 1px solid red;
+    background-color: #ED7D31;
+    padding: 0px 52px;
+    font-size: 20px;
+    /*圆角控制器*/
+    /* border-radius: 10px; */
+}
+
+
 .t_table{
     left: 3%;
     top: -5%;
@@ -49,6 +60,13 @@
     position: absolute;
     overflow: auto;
 }
+
+.fm_table1{
+    /*height: 90%;
+    width: 100%;*/
+    margin-left:3px;
+}
+
 .t_text{
     height: 8%;
     width: 82%;

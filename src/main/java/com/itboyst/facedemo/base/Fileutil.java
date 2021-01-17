@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.tomcat.util.codec.binary.Base64;
+import cn.hutool.core.codec.Base64;
 
 
 
@@ -43,7 +44,8 @@ public class Fileutil {
 
         String imgPath = fileDir + "/" + fileName;
 
-        byte[] bs = Base64.decodeBase64(base64ImgData);
+        //byte[] bs = Base64.decodeBase64(base64ImgData);
+        byte[] bs =   Base64.decode(base64ImgData);
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(imgPath);

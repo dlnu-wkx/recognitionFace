@@ -46,7 +46,7 @@
 <div class="left" id="leftbutton">
 
 </div>
-<div id="regcoDiv"></div>
+<div id="regcoDiv" style="position: absolute;width: 69%;height: 380px;margin-top: 2%;margin-left: 15%"></div>
 <div id="chagangID" style="display: none"></div>
 <div id="gundongID" style="display: none"></div>
 

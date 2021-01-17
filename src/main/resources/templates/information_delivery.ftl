@@ -12,7 +12,12 @@
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/layui.js"></script>
     <script src="./layui/js/common.js"></script>
-
+    <style>
+        .p_bbbox th{
+            width: 10%;
+            height: 15%;
+        }
+    </style>
 </head>
 <body  class="body" >
 
@@ -494,6 +499,7 @@
             });
         }
     }
+
 
 
 </script>

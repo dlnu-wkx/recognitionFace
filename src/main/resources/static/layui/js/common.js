@@ -231,15 +231,19 @@ function subContent() {
         }
     })
 }
-
+var filterjieshiLoop=0;
 //根据开始按钮或者是结束按钮来帅选签到的人
 var timer=null;
 function OpenOTimer(a) {
+        filterjieshiLoop=1;
+        var zcheck="";
         if(a==2){
+            zcheck="查岗";
             insertCheckPoint();
             $("#startID2").css('background-color','rgba(237,125,49)')
             $("#endID2").css('background-color','rgba(0,0,255)')
         }else {
+            zcheck="人脸识别";
             $("#startID").css('background-color','rgba(237,125,49)')
             $("#endID").css('background-color','rgba(0,0,255)')
         }
@@ -248,7 +252,7 @@ function OpenOTimer(a) {
         var myDate = new Date();
         var mytime=myDate.getTime();
         timer = setInterval(function(){
-            showRecognitionFace(mytime)
+            showRecognitionFace(mytime,zcheck,filterjieshiLoop)
         }, 3000)
 
   /*  alert("执行完了start的功能")
@@ -268,7 +272,9 @@ function CloseTimer(a) {
         $("#endID").css('background-color','rgba(237,125,49)')
         $("#startID").css('background-color','rgba(0,0,255)')
     }
+
     window.clearInterval(timer);
+    filterjieshiLoop=2;
 }
 
 //从数据库中找出教室的所有设备
@@ -507,9 +513,12 @@ function presentProgess(zid){
 
 //从数据库中显示已经检测到的人脸信息
 //从数据中找到签到的学生
-function showRecognitionFace(mytime) {
+function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
+    console.log(filterjieshiLoop)
     var formData = new FormData();
+    formData.append("zcheck",zcheck);
     formData.append("mytime",mytime );
+    if(filterjieshiLoop==1){
     $.ajax({
         type:"post",
         url:"/InspectSitStudent",
@@ -545,7 +554,7 @@ function showRecognitionFace(mytime) {
                     content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data1[i].zstudentName+data1[i].zgradeName+"</div>";
                     $("#identifyAreas").append(content);
                 }*/
-                findAllLoginpeople(mytime);
+                findAllLoginpeople(mytime,zcheck);
                  if(data.length==0){
                      $("#left").hide();
                      $("#middle").hide();
@@ -619,7 +628,7 @@ function showRecognitionFace(mytime) {
                  var center=$("#mainBody");
                  center.empty();
                  var j=0;
-                 str+="<table class='f_table' id='p_bbox'>";
+                 str+="<table class='fm_table1' id='p_bbox'>";
                  var arr =data
                  //var arr=data.slice(3,data.length);
                  for (var i=0;i<(arr.length/4+1);i++) {
@@ -628,23 +637,28 @@ function showRecognitionFace(mytime) {
                      for (; j < 4 * (i + 1); j++) {
                          if (j == arr.length) {break;}
                         var data1 = formatterDatetimeLocalToApprication(arr[j].zrecognizetime)
-                         str += "<th><div class='f_button1'>" + arr[j].zname +"("+ data1 + ")"+"</div></th>";
+                         str += "<th><div class='ff_button1'>" + arr[j].zname +"("+ data1 + ")"+"</div></th>";
                      }
 
                  }
                  str += "</tr>";
                  str+="</table>";
                  center.html(str)
+             }else {
+                 var center=$("#mainBody");
+                 center.empty();
              }
             }else{
                 alert("没有学生签到成功");
             }
         }
     })
+    }
 }
 //查找所有的人包括学生和教师
-function findAllLoginpeople(mytime) {
+function findAllLoginpeople(mytime,zcheck) {
     var formData = new FormData();
+    formData.append("zcheck",zcheck)
     formData.append("mytime",mytime );
     $.ajax({
         type:"post",
@@ -667,6 +681,8 @@ function findAllLoginpeople(mytime) {
                     content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zname+data[i].zgradeName+"</div>";
                     $("#identifyAreas").append(content);
                 }
+            }else{//如果在识别时间段内一个都没识别成功则为空
+                $("#identifyAreas").empty();
             }
         }
 
@@ -828,10 +844,10 @@ var mediaStreamTrack;
 
 function getMedia2() {
     $("#regcoDiv").empty();
-    let vedioComp = "<video muted id='video2' width='600px' height='400px' autoplay='autoplay' style='margin-top: 20px;z-index:1000;position:relative;left:90%;margin-top:20%' ></video><canvas id='canvas2' width='500px' height='500px' style='display: none'></canvas>";
+    let vedioComp = "<video muted id='video2' width='1000px' height='500px' autoplay='autoplay' style='z-index:1000;margin-left: 5%;margin-top: 4%' ></video><canvas id='canvas2' width='1000px' height='500px' style='display: none'></canvas>";
     $("#regcoDiv").append(vedioComp);
     let constraints = {
-        video: {width: 500, height: 500},
+        video: {width: 1000, height: 800},
         audio: true
     };
     //获得video摄像头区域

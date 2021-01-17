@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface InspectSitStudentService {
     //倒叙
-    List<InspectSitStudent> findStudentByDateAndTrainingId(String ztrainingroomID, Timestamp timestamp);
+    List<InspectSitStudent> findStudentByDateAndTrainingId(String ztrainingroomID, Timestamp timestamp,String zcheck);
     //正序
-    List<InspectSitStudent> findStudentByDateAndTrainingIdASC(String ztrainingroomID, Timestamp timestamp);
+    List<InspectSitStudent> findStudentByDateAndTrainingIdASC(String ztrainingroomID, Timestamp timestamp,String zcheck);
     //查找所有老师的信息
-    List<InspectSitTeacher> findTeacherByDateAndTrainingIdASC(String camerasIP,Timestamp timestamp);
+    List<InspectSitTeacher> findTeacherByDateAndTrainingIdASC(String camerasIP,Timestamp timestamp,String zcheck);
 }
