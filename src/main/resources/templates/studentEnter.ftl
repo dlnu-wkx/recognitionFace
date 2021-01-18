@@ -96,7 +96,7 @@
             async: false,
             success: function (data) {
                 //alert(data)
-                if(data!="1"){
+                if(data==1){
                     $("#e_test").attr('onclick', 'simulationtasks()')
                     $("#e_test").text("实训任务");
                 }

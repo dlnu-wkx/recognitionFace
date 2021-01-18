@@ -10,7 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static com.itboyst.facedemo.controller.Renlian.logger;
+import static com.itboyst.facedemo.controller.ZcommandController.logger;
+
 
 public class ScreenUtil {
     /**

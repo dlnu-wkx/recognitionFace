@@ -69,6 +69,20 @@
           SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID} ORDER BY zidentity;
     </select>
 
+    <select id="findfactsixportbyzid"  resultType="int">
+          SELECT zpowerStatus6 FROM ztraining_facility WHERE zstudentPCIP=#{IP}
+    </select>
+
+
+    <select id="findfactsixportbyzid2"  resultType="int">
+          SELECT zpowerStatus6 FROM ztraining_facility WHERE zid=#{zid}
+    </select>
+
+    <update id="updatezprogressbyip" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zprogress = #{zprogress} where zstudentPCIP = #{zstudentPCIP}
+    </update>
+
+
     <update id="updateallfacility" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zpowerstatus = #{zpowerstatus} where ztrainingroomID = #{ztrainingroomID}
     </update>

@@ -52,5 +52,7 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
 
     public int updatecontentbyid(String zid,String zcontent){return zteacher_commandMapper.updatecontentbyid(zid,zcontent);}
 
+    public Zteacher_command findscreencommand(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscreencommand(ztrainingroomID, zscheduleID);}
+
     public Zteacher_command findscrenclose(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclose(ztrainingroomID, zscheduleID);}
 }

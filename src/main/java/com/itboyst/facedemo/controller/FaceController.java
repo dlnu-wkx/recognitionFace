@@ -498,6 +498,8 @@ public class FaceController {
             String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
             zsl.setZid(uuid2);
 
+
+
             //学生信息存session
             session.setAttribute("zstudent",zstudent);
 
@@ -512,6 +514,8 @@ public class FaceController {
             InetAddress addr = InetAddress.getLocalHost();
 
             String ip4=Iputil.getClientIpAddress(request);
+
+            int b=ztrinfser.updatezprogressbyip(ip4,"登陆");
 
             zsl.setZcheck("登陆");
             System.out.println("ip4"+ip4);

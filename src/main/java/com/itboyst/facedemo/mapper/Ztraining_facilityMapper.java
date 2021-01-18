@@ -33,4 +33,10 @@ public interface Ztraining_facilityMapper {
     public int updatesixportbyid(Ztraining_facility ztraining_facility);
 
     public int updatesixportbyroomid(String ztrainingroomID,int zpowerStatus6);
+
+    public int findfactsixportbyzid(String IP);
+
+    public int findfactsixportbyzid2(String zid);
+
+    public int updatezprogressbyip(String ip,String zprogress);
 }

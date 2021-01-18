@@ -25,4 +25,6 @@ public interface Zteacher_commandService {
     public int updateCommandByid(String zid,String zstatus);
 
     public int updatecontentbyid(String zid,String zcontent);
+
+    public Zteacher_command findscreencommand(String ztrainingroomID,String zscheduleID);
 }

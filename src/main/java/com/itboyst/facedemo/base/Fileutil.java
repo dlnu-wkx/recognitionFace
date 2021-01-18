@@ -44,8 +44,7 @@ public class Fileutil {
 
         String imgPath = fileDir + "/" + fileName;
 
-        //byte[] bs = Base64.decodeBase64(base64ImgData);
-        byte[] bs =   Base64.decode(base64ImgData);
+        byte[] bs = Base64.decode(base64ImgData);
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(imgPath);

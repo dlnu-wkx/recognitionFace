@@ -1,5 +1,6 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.base.Iputil;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.*;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.List;
@@ -45,10 +47,16 @@ public class Zfixed_taskController {
     @Autowired
     Ztask_inputService ztask_inputService;
 
+    @Autowired
+    Ztraining_facilityService ztraining_facilityService;
+
 
     @RequestMapping("/findallfixedtasks")
     @ResponseBody
-    public List<Zfixed_task> findallfixedtasks(HttpSession session){
+    public List<Zfixed_task> findallfixedtasks(HttpSession session, HttpServletRequest request){
+
+        String ip4= Iputil.getClientIpAddress(request);
+        int a=ztraining_facilityService.updatezprogressbyip(ip4,"实训");
 
         Zstudent_cookie zstudent_cookie =(Zstudent_cookie)session.getAttribute("zstudent_cookie");
 

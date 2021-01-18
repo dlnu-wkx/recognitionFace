@@ -11,7 +11,8 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
-import static com.itboyst.facedemo.controller.Renlian.logger;
+import static com.itboyst.facedemo.controller.ZcommandController.logger;
+
 
 public class Iputil {
 

@@ -168,10 +168,7 @@
             var p_testnum=$("#p_testnum").val()
             var p_testtype=$("#p_testtype").val()
 
-            $.ajax({/*alert(p_passcode)
-            alert(p_testnum)
-            alert(p_testtype)
-            alert(ztrainroomid)*/
+            $.ajax({
                 type: "post",
                 url: "/updatefatestbyroomid",
                 data:{"ztrainingroomID":ztrainroomid,"zpassingscore":p_passcode,"zsafetestingNum":p_testnum,"zsafetestingType":p_testtype},
@@ -267,9 +264,6 @@
         $("input[name='check']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             startchose[i] =$(this).val();
         });
-          //  alert(startchose[i]);
-
-
 
         //电源管理
           $.ajax({
@@ -278,11 +272,11 @@
                 data:{"zid":startchose,"zpowerstatus":"已开机","kind":"开启"},
                 async: false,
                 success: function (data) {
-                    if(data>0){
+                   /* if(data>0){
                         layer.msg("已开启选中，等待电源开启", { icon: 1, offset: "auto", time:1000 });
                     }else{
                         alert("出错")
-                    }
+                    }*/
                 }
             });
 
@@ -312,7 +306,7 @@
         $("input[name='check']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             closechose[i] =$(this).val();
         });
-               alert(closechose);
+              // alert(closechose);
                 $.ajax({
                     type: "post",
                     url: "/updateallfacilitybyzid",
@@ -455,9 +449,12 @@
                         data:{"id":static_teststate[i]},
                         async: false,
                         success: function (data) {
-                            if(data=="0"){
+                           // alert(data)
+                            if(data==1){
                                 $("#div"+static_teststate[i]+"").css('background-color','rgba(112,167,71)');
                             }
+
+
                         }
                     });
 

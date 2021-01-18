@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
-    <script type="text/javascript" src="./layui/js/common.js "></script>
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/layui.js"></script>
@@ -31,7 +30,8 @@
 
 
 <!--分屏-->
-<div class=""></div>
+<div class="com_screen" id="com_screen" hidden><div class="com_screen21" id="com_screen21"></div><div class="com_screen22"></div></div>
+
 
 
 <!--头部导航条-->
@@ -379,6 +379,7 @@
 
     //页面加载前方法
     window.onload =function () {
+        getcommand2();
         welcome();
         $("#lastpage").css("background-color","#A5A5A5");
         findalltask();

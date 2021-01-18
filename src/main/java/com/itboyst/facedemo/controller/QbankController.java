@@ -1,10 +1,8 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.base.Iputil;
 import com.itboyst.facedemo.dto.*;
-import com.itboyst.facedemo.service.QbankService;
-import com.itboyst.facedemo.service.ZscheuleService;
-import com.itboyst.facedemo.service.Zstudent_scheduleService;
-import com.itboyst.facedemo.service.Ztesting_inputService;
+import com.itboyst.facedemo.service.*;
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +36,8 @@ public class QbankController {
     @Autowired
     ZscheuleService zscheuleService;
 
+    @Autowired
+    Ztraining_facilityService ztraining_facilityService;
 
     /*
     勾选开启安全测试
@@ -104,7 +104,11 @@ public class QbankController {
      */
     @RequestMapping("/findpassingcode")
     @ResponseBody
-    public int findpassingcode(HttpSession session){
+    public int findpassingcode(HttpSession session,HttpServletRequest request){
+
+        String ip4= Iputil.getClientIpAddress(request);
+        int a=ztraining_facilityService.updatezprogressbyip(ip4,"安全测试");
+
         Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
         //System.out.println(zstudent_cookie);
         return ztraining_facility.getZpassingscore();

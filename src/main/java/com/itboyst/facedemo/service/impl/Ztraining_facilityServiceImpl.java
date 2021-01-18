@@ -50,11 +50,18 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
         return ztran_facmap.findcontrollerbyroomid(ztrainingroomID);
     }
 
+
+    public int findfactsixportbyzid(String IP){return ztran_facmap.findfactsixportbyzid(IP);}
+
     @Override
     public Ztraining_facility findcontrollerbyid(String zid){return ztran_facmap.findcontrollerbyid(zid);}
 
     @Override
     public String findstunamebyfacid(String zid){return ztran_facmap.findstunamebyfacid(zid);}
+
+    public int findfactsixportbyzid2(String zid){return ztran_facmap.findfactsixportbyzid2(zid);}
+
+    public int updatezprogressbyip(String ip,String zprogress){return ztran_facmap.updatezprogressbyip(ip, zprogress);}
 
 
     public int updatefatestbyroomid(Ztraining_facility ztraining_facility){return ztran_facmap.updatefatestbyroomid(ztraining_facility);}

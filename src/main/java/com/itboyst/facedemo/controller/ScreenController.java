@@ -5,10 +5,7 @@ import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
 import com.itboyst.facedemo.base.Fileutil;
 import com.itboyst.facedemo.base.ScreenUtil;
-import com.itboyst.facedemo.dto.TestScreen;
-import com.itboyst.facedemo.dto.Zteacher_command;
-import com.itboyst.facedemo.dto.Zteacher_command_screen;
-import com.itboyst.facedemo.dto.Zteacher_cookie;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.TestscreenService;
 import com.itboyst.facedemo.service.Zteacher_commandService;
 import com.itboyst.facedemo.service.Zteacher_command_screenService;
@@ -31,8 +28,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
-
-import static com.itboyst.facedemo.controller.Renlian.logger;
+import static com.itboyst.facedemo.controller.ZcommandController.logger;
 
 
 @Controller
@@ -174,6 +170,23 @@ public class ScreenController {
             return 1;
         return 0;
     }
+
+    @RequestMapping("/findscreencontenbyid")
+    @ResponseBody
+    public Zteacher_command_screen findscreencontenbyid(String id) {
+       return zteacher_command_screenService.findscreencommandById(id);
+    }
+
+
+    @RequestMapping("/findscreencommand")
+    @ResponseBody
+    public Zteacher_command findscreencommand(HttpSession session) {
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie") ;
+
+        return zteacher_commandService.findscreencommand(zstudent_cookie.getZtrainingroomID(),zstudent_cookie.getZscheduleID());
+    }
+
+
 
     /**
      * 找到最近的分屏

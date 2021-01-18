@@ -20,6 +20,10 @@
         SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ((ztype="签到" OR ztype="查岗" OR ztype="滚屏信息") AND zstatus="有效") ;
     </select>
 
+    <select id="findscreencommand"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ztype="分屏信息" and zscheduleID=#{zscheduleID} order by zpublishtime desc limit 1
+    </select>
+
 
     <select id="findcountgp"  resultType="int">
         SELECT count(*) FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND  ztype="滚屏信息" AND zstatus="有效" ;
@@ -32,7 +36,7 @@
 
 
     <insert id="insertcommand" parameterType="com.itboyst.facedemo.dto.Zteacher_command" >
-               INSERT INTO zteacher_command (zid, ztrainingroomID, ztype, zcontent ,zpublishtime, zstatus,zscheduleID) VALUES(#{zid},#{ztrainingroomID} , #{ztype}, #{zcontent} ,#{zpublishtime}, #{zstatus},#{zscheduleID});
+        INSERT INTO zteacher_command (zid, ztrainingroomID, ztype, zcontent ,zpublishtime, zstatus,zscheduleID) VALUES(#{zid},#{ztrainingroomID} , #{ztype}, #{zcontent} ,#{zpublishtime}, #{zstatus},#{zscheduleID});
     </insert>
 
     <delete id="deletebefore" parameterType="com.itboyst.facedemo.dto.Zteacher_command">

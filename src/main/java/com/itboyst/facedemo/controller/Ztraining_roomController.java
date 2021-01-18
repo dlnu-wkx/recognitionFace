@@ -92,32 +92,19 @@ public class Ztraining_roomController {
 
     @RequestMapping("/findteststatebyfid")
     @ResponseBody
-    public String findteststatebyfid(String id){
-        Ztraining_facility ztraining_facility=ztraining_facilityService.findcontrollerbyid(id);
-        //所有的状态
-        String allstate =Powerutil.powerstate(ztraining_facility.getZpowerIP());
-
-        //System.out.println(allstate);
-        //第六个的状态
-        String singlesix=allstate.substring(5, 6);
-      // System.out.println(singlesix);
-        return singlesix;
+    public int findteststatebyfid(String id){
+        //System.out.println(ztraining_facilityService.findfactsixportbyzid2(id));
+        return ztraining_facilityService.findfactsixportbyzid2(id);
 
     }
 
 
     @RequestMapping("/findteststatebyIP")
     @ResponseBody
-    public String findteststatebyIP(HttpServletRequest request,HttpSession session){
+    public int findteststatebyIP(HttpSession session,HttpServletRequest request){
+        String ip=Iputil.getClientIpAddress(request);
 
-        Ztraining_facility ztraining_facility=ztraining_facilityService.findbyip(Iputil.getClientIpAddress(request));
-        String allstate =Powerutil.powerstate(ztraining_facility.getZpowerIP());
-        //第六个的状态
-        String singlesix=allstate.substring(5, 6);
-        session.setAttribute("sixstate",singlesix);
-
-        return singlesix;
-
+        return ztraining_facilityService.findfactsixportbyzid(ip);
     }
 
 
@@ -199,10 +186,11 @@ public class Ztraining_roomController {
 
 
 
+    //电源管理更改
     @RequestMapping("/updateallfacilitybyzid")
     @ResponseBody
-    public int updateallfacilitybyzid(@RequestParam(value = "zid[]")String [] zid, @RequestParam(value = "zpowerstatus")String  zpowerstatus, @RequestParam(value = "kind")String  kind){
-        System.out.println(zid+zpowerstatus+kind);
+    public void updateallfacilitybyzid(@RequestParam(value = "zid[]")String [] zid, @RequestParam(value = "zpowerstatus")String  zpowerstatus, @RequestParam(value = "kind")String  kind) throws Exception{
+        //System.out.println(zid+zpowerstatus+kind);
 
         int j,k=0;
         int q,p=0;
@@ -235,9 +223,7 @@ public class Ztraining_roomController {
 
            if(j==1)k++;
         }
-      return k;
+
     }
-
-
 
 }
