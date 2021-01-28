@@ -28,18 +28,26 @@ function leaveclass() {
 
         }
     });
+
     //将继电器6号端口断开
-    $.ajax({
+   /* $.ajax({
         type: "post",
         url: "/usixout",
         data:{},
         success: function (data){
 
         }
+    });*/
+
+    //设备状态的更改
+    $.ajax({
+        type: "post",
+        url: "/updateprogress",
+        data:{},
+        success: function (data){
+
+        }
     });
-
-    //学生退出日志  
-
 
 
     location.href="/student"
@@ -751,58 +759,7 @@ function powerController() {
     window.location.href = "/power_controller";
 }
 
-function getcommand2() {
 
-    $.ajax({
-        type: "post",
-        url: "/findscreencommand",
-        data: {},
-        async: false,
-        success: function (data){
-            var comscreen= $("#com_screen")
-            var screentype=data.zcontent.split(";");
-            alert(screentype[0])
-            if (screentype[0].equals("2")){
-                alert(1)
-                var commandscreenid1=screentype.split(",")[0];
-                var commandscreenid2=screentype.split(",")[1];
-                alert(commandscreenid1)
-                $.ajax({
-                    type: "post",
-                    url: "/findscreencontenbyid",
-                    data: {"id":commandscreenid1},
-                    async: false,
-                    success: function (data2){
-                        alert(data2.zcontent)
-                        var ztype=data2.ztype;
-                        var str1=""
-                        var com_screen21=$("#com_screen21")
-                        if (ztype=="图片"){
-                            var time2=zcontent.split(";");
-                            var time=time2[0];
-                            var screenimage=time2[1];
-
-                            var index2=new Array();
-                            var screenimagec=new Array();
-                            for(var i=0;i<screenimage.length;i++){
-                                index2[i]=screenimage[i].lastIndexOf("\/");
-                                screenimagec[i]=screenimage[i].substring(index+1,screenimage[0]);
-                                str1+="<img class='img-slide img"+(i + 1)+"' src='"+screenimagec[i]+"'>"
-                            }
-                            alert(screenimagec)
-                            com_screen21.html(str1)
-                            setInterval(ChangeImg,time*1000)
-                        }
-                    }
-                })
-
-                $("#com_screen").show()
-
-            }
-        }
-    })
-
-}
 
 
 
@@ -861,17 +818,7 @@ function getcommand() {
 
 }
 
-var index=0;
-//改变图片
-function ChangeImg() {
-    index++;
-    var a=document.getElementsByClassName("img-slide");
-    if(index>=a.length) index=0;
-    for(var i=0;i<a.length;i++){
-        a[i].style.display='none';
-    }
-    a[index].style.display='block';
-}
+
 
 
 

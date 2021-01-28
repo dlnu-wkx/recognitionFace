@@ -1,14 +1,13 @@
 package com.itboyst.facedemo.base;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.Date;
 
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import cn.hutool.core.codec.Base64;
-
+import sun.misc.BASE64Decoder;
 
 
 public class Fileutil {
@@ -55,4 +54,44 @@ public class Fileutil {
         }
         return imgPath;
     }
+
+
+
+    public static void base64ToFile(String base64, String fileName, String savePath) {
+        File file = null;
+        //创建文件目录
+        String filePath = savePath;
+        File dir = new File(filePath);
+        if (!dir.exists() && !dir.isDirectory()) {
+            dir.mkdirs();
+        }
+        BufferedOutputStream bos = null;
+        java.io.FileOutputStream fos = null;
+        try {
+            byte[] bytes = Base64.decode(base64);
+            file=new File(filePath + fileName);
+            fos = new java.io.FileOutputStream(file);
+            bos = new BufferedOutputStream(fos);
+            bos.write(bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (bos != null) {
+                try {
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
 }

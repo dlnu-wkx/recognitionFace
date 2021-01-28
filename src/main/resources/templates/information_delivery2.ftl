@@ -141,6 +141,21 @@
 </body>
 
 <script>
+    
+    function stopaction() {
+        $.ajax({
+            type: "post",
+            url: "/stopaction",
+            data: {"commscreenid":static_comscreenid},
+            async: false,
+            success: function (data) {
+                if (data>0)layer.msg("分屏已失效", { icon: 1, offset: "auto", time:2000 });
+                else alert("已无有效的分屏")
+            }
+        })
+    }
+    
+    
 
     function delivermes(){
         var time=$("#timein").val();
@@ -213,19 +228,35 @@
     var static_noworder=0;
 
 
+
+    function getfiletype(name){
+        if(name=="jpeg"||name=="jpg"||name=="png")
+            return "图片";
+        else if (name=="mp4")
+            return "视频"
+    }
+
+
     function getFilePath(obj){
         var mesname=$("#file").val();
         var str="";
         var addmesid=$("#"+static_mesid+"")
         var mesname2=mesname.substring(mesname.lastIndexOf("\\")+1);
         var endmesname = mesname2.split(".")[0];
+        var typename=mesname2.split(".")[1];
 
+        /*alert(typename)
+        alert(getfiletype(typename));*/
+
+        var filetype=getfiletype(typename);
+       // alert(filetype)
         //将图片转成base64
         var image = obj.files[0]; //获取文件域中选中的图片
         var reader = new FileReader(); //实例化文件读取对象
         reader.readAsDataURL(image); //将文件读取为 DataURL,也就是base64编码
         reader.onload = function(ev) { //文件读取成功完成时触发
             var dataURL = ev.target.result; //获得文件读取成功后的DataURL,也就是base64编码
+            //alert(dataURL)
             //左边添加
             if (static_mesid=="s_centerlast3left") {
 
@@ -240,7 +271,7 @@
                     $.ajax({
                         type: "post",
                         url: "/insertpicturescreen",
-                        data: {"file":dataURL,"type":static_screenkind},
+                        data: {"file":dataURL,"type":static_screenkind,"filetype":filetype},
                         async: false,
                         success: function (data) {
                             if (data>0)alert("添加成功")
@@ -276,7 +307,7 @@
                     $.ajax({
                         type: "post",
                         url: "/insertfrscreen",
-                        data: {"file":dataURL,"commmandid":static_commandid},
+                        data: {"file":dataURL,"commmandid":static_commandid,"filetype":filetype},
                         async: false,
                         success: function (data) {
                             if (data>0)alert("添加成功")
@@ -313,10 +344,9 @@
                     var mes=data.zcontent.split(";")[1];
                     static_comscreenid=mes.split(",");
                     //alert(static_commandid)
-                    //alert(static_comscreenid[0])
+                   // alert(static_comscreenid)
                 }
             })
-
 
             addmesid.html(str)
 
@@ -327,7 +357,7 @@
 
 
     function deltesinglemes(singleid) {
-        alert(singleid)
+       // alert(singleid)
         //alert($("#"+id+"").val())
         $("#"+singleid+"").remove()
     }

@@ -40,7 +40,7 @@
     </select>-->
 
     <select id="findstunamebyfacid"  resultType="java.lang.String">
-          select zname from zstudent where zid=( select zstudentID from zstudent_login where zrecognizeIP=( select zstudentPCIP from ztraining_facility where zid=#{zid}) ORDER BY zrecognizetime desc LIMIT 1)
+          select zname from zstudent where zid=( select zstudentID from zstudent_login where zrecognizeIP=( select zstudentPCIP from ztraining_facility where zid=#{zid} and (zprogress='登陆' or  zprogress='安全测试' or zprogress='实训' )) ORDER BY zrecognizetime desc LIMIT 1)
     </select>
 
 

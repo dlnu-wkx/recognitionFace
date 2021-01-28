@@ -21,7 +21,7 @@
     </select>
 
     <select id="findscreencommand"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
-        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ztype="分屏信息" and zscheduleID=#{zscheduleID} order by zpublishtime desc limit 1
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} AND ztype="分屏信息" and zstatus="有效"  and zscheduleID=#{zscheduleID} order by zpublishtime desc limit 1
     </select>
 
 
@@ -32,6 +32,15 @@
 
     <select id="findscrenclose"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
         SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} and zscheduleID=#{zscheduleID} AND  ztype='分屏信息' ORDER BY zpublishtime desc LIMIT 1 ;
+    </select>
+
+
+    <select id="findscrenclosefun"  resultType="com.itboyst.facedemo.dto.Zteacher_command">
+        SELECT * FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} and zscheduleID=#{zscheduleID} AND  ztype='分屏信息' and zstatus='有效' ORDER BY zpublishtime desc LIMIT 1 ;
+    </select>
+
+    <select id="findscrenclosefuncount"  resultType="int">
+        SELECT count(*) FROM zteacher_command WHERE ztrainingroomID=#{ztrainingroomID} and zscheduleID=#{zscheduleID} AND  ztype='分屏信息' and zstatus='有效' ORDER BY zpublishtime desc LIMIT 1 ;
     </select>
 
 
@@ -61,6 +70,10 @@
 
     <update id="updateCommandByid" parameterType="java.lang.String">
         update zteacher_command set zstatus =#{zstatus} where zid=#{zid}
+    </update>
+
+    <update id="updatestatbyclose" parameterType="com.itboyst.facedemo.dto.Zteacher_command">
+        update zteacher_command a , (select max(zpublishtime) btime from zteacher_command) b set a.zstatus =#{zstatus} where a.zpublishtime=b.btime  AND a.ztype='分屏信息' and ztrainingroomID=#{ztrainingroomID} and zscheduleID=#{zscheduleID}
     </update>
 
 

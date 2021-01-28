@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -272,17 +272,17 @@
                 data:{"zid":startchose,"zpowerstatus":"已开机","kind":"开启"},
                 async: false,
                 success: function (data) {
-                   /* if(data>0){
+                   if(data>0){
                         layer.msg("已开启选中，等待电源开启", { icon: 1, offset: "auto", time:1000 });
                     }else{
                         alert("出错")
-                    }*/
+                    }
                 }
             });
 
 
         //更改电源被选中设备的电源管理
-            $.ajax({
+          /*  $.ajax({
                 type: "post",
                 url: "/updateftestbych",
                 data:{"zid":startchose,"zpassingscore":p_passcode,"zsafetestingNum":p_testnum,"zsafetestingType":p_testtype},
@@ -292,7 +292,7 @@
                         layer.msg("已开启安全测试", { icon: 1, offset: "auto", time:1000 });
                     }
                 }
-            });
+            });*/
 
         setTimeout(function (){ findfacbyrid(ztrainroomid)},100);
     }
@@ -376,15 +376,15 @@
             data:{"id":id},
             async: false,
             success: function (data) {
+                //alert(data.length)
 
                 $("#"+id+"").css("background-color","#FFC000")
 
                 if(data.length <7){
-
                     str+="<table class='p_bbbox' id='p_bbox'>"
                     str+=" <tr>";
                     for(var i=0; i<data.length;i++){
-                        str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
+                        //str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
                         static_teststate[i]=data[i].zid
 
                         $.ajax({
@@ -450,18 +450,12 @@
                         async: false,
                         success: function (data) {
                            // alert(data)
-                            if(data==1){
+                            if(data==0){
                                 $("#div"+static_teststate[i]+"").css('background-color','rgba(112,167,71)');
                             }
-
-
                         }
                     });
-
-
                 }
-
-
             }
         });
     }

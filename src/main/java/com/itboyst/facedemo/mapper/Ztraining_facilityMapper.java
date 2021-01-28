@@ -38,5 +38,5 @@ public interface Ztraining_facilityMapper {
 
     public int findfactsixportbyzid2(String zid);
 
-    public int updatezprogressbyip(String ip,String zprogress);
+    public int updatezprogressbyip(String zstudentPCIP,String zprogress);
 }

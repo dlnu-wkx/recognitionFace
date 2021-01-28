@@ -30,4 +30,10 @@ public interface Zteacher_commandMapper {
    public int updatecontentbyid(String zid,String zcontent);
 
    public Zteacher_command findscreencommand(String ztrainingroomID,String zscheduleID);
+
+   public int updatestatbyclose(Zteacher_command zteacher_command);
+
+   public Zteacher_command findscrenclosefun(String ztrainingroomID,String zscheduleID);
+
+   public int findscrenclosefuncount(String ztrainingroomID,String zscheduleID);
 }

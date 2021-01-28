@@ -83,7 +83,7 @@
 
   window.onload =function () {
       load()
-       window.setInterval(function () {//每隔几秒查询对比一次结果，循环对比
+       window.setInterval(function () {
             loadnum()
         }, 3000);
 

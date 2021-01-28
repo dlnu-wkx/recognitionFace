@@ -1,16 +1,14 @@
 package com.itboyst.facedemo.base;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Powerutil
 {
 
 
-	public static int powercontroller(String powerip,String powerid)
+	public static void powercontroller(String powerip,String powerid)
 	{
 		// 设备购买及使用网址：https://item.taobao.com/item.htm?spm=a1z10.3-c.w4002-3280522495.9.58594b84tCw1Nf&id=40751680668
 		/**
@@ -23,6 +21,9 @@ public class Powerutil
 		try {
 			// 1:创建客户端的套接字
 			Socket s = new Socket(powerip, 6722);
+
+			s.setSoTimeout(1000);
+
 			// 2:获取输出流
 			// 第1层：字符缓冲输出流
 			// 第2层：字符转换输出流
@@ -52,17 +53,18 @@ public class Powerutil
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 0;
-		}
-		return 1;
-	}
 
+		}
+
+	}
 
 	//查看继电器的状态,返回八个字符串，0代表关闭，1代表开启
 	public static String powerstate(String powerip)
 	{
 		try {
 			Socket s = new Socket(powerip, 6722);
+
+			s.setSoTimeout(1000);
 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
 			// 3 获取输入流
@@ -83,6 +85,11 @@ public class Powerutil
 			return null;
 		}
 
+	}
+
+	public static boolean pingIp(String ipAddress) throws Exception {
+		//此处 3是超时时间,单位是秒
+		return 0==Runtime.getRuntime().exec("ping -w 0.05 "+ipAddress).waitFor();
 	}
 
 

@@ -26,6 +26,8 @@ public class ZcommandController {
     @Autowired
     Zteacher_commandService zteacher_commandService;
 
+
+
     @RequestMapping("/findcommand")
     @ResponseBody
     public List<Zteacher_command> findcommand(HttpSession session,String chagangID,String gundongID){
@@ -115,6 +117,26 @@ public class ZcommandController {
     }*/
 
 
+
+    @RequestMapping("/stopaction")
+    @ResponseBody
+    public int stopaction(String commscreenid,HttpSession session){
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
+
+        int i= zteacher_commandService.updateCommandByid(commscreenid,"失效");
+
+        Zteacher_command zteacher_command=new Zteacher_command();
+        zteacher_command.setZstatus("失效");
+        zteacher_command.setZscheduleID(zteacher_cookie.getZscheduleID());
+        zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
+
+        int j= zteacher_commandService.updatestatbyclose(zteacher_command);
+
+        if (i>0||j>0)
+            return 1;
+        else
+            return 0;
+    }
 
 
 

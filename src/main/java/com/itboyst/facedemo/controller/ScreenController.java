@@ -61,11 +61,32 @@ public class ScreenController {
         String zcontent=zteacher_command_screenService.findscreencommandById(comscreenid).getZcontent();
 
         StringBuffer sb =new StringBuffer();
-        sb.append(zcontent);
+        sb.append(zcontent+",");
         sb.append(filename);
 
         return zteacher_command_screenService.updatecsstbyid(comscreenid,sb.toString());
     }
+
+
+
+    @RequestMapping("/findclosescreen")
+    @ResponseBody
+    public Timestamp findclosescreen(HttpSession session) {
+            Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie") ;
+
+            int i=zteacher_commandService.findscrenclosefuncount(zteacher_cookie.getZtrainingroomid(),zteacher_cookie.getZscheduleID());
+
+            if (i==0){
+                return new Timestamp(System.currentTimeMillis());
+            }
+            else {
+                Zteacher_command zteacher_command=zteacher_commandService.findscrenclosefun(zteacher_cookie.getZtrainingroomid(),zteacher_cookie.getZscheduleID());
+               // System.out.println(zteacher_command.getZpublishtime());
+                return zteacher_command.getZpublishtime();
+            }
+
+    }
+
 
     //同屏
     @GetMapping("/testscreen")
@@ -93,7 +114,7 @@ public class ScreenController {
      */
     @RequestMapping("/insertfrscreen")
     @ResponseBody
-    public int insertfrscreen(String file,String commmandid) throws Exception {
+    public int insertfrscreen(String file,String commmandid,String insertfrscreen) throws Exception {
         String content =zteacher_commandService.findcommandById(commmandid).getZcontent();
 
         Zteacher_command_screen zteacher_command_screen=new Zteacher_command_screen();
@@ -101,10 +122,10 @@ public class ScreenController {
         String filename=fileutil.image64Input2Local("D:/SchoolTrainFiles/Curriculum/taskcontent",file);
         zteacher_command_screen.setZid(uuid);
         zteacher_command_screen.setZcontent(filename);
-        zteacher_command_screen.setZtype("图片");
+        zteacher_command_screen.setZtype(insertfrscreen);
 
         StringBuffer sb=new StringBuffer();
-        sb.append(content);
+        sb.append(content+",");
         sb.append(uuid);
 
         int i=zteacher_command_screenService.insertscreencommand(zteacher_command_screen);
@@ -127,11 +148,15 @@ public class ScreenController {
      */
     @RequestMapping("/insertpicturescreen")
     @ResponseBody
-    public int insertscreen(String file, HttpSession session,String type) throws Exception {
+    public int insertscreen(String file, HttpSession session,String type,String filetype) throws Exception {
+
+        //Fileutil.base64StringToPDF(file);
+       // Fileutil.base64ToFile(file,System.currentTimeMillis()+".mp4","D:/SchoolTrainFiles/Curriculum/taskcontent");
 
         //System.out.println(1);
         String filename=fileutil.image64Input2Local("D:/SchoolTrainFiles/Curriculum/taskcontent",file);
 
+        System.out.println(filename);
         Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
 
         String ztrainingroomID=zteacher_cookie.getZtrainingroomid();
@@ -152,13 +177,13 @@ public class ScreenController {
         Zteacher_command_screen zteacher_command_screen=new Zteacher_command_screen();
         String uuid2= UUID.randomUUID().toString().replaceAll("-","");
         zteacher_command_screen.setZid(uuid2);
-        zteacher_command_screen.setZtype("图片");
-        zteacher_command_screen.setZcontent(filename+",");
+        zteacher_command_screen.setZtype(filetype);
+        zteacher_command_screen.setZcontent(filename);
 
 
         StringBuffer sb=new StringBuffer();
         sb.append(type+";");
-        sb.append(uuid2+",");
+        sb.append(uuid2);
         zteacher_command.setZcontent(sb.toString());
 
         //System.out.println(zteacher_command);
@@ -212,6 +237,7 @@ public class ScreenController {
         //将时间加入进分屏中去
         //每个分屏单独给予时间
         for (int k=0;k<commscreenid.length;k++) {
+            System.out.println(commscreenid[k]);
             StringBuffer sb = new StringBuffer();
             sb.append(time + ";");
             String zcontent = zteacher_command_screenService.findscreencommandById(commscreenid[k]).getZcontent();

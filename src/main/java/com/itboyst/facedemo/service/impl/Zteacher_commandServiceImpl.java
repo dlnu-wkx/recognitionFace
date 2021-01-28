@@ -55,4 +55,10 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
     public Zteacher_command findscreencommand(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscreencommand(ztrainingroomID, zscheduleID);}
 
     public Zteacher_command findscrenclose(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclose(ztrainingroomID, zscheduleID);}
+
+    public int updatestatbyclose(Zteacher_command zteacher_command){return zteacher_commandMapper.updatestatbyclose(zteacher_command);}
+
+    public int findscrenclosefuncount(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclosefuncount(ztrainingroomID, zscheduleID);}
+
+    public Zteacher_command findscrenclosefun(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclosefun(ztrainingroomID, zscheduleID);}
 }

@@ -30,7 +30,10 @@
 
 
 <!--分屏-->
-<div class="com_screen" id="com_screen" hidden><div class="com_screen21" id="com_screen21"></div><div class="com_screen22"></div></div>
+<div class="com_screen" id="com_screen" hidden>
+    <div class="com_screen21" id="com_screen21"></div>
+    <div class="com_screen22" id="com_screen22"></div>
+</div>
 
 
 
@@ -112,6 +115,135 @@
 </body>
 
 <script>
+
+    var indexleft=1;
+    var indexright=1;
+    //改变图片
+    function ChangeImgright() {
+
+        indexright++;
+        var a=document.getElementsByClassName("img-slideright");
+
+        if(indexright>=a.length) indexright=0;
+
+        for(var i=0;i<a.length;i++){
+
+            a[i].style.display='none';
+        }
+        a[indexright].style.display='block';
+    }
+
+    function ChangeImgleft() {
+
+        indexleft++;
+        var a=document.getElementsByClassName("img-slideleft");
+
+        if(indexleft>=a.length) indexleft=0;
+
+        for(var i=0;i<a.length;i++){
+
+            a[i].style.display='none';
+        }
+        a[indexleft].style.display='block';
+    }
+
+    //左右时间
+    var fonttotime={left:10,right:10};
+
+
+    function getscreencontent(commandlocation,screenid,order) {
+
+        $.ajax({
+            type: "post",
+            url: "/findscreencontenbyid",
+            data: {"id":screenid},
+            async: false,
+            success: function (data2){
+                //alert(data2.zcontent)
+                var ztype=data2.ztype;
+                var str1=""
+                var com_screen21=$("#com_screen21")
+                if (ztype=="图片"){
+                   // alert(1)
+                    var time2=data2.zcontent.split(";");
+                    //alert(time2)
+                    var time=time2[0];
+                    var screenimage=time2[1];
+                    //alert(screenimage)
+
+                    var screenimaget=new Array();
+                    screenimaget=screenimage.split(",")
+
+                    var index2=new Array();
+                    var screenimagec=new Array();
+                    for(var i=0;i<screenimaget.length;i++){
+                        index2[i]=screenimaget[i].lastIndexOf("\/");
+                        screenimagec[i]=screenimaget[i].substring(index2[i]+1,screenimaget[i].length);
+                        str1+="<img class='img-slide"+order+" img"+(i + 1)+"' src='"+screenimagec[i]+"'>"
+                    }
+                   // alert(screenimagec)
+                    commandlocation.html(str1)
+                    if (order=="left"){
+                        setInterval(ChangeImgleft,time*1000)
+                    } else if (order=="right") {
+                        setInterval(ChangeImgright,time*1000)
+                    }
+                }
+            }
+        })
+    }
+
+    var static_time=""
+
+    function loadscreentime(){
+        $.ajax({
+            type: "post",
+            url: "/findclosescreen",
+            async: false,
+            success: function (data) {
+
+                if(data!=static_time){
+                    $("#com_screen").hide()
+                    $("#com_screen21").empty()
+                    $("#com_screen22").empty()
+                    getcommand2()
+                }
+            }
+        })
+    }
+
+    function getcommand2() {
+        $.ajax({
+            type: "post",
+            url: "/findscreencommand",
+            data: {},
+            async: false,
+            success: function (data){
+                static_time=data.zpublishtime
+                var comscreen= $("#com_screen")
+                var screentype=data.zcontent.split(";");
+                //alert(screentype[0])
+                if (screentype[0]=='2'){
+
+                    var commandscreenid1=screentype[1].split(",")[0];
+                    var commandscreenid2=screentype[1].split(",")[1];
+
+                    var com_screen21=$("#com_screen21")
+                    var com_screen22=$("#com_screen22")
+                    //将左右两个放入其中
+                    getscreencontent(com_screen21,commandscreenid1,"left")
+                    getscreencontent(com_screen22,commandscreenid2,"right")
+
+                    comscreen.show()
+
+                }
+            }
+        })
+
+    }
+
+
+
     //备用参数，方便处理逻辑
     var j=0;
 
@@ -388,8 +520,10 @@
         window.setInterval(function () {
             getcommand();
             gettemporary();
+            loadscreentime();
         }, 3000);
     }
+
 
     function welcome() {
         var cp_content=$("#cp_content")
