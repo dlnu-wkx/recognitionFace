@@ -4,6 +4,7 @@ import cn.hutool.core.codec.Base64;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
 import com.itboyst.facedemo.base.Fileutil;
+import com.itboyst.facedemo.base.Powerutil;
 import com.itboyst.facedemo.base.ScreenUtil;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.TestscreenService;
@@ -72,6 +73,8 @@ public class ScreenController {
     @RequestMapping("/findclosescreen")
     @ResponseBody
     public Timestamp findclosescreen(HttpSession session) {
+
+        try {
             Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie") ;
 
             int i=zteacher_commandService.findscrenclosefuncount(zteacher_cookie.getZtrainingroomid(),zteacher_cookie.getZscheduleID());
@@ -81,9 +84,12 @@ public class ScreenController {
             }
             else {
                 Zteacher_command zteacher_command=zteacher_commandService.findscrenclosefun(zteacher_cookie.getZtrainingroomid(),zteacher_cookie.getZscheduleID());
-               // System.out.println(zteacher_command.getZpublishtime());
+                // System.out.println(zteacher_command.getZpublishtime());
                 return zteacher_command.getZpublishtime();
             }
+        }catch(Exception e) {
+            return null;
+        }
 
     }
 

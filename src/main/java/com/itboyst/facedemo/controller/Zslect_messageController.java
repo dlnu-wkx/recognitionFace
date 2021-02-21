@@ -2,6 +2,7 @@ package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.Zselect_message;
 import com.itboyst.facedemo.service.Zselect_messageService;
+import com.itboyst.facedemo.service.ZteacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ public class Zslect_messageController {
 
     @Autowired
     Zselect_messageService zselect_messageService;
+
+    @Autowired
+    ZteacherService zteacherService;
 
     @RequestMapping("/selectattandancemes")
     @ResponseBody
@@ -55,6 +59,13 @@ public class Zslect_messageController {
         Timestamp time2 = Timestamp.valueOf(endtime);
 
         return zselect_messageService.findallleave(zname,time1,time2);
+    }
+
+
+    @RequestMapping("/selectteachernamebyid")
+    @ResponseBody
+    public String selectteachernamebyid(String zid){
+        return zteacherService.selectteachernamebyid(zid);
     }
 
 

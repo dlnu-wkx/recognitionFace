@@ -259,7 +259,6 @@
                 for (var c=1;c<question.cbank.length+question.jbank.length;c++) {
                     $("#qbank"+c+"").hide();
                 }
-                //隐藏其它题
 
                 //获取正确答案
                 $.ajax({
@@ -274,9 +273,19 @@
                     }
                 });
 
-
                 //单选方法加载
                 onechose();
+
+                $.ajax({
+                    type: "post",
+                    url: "/updatetesttime",
+                    async: false,
+                    data:{},
+                    success: function (data){
+
+                    }
+                });
+
 
             },
             error: function (error) {
@@ -365,6 +374,7 @@
                 type: "post",
                 url: "/updatesixstateaftertest",
                 data: {},
+                async: false,
                 success: function (data) {
                    // alert(data)
                 }

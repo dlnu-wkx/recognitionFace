@@ -1,10 +1,13 @@
 package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.base.Iputil;
+import com.itboyst.facedemo.base.Powerutil;
 import com.itboyst.facedemo.dto.Zstudent;
 import com.itboyst.facedemo.dto.Zstudent_cookie;
 import com.itboyst.facedemo.dto.Zstudent_event;
+import com.itboyst.facedemo.dto.Ztraining_facility;
 import com.itboyst.facedemo.service.Zstudent_eventService;
+import com.itboyst.facedemo.service.Ztraining_facilityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class ZeventController {
 
     @Autowired
     Zstudent_eventService zstudent_eventService;
+
+    @Autowired
+    Ztraining_facilityService ztraining_facilityService;
 
     @RequestMapping("/insertevent")
     @ResponseBody
@@ -58,7 +64,7 @@ public class ZeventController {
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         zstudent_event.setZapplicationtime(timestamp);
 
-
+        System.out.println(zstudent_event);
         //插入之前将之前的事件状态更改
         zstudent_eventService.updateeventstatus(zstudent_event);
 
@@ -67,7 +73,26 @@ public class ZeventController {
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie");
 
         zstudent_event.setZscheduleID(zstudent_cookie.getZscheduleID());
-        zstudent_event.setZrecognizeIP(Iputil.getClientIpAddress(request));
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility") ;
+
+        zstudent_event.setZrecognizeIP(ztraining_facility.getZstudentPCIP());
+
+        //更改设备表二端口的数据
+        ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),1);
+
+        //另开一个线程，更改继电器1端口的数据
+        Thread t = new Thread(new Runnable(){
+            public void run(){
+                try {
+                    if (ztraining_facility.getZpowerIP()!=null)
+                        if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"21");
+                }catch(Exception e) {
+
+                }
+            }});
+        t.start();
+
         //插入新的学生事件信息
         return zstudent_eventService.insertevent(zstudent_event);
     }
@@ -87,6 +112,23 @@ public class ZeventController {
         zstudent_event.setZtype("举手");
         zstudent_event.setZstatus("取消");
 
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility") ;
+        //更改设备表二端口的数据
+        ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),0);
+
+        //另开一个线程，更改继电器1端口的数据
+        Thread t = new Thread(new Runnable(){
+            public void run(){
+                try {
+                    if (ztraining_facility.getZpowerIP()!=null)
+                        if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"22");
+                }catch(Exception e) {
+
+                }
+            }});
+        t.start();
+
 
         return zstudent_eventService.updateeventstatus(zstudent_event);
     }
@@ -100,6 +142,23 @@ public class ZeventController {
         zstudent_event.setZstudentID(zstudent.getZid());
         zstudent_event.setZtype("请假");
         zstudent_event.setZstatus("取消");
+
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility") ;
+        //更改设备表二端口的数据
+        ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),0);
+
+        //另开一个线程，更改继电器1端口的数据
+        Thread t = new Thread(new Runnable(){
+            public void run(){
+                try {
+                    if (ztraining_facility.getZpowerIP()!=null)
+                        if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"22");
+                }catch(Exception e) {
+
+                }
+            }});
+        t.start();
 
         return zstudent_eventService.updateeventstatus(zstudent_event);
 

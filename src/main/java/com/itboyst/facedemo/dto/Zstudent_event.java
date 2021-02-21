@@ -88,20 +88,20 @@ public class Zstudent_event {
         this.zhandletime = zhandletime;
     }
 
-    public String getZstatus() {
-        return zstatus;
-    }
-
-    public void setZstatus(String zstatus) {
-        this.zstatus = zstatus;
-    }
-
     public String getZhandlecontent() {
         return zhandlecontent;
     }
 
     public void setZhandlecontent(String zhandlecontent) {
         this.zhandlecontent = zhandlecontent;
+    }
+
+    public String getZstatus() {
+        return zstatus;
+    }
+
+    public void setZstatus(String zstatus) {
+        this.zstatus = zstatus;
     }
 
     @Override
@@ -116,8 +116,7 @@ public class Zstudent_event {
                 ", zapplicationtime=" + zapplicationtime +
                 ", zteacherID='" + zteacherID + '\'' +
                 ", zhandletime=" + zhandletime +
-                ", zteacherID=" + zteacherID +
-                ", zhandlecontent=" + zhandlecontent +
+                ", zhandlecontent='" + zhandlecontent + '\'' +
                 ", zstatus='" + zstatus + '\'' +
                 '}';
     }

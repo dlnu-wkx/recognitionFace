@@ -16,4 +16,8 @@ public interface Zstudent_eventService {
     public int updateeventstatus(Zstudent_event zstudent_event);
 
     int updateTeacherIDandStatus(Zstudent_event zstudent_event);
+
+    public Zstudent_event findupnumberbyfai(String zid,String ztype);
+
+    public Zstudent_event findupbyfacilityid(String zid);
 }

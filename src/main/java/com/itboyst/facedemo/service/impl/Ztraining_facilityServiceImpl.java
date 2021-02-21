@@ -71,6 +71,15 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
 
     public int updatesixportbyid(Ztraining_facility ztraining_facility){return  ztran_facmap.updatesixportbyid(ztraining_facility);}
 
+    public Ztraining_facility findfacilitybyid(String zid){return ztran_facmap.findfacilitybyid(zid);}
+
+    public int updatefatestbyid2(Ztraining_facility ztraining_facility){return ztran_facmap.updatefatestbyid2(ztraining_facility);}
 
     public int updatesixportbyroomid(String ztrainingroomID,int zpowerStatus6){return ztran_facmap.updatesixportbyroomid(ztrainingroomID, zpowerStatus6);}
+
+    public int updateoneportbyip(String zstudentPCIP,int zpowerStatus1){return ztran_facmap.updateoneportbyip(zstudentPCIP, zpowerStatus1);}
+
+    public int updattwoportbyip(String zstudentPCIP,int zpowerStatus2){return ztran_facmap.updattwoportbyip(zstudentPCIP, zpowerStatus2);}
+
+    public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7){return ztran_facmap.updatesevenportbyip(zstudentPCIP, zpowerStatus7);}
 }

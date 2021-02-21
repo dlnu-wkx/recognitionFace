@@ -18,4 +18,10 @@ public interface Zstudent_loginService {
 
     //查找学生的课程
     List<String> findScheduleBytimeandzstudentID(String zstudentID, Timestamp timestamp);
+
+    Zstudent_login findtatbyip(String zid);
+
+    int updatetesttime(String zstudentID,String zscheduleID);
+
+    int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname);
 }

@@ -48,5 +48,15 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
         return zstudent_eventMapper.updateTeacherIDandStatus(zstudent_event);
     }
 
+    @Override
+    public Zstudent_event findupnumberbyfai(String zid,String ztype){
+        return zstudent_eventMapper.findupnumberbyfai(zid,ztype);
+    }
+
+    @Override
+    public Zstudent_event findupbyfacilityid(String zid){
+        return zstudent_eventMapper.findupbyfacilityid(zid);
+    }
+
 
 }

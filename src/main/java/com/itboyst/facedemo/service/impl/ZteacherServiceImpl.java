@@ -34,4 +34,8 @@ public class ZteacherServiceImpl implements ZteacherService {
     public Zteacher findteacherByzidentity(String zidentity) {
         return zteacherMapper.findteacherByzidentity(zidentity);
     }
+
+    public String selectteachernamebyid(String zid){
+        return zteacherMapper.selectteachernamebyid(zid);
+    }
 }

@@ -274,7 +274,18 @@
     var static_assessnum=0;
 
     //加载页面前页码及按键逻辑处理（任务表id,任务类型，固定任务Id）
-    function loadcontentbypages2(taskid,kindid,assid) {
+    function loadcontentbypages2(zname,taskid,kindid,assid) {
+
+      //  alert(zname)
+        $.ajax({
+            type: "post",
+            url: "/updatetaskname",
+            async: false,
+            data:{"zname":zname},
+            success: function (data){
+
+            }
+        });
         //每次点击一个新任务都将交卷更改为下一页并变更方法
         $("#nextpage").attr("onclick","nextpage()");
         $("#nextpage").text('下一页');
@@ -494,13 +505,13 @@
                         success: function (data){
                             str+="<br><br><br>"
                             for(var i=0;i<data.length;i++){
-                                str+="<button onclick='loadcontentbypages2(\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
+                                str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
                             }
                         }
                     });
 
                     for(var i=0;i<data.length;i++){
-                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
+                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
                     }
                     leftbutton.html(str)
                 }
@@ -515,7 +526,7 @@
         welcome();
         $("#lastpage").css("background-color","#A5A5A5");
         findalltask();
-        /*getcommand();*/
+        getcommand();
         //循环查找老师的命令
         window.setInterval(function () {
             getcommand();
@@ -560,7 +571,7 @@ var static_temleng=0
             success: function (data){
                 str+="<br><br><br>"
                 for(var i=0;i<data.length;i++){
-                    str+="<button onclick='loadcontentbypages2(\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
+                    str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
                 }
             }
         });
@@ -574,7 +585,7 @@ var static_temleng=0
             success: function (data){
                 static_temleng=data.length
                 for(var i=0;i<data.length;i++){
-                    str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
+                    str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
                 }
             }
         });

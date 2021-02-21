@@ -22,4 +22,10 @@ public interface Zstudent_loginMapper {
     int deleteStudentLoginByzidentity(String zidentity);
 
     List<String> findScheduleBytimeandzstudentID(String zstudentID, Timestamp timestamp);
+
+    Zstudent_login findtatbyip(String zid);
+
+    int updatetesttime(String zstudentID,String zscheduleID);
+
+    int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname);
 }
