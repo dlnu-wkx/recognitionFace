@@ -34,10 +34,10 @@
         <result column="zprogress" property="zprogress" javaType="String"/>
     </resultMap>
 
-<!--
-    <select id="findOpenPower"  resultType="java.lang.String">
-          SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} AND zpowerstatus="已开机";
-    </select>-->
+
+    <select id="findfacilitybyid"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
+          SELECT * FROM ztraining_facility WHERE zid=#{zid}
+    </select>
 
     <select id="findstunamebyfacid"  resultType="java.lang.String">
           select zname from zstudent where zid=( select zstudentID from zstudent_login where zrecognizeIP=( select zstudentPCIP from ztraining_facility where zid=#{zid} and (zprogress='登陆' or  zprogress='安全测试' or zprogress='实训' )) ORDER BY zrecognizetime desc LIMIT 1)
@@ -93,12 +93,23 @@
 
 
     <update id="updatesixportbyid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
-        update ztraining_facility set zpowerStatus6 = #{zpowerStatus6} where zid = #{zid}
+        update ztraining_facility set zpowerStatus6 = #{zpowerStatus6},zpowerStatus1 = #{zpowerStatus1},zpowerStatus2 = #{zpowerStatus2},zpowerStatus7 = #{zpowerStatus7} where zid = #{zid}
     </update>
 
+    <update id="updateoneportbyip" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus1 = #{zpowerStatus1} where zstudentPCIP = #{zstudentPCIP}
+    </update>
+
+    <update id="updattwoportbyip" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus2 = #{zpowerStatus2} where zstudentPCIP = #{zstudentPCIP}
+    </update>
 
     <update id="updatesixportbyroomid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zpowerStatus6 = #{zpowerStatus6} where ztrainingroomID = #{ztrainingroomID}
+    </update>
+
+    <update id="updatesevenportbyip" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus7 = #{zpowerStatus7} where zstudentPCIP = #{zstudentPCIP}
     </update>
 
     <update id="updatefatestbyroomid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
@@ -108,5 +119,10 @@
     <update id="updatefatestbyid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zsafetestingType = #{zsafetestingType} , zsafetestingNum=#{zsafetestingNum} , zpassingscore=#{zpassingscore} where zid = #{zid}
     </update>
+
+    <update id="updatefatestbyid2" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zsafetestingType = #{zsafetestingType} , zsafetestingNum=#{zsafetestingNum} , zpassingscore=#{zpassingscore},zpowerStatus6=#{zpowerStatus6},zpowerStatus8=#{zpowerStatus8},zselecttest=#{zselecttest} where zid = #{zid}
+    </update>
+
 
 </mapper>

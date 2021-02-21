@@ -55,4 +55,16 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
         return zstulogma.findScheduleBytimeandzstudentID(zstudentID,timestamp);
     }
 
+   public Zstudent_login findtatbyip(String zid){
+        return zstulogma.findtatbyip(zid);
+    }
+
+
+    public int updatetesttime(String zstudentID,String zscheduleID){
+        return zstulogma.updatetesttime(zstudentID,zscheduleID);
+    }
+
+    public int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname){
+        return zstulogma.updateznowtaskname(zstudentID, zscheduleID,znowtaskname);
+    }
 }

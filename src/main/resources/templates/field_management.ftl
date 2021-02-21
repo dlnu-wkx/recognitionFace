@@ -44,7 +44,7 @@
             <div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
                     <li style="margin: 0 auto;margin-left: 10% "><button onclick="faceShow()" style="float:left;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">人脸识别</button></li>
-                    <li style=" margin: 0 auto;margin-right: 10%"><button onclick="powerController()" style="float:right;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">测试管理</button></li>
+                    <li style=" margin: 0 auto;margin-right: 10%"><button onclick="studentStatus()" style="float:right;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">测试管理</button></li>
                 </ul>
             </div>
             <div>
@@ -396,8 +396,8 @@
         location.href="/time_status";
     }
     //退出
-    function powerController() {
-        location.href="/power_controller";
+    function studentStatus() {
+        location.href="/student_status";
     }
 
     function fieldManagement() {

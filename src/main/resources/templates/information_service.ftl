@@ -45,7 +45,7 @@
         <font size="5">事件：</font> &emsp;&emsp;&emsp;&emsp;&emsp;
         <select class="i_text3" id="selecttype">
            <option value="人脸识别">人脸识别</option>
-           <option value ="实操">实操</option>
+           <option value ="查岗">查岗</option>
            <option value ="登陆">登陆</option>
            <option value="举手">举手</option>
            <option value="请假/销假">请假/销假</option>
@@ -135,14 +135,14 @@
                     }
                 }
             });
-        }else if(selecttype=="实操"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"实操查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+        }else if(selecttype=="查岗"){
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"查岗查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"查岗信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
                 type: "post",
                 url: "/selectattandancemes",
-                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"zcheck":"实操"},
+                data:{"zname":i_name,"starttime":starttime,"endtime":endtime,"zcheck":"查岗"},
                 async: false,
                 success: function (data){
                     for (var i=0;i<data.length;i++){
@@ -195,7 +195,22 @@
                 success: function (data){
                     for (var i=0;i<data.length;i++){
                         //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
-                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].leavereason+"</th><th class='i_tableth2'>"+data[i].isintype+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th><th class='i_tableth2'>"+data[i].approver+"</th></tr>"
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].leavereason+"</th><th class='i_tableth2'>"+data[i].isintype+"</th><th class='i_tableth2'>"+createTime(data[i].mestime)+"</th>"
+
+                        $.ajax({
+                            type: "post",
+                            url: "/selectteachernamebyid",
+                            data:{"zid":data[i].approver},
+                            async: false,
+                            success: function (data2){
+                                if (data2)
+                                    str+="<th class='i_tableth1'>"+data2+"</th>"
+                                else
+                                    str+="<th class='i_tableth1'></th>"
+                            }
+                        })
+
+                        str+="</tr>"
                     }
                 }
             });

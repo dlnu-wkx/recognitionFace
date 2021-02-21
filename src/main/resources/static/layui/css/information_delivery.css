@@ -12,12 +12,27 @@
 .delivery_unpowerbox{
     bottom: 0%;
     background-color: #A5A5A5;
-    height: 70%;
+    height: 90%;
     width: 80%;
     position: absolute;
     border-style:solid;
-    border: 3px #0a0b0b solid;
+
 }
+
+
+
+.delivery_unpowerbox2{
+    bottom: 0%;
+    background-color: whitesmoke;
+    height: 85%;
+    top: -40%;
+    width: 85%;
+    position: absolute;
+    border-style: solid;
+
+}
+
+
 
 .i_time{
     height: 25px;

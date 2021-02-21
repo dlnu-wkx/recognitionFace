@@ -12,7 +12,7 @@
         <result column="zapplicationtime" property="zapplicationtime" jdbcType="TIMESTAMP"/>
         <result column="zteacherID" property="zteacherID" javaType="String"/>
         <result column="zhandletime" property="zhandletime" jdbcType="TIMESTAMP"/>
-        <result column="zhandlecontent" property="zhandlecontent" javaType="java.lang.String"/>
+        <result column="zhandlecontent" property="zhandlecontent" javaType="String"/>
         <result column="zstatus" property="zstatus" javaType="String"/>
     </resultMap>
 
@@ -32,8 +32,16 @@
     </select>
 
 
+    <select id="findupnumberbyfai"  resultType="com.itboyst.facedemo.dto.Zstudent_event" parameterType="java.lang.String">
+            select * from zstudent_event where zrecognizeIP=(select zstudentPCIP from ztraining_facility where zid= #{zid} ) and ztype= #{ztype}  and zstatus='申请中'  order by zapplicationtime desc limit 1
+    </select>
+
+    <select id="findupbyfacilityid"  resultType="com.itboyst.facedemo.dto.Zstudent_event">
+        select * from zstudent_event where zrecognizeIP = (select zstudentPCIP from ztraining_facility where zid=#{zid}) and zstatus='申请中'
+    </select>
+
     <insert id="insertevent" parameterType="com.itboyst.facedemo.dto.Zstudent_event" >
-               INSERT INTO zstudent_event (zid, zstudentID, zscheduleID,zrecognizeIP,ztype, zcontent ,zapplicationtime,zstatus) VALUES(#{zid}, #{zstudentID}, #{zscheduleID},#{zrecognizeIP},#{ztype}, #{zcontent} ,#{zapplicationtime},#{zstatus});
+            INSERT INTO zstudent_event (zid, zstudentID, zscheduleID,zrecognizeIP,ztype, zcontent ,zapplicationtime,zstatus) VALUES(#{zid}, #{zstudentID}, #{zscheduleID},#{zrecognizeIP},#{ztype}, #{zcontent} ,#{zapplicationtime},#{zstatus});
     </insert>
 
 

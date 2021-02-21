@@ -39,4 +39,14 @@ public interface Ztraining_facilityMapper {
     public int findfactsixportbyzid2(String zid);
 
     public int updatezprogressbyip(String zstudentPCIP,String zprogress);
+
+    public Ztraining_facility findfacilitybyid(String zid);
+
+    public int updatefatestbyid2(Ztraining_facility ztraining_facility);
+
+    public int updateoneportbyip(String zstudentPCIP,int zpowerStatus1);
+
+    public int updattwoportbyip(String zstudentPCIP,int zpowerStatus2);
+
+    public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7);
 }

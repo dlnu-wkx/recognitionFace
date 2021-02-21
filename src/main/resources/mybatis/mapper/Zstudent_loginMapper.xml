@@ -8,7 +8,10 @@
         <result column="zrecongnizetime" property="zrecongnizetime" jdbcType="TIMESTAMP"/>
         <result column="ztype" property="ztype" javaType="String"/>
         <result column="zrecognizeIP" property="zrecognizeIP" javaType="String"/>
-
+        <result column="originalPictureUrl" property="originalPictureUrl" javaType="String"/>
+        <result column="zstatus" property="zstatus" javaType="String"/>
+        <result column="ztesttime" property="ztesttime" javaType="int"/>
+        <result column="znowtaskname" property="znowtaskname" javaType="String"/>
     </resultMap>
 
 
@@ -17,6 +20,9 @@
   	</delete>
 
 
+    <select id="findtatbyip"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
+        select * from zstudent_login where zrecognizeIP=(select zstudentPCIP from ztraining_facility WHERE zid= #{zid}) and zcheck='登陆'  ORDER BY zrecognizetime desc LIMIT 1;
+    </select>
 
     <select id="findfront"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
             SELECT * FROM zstudent_login WHERE zstudentID = #{zstudentID}
@@ -34,6 +40,13 @@
       UPDATE zstudent_login SET zstatus=#{zstatus} WHERE ztype='机床' AND zstatus='正常' AND zrecognizeIP IN (SELECT zstudentPCIP FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID});
     </update>
 
+    <update id="updatetesttime" parameterType="java.lang.String" >
+        update zstudent_login set ztesttime=ztesttime+1 where zrecognizetime=( select max(a.zrecognizetime) from ( select * from zstudent_login where zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} )a)
+    </update>
+
+    <update id="updateznowtaskname" parameterType="java.lang.String" >
+        update zstudent_login set znowtaskname=#{znowtaskname} where zrecognizetime=( select max(a.zrecognizetime) from ( select * from zstudent_login where zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} )a)
+    </update>
 
     <!--删除登录表的相关学生之前的信息-->
     <delete id="deleteStudentLoginByzidentity" parameterType="java.lang.String">

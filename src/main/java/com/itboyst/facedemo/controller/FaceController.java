@@ -10,6 +10,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
 import com.itboyst.facedemo.base.Iputil;
+import com.itboyst.facedemo.base.Powerutil;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.domain.UserFaceInfo;
 import com.itboyst.facedemo.service.*;
@@ -521,12 +522,28 @@ public class FaceController {
             System.out.println("ip4"+ip4);
 
             //System.out.println("ip2"+ip2);
-            zsl.setZcheck("实操");
+            /*zsl.setZcheck("实操");*/
             zsl.setZrecognizeIP(ip4);
-
 
             Ztraining_facility ztrfac = ztrinfser.findbyip(ip4);
             if (ztrfac == null) return Results.newFailedResult(ErrorCodeEnum.NO_FACILITY_STUDENTPCIP);
+
+            //数据库一端口的更改
+            ztrinfser.updateoneportbyip(ip4,1);
+
+            //另开一个线程，更改继电器1端口的数据
+            Thread t = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                        if (ztrfac.getZpowerIP()!=null)
+                            if (Powerutil.pingIp(ztrfac.getZpowerIP()))
+                                Powerutil.powercontroller(ztrfac.getZpowerIP(),"11");
+                    }catch(Exception e) {
+                        // e.printStackTrace();
+                    }
+                }});
+            t.start();
+
 
             session.setAttribute("ztraining_facility",ztrfac);
 
@@ -535,8 +552,8 @@ public class FaceController {
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);
 
-            //System.out.println(ztr);
-
+            System.out.println(ztr);
+            
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
             System.out.println(zsc);

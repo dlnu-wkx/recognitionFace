@@ -20,7 +20,7 @@ public class Ztraining_roomServiceImpl implements Ztraining_roomService {
 
     }
 
-    @Autowired
+    @Override
     public List<ztraining_room> findallztrainroom(){
         return zrm.findallztrainroom();
     }

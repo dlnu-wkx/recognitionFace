@@ -12,6 +12,8 @@ public class Zstudent_login {
     private String  zrecognizeIP;
     private String zstatus;
     private String originalPictureUrl;
+    private int ztesttime;
+    private String znowtaskname;
 
     public String getZid() {
         return zid;
@@ -85,6 +87,22 @@ public class Zstudent_login {
         this.originalPictureUrl = originalPictureUrl;
     }
 
+    public int getZtesttime() {
+        return ztesttime;
+    }
+
+    public void setZtesttime(int ztesttime) {
+        this.ztesttime = ztesttime;
+    }
+
+    public String getZnowtaskname() {
+        return znowtaskname;
+    }
+
+    public void setZnowtaskname(String znowtaskname) {
+        this.znowtaskname = znowtaskname;
+    }
+
     @Override
     public String toString() {
         return "Zstudent_login{" +
@@ -97,6 +115,8 @@ public class Zstudent_login {
                 ", zrecognizeIP='" + zrecognizeIP + '\'' +
                 ", zstatus='" + zstatus + '\'' +
                 ", originalPictureUrl='" + originalPictureUrl + '\'' +
+                ", ztesttime=" + ztesttime +
+                ", znowtaskname='" + znowtaskname + '\'' +
                 '}';
     }
 }

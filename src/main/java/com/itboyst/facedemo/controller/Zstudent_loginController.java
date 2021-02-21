@@ -13,21 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class Zstudent_loginController {
-   /* public final static Logger logger = LoggerFactory.getLogger(Zstudent_loginController.class);
 
-
-    @Autowired
-    Zstudent_loginService zstudent_loginService;
-
-    @RequestMapping("/overclass")
-    @ResponseBody
-    public int overclass(HttpSession session){
-        Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
-
-        return zstudent_loginService.updateloginstate("强退",zteacher_cookie.getZtrainingroomid());
-
-    }*/
 }

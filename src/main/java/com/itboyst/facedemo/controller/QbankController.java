@@ -39,6 +39,22 @@ public class QbankController {
     @Autowired
     Ztraining_facilityService ztraining_facilityService;
 
+    @Autowired
+    Zstudent_loginService zstudent_loginService;
+
+    /*
+   勾选开启安全测试
+  */
+    @RequestMapping("/updatetesttime")
+    @ResponseBody
+    public int updatetesttime(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
+        return zstudent_loginService.updatetesttime(zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID());
+    }
+
+
+
+
     /*
     勾选开启安全测试
    */
@@ -220,6 +236,7 @@ public class QbankController {
 
 
 
+
     /*
     查找所有问题
      */
@@ -348,6 +365,10 @@ public class QbankController {
 
     @RequestMapping(value = "/test2")
     public String test2(){return "test2";}
+
+    @RequestMapping(value = "/student_status")
+    public String student_status(){return "student_status";}
+
 
 
     @RequestMapping(value = "/test1")

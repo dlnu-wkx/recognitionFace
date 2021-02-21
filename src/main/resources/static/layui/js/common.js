@@ -30,14 +30,14 @@ function leaveclass() {
     });
 
     //将继电器6号端口断开
-   /* $.ajax({
+    $.ajax({
         type: "post",
         url: "/usixout",
         data:{},
         success: function (data){
 
         }
-    });*/
+    });
 
     //设备状态的更改
     $.ajax({
