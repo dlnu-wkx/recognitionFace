@@ -48,6 +48,11 @@
         update zstudent_login set znowtaskname=#{znowtaskname} where zrecognizetime=( select max(a.zrecognizetime) from ( select * from zstudent_login where zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} )a)
     </update>
 
+
+    <update id="removetat" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+        update zstudent_login set znowtaskname=#{znowtaskname},ztesttime=#{ztesttime} where zrecognizeIP=#{zrecognizeIP} and zcheck=#{zcheck}
+    </update>
+
     <!--删除登录表的相关学生之前的信息-->
     <delete id="deleteStudentLoginByzidentity" parameterType="java.lang.String">
     	DELETE FROM zstudent_login WHERE zstudentID=(SELECT zid FROM zstudent WHERE zidentity LIKE #{zidentity})
