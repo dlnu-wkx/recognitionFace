@@ -67,4 +67,8 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
     public int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname){
         return zstulogma.updateznowtaskname(zstudentID, zscheduleID,znowtaskname);
     }
+
+   public int removetat(Zstudent_login zstudent_login){
+        return zstulogma.removetat(zstudent_login);
+   }
 }

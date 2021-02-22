@@ -49,4 +49,6 @@ public interface Ztraining_facilityMapper {
     public int updattwoportbyip(String zstudentPCIP,int zpowerStatus2);
 
     public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7);
+
+    public int updateportbyid(Ztraining_facility ztraining_facility);
 }

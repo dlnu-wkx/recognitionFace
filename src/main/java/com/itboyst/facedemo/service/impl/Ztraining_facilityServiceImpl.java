@@ -82,4 +82,6 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
     public int updattwoportbyip(String zstudentPCIP,int zpowerStatus2){return ztran_facmap.updattwoportbyip(zstudentPCIP, zpowerStatus2);}
 
     public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7){return ztran_facmap.updatesevenportbyip(zstudentPCIP, zpowerStatus7);}
+
+    public int updateportbyid(Ztraining_facility ztraining_facility){return ztran_facmap.updateportbyid(ztraining_facility);}
 }

@@ -36,6 +36,7 @@ public class Ztraining_roomController {
     Zstudent_eventService zstudent_eventService;
 
 
+
     @Autowired
     Zstudent_loginService zstudent_loginService;
 
@@ -152,46 +153,36 @@ public class Ztraining_roomController {
     @RequestMapping("/updatesixstateaftertest")
     @ResponseBody
     public void updatesixstateaftertest(HttpSession session){
-        //System.out.println("进入更改7端口的controller");
-        // System.out.println("通过测试后继电器:");
+
         Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
 
         String IP=ztraining_facility.getZpowerIP();
-       // System.out.println(ztraining_facility.getZstudentPCIP());
+
         ztraining_facilityService.updatesevenportbyip(ztraining_facility.getZstudentPCIP(),1);
-        //System.out.println(i);
-       Thread a = new Thread(new Runnable(){
 
-            public void run(){
-                try {
-                    if (Powerutil.pingIp(IP))
-                        Powerutil.powercontroller(IP,"17");
-                }catch(Exception e) {
-                    //打印输出异常
-                    // e.printStackTrace();
-                }
-
-            }});
-        a.start();
-
-      if (ztraining_facility.getZpowerStatus8()==1){
+        if (ztraining_facility.getZpowerStatus8()==1) {
             ztraining_facility.setZpowerStatus6(0);
             ztraining_facilityService.updatesixportbyid(ztraining_facility);
 
-            Thread t = new Thread(new Runnable(){
+        }
 
-                public void run(){
-                    try {
-                        if (Powerutil.pingIp(IP))
+       Thread t = new Thread(new Runnable(){
+
+            public void run(){
+                try {
+                    if (Powerutil.pingIp(IP)){
+                        Powerutil.powercontroller(IP,"17");
+                        if (ztraining_facility.getZpowerStatus8()==1)
                             Powerutil.powercontroller(IP,"26");
-                    }catch(Exception e) {
-                        //打印输出异常
-                        // e.printStackTrace();
                     }
 
-                }});
-            t.start();
-        }
+                }catch(Exception e) {
+
+                }
+
+            }});
+        t.start();
+
 
     }
 
@@ -208,7 +199,7 @@ public class Ztraining_roomController {
             ztraining_facility.setZpowerStatus1(0);
             ztraining_facility.setZpowerStatus2(0);
             ztraining_facility.setZpowerStatus7(0);
-            int i=ztraining_facilityService.updatesixportbyid(ztraining_facility);
+            int i=ztraining_facilityService.updateportbyid(ztraining_facility);
 
             Thread t = new Thread(new Runnable(){
 
@@ -243,7 +234,17 @@ public class Ztraining_roomController {
 
     @RequestMapping("/updateprogress")
     @ResponseBody
-    public int updateprogress(HttpServletRequest request){
+    public int updateprogress(HttpServletRequest request,HttpSession session){
+
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
+        Zstudent_login zstudent_login=new Zstudent_login();
+
+        zstudent_login.setZnowtaskname("");
+        zstudent_login.setZtesttime(0);
+        zstudent_login.setZrecognizeIP(ztraining_facility.getZstudentPCIP());
+        zstudent_login.setZcheck("登陆");
+
+        zstudent_loginService.removetat(zstudent_login);  
 
         String ip4=Iputil.getClientIpAddress(request);
 
