@@ -16,4 +16,8 @@ public interface Zstudent_scheduleService {
     public int updatestatebyscheduleid(Zstudent_schedule zstudent_schedule);
 
     public List<String> findstudentidbyscheduleid(String zscheduleID);
+
+    int addzstudentSchedule(Zstudent_schedule zstudent_schedule);
+
+    Zstudent_schedule findbyzstudentIDandzscheduleID(String zscheduleID,String zstudentID);
 }

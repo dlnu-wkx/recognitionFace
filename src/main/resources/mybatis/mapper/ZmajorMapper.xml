@@ -18,6 +18,8 @@
         SELECT * from zmajor
     </select>
 
-
+    <select id="findzidbyzname" resultType="java.lang.String">
+        SELECT zid from zmajor where zname=#{zname}
+    </select>
 
 </mapper>

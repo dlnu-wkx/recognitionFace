@@ -109,20 +109,21 @@ public class TimeStatusController {
     }
 
     /**
-     * 根据设备的id找到相应学生的当前做的内容
-     * 魏凯旋 2020-11-17
-     * @param zid
-     * @return
+     *      * 根据设备的id找到相应学生的当前做的内容
+     *      * 魏凯旋 2020-11-17
+     *      * @param zid
+     *      * @return
      */
     @RequestMapping("/presentProgess")
     @ResponseBody
-    public Ztraining_task_content  presentProgess(String zid) {
+    public String  presentProgess(String zid) {
         //System.err.println("zid ："+zid);
-        List<Ztraining_task_content> ztraining_task_content = ztraining_task_contentService.findpresentProgessByfacilityID(zid);
+        /*List<Ztraining_task_content> ztraining_task_content = ztraining_task_contentService.findpresentProgessByfacilityID(zid);
         if(ztraining_task_content.size()>0){
             return ztraining_task_content.get(0);
-        }
-        return null;
+        }*/
+        String zprogress = ztraining_facilityService.findzprogressByip(zid);
+        return zprogress;
     }
 
     /**

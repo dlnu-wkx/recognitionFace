@@ -21,4 +21,15 @@ public class ZgradeServiceImpl implements ZgradeService {
 
     @Override
     public List<String> findgradebynamelike(String zname){return zgradeMapper.findgradebynamelike(zname);}
+
+    @Override
+    public List<Zgrade> findgradebymajorid(String id) {
+        return zgradeMapper.findgradebymajorid(id);
+    }
+
+    @Override
+    public String findzidbyzname(String zname) {
+        return zgradeMapper.findzidbyzname(zname);
+    }
+
 }

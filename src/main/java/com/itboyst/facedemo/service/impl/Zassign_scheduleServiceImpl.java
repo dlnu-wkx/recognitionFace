@@ -34,4 +34,9 @@ public class Zassign_scheduleServiceImpl implements Zassign_scheduleService {
         return zassign_scheduleMapper.updatecompletetime(zassign_schedule);
     }
 
+    @Override
+    public int insertzassignzschedule(Zassign_schedule zassign_schedule) {
+        return zassign_scheduleMapper.insertzassignzschedule(zassign_schedule);
+    }
+
 }

@@ -38,4 +38,14 @@ public class ZteacherServiceImpl implements ZteacherService {
     public String selectteachernamebyid(String zid){
         return zteacherMapper.selectteachernamebyid(zid);
     }
+
+    @Override
+    public List<Zteacher> findAllteacher() {
+        return zteacherMapper.findAllteacher();
+    }
+
+    @Override
+    public int addtempteacher(Zteacher zteacher) {
+        return zteacherMapper.addtempteacher(zteacher);
+    }
 }

@@ -29,5 +29,8 @@ public interface Zstudent_loginMapper {
 
     int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname);
 
+    //根据路径查找相同的数据删除
+    int deletebyoriginalPictureUrl(String originalPictureUrl);
+
     int removetat(Zstudent_login zstudent_login);
 }

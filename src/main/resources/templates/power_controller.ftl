@@ -6,6 +6,7 @@
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
+    <link href="./layui/css/information_service.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="./layui/css/layui.css">
 
@@ -38,7 +39,7 @@
 
 
 <!--中部电源显示-->
-<div class="p_center" id="p_center">
+<div class="i_center" id="p_center">
 
 </div>
 
@@ -48,15 +49,11 @@
 
 </div>
 <!--右侧按键-->
-<div class="p_right" align="center">
+<div class="i_right" align="center">
     <button onclick="fieldManagement()" class="p_field_management">现场管理</button>
-<br><br>
     <button onclick="informationService()" class="p_information_service">信息查询</button>
-<br><br>
     <button onclick="timeStatus()" class="p_time_status">实时状态</button>
-<br><br>
     <button onclick="informationDelivery()" class="p_information_delivery">信息发布</button>
-    <br><br>
     <button class="p_exit" id="p_button4" onclick="outpower()">退出</button>
 </div>
 <#--<div class="outdiv">

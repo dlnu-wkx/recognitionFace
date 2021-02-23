@@ -6,41 +6,29 @@
     <link href="./layui/css/demo.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
            <link href="./layui/css/information_service.css" rel="stylesheet" type="text/css">
+    <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
+    <style>
+        html,body{
+            height: 97%;
+        }
 
+    </style>
 </head>
 <body  class="body" >
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >信息查询（智能搜索）</font></div>
-    <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
+    <div class="leftfont">信息查询（智能搜索）</div>
+    <div class="rightfont">安浩智能学习工厂</div>
 </div>
 
 
-<!--中部电源显示-->
-<div class="p_center">
-</div>
-
-
-<!--右侧按键-->
-<div class="i_right" align="center">
-    <button onclick="fieldManagement()" class="i_field_management">现场管理</button>
-    <br><br>
-    <button class="i_information_service">信息查询</button>
-    <br><br>
-    <button onclick="timeStatus()" class="i_time_status">实时状态</button>
-    <br><br>
-    <button onclick="informationDelivery()"class="i_information_delivery">信息发布</button>
-    <br><br>
-    <button class="i_exit" id="exit" onclick="outpower()">退出</button>
-
-</div>
-
+<div style="width: 100%;height: 100%">
 <!--中间信息查询-->
-<div class="i_center" >
-   <div class="i_service">
+   <div class="i_center" >
+      <div class="i_service">
         <font size="5">人员：</font> &emsp;&emsp;&emsp;&emsp;&emsp; <input type="text"   id="i_name" class="i_text"><br><br><br><br>
         <font size="5">事件：</font> &emsp;&emsp;&emsp;&emsp;&emsp;
         <select class="i_text3" id="selecttype">
@@ -51,15 +39,24 @@
            <option value="请假/销假">请假/销假</option>
             <option value="测试成绩">测试成绩</option>
         </select><br><br><br><br>
-   </div>
-    <div class="i_timechose">
+      </div>
+      <div class="i_timechose">
        <font size="5" class="i_font">时间：</font> <input class="i_text4" id="startday" type="date" /><input class="i_text5" id="starttime" type="time" />
        <input class="i_text6" id="endday" type="date" /><input class="i_text7" id="endtime" type="time" />
        <br><br><br><br>
        <button class="i_button" onclick="selectmes()">查询</button>
+      </div>
+    </div>
+    <!--右侧按键-->
+    <div class="i_right" align="center">
+        <button onclick="fieldManagement()" class="f_field_management">现场管理</button>
+        <button id="serviceid" class="f_field_service">信息查询</button>
+        <button onclick="timeStatus()" class="f_field_status">实时状态</button>
+        <button onclick="informationDelivery()"class="f_field_delivery">信息发布</button>
+        <button class="f_field_exit" id="exit" onclick="outpower()">退出系统</button>
+
     </div>
 </div>
-
 <!--模糊查询框-->
 <div id="i_namelike" class="i_namelike" hidden>
 
@@ -86,6 +83,12 @@
 </body>
 
 <script>
+    //页面加载完成后当前页面的按钮显示橘色
+    window.onLoad=aaa();
+        function aaa(){
+        var servicebutton = document.getElementById("serviceid");
+        servicebutton.style.backgroundColor="#ED7D31"
+    }
     function selectmes(){
         //alert(0)
         var i_name=$("#i_name").val()

@@ -8,6 +8,7 @@
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/fixed_task.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./layui/css/layui.css">
+    <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
@@ -32,8 +33,8 @@
 
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >任务发布</font></div>
-    <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
+    <div class="leftfont">任务发布</div>
+    <div class="rightfont">安浩智能学习工厂</div>
 </div>
 
 
@@ -41,15 +42,11 @@
 
 <!--右侧按键-->
 <div class="d_right" align="center">
-    <button  onclick="fieldManagement()" class="d_field_management">现场管理</button>
-    <br><br>
-    <button onclick="informationService()" class="d_information_service">信息查询</button>
-    <br><br>
-    <button onclick="timeStatus()"class="d_time_status">实时状态</button>
-    <br><br>
-    <button class="d_information_delivery" onclick="outmessage()">信息发布</button>
-    <br><br>
-    <button onclick="outpower()" id="exit" class="d_exit">退出</button>
+    <button  onclick="fieldManagement()" class="f_field_management">现场管理</button>
+    <button onclick="informationService()" class="f_field_service">信息查询</button>
+    <button onclick="timeStatus()"class="f_field_status">实时状态</button>
+    <button class="f_field_delivery" id="deliveryid" onclick="outmessage()">信息发布</button>
+    <button onclick="outpower()" id="exit" class="f_field_exit">退出系统</button>
 </div>
 
 <!--左侧人员信息-->
@@ -103,6 +100,12 @@
 </body>
 
 <script>
+
+    window.onLoad=aaa();
+    function aaa(){
+        var servicebutton = document.getElementById("deliveryid");
+        servicebutton.style.backgroundColor="#ED7D31"
+    }
 
     function outpower(){
         $("#popup").show()

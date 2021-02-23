@@ -40,4 +40,14 @@ public class Zstudent_scheduleServiceImpl implements Zstudent_scheduleService {
         return zstudent_scheduleMapper.findstudentidbyscheduleid(zscheduleID);
     }
 
+    @Override
+    public int addzstudentSchedule(Zstudent_schedule zstudent_schedule) {
+        return zstudent_scheduleMapper.addzstudentSchedule(zstudent_schedule);
+    }
+
+    @Override
+    public Zstudent_schedule findbyzstudentIDandzscheduleID(String zscheduleID, String zstudentID) {
+        return zstudent_scheduleMapper.findbyzstudentIDandzscheduleID(zscheduleID,zstudentID);
+    }
+
 }

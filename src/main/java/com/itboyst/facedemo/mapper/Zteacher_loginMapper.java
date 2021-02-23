@@ -10,7 +10,7 @@ public interface Zteacher_loginMapper {
 
     //插入从摄像头识别的老师
 
-    int delteacher(String zteacherID);
+    int delteacher(String originalPictureUrl);
 
     int insertteacher(Zteacher_login zteacher_login);
 }

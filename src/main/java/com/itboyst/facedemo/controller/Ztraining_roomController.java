@@ -4,7 +4,11 @@ import com.itboyst.facedemo.base.Iputil;
 import com.itboyst.facedemo.base.Powerutil;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.*;
-import org.bytedeco.javacpp.presets.opencv_core;
+import com.itboyst.facedemo.dto.*;
+import com.itboyst.facedemo.service.TimeStatusStudentService;
+import com.itboyst.facedemo.service.Ztraining_facilityService;
+import com.itboyst.facedemo.service.Ztraining_roomService;
+import com.itboyst.facedemo.service.Ztraining_taskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +50,8 @@ public class Ztraining_roomController {
         return zstudent_loginService.findtatbyip(zid);
     }
 
+    @Autowired
+    Ztraining_taskService ztraining_taskService;
 
     /*
    勾选开启安全测试
@@ -91,6 +97,12 @@ public class Ztraining_roomController {
     @ResponseBody
     public List<ztraining_room> findalltrainroom(){
         return ztraining_roomService.findallztrainroom();
+    }
+
+    @RequestMapping("/findalltraingtask")
+    @ResponseBody
+    public List<Ztraining_task> findalltraingtask(){
+        return ztraining_taskService.findalltask();
     }
 
     @RequestMapping("/findfacilitybyrid")
@@ -457,5 +469,19 @@ public class Ztraining_roomController {
         }
         return p;
     }
+
+    @RequestMapping("/exitsystem")
+    @ResponseBody
+    public void exitsystem(HttpSession session){
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
+        String zstudentPCIP="";
+        if(null!=ztraining_facility){
+            zstudentPCIP =ztraining_facility.getZstudentPCIP();
+        }
+
+        int i =ztraining_facilityService.updatezprogressbyip(zstudentPCIP,"退出系统");
+
+    }
+
 
 }

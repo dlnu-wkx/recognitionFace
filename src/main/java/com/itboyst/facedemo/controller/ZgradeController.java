@@ -1,6 +1,7 @@
 package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.Zgrade;
+import com.itboyst.facedemo.dto.Zstudent;
 import com.itboyst.facedemo.service.ZgradeService;
 import com.itboyst.facedemo.service.ZstudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,27 @@ public class ZgradeController {
         //System.out.println(listone);
 
         return listone;
+
+    }
+
+    @RequestMapping("/findAllgradebyzmajorid")
+    @ResponseBody
+    public List<Zgrade> findAllgradebyzmajorid(String zid){
+
+        List<Zgrade> listone =zgradeService.findgradebymajorid(zid);
+        //System.out.println(listone);
+
+        return listone;
+
+    }
+
+    @RequestMapping("/findAllstudentbygradeid")
+    @ResponseBody
+    public List<Zstudent> findAllstudentbygradeid(String zid){
+
+        List<Zstudent> zstudentList =zstudentService.findAllstudentbygradeid(zid);
+
+        return zstudentList;
 
     }
 

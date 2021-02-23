@@ -14,4 +14,6 @@ public interface Zassign_scheduleMapper {
     public int insertfixedtask(String zid,String zscheduleID,String zstudentID,String ztrainingtaskID,Timestamp zpublishtime);
 
     public int updatecompletetime(Zassign_schedule zassign_schedule);
+
+    int insertzassignzschedule(Zassign_schedule zassign_schedule);
 }

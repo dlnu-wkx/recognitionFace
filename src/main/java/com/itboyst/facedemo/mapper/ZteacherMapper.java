@@ -18,4 +18,8 @@ public interface ZteacherMapper {
     Zteacher findteacherByzidentity(String zidentity);
 
     public String selectteachernamebyid(String zid);
+
+    List<Zteacher> findAllteacher();
+
+    int addtempteacher(Zteacher zteacher);
 }

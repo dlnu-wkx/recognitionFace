@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ZmajorService {
     public List<Zmajor> findallmajor();
+
+    String findzidbyzname(String zname);
 }

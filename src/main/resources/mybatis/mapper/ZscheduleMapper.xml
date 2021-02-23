@@ -30,5 +30,13 @@
         update zschedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zid=#{zid} and  zstudentID=(select zstudentID from zstudent_login where zrecognizeIP =(select zstudentPCIP from ztraining_facility where zid =#{zid}));
     </update>
 
+    <select id="findbytime" resultType="com.itboyst.facedemo.dto.Zschedule">
+        select *  from zschedule where #{zstartdate} between zstartdate and zenddate
+    </select>
+
+    <insert id="addzschedule" parameterType="com.itboyst.facedemo.dto.Zschedule">
+            insert into zschedule (zid,zcourseID,ztrainingroomID,zstartdate,zenddate)
+            values (#{zid},#{zcourseID},#{ztrainingroomID},#{zstartdate},#{zenddate})
+    </insert>
 
 </mapper>

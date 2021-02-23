@@ -35,6 +35,10 @@
             INSERT INTO zteacher (zid, zmajorID, zidentity, zpass ,zname, zsex,zphone,zfaceinfoID,zphoto) VALUES(#{zid}, #{zmajorID}, #{zidentity}, #{zpass} ,#{zname}, #{zsex},#{zphone},#{zfaceinfoID},#{zphoto});
     </insert>
 
+    <insert id="addtempteacher" parameterType="com.itboyst.facedemo.dto.Zteacher" >
+            INSERT INTO zteacher (zid, zmajorID, zauthorityID, zidentity, zpass ,zname, zsex,zphone,zfaceinfoID,zphoto) VALUES(#{zid}, #{zmajorID},#{zauthorityID}, #{zidentity}, #{zpass} ,#{zname}, #{zsex},#{zphone},#{zfaceinfoID},#{zphoto});
+    </insert>
+
     <update id="updateteacher" parameterType="com.itboyst.facedemo.dto.Zteacher" >
             UPDATE zteahcer SET zmajorID=#{zmajorID} ,zname=#{zname},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto} WHERE zidentity=#{zidentity}
     </update>
@@ -42,6 +46,11 @@
     <select id="findteacherByzidentity" resultType="com.itboyst.facedemo.dto.Zteacher">
 
             SELECT * FROM zteacher WHERE zidentity=#{zidentity};
+    </select>
+
+    <select id="findAllteacher" resultType="com.itboyst.facedemo.dto.Zteacher">
+        select * from zteacher
+
     </select>
 
 </mapper>

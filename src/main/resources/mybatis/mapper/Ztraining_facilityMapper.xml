@@ -82,6 +82,9 @@
         update ztraining_facility set zprogress = #{zprogress} where zstudentPCIP = #{zstudentPCIP}
     </update>
 
+    <select id="findzprogressByip" resultType="java.lang.String">
+        select zprogress from ztraining_facility WHERE zid=#{zid}
+    </select>
 
     <update id="updateallfacility" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zpowerstatus = #{zpowerstatus} where ztrainingroomID = #{ztrainingroomID}

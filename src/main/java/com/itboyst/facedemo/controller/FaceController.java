@@ -97,6 +97,10 @@ public class FaceController {
 
     @Autowired
     Zstudent_loginService zstudentLoginService;
+
+    @Autowired
+    ZtempuserService ztempuserService;
+
     /**
      * 跳转测试
      * @return
@@ -444,7 +448,7 @@ public class FaceController {
         }
         //人脸比对，获取比对结果
         List<FaceUserInfo> userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);
-        System.out.println("符合条件的人脸"+userFaceInfoList.size());
+        System.out.println("学生端符合条件的人脸"+userFaceInfoList.size());
         if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
             FaceUserInfo faceUserInfo = userFaceInfoList.get(0);
             //获取目标文件路径以备上传照片使用
@@ -515,7 +519,6 @@ public class FaceController {
             InetAddress addr = InetAddress.getLocalHost();
 
             String ip4=Iputil.getClientIpAddress(request);
-
             int b=ztrinfser.updatezprogressbyip(ip4,"登陆");
 
             zsl.setZcheck("登陆");
@@ -558,22 +561,49 @@ public class FaceController {
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
             System.out.println(zsc);
 
-            zsl.setZscheduleID(zsc.getZscheduleID());
+            if(!zstudent.getZidentity().contains("L")){
+                zsl.setZscheduleID(zsc.getZscheduleID());
+            }
             zsl.setZstatus("正常");
+            //zsc为空说明该学生该时间段内没有课程并且不是临时学生
+            if (zsc==null && !zstudent.getZidentity().contains("L")) {
 
+                //该学生已经注册但是该学生现在这个时间还没有课程所以添加到临时人员表中
+                Ztempuser ztempuser = new Ztempuser();
+                String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
+                ztempuser.setZid(uuid1);
+                ztempuser.setZlogintime(timestamp);
+                ztempuser.setZtype("学生");
+                ztempuser.setOriginalPictureUrl(zstudent.getZphoto());
+                ztempuser.setZrecognizeIP(ip4);
+                ztempuser.setZstatus("申请中");
+                int a = ztempuserService.insertoneztempuser(ztempuser);
+                //当为临时人员时没有课也能进入
+                return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
+            }
+            //临时学生要查看是否是第二次登录如果是就删除临时信息并且不让登录
+
+            if(zstudent.getZidentity().contains("L")){//临时学生进入
+                //获取临时学生登录的次数
+                List<Zstudent_journal> zstudent_journals = zstudentJournalService.findstudentjournaltime(zstudent.getZid());
+                if(zstudent_journals.size()>0){
+                    //在人脸表中修改face_feature为null
+                    int m =userFaceInfoService.updatefacefeature(zstudent.getZidentity());
+                    return Results.newFailedResult(ErrorCodeEnum.TEMPUSER_NOT_LOGIN_TWO);
+                }
+
+            }
+            session.setAttribute("zstudent_cookie",zsc);
+            // System.out.println(session.getAttribute("zstudent_cookie"));
             //插入学生登陆信息
             int  i=zstudent_loginService.insertnowmessage(zsl);
 
-            if (zsc==null)return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
 
-            session.setAttribute("zstudent_cookie",zsc);
-           // System.out.println(session.getAttribute("zstudent_cookie"));
-
-            Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
+            /*Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 
             zselecttest.setMaxAge(86400);
             //存cookie
-            response.addCookie(zselecttest);
+            response.addCookie(zselecttest);*/
 
 
             //插入日志信息
@@ -608,6 +638,38 @@ public class FaceController {
 
 
         }
+        //学生端识别不出来的人默认当成临时人员
+        //1.存到虹软的表中
+        UserFaceInfo userFaceInfo = new UserFaceInfo();
+        userFaceInfo.setGroupId(groupId);
+        userFaceInfo.setFaceFeature(bytes);
+        String path = "D:\\SchoolTrainFiles\\FacePic\\student\\" + System.currentTimeMillis() + ".jpg";
+        //从人脸表中查找自增键的值
+        int num = userFaceInfoService.findAll();
+        int number = num;
+        String face_id = "L"+number;
+        //用学号或工号与face表相连
+        userFaceInfo.setFaceId(face_id);
+        userFaceInfo.setPath(path);
+        int e= userFaceInfoService.findcountfaceid(face_id);
+        //通过工号查找到没有记录则添加一条记录;
+        if (e<=0){
+            userFaceInfoService.insertSelective(userFaceInfo);
+            GenerateImage(file,path);
+        }
+        //2.向临时表中添加一条记录临时学生数据
+        Ztempuser ztempuser = new Ztempuser();
+        String uuid1 = UUID.randomUUID().toString().replaceAll("-","");
+        ztempuser.setZid(uuid1);
+        Timestamp timestamp =new Timestamp(System.currentTimeMillis());
+        ztempuser.setZlogintime(timestamp);
+        ztempuser.setZtype("学生");
+        ztempuser.setOriginalPictureUrl(path);
+        String ip4=Iputil.getClientIpAddress(request);
+        ztempuser.setZrecognizeIP(ip4);
+        ztempuser.setZstatus("申请中");
+        int a  = ztempuserService.insertoneztempuser(ztempuser);
+
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }
 
@@ -706,7 +768,7 @@ public class FaceController {
    //教师登陆
     @RequestMapping(value = "/faceTeacherSearch", method = RequestMethod.POST)
     @ResponseBody
-    public Result<FaceSearchResDto> faceTeacherSearch(String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
+    public Result<FaceSearchResDto> faceTeacherSearch(HttpServletRequest request,String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session) throws Exception {
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -755,8 +817,26 @@ public class FaceController {
                 int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
                 //教师信息、课程信息和实训室信息
                 Zteacher_cookie zteacher_cookie=zteacher_cookieSerice.findbyfaceid(faceid);
-                if(null==zteacher_cookie){
+                //注释掉没有课程教师登录不了的问题
+                /*if(null==zteacher_cookie){
                     return Results.newFailedResult(ErrorCodeEnum.NO_IS_TEACHER);
+                }*/
+                //临时人员不能登录两次
+                String face_id =userFaceInfoService.selectfaceidbyfpath(faceUserInfo.getPath());
+                Zteacher  teacher  = zteacherService.findteacherByzidentity(face_id);
+                //如果不是教师则无法登录
+                if(null == teacher){
+                    return Results.newFailedResult(ErrorCodeEnum.NOT_IS_TEACHER);
+                }
+                //临时人员第二次登录时则自动删除人脸表中信息，需要重新注册
+                if(face_id.contains("L")){
+                    List<Zteacher_journal>  list = zteacher_journalService.findteacherlogin(teacher.getZid());
+                    if(list.size()>0){
+                        //在人脸表中修改face_feature为null
+                        int a = userFaceInfoService.updatefacefeature(face_id);
+                        return Results.newFailedResult(ErrorCodeEnum.TEMPUSER_NOT_LOGIN_TWO);
+                    }
+
                 }
                 session.setAttribute("zteacher_cookie",zteacher_cookie);
                 System.out.println(session.getAttribute("zteacher_cookie"));
@@ -768,8 +848,8 @@ public class FaceController {
                 zteacher_journal.setZtype("登陆系统");
                 Timestamp timestamp=new Timestamp(System.currentTimeMillis());
                 zteacher_journal.setZoperatedate(timestamp);
-                int i= zteacher_journalService.inserteacherjournal(zteacher_journal,faceSearchResDto.getName());
-
+                zteacher_journal.setZteacherID(teacher.getZid());
+                int i= zteacher_journalService.inserteacherjournal(zteacher_journal);
 
 
                 //将验证信息保存到Cookie
@@ -790,6 +870,38 @@ public class FaceController {
                 return Results.newSuccessResult(faceSearchResDto);
 
         }
+        //当人脸不匹配是默认为临时人员，如果识别的人是临时人员则首先在虹软表中保存，然后到临时表中保存
+        UserFaceInfo userFaceInfo = new UserFaceInfo();
+        userFaceInfo.setGroupId(groupId);
+        userFaceInfo.setFaceFeature(bytes);
+        //从人脸表中查找自增键的值
+        int num = userFaceInfoService.findAll();
+        int number = num;
+        String face_id = "L"+number;
+        userFaceInfo.setFaceId(face_id);
+        String path = "D:\\SchoolTrainFiles\\FacePic\\teacher\\" + System.currentTimeMillis() + ".jpg";
+        userFaceInfo.setPath(path);
+        int e=userFaceInfoService.findcountfaceid(face_id);
+
+        //通过工号查找到没有记录则添加一条记录;
+        if (e<=0){
+            userFaceInfoService.insertSelective(userFaceInfo);
+            //把照片存储到电脑上
+            GenerateImage(file,path);
+        }
+        //向临时表中添加临时人员
+        Ztempuser ztempuser = new Ztempuser();
+        String uuid1 = UUID.randomUUID().toString().replaceAll("-","");
+        ztempuser.setZid(uuid1);
+        Timestamp timestamp =new Timestamp(System.currentTimeMillis());
+        ztempuser.setZlogintime(timestamp);
+        ztempuser.setZtype("教师");
+        ztempuser.setOriginalPictureUrl(path);
+        String ip4=Iputil.getClientIpAddress(request);
+        ztempuser.setZrecognizeIP(ip4);
+        ztempuser.setZstatus("申请中");
+        int a  = ztempuserService.insertoneztempuser(ztempuser);
+
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }
 

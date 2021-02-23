@@ -13,4 +13,6 @@ public interface InspectSitStudentService {
     List<InspectSitStudent> findStudentByDateAndTrainingIdASC(String ztrainingroomID, Timestamp timestamp,String zcheck);
     //查找所有老师的信息
     List<InspectSitTeacher> findTeacherByDateAndTrainingIdASC(String camerasIP,Timestamp timestamp,String zcheck);
+    //查找所有教师并去重
+    List<InspectSitTeacher> findTeacherByDateAndTrainingIDdistinct(String camerasIP, Timestamp timestamp,String zcheck);
 }

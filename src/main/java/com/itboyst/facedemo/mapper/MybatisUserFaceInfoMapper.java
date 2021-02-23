@@ -30,4 +30,12 @@ public interface MybatisUserFaceInfoMapper {
     public int findidbyfaceid(String face_id);
 
     String findfopathByfaceid(int id);
+
+    int findAll();
+
+    String  selectfaceidbyfpath(String fpath);
+
+    int deltempuser(String face_id);
+
+    int updatefacefeature(String face_id);
 }

@@ -22,6 +22,12 @@
        select zname from zgrade where zname like CONCAT('%',#{zname},'%')
     </select>
 
+    <select id="findgradebymajorid" resultType="com.itboyst.facedemo.dto.Zgrade">
+        select * from zgrade where zmajorID=#{id}
+    </select>
 
+    <select id="findzidbyzname" resultType="java.lang.String">
+        select zid from zgrade where zname=#{zname}
+    </select>
 
 </mapper>

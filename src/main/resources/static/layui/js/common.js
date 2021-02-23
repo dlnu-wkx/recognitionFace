@@ -48,6 +48,17 @@ function leaveclass() {
 
         }
     });
+    //学生退出时改变实训室的zprogress
+    $.ajax({
+        type:"post",
+        url:"/exitsystem",
+        data:{},
+        success:function(data){
+
+        }
+    })
+    //学生退出日志
+
 
 
     location.href="/student"
@@ -261,6 +272,7 @@ function OpenOTimer(a) {
         var mytime=myDate.getTime();
         timer = setInterval(function(){
             showRecognitionFace(mytime,zcheck,filterjieshiLoop)
+            findAllLoginpeople(mytime,zcheck)
         }, 3000)
 
   /*  alert("执行完了start的功能")
@@ -296,17 +308,17 @@ function showStudentStatus(){
         success: function (data) {
             if(data.length <7){
                 center.empty();
-                str+="<table class='t_table' id='p_bbox'>"
+                str+="<table class='t_table' align='center' id='p_bbox'>"
                 str+=" <tr>";
                 //var类型，不能写成int
                 for(var i=0; i<data.length;i++){
                     str+=   "<th>";
                     str+=   "<div class='t_button1' id='"+data[i].zid+"' onclick=''>";
                     //str+="<th><button class='t_button1'onclick='diagram(\""+data[i].zid+"\")' >"+data[i].zidentity+"</button></th>";
-                    str+="<div class='t_message'  align='center' id='t_message"+data[i].zid+"'>";
+                    str+="<div class='t_message'   id='t_message"+data[i].zid+"'>";
                     str+=  "<button class='t_button2' id='button"+data[i].zid+"'></button>";
-                    str+= "<div class='t_id' align='center' id='machineNumber"+data[i].zid+"'>"+data[i].zidentity+"</div>";
-                    str+= "<div class='t_name' align='center' id='name"+data[i].zid+"'></div>";
+                    str+= "<div class='t_id'  id='machineNumber"+data[i].zid+"'>"+data[i].zidentity+"</div>";
+                    str+= "<div class='t_name'  id='name"+data[i].zid+"'></div>";
                     str+=   "</div>";
                     str+=   "<div class='t_student1'id='student"+data[i].zid+"'>";
                     str+=   "</div>";
@@ -325,19 +337,6 @@ function showStudentStatus(){
                     findStudentName(data[i].zid);
 
 
-                    //后面使用
-                   /* str+="<th><button class='t_button1'onclick='diagram(\""+data[i].zid+"\")' >"+data[i].zidentity+"</button></th>";
-                    str+="<div class='t_message' hidden align='center' id='t_message\""+data[i].zid+"\"'>";
-                    str+=  "<button class='t_button2' id='button\""+data[i].zid+"\"'></button>";
-                    str+= "<div class='t_id' align='center' id='machineNumber"+data[i].zid+"'><font size='3'></font></div>";
-                    str+= "<div class='t_name' align='center' id='name"+data[i].zid+"'><font size='3'>当前人员：</font></div>";
-                    str+=  "<div class='t_student' align='center'><font size='3'>电脑屏幕</font></div>";
-                    str+= "<div class='t_computer' align='center'><font size='3'>摄像头</font></div>";
-                    str+= "<input type='text' class='t_progress' id='progress"+data[i].zid+"' value='当前进度:'>";
-                    str+= "<input type='text' class='t_staets' id='status"+data[i].zid+"' value='状态信息 :'>";
-                    str+= "<button class='t_button3' onclick='closemessage(\""+data[i].zid+"\")'>关闭</button>";
-                    str+=   "</div>";*/
-
                 }
                 str+="</tr>";
                 str+="</table>";
@@ -345,7 +344,7 @@ function showStudentStatus(){
             }else {
                 center.empty();
                 var j=0;
-                str+="<table class='t_table' id='p_bbox'>"
+                str+="<table class='t_table' align='center' id='p_bbox'>"
 
                 for (var i=0;i<(data.length/8+1);i++){
                                 /*传值uuid时js需要转换下\""+data[j].zid+"\"*/
@@ -355,10 +354,10 @@ function showStudentStatus(){
                         str+=   "<th>";
                         str+=   "<div class='t_button1' onclick='diagram(\""+data[j].zid+"\")'>";
                         //str+="<th><button class='t_button1' >"+data[j].zidentity+"</button></th>";
-                        str+="<div class='t_message'  align='center' id='t_message"+data[j].zid+"'>";
+                        str+="<div class='t_message'   id='t_message"+data[j].zid+"'>";
                         str+=  "<button class='t_button2' id='button"+data[j].zid+"'></button>";
-                        str+= "<div class='t_id' align='center' id='machineNumber"+data[j].zid+"'>"+data[j].zidentity+"</div>";
-                        str+= "<div class='t_name' align='center' id='name"+data[j].zid+"'></div>";
+                        str+= "<div class='t_id'  id='machineNumber"+data[j].zid+"'>"+data[j].zidentity+"</div>";
+                        str+= "<div class='t_name'  id='name"+data[j].zid+"'></div>";
                         str+=   "</div>";
                         str+=   "<div class='t_student1' id='student"+data[j].zid+"'>";
                         str+=   "</div>";
@@ -504,10 +503,10 @@ function presentProgess(zid){
         url: '/presentProgess',
         data:  {"zid":zid} ,
         success: function (data){
-            if(data!=""){
+            if(data=="实训"){
                 $("#student"+zid).css("background-color","rgba(11,255,10)");
                 $("#student"+zid).append("实训中")
-            }else{
+            }else if (data=="安全测试") {
                 $("#student"+zid).css("background-color","rgba(237,125,49)");
                 $("#student"+zid).append("测试中")
             }
@@ -536,33 +535,8 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
         async: false,
         success:function (data) {
             if(data!=null){
-                /*if(data.length>5){
-                    $("#identifyAreas").empty();
-                    for(var i=0;i<5;i++){
-                        content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zstudentName+data[i].zgradeName+"</div>";
-                        $("#identifyAreas").append(content);
-                    }
-                }else {
-                    $("#identifyAreas").empty();
-                    //alert("data :")
-                    for(var i=0;i<data.length;i++){
-                        content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zstudentName+data[i].zgradeName+"</div>";
-                        $("#identifyAreas").append(content);
-                    }
-                }*/
-                //直接在左侧下方显示已经识别的人
-                /*var data1 =data
-                data1.sort(function(a,b){
-                    return b.zrecognizetime-a.zrecognizetime
-                })
-                findAllLoginpeople(mytime);
-                $("#identifyAreas").empty();
-                //alert("data :")
-                for(var i=0;i<data1.length;i++){
-                    content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data1[i].zstudentName+data1[i].zgradeName+"</div>";
-                    $("#identifyAreas").append(content);
-                }*/
-                findAllLoginpeople(mytime,zcheck);
+
+                /*findAllLoginpeople(mytime,zcheck);*/
                  if(data.length==0){
                      $("#left").hide();
                      $("#middle").hide();
@@ -614,15 +588,15 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                      $("#left").empty();
                      $("#middle").empty();
                      $("#right").empty();
-                     var  zName1 =data[data.length-1].zname;
-                     var data1 = formatterDatetimeLocalToApprication(data[data.length-1].zrecognizetime);
+                     var  zName1 =data[0].zname;
+                     var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
 
                      $("#left").append(zName1+"("+data1+")");
-                     var  zName2 =data[data.length-2].zname;
-                     var data2 = formatterDatetimeLocalToApprication(data[data.length-2].zrecognizetime);
+                     var  zName2 =data[1].zname;
+                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
                      $("#middle").append(zName2+"("+data2+")");
-                     var  zName3 =data[data.length-3].zname;
-                     var data3 = formatterDatetimeLocalToApprication(data[data.length-3].zrecognizetime)
+                     var  zName3 =data[2].zname;
+                     var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
                      $("#right").append(zName3+"("+data3+")")
                      //$("#mainBody").hide();
                      $("#left").show();
@@ -631,13 +605,13 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                  }
 
 
-             if(data.length>0){//不大于三个则显示现有的个数
+             if(data.length>3){//不大于三个则显示现有的个数
                  var str="";
                  var center=$("#mainBody");
                  center.empty();
                  var j=0;
                  str+="<table class='fm_table1' id='p_bbox'>";
-                 var arr =data
+                 var arr =data.slice(3,1000);
                  //var arr=data.slice(3,data.length);
                  for (var i=0;i<(arr.length/4+1);i++) {
 
@@ -679,16 +653,32 @@ function findAllLoginpeople(mytime,zcheck) {
             if(""!=data){
                 $("#identifyAreas").empty();
                 //显示最后一个识别成功的人的图片
-                console.log(data)
-                if(""!=data[data.length-1].originalPictureUrl){
-                    var str =data[data.length-1].originalPictureUrl;
-                    var path =str.substring(36);
-                    document.getElementById("img").src=path;
+                if(""!=data[0].originalPictureUrl){
+                    var str =data[0].originalPictureUrl;
+                    var path =str.substring(23);
+                    document.getElementById("img").src="http://localhost:81"+path;
                 }
-                for(var i=0;i<data.length;i++){
-                    content =" <div style='font-size: 20px;width: 80%;margin-top: 10px'>"+data[i].zname+data[i].zgradeName+"</div>";
-                    $("#identifyAreas").append(content);
+                //只显示最后五个数据
+                if(data.length>5){
+                    for(var i=0;i<5;i++){
+                        if(data[i].zgradeName=="陌生人"){
+                            content =" <div style='font-size: 30px;width: 80%;margin-top: 15px'>"+data[i].zname+"</div>";
+                        }else{
+                            content =" <div style='font-size: 30px;width: 80%;margin-top: 15px'>"+data[i].zname+"&emsp;"+data[i].zgradeName+"</div>";
+                        }
+                        $("#identifyAreas").append(content);
+                    }
+                }else {
+                    for(var i=0;i<data.length;i++){
+                        if(data[i].zgradeName=="陌生人"){
+                            content =" <div style='font-size: 30px;width: 80%;margin-top: 15px'>"+data[i].zname+"</div>";
+                        }else{
+                            content =" <div style='font-size: 30px;width: 80%;margin-top: 15px'>"+data[i].zname+"&emsp;"+data[i].zgradeName+"</div>";
+                        }
+                        $("#identifyAreas").append(content);
+                    }
                 }
+
             }else{//如果在识别时间段内一个都没识别成功则为空
                 $("#identifyAreas").empty();
             }

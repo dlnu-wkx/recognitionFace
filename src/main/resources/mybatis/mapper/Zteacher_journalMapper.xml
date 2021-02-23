@@ -14,9 +14,12 @@
 
 
     <insert id="insertteacherjournal" parameterType="com.itboyst.facedemo.dto.Zteacher_journal" >
-                INSERT INTO zteacher_journal (zid,zteacherID,ztype,zoperatedate, zoperatecontent) VALUES(#{zid}, (select zid from zteacher where zname=#{zname}),#{ztype},#{zoperatedate}, NULL);
+                INSERT INTO zteacher_journal (zid,zteacherID,ztype,zoperatedate, zoperatecontent) VALUES(#{zid},#{zteacherID},#{ztype},#{zoperatedate}, NULL);
      </insert>
 
 
+    <select id="findteacherlogin" resultType="com.itboyst.facedemo.dto.Zteacher_journal">
+        select * from zteacher_journal where zteacherID=#{zteacherID}
+    </select>
 
 </mapper>

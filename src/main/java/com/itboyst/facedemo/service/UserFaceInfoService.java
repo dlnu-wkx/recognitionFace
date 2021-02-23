@@ -18,4 +18,12 @@ public interface UserFaceInfoService {
     public int findcountfaceid(String face_id);
 
     public int findidbyfaceid(String face_id);
+
+    int findAll();
+
+    String  selectfaceidbyfpath(String fpath);
+
+    int deltempuser(String face_id);
+
+    int updatefacefeature(String face_id);
 }

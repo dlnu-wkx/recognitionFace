@@ -35,4 +35,24 @@ public class UserFaceInfoServiceImpl implements UserFaceInfoService {
 
     public int findidbyfaceid(String face_id){return userFaceInfoMapper.findidbyfaceid(face_id); }
 
+    @Override
+    public int findAll() {
+        return userFaceInfoMapper.findAll();
+    }
+
+    @Override
+    public String selectfaceidbyfpath(String fpath) {
+        return userFaceInfoMapper.selectfaceidbyfpath(fpath);
+    }
+
+    @Override
+    public int deltempuser(String face_id) {
+        return userFaceInfoMapper.deltempuser(face_id);
+    }
+
+    @Override
+    public int updatefacefeature(String face_id) {
+        return userFaceInfoMapper.updatefacefeature(face_id);
+    }
+
 }

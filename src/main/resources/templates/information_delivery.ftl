@@ -7,19 +7,14 @@
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_delivery.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./layui/css/layui.css">
+    <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/layui.js"></script>
     <script src="./layui/js/common.js"></script>
-    <style>
-        .p_bbbox th{
-            width: 10%;
-            height: 15%;
-        }
-    </style>
 </head>
-<body  class="body" >
+<body  class="body_delivery" >
 
 <!--警示消息-->
 <div>
@@ -36,8 +31,8 @@
 
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >信息发送</font></div>
-    <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
+    <div class="leftfont">信息发送</div>
+    <div class="rightfont">安浩智能学习工厂</div>
 </div>
 
 
@@ -54,15 +49,11 @@
 </div>
 <!--右侧按键-->
 <div class="d_right" align="center">
-    <button  onclick="fieldManagement()" class="d_field_management">现场管理</button>
-    <br><br>
-    <button onclick="informationService()" class="d_information_service">信息查询</button>
-    <br><br>
-    <button onclick="timeStatus()"class="d_time_status">实时状态</button>
-    <br><br>
-    <button class="d_information_delivery" onclick="informationDelivery()">信息发布</button>
-    <br><br>
-    <button onclick="outpower()" id="exit" class="d_exit">退出</button>
+    <button  onclick="fieldManagement()" class="f_field_management">现场管理</button>
+    <button onclick="informationService()" class="f_field_service">信息查询</button>
+    <button onclick="timeStatus()"class="f_field_status">实时状态</button>
+    <button class="f_field_delivery" id="deliveryid" onclick="informationDelivery()">信息发布</button>
+    <button onclick="outpower()" id="exit" class="f_field_exit">退出系统</button>
 </div>
 
 <!--下方按键及内容-->
@@ -106,7 +97,11 @@
 </body>
 
 <script>
-
+    window.onLoad=aaa();
+    function aaa(){
+        var servicebutton = document.getElementById("deliveryid");
+        servicebutton.style.backgroundColor="#ED7D31"
+    }
     function outpower(){
         $("#popup").show()
     }
@@ -148,7 +143,9 @@
 
                 if(data.length <7){
                     str+="<table class='p_bbbox' id='p_bbox'>"
-                    str+=" <tr>";
+                    str+="<tr style='height:0%;'><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th></tr>";
+                    str+=" <tr style='height: 40%'>";
+
                     //var类型，不能写成int
                     for(var i=0; i<data.length;i++){
 
@@ -160,25 +157,26 @@
                                 async: false,
                                 success: function (data2) {
                                     if (data2){
-                                        str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'>"+data2+"<input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                        str+="<th ><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'>"+data2+"<input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
                                     }else{
-                                        str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
+                                        str+="<th ><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_sbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox'onclick='addchoice(this)' class='p_check'/></div></th>";
                                     }
                                 }
                             })
                             //   findHaveStudent(data[i].zid)
                         }else if (data[i].zpowerstatus=="未开机"){
-                            str+="<th><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
+                            str+="<th ><div class='power_bbox'  align='center'> <font size='3'>"+data[i].zidentity+"</font><div id='div"+data[i].zid+"' class='delivery_unpowerbox'><input name='check' id='"+data[i].zid+"' value='"+data[i].zid+"' type='checkbox' class='p_check'/></div></th>";
                             //  findHaveStudent(data[i].zid)
                         }
                     }
                     str+="</tr>";
+                    str+="<tr></tr>";
                     str+="</table>";
                     //str+="<button class='d_button1' onclick='allchose()'>全选</button>"
                     str+="<div class='d_button1'><font size='5'>全选：</font><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
                 }else {
                     var j=0;
-                    str+="<table class='p_bbbox' id='p_bbox'>"
+                    str+="<table class='p_bbbox' id='p_bbox' >"
                     for (var i=0;i<(data.length/6+1);i++){
                         str+=" <tr>";
                         for(;j<6*(i+1);j++){
@@ -209,7 +207,7 @@
                     }
                     str+="</table>";
                     //str+="<button  id='quanxuan' class='d_button1' onclick='allchose()'>全选</button>"
-                    str+="<div class='d_button1' ><font size='5'>全选：</font><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
+                    str+="<div class='d_button1' ><font size='5'>全选</font><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
                 }
                 p_center.html(str)
 

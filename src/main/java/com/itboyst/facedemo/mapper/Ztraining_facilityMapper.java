@@ -50,5 +50,7 @@ public interface Ztraining_facilityMapper {
 
     public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7);
 
+    String findzprogressByip(String zid);
+
     public int updateportbyid(Ztraining_facility ztraining_facility);
 }

@@ -10,4 +10,8 @@ public interface ZgradeMapper {
     public List<Zgrade> findallgrade();
 
     public List<String> findgradebynamelike(String zname);
+
+    List<Zgrade> findgradebymajorid(String id);
+
+    String findzidbyzname(String zname);
 }

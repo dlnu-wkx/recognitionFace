@@ -38,5 +38,14 @@
         update zstudent_schedule set zselecttest = #{zselecttest},zpassingscore=#{zpassingscore} where zscheduleID=#{zscheduleID} and zstudentID=(select zstudentID from zstudent_login where zrecognizeIP =(select zstudentPCIP from ztraining_facility where zid =#{zid}));
     </update>
 
+    <insert id="addzstudentSchedule" parameterType="com.itboyst.facedemo.dto.Zstudent_schedule">
+        insert into zstudent_schedule (zid,zscheduleID,zstudentID,zstate)
+        values (#{zid},#{zscheduleID},#{zstudentID},#{zstate})
+    </insert>
+
+    <select id="findbyzstudentIDandzscheduleID" parameterType="java.lang.String" resultType="com.itboyst.facedemo.dto.Zstudent_schedule">
+
+        select * from zstudent_schedule where zscheduleID =${zscheduleID} and zstudentID = ${zstudentID}
+    </select>
 
 </mapper>

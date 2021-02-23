@@ -27,5 +27,9 @@
         update zassign_schedule set zcompletetime = #{zcompletetime} where zstudentscheduleID = #{zstudentscheduleID} AND ztrainingtaskID = #{ztrainingtaskID}
     </update>
 
+    <insert id="insertzassignzschedule" parameterType="com.itboyst.facedemo.dto.Zassign_schedule">
 
+        insert into zassign_schedule (zid,zstudentscheduleID,ztrainingtaskID,zpublishtime)
+        values(#{zid},#{zstudentscheduleID},#{ztrainingtaskID},#{zpublishtime})
+    </insert>
 </mapper>

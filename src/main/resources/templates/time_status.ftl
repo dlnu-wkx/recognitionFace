@@ -8,6 +8,7 @@
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/information_service.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
+    <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
     <script src="/layui/layui.js"></script>
@@ -15,6 +16,12 @@
     <script src="./jquery/jquery.cookie.js"></script>
     <script src="./layui/js/field_management.js "></script>
 
+    <style>
+        html,body{
+            height: 97%;
+        }
+
+    </style>
 </head>
 <body  class="body" >
 <div>
@@ -34,144 +41,22 @@
     <div class="rightfont">安浩智能学习工厂</div>
 </div>
 
-
-<!--中部电源显示-->
-<div class="p_center">
-</div>
-
-
-
-<!--右侧按键-->
-<div class="t_right" align="center">
-    <button  onclick="fieldManagement()"class="t_field_management">现场管理</button>
-    <br><br>
-    <button onclick="informationService()" class="t_information_service">信息查询</button>
-    <br><br>
-    <button class="t_button4">实时状态</button>
-    <br><br>
-    <button onclick="informationDelivery()" class="t_information_delivery">信息发布</button>
-    <br><br>
-    <button class="t_exit" id="exit" onclick="outpower()">退出</button>
-</div>
-
+<div style="width: 100%;height: 100%">
 <!--机床信息示意-->
-<div id="center" class="i_center" >
-   <#-- <table class="t_table">
-        <tr>
-            <th>
-               <button class="t_button1" id="1" onclick="diagram(1)">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-            <th>
-                <button class="t_button1">机床示意</button>
-            </th>
-        </tr>
-    </table>-->
-   <#-- <input type="text" class="t_text">-->
-
+    <div id="center" class="i_center" >
+    </div>
+<!--右侧按键-->
+    <div class="i_right" align="center">
+        <button  onclick="fieldManagement()"class="f_field_management">现场管理</button>
+        <button onclick="informationService()" class="f_field_service">信息查询</button>
+        <button id="statusid" class="f_field_status">实时状态</button>
+        <button onclick="informationDelivery()" class="f_field_delivery">信息发布</button>
+        <button class="f_field_exit" id="exit" onclick="outpower()">退出系统</button>
+    </div>
 </div>
+
 <div class ="t_hiddenArea" id="hiddenArea">
 </div>
-<!--学生视频展示-->
-<#--<div class="t_message" hidden align="center" id="t_message">
-
-
-    <button class="t_button2"></button>
-    <div class="t_id" align="center"><font size="3">F01</font></div>
-    <div class="t_name" align="center"><font size="3">姓名：张三</font></div>
-
-
-    <div class="t_student" align="center"><font size="3">电脑屏幕</font></div>
-    <div class="t_computer" align="center"><font size="3">摄像头</font></div>
-
-    <input type="text" class="t_progress" value="当前进度:">
-    <input type="text" class="t_staets" value="状态信息">
-
-    <button class="t_button3" onclick="closemessage()">关闭</button>
-</div>-->
 
 
 <!--弹框-->
@@ -194,6 +79,13 @@
 </body>
 
 <script>
+
+    //页面加载完成后当前页面的按钮显示橘色
+    window.onLoad=aaa();
+    function aaa(){
+        var servicebutton = document.getElementById("statusid");
+        servicebutton.style.backgroundColor="#ED7D31"
+    }
 
     //弹框
     function outpower(){

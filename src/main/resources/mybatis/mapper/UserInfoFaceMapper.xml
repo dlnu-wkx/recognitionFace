@@ -31,6 +31,10 @@
     </select>
 
 
+    <select id="selectfaceidbyfpath"  resultType="String">
+        SELECT face_id from user_face_info where fpath =#{fpath}
+    </select>
+
     <insert id="insertUserFaceInfo" parameterType="com.itboyst.facedemo.domain.UserFaceInfo">
             INSERT INTO user_face_info (group_id,face_id,name,face_feature,fpath) VALUES (#{groupId},#{faceId},#{name},#{faceFeature},#{path})
     </insert>
@@ -70,4 +74,17 @@
 
          select  fpath from user_face_info where id=#{id}
     </select>
+
+    <select id="findAll" resultType="java.lang.Integer">
+        SELECT Auto_increment FROM information_schema.`TABLES` WHERE Table_Schema='schooltrain' AND table_name = 'user_face_info' limit 1
+    </select>
+
+    <delete id="deltempuser" parameterType="java.lang.String">
+        delete from user_face_info where face_id=#{face_id}
+    </delete>
+
+    <update id="updatefacefeature" parameterType="java.lang.String">
+        UPDATE user_face_info set face_feature =NULL where face_id = #{face_id}
+    </update>
+
 </mapper>

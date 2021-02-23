@@ -75,4 +75,9 @@ public class ZstudentServiceImpl implements ZstudentService {
     @Override
     public int findcountbystuname(String zname){return zstu.findcountbystuname(zname);}
 
+    @Override
+    public List<Zstudent> findAllstudentbygradeid(String zgradeID) {
+        return zstu.findAllstudentbygradeid(zgradeID);
+    }
+
 }

@@ -63,6 +63,11 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
 
     public int updatezprogressbyip(String ip,String zprogress){return ztran_facmap.updatezprogressbyip(ip, zprogress);}
 
+    @Override
+    public String findzprogressByip(String zid) {
+        return ztran_facmap.findzprogressByip(zid);
+    }
+
 
     public int updatefatestbyroomid(Ztraining_facility ztraining_facility){return ztran_facmap.updatefatestbyroomid(ztraining_facility);}
 

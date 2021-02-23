@@ -9,4 +9,7 @@ import java.util.List;
 public interface ZmajorMapper {
 
     public List<Zmajor> findallmajor();
+
+
+    String findzidbyzname(String zname);
 }

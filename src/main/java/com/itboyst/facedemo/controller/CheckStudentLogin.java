@@ -32,7 +32,7 @@ public class CheckStudentLogin {
         List<Zstudent>  zstudentList = new ArrayList<>();
         List<Zstudent_login>  zstudentLoginList =zstudentLoginService.findAllStudentLogin();
         for(Zstudent_login  list : zstudentLoginList){
-           String zstudentID = list.getZstudentID();
+            String zstudentID = list.getZstudentID();
             Zstudent zstudent =zstudentService.findStudentById(zstudentID);
             zstudentList.add(zstudent);
         }

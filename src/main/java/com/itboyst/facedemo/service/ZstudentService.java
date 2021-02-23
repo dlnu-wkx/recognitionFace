@@ -29,4 +29,6 @@ public interface ZstudentService {
     public List<String> findastudentbynamelike(String zname);
 
     public int findcountbystuname(String zname);
+
+    List<Zstudent> findAllstudentbygradeid(String zgradeID);
 }

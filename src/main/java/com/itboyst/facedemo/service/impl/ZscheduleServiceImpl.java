@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 public class ZscheduleServiceImpl implements ZscheuleService {
@@ -20,4 +21,14 @@ public class ZscheduleServiceImpl implements ZscheuleService {
 
     @Override
     public int updatetestbyscheduleid(String zselecttest,int zpassingscore,String zid){return zscheduleMapper.updatetestbyscheduleid(zselecttest,zpassingscore,zid);}
+
+    @Override
+    public List<Zschedule> findbytime(Timestamp zstartdate) {
+        return zscheduleMapper.findbytime(zstartdate);
+    }
+
+    @Override
+    public int addzschedule(Zschedule zschedule) {
+        return zscheduleMapper.addzschedule(zschedule);
+    }
 }

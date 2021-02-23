@@ -35,7 +35,7 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
 
             int i=zstulogma.deletefront(zstl.getZstudentID());
         }*/
-
+        int i =zstulogma.deletebyoriginalPictureUrl(zstl.getOriginalPictureUrl());
         int j=0;
         j= zstulogma.insertnowmessage(zstl);
 

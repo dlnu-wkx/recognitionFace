@@ -6,6 +6,8 @@ import com.itboyst.facedemo.service.Zstudent_journalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Zstudent_journalServiceImpl implements Zstudent_journalService {
 
@@ -18,5 +20,10 @@ public class Zstudent_journalServiceImpl implements Zstudent_journalService {
         i=zstudentJournalMapper.insertstujounal(zstudentJournal);
 
         return i;
+    }
+
+    @Override
+    public List<Zstudent_journal> findstudentjournaltime(String zstudentID) {
+        return zstudentJournalMapper.findstudentjournaltime(zstudentID);
     }
 }

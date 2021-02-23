@@ -18,4 +18,9 @@ public class ZmajorServiceImpl implements ZmajorService {
     public List<Zmajor> findallmajor(){
         return zmajorMapper.findallmajor();
     }
+
+    @Override
+    public String findzidbyzname(String zname) {
+        return zmajorMapper.findzidbyzname(zname);
+    }
 }

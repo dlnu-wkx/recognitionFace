@@ -23,6 +23,9 @@
     <select id="findtatbyip"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
         select * from zstudent_login where zrecognizeIP=(select zstudentPCIP from ztraining_facility WHERE zid= #{zid}) and zcheck='登陆'  ORDER BY zrecognizetime desc LIMIT 1;
     </select>
+    <delete id="deletebyoriginalPictureUrl" parameterType="com.itboyst.facedemo.dto.Zstudent_login">
+    	DELETE FROM zstudent_login WHERE originalPictureUrl = #{originalPictureUrl};
+  	</delete>
 
     <select id="findfront"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
             SELECT * FROM zstudent_login WHERE zstudentID = #{zstudentID}

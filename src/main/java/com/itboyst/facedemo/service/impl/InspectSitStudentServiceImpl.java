@@ -29,5 +29,10 @@ public class InspectSitStudentServiceImpl implements InspectSitStudentService{
         return inspectSitStudentMapper.findTeacherByDateAndTrainingIdASC(camerasIP,timestamp,zcheck);
     }
 
+    @Override
+    public List<InspectSitTeacher> findTeacherByDateAndTrainingIDdistinct(String camerasIP, Timestamp timestamp, String zcheck) {
+        return inspectSitStudentMapper.findTeacherByDateAndTrainingIDdistinct(camerasIP,timestamp,zcheck);
+    }
+
 
 }

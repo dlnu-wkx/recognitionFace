@@ -16,6 +16,7 @@
 
     </resultMap>
 
+
         <select id="findstudentnamelike" resultType="java.lang.String" >
             select zidentity from zstudent where zidentity like CONCAT('%',#{name},'%')
         </select>
@@ -53,7 +54,7 @@
 
         <select id="findStudentNameByfacilityID"  resultType="java.lang.String">
             SELECT A.zname
-            FROM zstudent A, zstudent_login B,(SELECT * from(SELECT zstudentID,zrecognizetime FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid}) ORDER BY zrecognizetime DESC)b LIMIT 1)C
+            FROM zstudent A, zstudent_login B,(SELECT * from(SELECT zstudentID,zrecognizetime FROM zstudent_login WHERE zrecognizeIP=(SELECT zstudentPCIP FROM ztraining_facility WHERE zid=#{zid} and (zprogress='登陆' or zprogress ='安全测试' or zprogress='实训')) ORDER BY zrecognizetime DESC)b LIMIT 1)C
             WHERE A.zid=B. zstudentID AND B.zstudentID=C.zstudentID and C.zrecognizetime =B.zrecognizetime and date(b.zrecognizetime) = curdate()
         </select>
 
@@ -69,5 +70,8 @@
             UPDATE zstudent SET zname=#{zname},zpass=#{zpass},zsex=#{zsex},zphone=#{zphone},zfaceinfoID=#{zfaceinfoID},zphoto=#{zphoto},zstatus='待审核' WHERE zidentity=#{zidentity}
         </update>
 
-
+        <select id="findAllstudentbygradeid" resultType="com.itboyst.facedemo.dto.Zstudent">
+           select a.zid,b.zname as zgradeID,a.zidentity,a.zname,a.zfaceinfoID,a.zpass,a.zphone,a.zphoto,a.zsex,a.zstatus
+            from zstudent a,zgrade b where a.zgradeID=#{zgradeID} and a.zgradeID=b.zid
+        </select>
 </mapper>

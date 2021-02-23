@@ -50,4 +50,6 @@ public interface Ztraining_facilityService {
     public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7);
 
     public int updateportbyid(Ztraining_facility ztraining_facility);
+
+    String findzprogressByip(String zid);
 }

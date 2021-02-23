@@ -21,7 +21,9 @@
                INSERT INTO zstudent_journal (zid,zstudentID,ztype,zoperatedate, zoperatecontent) VALUES(#{zid}, #{zstudentID},#{ztype},#{zoperatedate}, NULL);
     </insert>
 
-
+    <select id="findstudentjournaltime" resultType="com.itboyst.facedemo.dto.Zstudent_journal">
+        select * from zstudent_journal where zstudentID=#{zstudentID}
+    </select>
 
 
 

@@ -14,7 +14,7 @@
 
     </select>
     <delete id="delteacher" parameterType="java.lang.String">
-        delete from zteacher_login where zteacherID=#{zteacherID}
+        delete from zteacher_login where originalPictureUrl=#{originalPictureUrl}
     </delete>
 
     <insert id="insertteacher" parameterType="com.itboyst.facedemo.dto.Zteacher_login" >

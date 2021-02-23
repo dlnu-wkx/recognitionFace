@@ -26,7 +26,9 @@
 
 
     <select id="findbyfacid"  resultType="com.itboyst.facedemo.dto.Zteacher_cookie">
-         SELECT A.zid zteacherid,A.zmajorid zmajorid,A.zauthorityID zauthorityID,A.zidentity zidentity,A.zpass zpass ,A.zname zname, A.zsex zsex,A.zphone zphone,A.zfaceinfoID zfaceinfoID,A.zphoto zphoto,C.zid zteacher_scheduleid,C.zscheduleID zscheduleID,C.zteacherID zteacherID,D.zid ztrainingroomid,D.zname zroomname,D.zlocation zlocation,D.znote znote FROM zteacher A,zschedule B,zteacher_schedule C,ztraining_room D WHERE A.zfaceinfoID=#{zfaceinfoID} AND A.zid=C.zteacherID AND C.zscheduleID=B.zid AND (NOW() BETWEEN B.zstartdate AND B.zenddate) AND B.ztrainingroomID=D.zid;
+         SELECT A.zid zteacherid,A.zmajorid zmajorid,A.zauthorityID zauthorityID,A.zidentity zidentity,A.zpass zpass ,A.zname zname, A.zsex zsex,A.zphone zphone,A.zfaceinfoID zfaceinfoID,A.zphoto zphoto,C.zid zteacher_scheduleid,C.zscheduleID zscheduleID,C.zteacherID zteacherID,D.zid ztrainingroomid,D.zname zroomname,D.zlocation zlocation,D.znote znote
+         FROM zteacher A,zschedule B,zteacher_schedule C,ztraining_room D
+         WHERE A.zfaceinfoID=#{zfaceinfoID} AND A.zid=C.zteacherID AND C.zscheduleID=B.zid AND (NOW() BETWEEN B.zstartdate AND B.zenddate) AND B.ztrainingroomID=D.zid;
     </select>
 
 

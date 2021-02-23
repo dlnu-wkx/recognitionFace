@@ -2,25 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <#--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="./jquery/video-js.min.css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
-    <link href="http://vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
+    <link href="//vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
+    <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
+
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
     <script src="jquery/jquery.cookie.js"></script>
     <script src="./layui/js/field_management.js "></script>
-    <#--<script type="text/javascript" src="./jquery/video.min.js"></script>-->
-   <#-- <script src="http://vjs.zencdn.net/5.20.1/video.js"></script>-->
-   <#-- <script src="https://cdn.bootcdn.net/ajax/libs/videojs-flash/2.2.0/videojs-flash.min.js"></script>-->
-    <#--<script>
-        videojs.options.flash.swf='./jquery/video-js.swf'
-    </script>-->
+
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
 <div class="layui-layout layui-layout-admin" >
@@ -40,11 +37,17 @@
             <div style="margin: 0,auto;margin-top:220px;height: 80px;text-align:center;line-height:80px;font-size:34px;color:#0C0C0C"> 进入安浩智能学习工厂</div>-->
         </div>
         <#--二级菜单-->
-        <div id='twoMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
+        <div id='twoMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;width: 90%">
             <div>
                 <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
                     <li style="margin: 0 auto;margin-left: 10% "><button onclick="faceShow()" style="float:left;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">人脸识别</button></li>
                     <li style=" margin: 0 auto;margin-right: 10%"><button onclick="studentStatus()" style="float:right;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">测试管理</button></li>
+                </ul>
+            </div>
+            <div>
+                <ul style="margin: 16% auto;width: 80%">
+                    <li style="margin: 0 auto;margin-left: 10% "><button onclick="loginManagement()" style="float:left;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">登录管理</button></li>
+                    <li style="margin: 0 auto;margin-right: 10% "><button onclick="courseManagement()" style="float:right;color:#FFFFFF;height: 100px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">任务管理</button></li>
                 </ul>
             </div>
             <div>
@@ -72,43 +75,11 @@
         </div>
         <#--三级菜单-->
         <div id='threeMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
-            <#--<div>
-                <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
-                    <li style="margin-left: 10% "><button onclick="studentShow(this.value)" value="1" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控车讨论区</button></li>
-                    <li style="margin-right: 10%"><button onclick="studentShow1(this.value)" value="1" style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控铣讨论区</button></li>
-                </ul>
-            </div>-->
-            <#--<div>
-                <ul style="margin: 15% auto;width: 80% ">
-                    <li style="margin-left: 10%"><button  style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">东大门入口</button></li>
-                    <li style="margin-right: 10%"><button style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">东大门出口</button></li>
-                </ul>
-            </div>
-            <div>
-                <ul style="margin: 25% auto;width: 80% ">
-                    <li style="margin-left: 10%"><button style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">西大门入口</button></li>
-                    <li style="margin-right: 10%"><button style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">西大门出口</button></li>
-                </ul>
-            </div>
-            <div>
-                <ul style="margin: 35% auto;width: 80% ">
-                    <li style="margin-left: 10%"><button style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">北大门入口</button></li>
-                    <li style="margin-right: 10%"><button style="float:right;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">北大门出口</button></li>
-                </ul>
-            </div>-->
+
         </div>
         <#--查岗的下级功能表-->
         <div id='checkPointMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
-            <#--<div>
-                <ul style="margin-top: 10%;width: 80%;left: 40%;margin: 37px auto">
-                    <li style="margin: 0 auto;margin-left: 46% "><button onclick="studentShow(this.value)" value="2" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控区实训区</button></li>
-                </ul>
-            </div>
-            <div>
-                <ul style="margin: 30% auto;width: 80% ">
-                    <li style="margin-left: 46%"><button  onclick="studentShow1(this.value)" value="2" style="float:left;color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:250px;background-color:#71B863;border-radius:32px;text-align: center;line-height: 50px;font-size: 35px">数控铣实训区</button></li>
-                </ul>
-            </div>-->
+
         </div>
         <#--四级菜单-->
         <div id='fourMenu' class="layui-col-xs1" align="center" style="display:none;width: 26%;font-size: 70px">
@@ -119,7 +90,7 @@
                 </video>-->
             </div>
             <#--这个地方到时候要循环遍历出来拼接字符串-->
-            <div id="identifyAreas"style="width: 80%;height:289px;background-color: #ffff;border: 1px solid red;overflow: auto;margin-top: 5%;">
+            <div id="identifyAreas"style="width: 80%;height:289px;background-color: #ffff;border: 1px solid red;margin-top: 5%;">
                 <#--<div style="font-size: 20px;width: 80%;margin-top: 10px">张三  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">李四  机电19班</div>
                 <div style="font-size: 20px;width: 80%;margin-top: 10px">王二  机电19班</div>
@@ -176,32 +147,30 @@
 
         </div>
         <#--右边功能按钮-->
-        <div class="layui-col-xs1" align="right" style="height:100%;width: 9%;border-left: 1px solid #c2c2c2;">
-            <div>
-                <button id='colorType'  onclick="fieldManagement()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:0px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+        <div class="right_parent" align="center" >
+
+                <button id='colorType'  onclick="fieldManagement()"  class="f_field_management" >
                     现场管理
                 </button>
-            </div>
-            <div>
-                <button onclick="informationService()"  style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+
+
+                <button onclick="informationService()" class="f_field_service"  >
                     信息查询
                 </button>
-            </div>
-            <div>
-                <button onclick="timeStatus()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+
+
+                <button onclick="timeStatus()" class="f_field_status" >
                     实时状态
                 </button>
-            </div>
-            <div>
-                <button onclick="informationDelivery()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:40px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 30px;font-size: 27px">
+
+                <button onclick="informationDelivery()" class="f_field_delivery" >
                     信息发布
                 </button>
-            </div>
-            <div>
-                <button id="exit" onclick="outpower()" style="color:#FFFFFF;height: 80px;display:block;margin:0 auto;margin-top:70px;width:80px;background-color: #4472c4;border-radius:14px;text-align: center;line-height: 27px;font-size: 27px;left:20%;position:absolute;z-index:10;">
+
+                <button id="exit" onclick="outpower()" class="f_field_exit">
                     退出系统
                 </button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -262,6 +231,14 @@
         document.getElementById("teach").style.display="none";
         document.getElementById("twoMenu").style.display="block";
     }
+    //登录管理
+    function loginManagement() {
+        location.href="/loginManagement"
+    }
+    //课程管理
+    function courseManagement() {
+        location.href="/course"
+    }
     //展示
     function faceShow() {
         document.getElementById("twoMenu").style.display="none";
@@ -285,7 +262,7 @@
         document.getElementById("fourMenu1").style.display="block";
         document.getElementById("openAndstart").style.display="block";
        //显示摄像头的信息
-        showCamera(e)
+       // showCamera(e)
       /* document.getElementById("mainDiv").style.display="block"*/
         $("#left").hide();
         $("#middle").hide();
@@ -314,6 +291,7 @@
     }
     //数控铣讨论区显示每台机的人脸识别情况
     function studentShow1(e){
+        $().find("#")
         document.getElementById("checkPointMenu").style.display="none";
         //摄像头下面显示的五个人
         document.getElementById("fourMenu").style.display="block";
@@ -321,7 +299,7 @@
         document.getElementById("fourMenu1").style.display="block";
         document.getElementById("openAndstart2").style.display="block";
         //显示摄像头的信息
-        showCamera(e);
+        //showCamera(e);
        /* document.getElementById("mainDiv").style.display="block"*/
        // getMedia();
         $("#left").hide();
