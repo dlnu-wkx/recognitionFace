@@ -37,7 +37,7 @@
 
 
 <!--中部电源显示-->
-<div class="p_center" id="p_center">
+<div class="p_center3" id="p_center">
 
 
 </div>
@@ -57,7 +57,7 @@
 </div>
 
 <!--下方按键及内容-->
-<div class="p_text" align="center">
+<div class="p_text2" align="center">
     <textarea  type="text" class="d_text"  onclick="removemes()" id="inputmes">点击输入滚动消息</textarea>
     <div class="d_font2"><button class="button7" onclick="insertcommand()">确认</button>
         <#-- <br><br><button class="button7" onclick="insertcommandbychose()">发送到勾选</button>-->
@@ -82,7 +82,7 @@
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
 
-    <button class="p_button2">下课</button>
+    <button class="p_button2" onclick="overclass()" >下课</button>
 </div>
 <!--蒙版-->
 <div id="parent" class="parent" hidden></div>
@@ -142,7 +142,7 @@
                 $("#"+id+"").css("background-color","#FFC000")
 
                 if(data.length <7){
-                    str+="<table class='p_bbbox' id='p_bbox'>"
+                    str+="<table class='p_bbbox2' id='p_bbox'>"
                     str+="<tr style='height:0%;'><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th><th style='width:50px '></th></tr>";
                     str+=" <tr style='height: 40%'>";
 
@@ -176,7 +176,7 @@
                     str+="<div class='d_button1'><font size='5'>全选：</font><input class='delivery_quanxuan' type='checkbox' name='checkall' onclick='allchose()'/> </div>"
                 }else {
                     var j=0;
-                    str+="<table class='p_bbbox' id='p_bbox' >"
+                    str+="<table class='p_bbbox2' id='p_bbox' >"
                     for (var i=0;i<(data.length/6+1);i++){
                         str+=" <tr>";
                         for(;j<6*(i+1);j++){

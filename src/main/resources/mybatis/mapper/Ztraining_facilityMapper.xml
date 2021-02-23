@@ -78,6 +78,12 @@
           SELECT zpowerStatus6 FROM ztraining_facility WHERE zid=#{zid}
     </select>
 
+
+    <select id="findzprogressbyid"  resultType="java.lang.String">
+        SELECT zprogress FROM ztraining_facility WHERE zid=#{zid}
+    </select>
+
+
     <update id="updatezprogressbyip" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zprogress = #{zprogress} where zstudentPCIP = #{zstudentPCIP}
     </update>
@@ -94,6 +100,9 @@
         update ztraining_facility set zpowerstatus = #{zpowerstatus} where zid = #{zid}
     </update>
 
+    <update id="updatefiveportbyzid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus5 = #{zpowerStatus5} where zid = #{zid}
+    </update>
 
     <update id="updateportbyid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zpowerStatus6 = #{zpowerStatus6},zpowerStatus1 = #{zpowerStatus1},zpowerStatus2 = #{zpowerStatus2},zpowerStatus7 = #{zpowerStatus7} where zid = #{zid}
@@ -129,6 +138,10 @@
 
     <update id="updatefatestbyid2" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zsafetestingType = #{zsafetestingType} , zsafetestingNum=#{zsafetestingNum} , zpassingscore=#{zpassingscore},zpowerStatus6=#{zpowerStatus6},zpowerStatus8=#{zpowerStatus8},zselecttest=#{zselecttest} where zid = #{zid}
+    </update>
+
+    <update id="overclass" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zprogress = #{zprogress} where ztrainingroomID = #{ztrainingroomID}
     </update>
 
 

@@ -10,6 +10,7 @@
 
     <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js "></script>
     <script src="./jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="./layui/js/common.js "></script>
     <style>
         html,body{
             height: 97%;
@@ -57,6 +58,7 @@
 
     </div>
 </div>
+
 <!--模糊查询框-->
 <div id="i_namelike" class="i_namelike" hidden>
 
@@ -73,7 +75,7 @@
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
 
-    <button class="p_button2">下课</button>
+    <button class="p_button2" onclick="overclass()">下课</button>
 </div>
 
 <!--蒙版-->

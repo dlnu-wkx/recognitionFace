@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
-
+    <link rel="stylesheet" href="layui/css/fixed_task.css">
 
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 
@@ -211,38 +211,71 @@
                     processData: false,
                     async: false,
                     success: function (text) {
+                        // alert(0)
                         var res = JSON.stringify(text)
-                        if (text.code == 0) {
-                            var name = text.data.name;
+                        // alert(text.message)
+                        var faceid=text.data.faceId;
+                        if (text.message == "1"){
+                            // alert(1)
+                            $.ajax({
+                                type: "post",
+                                url: "/loadtrainroom",
+                                data: {"id":faceid},
+                                async: false,
+                                success: function (data) {
+                                    var str="";
+                                    var trainroomchose=$("#trainroomchose");
+                                    for (var i=0;i<data.length;i++){
+                                        str+="<button class='button16' value='"+data[i].ztrainingroomid+"' onclick='choseroom(\""+data[i].ztrainingroomid+"\")'>"+data[i].zroomname+"</button>"
+                                        str+="<br><br>"
+                                    }
 
-                            var similar = text.data.similarValue;
-
-                            var age = text.data.age;
-
-                            var gender = text.data.gender;
-
-                            showTips("姓名：" + name + "\n相似度：" + similar + "%" + "\n年龄：" + age + "\n性别：" + gender);
-                        } else {
-                            $("#nameDiv").html("");
-                            $("#similarDiv").html("");
-                            $("#ageDiv").html("");
-                            $("#genderDiv").html("");
-                            alert("人脸不匹配")
-                            showTips("人脸不匹配");
+                                    trainroomchose.html(str);
+                                    trainroomchose.show();
+                                }
+                            });
                         }
+                        else{
+                            if (text.code == 0) {
+                                location.href = "/teacherlogin";
+                            } else {
+                                if(text.code==14){
+                                    alert("14未检出到人脸")
+                                }
+                                if(text.code==24){
+                                    alert(text.message)
+                                }
+                                if (text.code==15) {
+                                    alert(text.message)
+                                }
+                            }
+                        }
+
 
                     },
                     error: function (error) {
-                        $("#nameDiv").html("");
-                        $("#similarDiv").html("");
-                        $("#ageDiv").html("");
-                        $("#genderDiv").html("");
                         alert(JSON.stringify(error))
                     }
                 });
             }
         }
     }
+
+    function choseroom(trainroomid){
+        $.ajax({
+            type: "post",
+            url: "/choseasavetcookie",
+            data: {"id":trainroomid},
+            async: false,
+            success: function (data) {
+                if (data>0)
+                    location.href = "/teacherlogin";
+                else
+                    alert("出错")
+            }
+        })
+    }
+
 
     function home() {
         location.href = "http://localhost:8080/demo"

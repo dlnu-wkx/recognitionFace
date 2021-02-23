@@ -89,4 +89,11 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
     public int updatesevenportbyip(String zstudentPCIP,int zpowerStatus7){return ztran_facmap.updatesevenportbyip(zstudentPCIP, zpowerStatus7);}
 
     public int updateportbyid(Ztraining_facility ztraining_facility){return ztran_facmap.updateportbyid(ztraining_facility);}
+
+    public int overclass(String ztrainingroomID,String zprogress){return ztran_facmap.overclass(ztrainingroomID, zprogress);}
+
+    public String  findzprogressbyid(String zid){return ztran_facmap.findzprogressbyid(zid);}
+
+    public int updatefiveportbyzid(String zid,int zpowerStatus5){return ztran_facmap.updatefiveportbyzid(zid,zpowerStatus5);}
+
 }

@@ -41,8 +41,13 @@
     </select>
 
     <select id="findrandbynumber" resultMap="zsafe_testing" resultType="com.itboyst.facedemo.dto.Zsafe_testingDto">
-        SELECT * from zsafe_testing  ORDER BY RAND() LIMIT #{number};
+        SELECT * from zsafe_testing  where ztype=#{ztype} ORDER BY RAND() LIMIT #{number};
     </select>
+
+    <select id="findallsafetype"  resultType="java.lang.String">
+        select ztype from zsafe_testing GROUP BY ztype
+    </select>
+
 
 
 

@@ -529,6 +529,7 @@
         getcommand();
         //循环查找老师的命令
         window.setInterval(function () {
+            findisleave()
             getcommand();
             gettemporary();
             loadscreentime();

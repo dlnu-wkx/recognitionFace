@@ -7,6 +7,8 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/fixed_task.css">
+   <#-- <link rel="stylesheet" href="layui/css/demo.css">-->
 
     <script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
@@ -33,6 +35,12 @@
     </div>
 
 </div>
+
+<div id="trainroomchose" class="trainroomchose" hidden>
+
+</div>
+
+
 <div class="facetest_btn">
 
     <button style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px"
@@ -150,22 +158,48 @@
                 processData: false,
                 async: false,
                 success: function (text) {
-                    // alert(1)
-                    var res = JSON.stringify(text)
 
-                    if (text.code == 0) {
-                        location.href = "/teacherlogin";
-                    } else {
-                        if(text.code==14){
-                            alert("14未检出到人脸")
-                        }
-                        if(text.code==24){
-                            alert(text.message)
-                        }
-                          if (text.code==15) {
-                            alert(text.message)
-                          }
+                   // alert(0)
+                    var res = JSON.stringify(text)
+                   // alert(text.message)
+                    var faceid=text.data.faceId;
+                    if (text.message == "1"){
+                       // alert(1)
+                        $.ajax({
+                            type: "post",
+                            url: "/loadtrainroom",
+                            data: {"id":faceid},
+                            async: false,
+                            success: function (data) {
+                                var str="";
+                                var trainroomchose=$("#trainroomchose");
+                                for (var i=0;i<data.length;i++){
+                                    str+="<button class='button16' value='"+data[i].ztrainingroomid+"' onclick='choseroom(\""+data[i].ztrainingroomid+"\")'>"+data[i].zroomname+"</button>"
+                                    str+="<br><br>"
+                                }
+
+
+                                trainroomchose.html(str);
+                                trainroomchose.show();
+                            }
+                        });
                     }
+                    else{
+                        if (text.code == 0) {
+                            location.href = "/teacherlogin";
+                        } else {
+                            if(text.code==14){
+                                alert("14未检出到人脸")
+                            }
+                            if(text.code==24){
+                                alert(text.message)
+                            }
+                            if (text.code==15) {
+                                alert(text.message)
+                            }
+                        }
+                    }
+
 
                 },
                 error: function (error) {
@@ -174,6 +208,23 @@
             });
         }
     }
+
+    function choseroom(trainroomid){
+        $.ajax({
+            type: "post",
+            url: "/choseasavetcookie",
+            data: {"id":trainroomid},
+            async: false,
+            success: function (data) {
+                if (data>0)
+                    location.href = "/teacherlogin";
+                else
+                    alert("出错")
+            }
+        })
+    }
+
+
 
     function home() {
         location.href = "http://localhost:8080/demo"

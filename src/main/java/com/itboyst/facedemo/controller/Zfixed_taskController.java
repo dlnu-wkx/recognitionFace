@@ -58,6 +58,8 @@ public class Zfixed_taskController {
         String ip4= Iputil.getClientIpAddress(request);
         int a=ztraining_facilityService.updatezprogressbyip(ip4,"实训");
 
+        session.setAttribute("zprogress","实训");
+
         Zstudent_cookie zstudent_cookie =(Zstudent_cookie)session.getAttribute("zstudent_cookie");
 
       //  System.out.println(zfixed_taskService.findallfixedtask());

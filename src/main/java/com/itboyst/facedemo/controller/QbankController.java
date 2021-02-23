@@ -125,6 +125,8 @@ public class QbankController {
         String ip4= Iputil.getClientIpAddress(request);
         int a=ztraining_facilityService.updatezprogressbyip(ip4,"安全测试");
 
+        session.setAttribute("zprogress","安全测试");
+
         Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
         //System.out.println(zstudent_cookie);
         return ztraining_facility.getZpassingscore();
@@ -151,8 +153,10 @@ public class QbankController {
     @RequestMapping("/findtestbynumber")
     @ResponseBody
     public Map<String,Object> findtestbynumber(HttpSession session,int number){
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility") ;
+
         //System.out.println(number);
-        List<Zsafe_testingDto> data1=Qservice.findrandbynumber(number);
+        List<Zsafe_testingDto> data1=Qservice.findrandbynumber(number,ztraining_facility.getZsafetestingType());
         //用于排序
         List<Zsafe_testingDto> data3=new ArrayList<>();
 
@@ -233,8 +237,11 @@ public class QbankController {
         return (List<String>) session.getAttribute("answer");
     }
 
-
-
+    @RequestMapping("/findallsafetype")
+    @ResponseBody
+    public List<String> findallsafetype(){
+       return Qservice.findallsafetype();
+    }
 
 
     /*

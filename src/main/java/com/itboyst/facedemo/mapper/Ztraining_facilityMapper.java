@@ -53,4 +53,10 @@ public interface Ztraining_facilityMapper {
     String findzprogressByip(String zid);
 
     public int updateportbyid(Ztraining_facility ztraining_facility);
+
+    public int overclass(String ztrainingroomID,String zprogress);
+
+    public String  findzprogressbyid(String zid);
+
+    public int updatefiveportbyzid(String zid,int zpowerStatus5);
 }

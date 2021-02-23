@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <#--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="./jquery/video-js.min.css">
     <link href="./layui/css/time_status.css" rel="stylesheet" type="text/css">
     <link href="./layui/css/power_controller.css" rel="stylesheet" type="text/css">
-    <link href="//vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
+    <link href="http://vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
     <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
+
 
 
     <script type="text/javascript" src="./layui/js/common.js "></script>
@@ -18,6 +19,13 @@
     <script src="jquery/jquery.cookie.js"></script>
     <script src="./layui/js/field_management.js "></script>
 
+    <script src="./layui/js/common.js "></script>
+    <#--<script type="text/javascript" src="./jquery/video.min.js"></script>-->
+   <#-- <script src="http://vjs.zencdn.net/5.20.1/video.js"></script>-->
+   <#-- <script src="https://cdn.bootcdn.net/ajax/libs/videojs-flash/2.2.0/videojs-flash.min.js"></script>-->
+    <#--<script>
+        videojs.options.flash.swf='./jquery/video-js.swf'
+    </script>-->
 </head>
 <body class="layui-layout-body" style="width: 100%;height: 100%;background-color: #CDCDCD">
 <div class="layui-layout layui-layout-admin" >

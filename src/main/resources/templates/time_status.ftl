@@ -63,15 +63,9 @@
 <div hidden class="popup" id="popup" align="center">
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-    <button class="p_button2">下课</button>
+    <button class="p_button2" onclick="overclass()">下课</button>
 </div>
 
-<div hidden class="popup" id="popup" align="center">
-    <br><br>
-    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
-
-    <button class="p_button2">下课</button>
-</div>
 <!--蒙版-->
 <div id="parent" class="parent" hidden></div>
 <div id="showVdieo" style="position: absolute;z-index:10;top: 24%;left: 41%"></div>

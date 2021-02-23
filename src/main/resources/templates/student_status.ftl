@@ -33,8 +33,8 @@
 
 <!--头部导航条-->
 <div class="top">
-    <div class="leftfont"><font size="5" >测试管理</font></div>
-    <div class="rightfont"><font size="5" >安浩智能学习工厂</font></div>
+    <div class="leftfont"><font size="3" >测 试 管 理</font></div>
+    <div class="rightfont"><font size="2" >安 浩 智 能 学 习 工 厂</font></div>
 </div>
 
 
@@ -55,7 +55,7 @@
 <br><br>
     <button onclick="informationDelivery()" class="p_information_delivery">信息发布</button>
     <br><br>
-    <button class="p_exit" id="p_button4" onclick="outpower()">退出</button>
+    <button class="p_exit" id="p_button4" onclick="outpower()">退出系统</button>
 </div>
 <#--<div class="outdiv">
    </div>-->
@@ -79,11 +79,10 @@
 
     <font class="p_testbankchoose" size="5">测试题库:</font>
 
-    <select class="p_stestchose" id="p_testtype">
-        <option value="机床安全操作">机床安全操作</option>
-        <option value="铣床安全操作">铣床安全操作</option>
-        <option value="车间注意事项">车间注意事项</option>
-    </select>
+    <div class="p_stestchose" id="p_stestchose">
+
+    </div>
+
 
     <font class="p_tetestnum" size="5">题目数量</font>
 
@@ -168,6 +167,7 @@
         var p_testnum=$("#p_testnum").val()
         //题库类型
         var p_testtype=$("#p_testtype").val()
+
         var istest=0
         var isconnected=0
 
@@ -194,6 +194,11 @@
             success: function (data) {
                 if(data>0){
                     layer.msg("已修改成功", { icon: 1, offset: "auto", time:1000 });
+
+                    $("#openchose").css("background","#4472C4");
+                    static_chose=0;
+                    $("#allchose").css("background","#4472C4");
+                    static_choseval=0;
 
                     setTimeout(function (){ loadfaclity(static_trainroomid)},100);
 
@@ -243,11 +248,14 @@
                 str+="<div  class='delivery_unpowerbox2' align='center'>"
                 str+="<div class='p_islogin'>"
 
-                if (data.zpowerStatus6==0) {
+                if(data.zpowerStatus5==2){
+                    str += "<button class='p_islobutton3'></button></div>"
+                }else if (data.zpowerStatus6==0) {
                     str += "<button class='p_islobutton'></button></div>"
                 }else if(data.zpowerStatus6==1){
                     str += "<button class='p_islobutton2'></button></div>"
                 }
+
 
                 str+="<font class='p_faclinum' size='5' >"+data.zidentity+"</font>"
 
@@ -303,23 +311,23 @@
                     success: function (data5) {
                         if (data5){
                             if (data5.ztesttime==0){
-                                str+=" <font class='p_testtime1'>"+data5.ztesttime+"</font>"
-                                str+="<font class='p_testname1' size='1'>"+data.zsafetestingType+"</font>"
+                                str+=" <font class='p_testtime1' size='5'>"+data5.ztesttime+"</font>"
+                                str+="<font class='p_testname1' size='5'>"+data.zsafetestingType+"</font>"
                             }else if((data5.ztesttime>=1 && data5.ztesttime<=4 && data.zpowerStatus7==0)||(data5.ztesttime>=2 && data5.ztesttime<=4 && data.zpowerStatus7==1)){
-                                str+=" <font class='p_testtime2'>"+data5.ztesttime+"</font>"
-                                str+="<font class='p_testname2' size='1'>"+data.zsafetestingType+"</font>"
+                                str+=" <font class='p_testtime2' size='5'>"+data5.ztesttime+"</font>"
+                                str+="<font class='p_testname2' size='5'>"+data.zsafetestingType+"</font>"
                             }else if(data5.ztesttime==1 && data.zpowerStatus7==1){
-                                str+=" <font class='p_testtime3'>"+data5.ztesttime+"</font>"
-                                str+="<font class='p_testname3' size='1'>"+data.zsafetestingType+"</font>"
+                                str+=" <font class='p_testtime3' size='5'>"+data5.ztesttime+"</font>"
+                                str+="<font class='p_testname3' size='5'>"+data.zsafetestingType+"</font>"
                             }else {
-                                str+=" <font class='p_testtime4'>"+data5.ztesttime+"</font>"
-                                str+="<font class='p_testname4' size='1'>"+data.zsafetestingType+"</font>"
+                                str+=" <font class='p_testtime4' size='5'>"+data5.ztesttime+"</font>"
+                                str+="<font class='p_testname4' size='5'>"+data.zsafetestingType+"</font>"
                             }
-                            str+="<font class='p_nowtask'>"+data5.znowtaskname+"</font>"
+                            str+="<font class='p_nowtask' size='5'>"+data5.znowtaskname+"</font>"
                         }
                         else {
-                            str+=" <font class='p_testtime1'>0</font>"
-                            str+="<font class='p_testname1' size='1' >"+data.zsafetestingType+"</font>"
+                            str+=" <font class='p_testtime1' size='5'>0</font>"
+                            str+="<font class='p_testname1' size='5' >"+data.zsafetestingType+"</font>"
 
                             str+="<font class='p_nowtask'></font>"
                         }
@@ -390,12 +398,13 @@
     var interval;
     window.onload =function () {
         onloadallroom();
+        loadalltesttype();
         getteacherroom();
         loadfaclity(static_trainroomid);
-        interval= window.setInterval(function () {
+        /*interval= window.setInterval(function () {
             loadfaclity(static_trainroomid);
         }, 20000);
-
+*/
     }
 
     function loadfaclity(trainroomid) {
@@ -427,13 +436,13 @@
 
 
                         str+="<div class='p_islogin'>"
-
-                        if (data[i].zpowerStatus6==0) {
+                        if(data[i].zpowerStatus5==2){
+                            str += "<button class='p_islobutton3'></button></div>"
+                        } else if (data[i].zpowerStatus6==0) {
                             str += "<button class='p_islobutton'></button></div>"
                         }else if(data[i].zpowerStatus6==1){
                             str += "<button class='p_islobutton2'></button></div>"
                         }
-
                         str+="<font class='p_faclinum' >"+data[i].zidentity+"</font>"
 
                         $.ajax({
@@ -566,8 +575,9 @@
 
 
                                     str+="<div class='p_islogin'>"
-
-                                if (data[j].zpowerStatus6==0) {
+                                if(data[j].zpowerStatus5==2){
+                                    str += "<button class='p_islobutton3'></button></div>"
+                                }else if (data[j].zpowerStatus6==0) {
                                     str += "<button class='p_islobutton'></button></div>"
                                 }else if(data[j].zpowerStatus6==1){
                                     str += "<button class='p_islobutton2'></button></div>"
@@ -730,6 +740,25 @@
         });
     }
 
+
+    function loadalltesttype(){
+        var str="";
+        var p_stestchose=$("#p_stestchose")
+        $.ajax({
+            type: "post",
+            url: "/findallsafetype",
+            async: false,
+            success: function (data) {
+                str+="<select class='isin' id='p_testtype' >"
+                for(var i =0; i<data.length;i++){
+                    str+="<option  value='"+data[i]+"'>"+data[i]+"</option>"
+                }
+                str+="</select>"
+                p_stestchose.html(str)
+
+            }
+        });
+    }
 
     function trainroomchange(){
         //alert(1)

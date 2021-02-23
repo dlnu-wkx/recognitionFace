@@ -89,7 +89,7 @@ public class Powerutil
 
 	public static boolean pingIp(String ipAddress) throws Exception {
 		//此处 3是超时时间,单位是秒
-		return 0==Runtime.getRuntime().exec("ping -w 0.05 "+ipAddress).waitFor();
+		return 0==Runtime.getRuntime().exec("ping -w 1 "+ipAddress).waitFor();
 	}
 
 

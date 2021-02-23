@@ -102,6 +102,10 @@
                 }
             }
         });
+
+        window.setInterval(function () {
+            findisleave()
+        }, 3000);
     }
 
 

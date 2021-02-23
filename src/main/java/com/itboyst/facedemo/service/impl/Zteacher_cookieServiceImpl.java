@@ -6,13 +6,15 @@ import com.itboyst.facedemo.service.Zteacher_cookieSerice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Zteacher_cookieServiceImpl implements Zteacher_cookieSerice {
     @Autowired
     Zteacher_cookieMapper zteacher_cookieMapper;
 
     @Override
-    public Zteacher_cookie findbyfaceid(int faceinfoID){
+    public List<Zteacher_cookie> findbyfaceid(int faceinfoID){
         return zteacher_cookieMapper.findbyfacid(faceinfoID);
     }
 }

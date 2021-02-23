@@ -121,7 +121,21 @@ public class Ztraining_roomController {
 
     }
 
+    @RequestMapping("/findfiveport")
+    @ResponseBody
+    public void findfiveport(HttpSession session){
 
+        Ztraining_facility ztraining_facility=(Ztraining_facility) session.getAttribute("ztraining_facility");
+
+        try {
+            if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+               ztraining_facilityService.updatefiveportbyzid(ztraining_facility.getZid(),2);
+        }catch(Exception e) {
+
+        }
+
+
+    }
 
 
 
@@ -137,26 +151,20 @@ public class Ztraining_roomController {
             ztraining_facility.setZpowerStatus6(1);
         else
             ztraining_facility.setZpowerStatus6(0);
+        try{
+            if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                if (ztraining_facility.getZpowerStatus8()==1)
+                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"16");
+                else
+                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"26");
+
 
         ztraining_facilityService.updatesixportbyid(ztraining_facility);
 
-        //继电器这边
-        Thread t = new Thread(new Runnable(){
-            public void run(){
-                try {
-                        if (ztraining_facility.getZpowerIP()!=null)
-                            if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
-                                if (ztraining_facility.getZpowerStatus8()==1)
-                                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"16");
-                                else
-                                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"26");
+        }catch(Exception e) {
 
-                }catch(Exception e) {
-                   // e.printStackTrace();
-                }
+        }
 
-            }});
-        t.start();
 
         return ztraining_facility.getZselecttest();
     }
@@ -242,6 +250,52 @@ public class Ztraining_roomController {
         return ztraining_facilityService.findstunamebyfacid(id);
     }
 
+    @RequestMapping("/overclass2")
+    @ResponseBody
+    public int overclass(HttpSession session){
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        return ztraining_facilityService.overclass(zteacher_cookie.getZtrainingroomid(),"下课");
+    }
+
+
+    @RequestMapping("/submittac")
+    @ResponseBody
+    public int submittac(HttpSession session){
+        Ztraining_facility ztraining_facility=(Ztraining_facility) session.getAttribute("ztraining_facility") ;
+        String zprogress=ztraining_facilityService.findzprogressbyid(ztraining_facility.getZid());
+
+        if (zprogress=="安全测试")
+            return 1;
+        else if(zprogress=="实训")
+            return 2;
+        else if(zprogress=="下课")
+            return 3;
+        else
+            return 4;
+    }
+
+
+    @RequestMapping("/findsessionprogress")
+    @ResponseBody
+    public String findsessionprogress(HttpSession session){
+        System.out.println(session.getAttribute("zprogress"));
+       return (String) session.getAttribute("zprogress");
+    }
+
+
+    @RequestMapping("/findisleave")
+    @ResponseBody
+    public int findisleave(HttpSession session){
+        int i=0;
+        Ztraining_facility ztraining_facility=(Ztraining_facility) session.getAttribute("ztraining_facility");
+        String zprogress=ztraining_facilityService.findzprogressbyid(ztraining_facility.getZid());
+
+        //System.out.println(zprogress);
+        if(zprogress.equals("下课"))
+            i++;
+        return i;
+
+    }
 
 
     @RequestMapping("/updateprogress")

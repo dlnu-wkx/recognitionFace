@@ -169,6 +169,10 @@
 
 
         load();
+
+        window.setInterval(function () {
+            findisleave()
+        }, 3000);
     }
 
     var static_testinputnum=new Array();

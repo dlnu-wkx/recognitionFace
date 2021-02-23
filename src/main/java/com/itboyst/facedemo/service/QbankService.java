@@ -13,5 +13,7 @@ public interface QbankService {
 
     public List<Zsafe_testingDto> findrand10(String zstudentID, String zsafetestingType);
 
-    public List<Zsafe_testingDto> findrandbynumber(int number);
+    public List<Zsafe_testingDto> findrandbynumber(int number,String ztype);
+
+    public List<String> findallsafetype();
 }

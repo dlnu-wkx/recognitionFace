@@ -87,4 +87,6 @@
         UPDATE user_face_info set face_feature =NULL where face_id = #{face_id}
     </update>
 
+
+
 </mapper>

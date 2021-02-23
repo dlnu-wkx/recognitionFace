@@ -17,13 +17,47 @@ function upheads() {
 
 }
 
+
+function findfiveport(){
+    $.ajax({
+        type: "post",
+        url: "/findfiveport",
+        data:{},
+        async: false,
+        success: function (data){
+
+        }
+    });
+}
+
+
+
 function leaveclass() {
+    //alert(11)
+    //结算测试题和实训任务
+    $.ajax({
+        type: "post",
+        url: "/findsessionprogress",
+        data:{},
+        async: false,
+        success: function (data){
+            console.log(data)
+            if (data=="安全测试")
+                submit2()
+            else if(data=="实训")
+                sumbmitpages()
+        }
+    });
+
+    /*submit2()
+    sumbmitpages()*/
 
     //删除临时任务
     $.ajax({
         type: "post",
         url: "/deletemes",
         data:{},
+        async: false,
         success: function (data){
 
         }
@@ -34,6 +68,7 @@ function leaveclass() {
         type: "post",
         url: "/usixout",
         data:{},
+        async: false,
         success: function (data){
 
         }
@@ -44,6 +79,7 @@ function leaveclass() {
         type: "post",
         url: "/updateprogress",
         data:{},
+        async: false,
         success: function (data){
 
         }
@@ -98,6 +134,17 @@ function removeout() {
     });
 }
 
+
+function overclass(){
+    $.ajax({
+        type: "post",
+        url: "/overclass2",
+        success: function (data){
+
+        }
+    });
+
+}
 
 
 //判断字符串长度
@@ -750,7 +797,19 @@ function powerController() {
 }
 
 
-
+function findisleave(){
+   // alert(1)
+    $.ajax({
+        type: "post",
+        url: "/findisleave",
+        async: false,
+        success: function (data) {
+           // alert(data)
+            if (data>0)
+                leaveclass()
+        }
+    })
+}
 
 
 //获取命令
@@ -763,6 +822,8 @@ function getcommand() {
     formData.append("chagangID", chagangID);
     formData.append("gundongID", gundongID);
     var str="";
+
+
 
     //获取教师命令
     $.ajax({

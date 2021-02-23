@@ -33,6 +33,7 @@ public enum ErrorCodeEnum {
     NO_IS_TEACHER(24,"请确认您的老师身份或者您还没有添加课程信息"),
     TEMPUSER_NOT_LOGIN_TWO(25,"您的身份已失效，请重新注册"),
     NOT_IS_TEACHER(26,"拥有教师身份才能登录"),
+    Two_training_room(27,"老师有两个实训室"),
 
     INVALID_APP_ID(28673, "无效的AppId"),
     INVALID_SDK_ID(28674, "无效的SdkKey"),

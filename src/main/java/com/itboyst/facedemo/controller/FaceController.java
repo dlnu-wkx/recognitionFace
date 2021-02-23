@@ -494,7 +494,7 @@ public class FaceController {
             //System.out.println(faceid);
             // System.out.println(faceid);
             zstudent=zstuservice.findadoptstudent(faceid);
-            System.out.println(zstudent);
+            //System.out.println(zstudent);
 
             if(zstudent==null) return Results.newFailedResult(ErrorCodeEnum.NO_STUDENT_FACEID);
             //学生登陆信息
@@ -515,10 +515,12 @@ public class FaceController {
             //首次电脑界面登陆设置类型为机床
             zsl.setZtype("机床");
 
+            session.setAttribute("zprogress","登陆");
 
             InetAddress addr = InetAddress.getLocalHost();
 
             String ip4=Iputil.getClientIpAddress(request);
+
             int b=ztrinfser.updatezprogressbyip(ip4,"登陆");
 
             zsl.setZcheck("登陆");
@@ -555,11 +557,11 @@ public class FaceController {
             ztraining_room ztr =ztraining_roomService.findbyip(ztrfac.getZtrainingroomID());
             session.setAttribute("ztraining_room",ztr);
 
-            System.out.println(ztr);
+            //System.out.println(ztr);
             
             //课程，日期，上课学生表
             Zstudent_cookie zsc=zstudent_cooikeService.findscookiemes(ztr.getZid(),timestamp,zstudent.getZid());
-            System.out.println(zsc);
+            //System.out.println(zsc);
 
             if(!zstudent.getZidentity().contains("L")){
                 zsl.setZscheduleID(zsc.getZscheduleID());
@@ -598,12 +600,14 @@ public class FaceController {
             //插入学生登陆信息
             int  i=zstudent_loginService.insertnowmessage(zsl);
 
+         /*   Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 
             /*Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 
             zselecttest.setMaxAge(86400);
             //存cookie
-            response.addCookie(zselecttest);*/
+            response.addCookie(zselecttest)*/;
+
 
 
             //插入日志信息
@@ -765,6 +769,54 @@ public class FaceController {
     }
 
 
+    @RequestMapping(value = "/loadtrainroom")
+    @ResponseBody
+    public List<Zteacher_cookie> loadtrainroom(HttpSession session,String id) {
+            int faceid=userFaceInfoService.findidbyfaceid(id);
+            List<Zteacher_cookie> teachercookies=zteacher_cookieSerice.findbyfaceid(faceid);
+
+            System.out.println(teachercookies);
+            session.setAttribute("teachercookies",teachercookies);
+
+            return teachercookies;
+    }
+
+
+    @RequestMapping(value = "/choseasavetcookie")
+    @ResponseBody
+    public int choseasavetcookie(HttpSession session,String id) {
+        //int faceid2=userFaceInfoService.findidbyfaceid(id);
+
+        Zteacher_cookie zteacher_cookie=new Zteacher_cookie();
+
+        List<Zteacher_cookie> data=(List<Zteacher_cookie>) session.getAttribute("teachercookies");
+
+        for (int i=0;i<data.size();i++)
+            if(data.get(i).getZtrainingroomid().equals(id))
+                zteacher_cookie=data.get(i);
+
+        System.out.println(zteacher_cookie);
+        // 实训室
+        session.setAttribute("zteacher_cookie",zteacher_cookie);
+
+        //教师日志表
+        Zteacher_journal zteacher_journal=new Zteacher_journal();
+        String uuid = UUID.randomUUID().toString().replaceAll("-","");
+        zteacher_journal.setZid(uuid);
+        zteacher_journal.setZtype("登陆系统");
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        zteacher_journal.setZoperatedate(timestamp);
+
+        int i=0;
+        i= zteacher_journalService.inserteacherjournal(zteacher_journal);
+
+        return i;
+
+    }
+
+
+
+
    //教师登陆
     @RequestMapping(value = "/faceTeacherSearch", method = RequestMethod.POST)
     @ResponseBody
@@ -816,11 +868,23 @@ public class FaceController {
                 //人脸表id
                 int faceid=faceengine.selectidbyname(faceUserInfo.getPath());
                 //教师信息、课程信息和实训室信息
-                Zteacher_cookie zteacher_cookie=zteacher_cookieSerice.findbyfaceid(faceid);
-                //注释掉没有课程教师登录不了的问题
-                /*if(null==zteacher_cookie){
+                List<Zteacher_cookie> data=zteacher_cookieSerice.findbyfaceid(faceid);
+                Zteacher_cookie zteacher_cookie=new Zteacher_cookie();
+
+                //System.out.println(data.size());
+
+                if (data.size()==1)
+                    zteacher_cookie=data.get(0);
+                if (data.size()>1){
+                 //   System.out.println("进入");
+                    return Results.newResult(faceSearchResDto,"1",false,0);
+
+                }
+
+
+                if(null==zteacher_cookie){
                     return Results.newFailedResult(ErrorCodeEnum.NO_IS_TEACHER);
-                }*/
+                }
                 //临时人员不能登录两次
                 String face_id =userFaceInfoService.selectfaceidbyfpath(faceUserInfo.getPath());
                 Zteacher  teacher  = zteacherService.findteacherByzidentity(face_id);
