@@ -197,7 +197,7 @@ public class ZeventController {
     public int updatealleventbystu(HttpSession session){
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
         //System.out.println(zstudent_eventService.updatealleventbystu("取消",zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID()));
-        return zstudent_eventService.updatealleventbystu("取消",zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID());
+        return zstudent_eventService.updatealleventbystu2("取消",zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID());
     }
 
 

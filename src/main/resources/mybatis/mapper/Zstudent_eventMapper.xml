@@ -26,6 +26,9 @@
         update zstudent_event set zstatus =#{zstatus} where zrecognizeIP=#{zrecognizeIP} and zscheduleID=#{zscheduleID}
     </update>
 
+    <update id="updatealleventbystu2" parameterType="com.itboyst.facedemo.dto.Zstudent_event">
+        update zstudent_event set zstatus =#{zstatus} where zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID}
+    </update>
 
     <update id="updateTeacherIDandStatus" parameterType="com.itboyst.facedemo.dto.Zstudent_event">
         update zstudent_event set zhandlecontent =#{zhandlecontent} ,zteacherID=#{zteacherID},zhandletime=#{zhandletime} where zid=#{zid}
