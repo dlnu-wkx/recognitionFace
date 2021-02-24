@@ -248,7 +248,7 @@
             data:{"zid":zid},
             async: false,
             success: function (data) {
-                str+="<div class='power_bbox3'  align='center'> "
+                str+="<div class='power_bbox4'  align='center'> "
 
                 str+="<div  class='delivery_unpowerbox2' align='center'>"
                 str+="<div class='p_islogin'>"
@@ -406,9 +406,9 @@
         loadalltesttype();
         getteacherroom();
         loadfaclity(static_trainroomid);
-        interval= window.setInterval(function () {
+        /*interval= window.setInterval(function () {
             loadfaclity(static_trainroomid);
-        }, 20000);
+        }, 20000);*/
     }
 
     function loadfaclity(trainroomid) {
