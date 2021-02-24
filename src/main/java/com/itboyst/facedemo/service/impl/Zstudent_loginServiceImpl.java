@@ -71,4 +71,7 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
    public int removetat(Zstudent_login zstudent_login){
         return zstulogma.removetat(zstudent_login);
    }
+
+
+   public int updatetanbyipasch(Zstudent_login zstudent_login){return zstulogma.updatetanbyipasch(zstudent_login);}
 }

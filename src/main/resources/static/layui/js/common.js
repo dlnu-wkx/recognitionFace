@@ -32,6 +32,9 @@ function findfiveport(){
 
 
 
+
+
+//学生退出系统
 function leaveclass() {
     //alert(11)
     //结算测试题和实训任务
@@ -41,7 +44,7 @@ function leaveclass() {
         data:{},
         async: false,
         success: function (data){
-            console.log(data)
+           // console.log(data)
             if (data=="安全测试")
                 submit2()
             else if(data=="实训")
@@ -84,18 +87,28 @@ function leaveclass() {
 
         }
     });
-    //学生退出时改变实训室的zprogress
+
+    //学生退出时改变实训设备的zprogress
     $.ajax({
         type:"post",
         url:"/exitsystem",
         data:{},
+        async: false,
         success:function(data){
 
         }
     })
-    //学生退出日志
 
+    //清除当堂课请假与举手状态
+    $.ajax({
+        type:"post",
+        url:"/updatealleventbystu",
+        data:{},
+        async: false,
+        success:function(data){
 
+        }
+    })
 
     location.href="/student"
 }
@@ -119,6 +132,9 @@ function outsystem() {
     });
 }
 
+
+
+
 function removeout() {
     $.ajax({
         type: "post",
@@ -140,7 +156,7 @@ function overclass(){
         type: "post",
         url: "/overclass2",
         success: function (data){
-
+            layer.msg("已下课，等待学生端电源关闭", { icon: 1, offset: "auto", time:1000 });
         }
     });
 

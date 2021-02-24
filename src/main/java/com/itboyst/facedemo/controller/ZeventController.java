@@ -2,10 +2,7 @@ package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.base.Iputil;
 import com.itboyst.facedemo.base.Powerutil;
-import com.itboyst.facedemo.dto.Zstudent;
-import com.itboyst.facedemo.dto.Zstudent_cookie;
-import com.itboyst.facedemo.dto.Zstudent_event;
-import com.itboyst.facedemo.dto.Ztraining_facility;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.Zstudent_eventService;
 import com.itboyst.facedemo.service.Ztraining_facilityService;
 import org.slf4j.Logger;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.UUID;
 
 import static com.itboyst.facedemo.base.UUIDutil.ReplaceSQLChar;
@@ -193,6 +191,36 @@ public class ZeventController {
         return zstudent_eventService.updateeventstatus(zstudent_event);
     }
 
+
+    @RequestMapping("/updatealleventbystu")
+    @ResponseBody
+    public int updatealleventbystu(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
+        //System.out.println(zstudent_eventService.updatealleventbystu("取消",zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID()));
+        return zstudent_eventService.updatealleventbystu("取消",zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID());
+    }
+
+
+    @RequestMapping("/updatealleventbyrid")
+    @ResponseBody
+    public int updatealleventbyrid(HttpSession session){
+        Ztraining_facility ztraining_facility=(Ztraining_facility) session.getAttribute("ztraining_facility") ;
+
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie) session.getAttribute("zteacher_cookie") ;
+
+        List<Ztraining_facility>  data=ztraining_facilityService.findfacilitybyrid(ztraining_facility.getZtrainingroomID());
+
+        int j=0,k=0;
+        for (int i=0;i<data.size();i++){
+            j=zstudent_eventService.updatealleventbystu("取消",data.get(i).getZstudentPCIP(),zteacher_cookie.getZscheduleID());
+
+            if (j>0)
+                k++;
+        }
+
+        return k;
+
+    }
 
 
 }

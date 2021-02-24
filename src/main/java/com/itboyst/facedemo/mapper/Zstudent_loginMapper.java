@@ -33,4 +33,6 @@ public interface Zstudent_loginMapper {
     int deletebyoriginalPictureUrl(String originalPictureUrl);
 
     int removetat(Zstudent_login zstudent_login);
+
+    int updatetanbyipasch(Zstudent_login zstudent_login);
 }

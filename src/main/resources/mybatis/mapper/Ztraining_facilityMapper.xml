@@ -104,6 +104,10 @@
         update ztraining_facility set zpowerStatus5 = #{zpowerStatus5} where zid = #{zid}
     </update>
 
+    <update id="updateoatportbyrid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus1 = #{zpowerStatus1} ,zpowerStatus2 = #{zpowerStatus2} where ztrainingroomID = #{ztrainingroomID}
+    </update>
+
     <update id="updateportbyid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
         update ztraining_facility set zpowerStatus6 = #{zpowerStatus6},zpowerStatus1 = #{zpowerStatus1},zpowerStatus2 = #{zpowerStatus2},zpowerStatus7 = #{zpowerStatus7} where zid = #{zid}
     </update>

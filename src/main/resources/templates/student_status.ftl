@@ -138,6 +138,11 @@
 
 <script>
 
+    //退出
+    function outpower(){
+        $("#popup").show()
+    }
+
     var istestchange=0;
 
     $("#p_testisopen").change(function() {
@@ -401,10 +406,9 @@
         loadalltesttype();
         getteacherroom();
         loadfaclity(static_trainroomid);
-        /*interval= window.setInterval(function () {
+        interval= window.setInterval(function () {
             loadfaclity(static_trainroomid);
         }, 20000);
-*/
     }
 
     function loadfaclity(trainroomid) {

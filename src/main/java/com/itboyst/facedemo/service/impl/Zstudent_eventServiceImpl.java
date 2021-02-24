@@ -59,4 +59,5 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
     }
 
 
+    public int updatealleventbystu(String zstatus,String zrecognizeIP,String zscheduleID){return zstudent_eventMapper.updatealleventbystu(zstatus, zrecognizeIP, zscheduleID);}
 }

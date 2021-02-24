@@ -51,7 +51,7 @@
 
 <!--左侧人员信息-->
 <div class="f_left">
-    <font size="3" class="f_font1">设备列表</font>
+    <font size="5" class="f_font1">设备列表</font>
     <button class="f_button1" onclick="allchose()">全选</button>
 
     <div class="f_leftmes" id="f_leftmes">
@@ -61,7 +61,7 @@
 
 <!--右侧课件列表-->
 <div class="f_rmessage">
-    <font class="f_font2">课件列表</font>
+    <font class="f_font2" size="5">课件列表</font>
     <input class="f_input1" type="text" id="f_input1">
     <button class="f_button2" onclick="tasklike()">搜索</button>
 

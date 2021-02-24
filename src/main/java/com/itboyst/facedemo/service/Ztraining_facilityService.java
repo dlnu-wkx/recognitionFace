@@ -58,4 +58,6 @@ public interface Ztraining_facilityService {
     public String  findzprogressbyid(String zid);
 
     public int updatefiveportbyzid(String zid,int zpowerStatus5);
+
+    public int updateoatportbyrid(int zpowerStatus2,int zpowerStatus1,String ztrainingroomID);
 }

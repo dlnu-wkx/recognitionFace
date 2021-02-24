@@ -23,4 +23,6 @@ public interface Zstudent_eventMapper {
     public Zstudent_event findupnumberbyfai(String zid,String ztype);
 
     public Zstudent_event findupbyfacilityid(String zid);
+
+    public int updatealleventbystu(String zstatus,String zrecognizeIP,String zscheduleID);
 }

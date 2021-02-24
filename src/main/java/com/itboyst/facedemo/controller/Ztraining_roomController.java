@@ -297,7 +297,12 @@ public class Ztraining_roomController {
 
     }
 
-
+    /**
+     * 清除测试次数，当前任务名称，实训设备的zprogress
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("/updateprogress")
     @ResponseBody
     public int updateprogress(HttpServletRequest request,HttpSession session){
@@ -310,12 +315,65 @@ public class Ztraining_roomController {
         zstudent_login.setZrecognizeIP(ztraining_facility.getZstudentPCIP());
         zstudent_login.setZcheck("登陆");
 
-        zstudent_loginService.removetat(zstudent_login);  
+        return zstudent_loginService.removetat(zstudent_login);
 
-        String ip4=Iputil.getClientIpAddress(request);
-
-        return ztraining_facilityService.updatezprogressbyip(ip4,"退出系统");
     }
+
+
+
+    @RequestMapping("/updateprogressbyroomid")
+    @ResponseBody
+    public int updateprogressbyroomid(HttpServletRequest request,HttpSession session){
+        Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility");
+
+        System.out.println(ztraining_facility);
+        List<Ztraining_facility>  data =ztraining_facilityService.findfacilitybyrid(ztraining_facility.getZtrainingroomID());
+
+        int j,k=0;
+        for(int i=0;i<data.size();i++){
+            Zstudent_login zstudent_login=new Zstudent_login();
+            zstudent_login.setZnowtaskname("");
+            zstudent_login.setZtesttime(0);
+            zstudent_login.setZrecognizeIP(data.get(i).getZstudentPCIP());
+            zstudent_login.setZcheck("登陆");
+
+            j= zstudent_loginService.removetat(zstudent_login);
+            if (j>0)
+                k++;
+        }
+        return k;
+    }
+
+    @RequestMapping("/updateoatportbyrid")
+    @ResponseBody
+    public void updateoatportbyrid(HttpSession session){
+       Ztraining_facility ztraining_facility=(Ztraining_facility) session.getAttribute("ztraining_facility");
+
+       List<Ztraining_facility> data=ztraining_facilityService.findfacilitybyrid(ztraining_facility.getZtrainingroomID());
+
+       int i=ztraining_facilityService.updateoatportbyrid(0,0,ztraining_facility.getZtrainingroomID());
+
+        Thread t = new Thread(new Runnable(){
+
+            public void run(){
+                try {
+                    for (int j=0;j<data.size();j++){
+                        if (Powerutil.pingIp(data.get(j).getZpowerIP())){
+                            Powerutil.powercontroller(data.get(j).getZpowerIP(),"21");
+                            Powerutil.powercontroller(data.get(j).getZpowerIP(),"22");
+                        }
+                    }
+
+                }catch(Exception e) {
+                    //打印输出异常
+                    e.printStackTrace();
+                }
+
+            }});
+        t.start();
+
+    }
+
 
 
 

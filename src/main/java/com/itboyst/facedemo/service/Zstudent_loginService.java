@@ -26,4 +26,6 @@ public interface Zstudent_loginService {
     int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname);
 
     int removetat(Zstudent_login zstudent_login);
+
+    int updatetanbyipasch(Zstudent_login zstudent_login);
 }

@@ -43,6 +43,11 @@
       UPDATE zstudent_login SET zstatus=#{zstatus} WHERE ztype='机床' AND zstatus='正常' AND zrecognizeIP IN (SELECT zstudentPCIP FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID});
     </update>
 
+
+    <update id="updatetanbyipasch" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+        UPDATE zstudent_login SET zstatus=#{zstatus} WHERE zrecognizeIP=#{zrecognizeIP} anad zscheduleID=#{zscheduleID}
+    </update>
+
     <update id="updatetesttime" parameterType="java.lang.String" >
         update zstudent_login set ztesttime=ztesttime+1 where zrecognizetime=( select max(a.zrecognizetime) from ( select * from zstudent_login where zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} )a)
     </update>

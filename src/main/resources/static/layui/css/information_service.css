@@ -1,8 +1,8 @@
 .i_namelike{
-    top: 33%;
-    left: 28.8%;
+    top: 26%;
+    left: 28.3%;
     position: fixed;
-    height: 20%;
+    height: 80%;
     width: 30%;
     background-color: white;
     border: 1px solid black;
@@ -82,10 +82,11 @@
 }
 
 .i_timechose{
-    top: 53%;
+    top: 40%;
     width: 90%;
     height: 50%;
     position: fixed;
+    left: 3.8%;
 }
 
 .i_font{
@@ -149,6 +150,7 @@
     border-radius: 10px;
     left: 40%;
     position: absolute;
+    top: 30%;
 }
 
 .i_exit{
