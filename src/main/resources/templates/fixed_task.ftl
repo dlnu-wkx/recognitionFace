@@ -91,7 +91,7 @@
     <br><br>
     <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
 
-    <button class="p_button2">下课</button>
+    <button class="p_button2" onclick="overclass()">下课</button>
 </div>
 <!--蒙版-->
 <div id="parent" class="parent" hidden></div>
