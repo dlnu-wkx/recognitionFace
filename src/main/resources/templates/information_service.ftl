@@ -123,7 +123,7 @@
         }
 
       else if (selecttype=="人脸识别"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"人脸识别查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"人脸识别查询.xls\")'>下载</button>&emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"签到信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
@@ -141,7 +141,7 @@
                 }
             });
         }else if(selecttype=="查岗"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"查岗查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"查岗查询.xls\")'>下载</button>&emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='4'><font size='5'>"+i_name+"查岗信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
@@ -157,7 +157,7 @@
                 }
             });
         }else if(selecttype=="登陆"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"登陆查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"登陆查询.xls\")'>下载</button>&emsp; <button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='6'><font size='5'>"+i_name+"登陆信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>登陆/退出</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
@@ -173,7 +173,7 @@
                 }
             });
         }else if (selecttype=="举手"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"举手查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"举手查询.xls\")'>下载</button>&emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='6'><font size='5'>"+i_name+"举手信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>实时状态</th><th class='i_tableth2'>签到时间</th></tr>"
             $.ajax({
@@ -189,7 +189,7 @@
                 }
             });
         }else if(selecttype=="请假/销假"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"请假（销假）查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"请假（销假）查询.xls\")'>下载</button>&emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='7'><font size='5'>"+i_name+"请假信息查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>请假原因</th><th class='i_tableth2'>请假状态</th><th class='i_tableth2'>时间</th><th class='i_tableth2'>审批人</th></tr>"
             $.ajax({
@@ -220,7 +220,7 @@
                 }
             });
         }else  if(selecttype=="测试成绩"){
-            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"测试成绩查询.xls\")'>下载</button>&emsp; &emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
+            str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"测试成绩查询.xls\")'>下载</button>&emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='7'><font size='5'>"+i_name+"测试成绩查询</font></th></tr>"
             str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>教室</th><th class='i_tableth2'>实训设备</th><th class='i_tableth2'>测试类型</th><th class='i_tableth2'>成绩</th><th class='i_tableth2'>测试时间</th></tr>"
             $.ajax({
