@@ -170,6 +170,7 @@
                 str+="  <table class='f_table1' align='center' id='f_table' id='studenttable'>"
                 str+="<tr> <th> 当前人员 </th> <th>机床号 </th> <th> 选项 </th> </tr>"
                 for (var i=0; i<data.length;i++) {
+                    //alert(data[i].zname)
                     str+=" <tr> <th> "+data[i].zname+" </th> <th>"+data[i].zidentity+" </th> <th> <input name='studentid' id='"+data[i].zid+"' type='checkbox' value='"+data[i].zid+"'> </th> </tr> "
                 }
                 str+=" </table>"

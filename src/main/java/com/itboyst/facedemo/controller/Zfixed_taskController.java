@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -121,10 +122,21 @@ public class Zfixed_taskController {
     public List<Zstudent_facility> findallnandf(HttpSession session){
         Zteacher_cookie zteacher_cookie=(Zteacher_cookie)session.getAttribute("zteacher_cookie");
         String ztrainingroomid =zteacher_cookie.getZtrainingroomid();
-        String zscheduleid=zteacher_cookie.getZscheduleID();
 
-       // System.out.println(zname_facilityService.findnameandfaclity(ztrainingroomid,zscheduleid));
-        return zname_facilityService.findnameandfaclity(ztrainingroomid,zscheduleid);
+        List<Ztraining_facility> data =ztraining_facilityService.findfacilitybyrid(ztrainingroomid);
+
+        List<Zstudent_facility> data2=new ArrayList<>();
+
+        for(int i=0;i<data.size();i++){
+            Zstudent_facility zstudent_facility =new Zstudent_facility();
+
+            zstudent_facility=zname_facilityService.findnameandfaclity(data.get(i).getZid());
+
+            if (zstudent_facility != null)
+                data2.add(zstudent_facility);
+        }
+        //System.out.println(data2);
+       return data2;
     }
 
 

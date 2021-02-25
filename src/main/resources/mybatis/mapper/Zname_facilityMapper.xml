@@ -14,7 +14,7 @@
 
 
     <select id="findnameandf"  resultType="com.itboyst.facedemo.dto.Zstudent_facility">
-      select A.zid zid, A.zname zname,B.zidentity zidentity from zstudent A,ztraining_facility B,zstudent_login C,zstudent_schedule D ,zschedule E where A.zid=C.zstudentID and C.zrecognizeIP=B.zstudentPCIP and D.zstudentID=A.Zid and D.zstate="在上课" and D.zscheduleID=E.zid and E.ztrainingroomID =#{ztrainingroomID} and E.zid=#{zscheduleid} group  by A.zname
+        select a.zname,b.zidentity from zstudent  a,ztraining_facility b where a.zid=( select zstudentID from zstudent_login where zrecognizeIP =( select zstudentPCIP from ztraining_facility where zid=#{zid} and (zprogress='登陆' or zprogress='安全测试' or zprogress='实训中')) GROUP BY zstudentID ORDER BY zrecognizetime desc LIMIT 1) and b.zid=#{zid}
     </select>
 
 
