@@ -344,7 +344,7 @@
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //现场管理
     function fieldManagement() {
@@ -360,7 +360,7 @@
     var time=null;
     function getMedia1() {
         $("#showVdieo").empty();
-        let videoComp = "<video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
+        let videoComp = "<video  muted id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
         $("#showVdieo").append(videoComp);
 
         let constraints = {

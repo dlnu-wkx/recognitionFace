@@ -90,7 +90,7 @@
                     if(""!=data){
                         $("#selectcourse").empty();
                         str+="<div>添加课程</div>";
-                        str+="<select class='rightfirstson_second_first_select' name='selectValue' onchange='selectStr()' id='selectName'>";
+                        str+="<select class='rightfirstson_second_first_select' name='selectValue' onchange='selectStrcourse(this.value)' id='selectName'>";
                         str+="<option>请选择</option>";
                         for(var i=0;i<data.length;i++){
                             str+="<option value='"+data[i].zid+"'>"+data[i].zname+"</option>";
@@ -130,7 +130,6 @@
             showmajor();
             findcourse();
             showtrainingroom();
-            showtrainingtask();
             showAllteacher();
         }
         function showmajor() {
@@ -237,11 +236,12 @@
             })
         }
         //显示所有的实训任务
-        function showtrainingtask() {
+        function showtrainingtask(id) {
             var str = "";
             $.ajax({
                 type:"post",
-                url:"/findalltraingtask",
+                url:"/findalltraingtaskbyzcourseID",
+                data:{"zid":id},
                 success:function (data) {
                     if(""!=data){
                         $("#trainingtaskselect").empty();
@@ -352,8 +352,8 @@ function savecourse() {
     })
 }
 
-        function selectStr(){
-
+        function selectStrcourse(id){
+            showtrainingtask(id)
         }
         function selectStr2(){
 
@@ -490,7 +490,7 @@ function savecourse() {
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //现场管理
     function fieldManagement() {

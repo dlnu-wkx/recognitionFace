@@ -31,4 +31,9 @@ public class ZscheduleServiceImpl implements ZscheuleService {
     public int addzschedule(Zschedule zschedule) {
         return zscheduleMapper.addzschedule(zschedule);
     }
+
+    @Override
+    public String findidbycourename(String coursename) {
+        return zscheduleMapper.findidbycourename(coursename);
+    }
 }

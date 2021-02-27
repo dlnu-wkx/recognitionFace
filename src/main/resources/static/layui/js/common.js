@@ -619,11 +619,11 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                      $("#left").empty();
                      $("#middle").empty();
                      $("#right").hide();
-                     var  zName1 =data[1].zname;
-                     var data1 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
+                     var  zName1 =data[0].zname;
+                     var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
                      $("#left").append(zName1+"("+data1+")");
-                     var  zName2 =data[0].zname;
-                     var data2 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
+                     var  zName2 =data[1].zname;
+                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
                      $("#middle").append(zName2+"("+data2+")");
                      //$("#mainBody").hide();
                      $("#left").show();
@@ -633,14 +633,14 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                     $("#left").empty();
                     $("#middle").empty();
                     $("#right").empty();
-                    var  zName1 =data[2].zname;
-                    var data1 = formatterDatetimeLocalToApprication(data[2].zrecognizetime);
+                    var  zName1 =data[0].zname;
+                    var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
                     $("#left").append(zName1+"("+data1+")");
                     var  zName2 =data[1].zname;
                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
                     $("#middle").append(zName2+"("+data2+")");
-                    var  zName3 =data[0].zname;
-                    var data3 = formatterDatetimeLocalToApprication(data[0].zrecognizetime)
+                    var  zName3 =data[2].zname;
+                    var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
                     $("#right").append(zName3+"("+data3+")");
                     //$("#mainBody").hide();
                     $("#left").show();
@@ -715,12 +715,22 @@ function findAllLoginpeople(mytime,zcheck) {
         success:function (data) {
             if(""!=data){
                 $("#identifyAreas").empty();
-                //显示最后一个识别成功的人的图片
-                if(""!=data[0].originalPictureUrl){
-                    var str =data[0].originalPictureUrl;
-                    var path =str.substring(23);
-                    document.getElementById("img").src="http://localhost:81"+path;
+                if(zcheck=="人脸识别"){
+                    //显示最后一个识别成功的人的图片
+                    if(""!=data[0].originalPictureUrl){
+                        var str =data[0].originalPictureUrl;
+                        var path =str.substring(23);
+                        document.getElementById("img").src = "http://192.168.11.100:81"+path;
+                    }
                 }
+                if(zcheck=="查岗"){
+                    if(""!=data[0].originalPictureUrl){
+                        var str =data[0].originalPictureUrl;
+                        var path =str.substring(23);
+                        document.getElementById("img").src=""+path;
+                    }
+                }
+
                 //只显示最后五个数据
                 if(data.length>5){
                     for(var i=0;i<5;i++){
@@ -930,6 +940,7 @@ function  delAllCheckPoint() {
 var mediaStreamTrack;
 
 function getMedia2() {
+    document.getElementById("regcoDiv").style.display="block";
     $("#regcoDiv").empty();
     let vedioComp = "<video muted id='video2' width='1000px' height='500px' autoplay='autoplay' style='z-index:1000;margin-left: 5%;margin-top: 4%' ></video><canvas id='canvas2' width='1000px' height='500px' style='display: none'></canvas>";
     $("#regcoDiv").append(vedioComp);

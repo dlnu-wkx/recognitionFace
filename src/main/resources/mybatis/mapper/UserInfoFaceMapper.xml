@@ -89,4 +89,8 @@
 
 
 
+    <select id="findcreatimebyfaceid" resultType="java.sql.Timestamp">
+        select  create_time from user_face_info where face_id=#{face_id}
+    </select>
+
 </mapper>

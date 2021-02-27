@@ -45,7 +45,7 @@
     <button onclick="informationService()" class="f_field_service">信息查询</button>
     <button onclick="timeStatus()"class="f_field_status">实时状态</button>
     <button class="f_field_delivery" id="deliveryid" onclick="outmessage()">信息发布</button>
-    <button onclick="outpower()" id="exit" class="f_field_exit">退出</button>
+    <button onclick="outpower()" id="exit" class="f_field_exit_delivery">退出系统</button>
 </div>
 
 <!--左侧人员信息-->
@@ -293,7 +293,7 @@
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //信息发布
     function informationDelivery() {

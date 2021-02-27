@@ -5,6 +5,7 @@ import com.itboyst.facedemo.domain.UserFaceInfo;
 import com.itboyst.facedemo.dto.Useridname;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -38,4 +39,6 @@ public interface MybatisUserFaceInfoMapper {
     int deltempuser(String face_id);
 
     int updatefacefeature(String face_id);
+
+    Timestamp findcreatimebyfaceid(String face_id);
 }

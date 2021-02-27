@@ -67,7 +67,7 @@
     color:#FFFFFF;
     height: 80px;
     display:block;
-    margin-left: 25%;
+    margin-left: 3%;
     margin-top:70px;
     width:80px;
     background-color: #4472c4;
@@ -76,5 +76,22 @@
     line-height: 27px;
     font-size: 27px;
     z-index:10;
+    position: absolute;
+
+}
+.f_field_exit_delivery{
+    color:#FFFFFF;
+    height: 80px;
+    display:block;
+    margin-left: 33.34%;
+    margin-top:70px;
+    width:80px;
+    background-color: #4472c4;
+    border-radius:14px;
+    text-align: center;
+    line-height: 27px;
+    font-size: 27px;
+    z-index:10;
+    position: absolute;
 
 }

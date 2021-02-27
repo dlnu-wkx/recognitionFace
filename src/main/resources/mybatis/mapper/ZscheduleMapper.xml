@@ -39,4 +39,10 @@
             values (#{zid},#{zcourseID},#{ztrainingroomID},#{zstartdate},#{zenddate})
     </insert>
 
+    <select id="findidbycourename" resultType="java.lang.String">
+        select zid
+        from zschedule
+        where zcourseID=(select zid from zcourse where zname=#{zname})
+    </select>
+
 </mapper>

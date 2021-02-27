@@ -8,7 +8,9 @@ import java.util.List;
 @Mapper
 public interface Ztraining_taskMapper {
 
-    public List<Ztraining_task> findalltask();
+    public List<Ztraining_task> findalltaskbyzcourseID(String zcourseID);
 
     public List<Ztraining_task> findtasknamelike(String zname);
+
+    public List<Ztraining_task> findalltask();
 }

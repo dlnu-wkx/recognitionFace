@@ -1,9 +1,6 @@
 package com.itboyst.facedemo.controller;
 
-import com.itboyst.facedemo.dto.Zstudent;
-import com.itboyst.facedemo.dto.Zstudent_login;
-import com.itboyst.facedemo.dto.Zteacher;
-import com.itboyst.facedemo.dto.Ztempuser;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +37,15 @@ public class ZtempuserController {
 
     @Autowired
     ZgradeService zgradeService;
+
+    @Autowired
+    Ztraining_roomService ztraining_roomService;
+
+    @Autowired
+    ZscheuleService zscheuleService;
+
+    @Autowired
+    Zstudent_scheduleService zstudent_scheduleService;
 
     @RequestMapping(value = "/findAllztempuser", method = RequestMethod.POST)
     @ResponseBody
@@ -98,11 +104,31 @@ public class ZtempuserController {
                 zstudent.setZfaceinfoID(faceinfoid);
                 zstudent.setZphoto(ztempuser.getOriginalPictureUrl());
                 zstudent.setZstatus("审核通过");
-               int c = zstudentService.registerstud(zstudent);
+                String zscheduleid =zscheuleService.findidbycourename("临时课程");
+                Zstudent_schedule zstudent_schedule = new Zstudent_schedule();
+                String zstudent_schedulestuuuid = UUID.randomUUID().toString().replaceAll("-","");
+                zstudent_schedule.setZid(zstudent_schedulestuuuid);
+                zstudent_schedule.setZscheduleID(zscheduleid);
+                zstudent_schedule.setZstudentID(stuuuid);
+                zstudent_schedule.setZstate("未上课");
+                int c = zstudentService.registerstud(zstudent);
+                int n = zstudent_scheduleService.addzstudentSchedule(zstudent_schedule);
+
                //更新临时人员信息
                 int a =ztempuserService.update(zid,zname);
                return c;
+            }else{//不是临时人员则只添加课程
+                String zscheduleid =zscheuleService.findidbycourename("临时课程");
+                Zstudent_schedule zstudent_schedule = new Zstudent_schedule();
+                String zstudent_schedulestuuuid = UUID.randomUUID().toString().replaceAll("-","");
+                zstudent_schedule.setZid(zstudent_schedulestuuuid);
+                zstudent_schedule.setZscheduleID(zscheduleid);
+                zstudent_schedule.setZstudentID(oldstu.getZid());
+                zstudent_schedule.setZstate("未上课");
+                int i = zstudent_scheduleService.addzstudentSchedule(zstudent_schedule);
+                return i;
             }
+
 
         }
         return 0;

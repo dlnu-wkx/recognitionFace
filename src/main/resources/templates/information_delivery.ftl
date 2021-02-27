@@ -53,7 +53,7 @@
     <button onclick="informationService()" class="f_field_service">信息查询</button>
     <button onclick="timeStatus()"class="f_field_status">实时状态</button>
     <button class="f_field_delivery" id="deliveryid" onclick="informationDelivery()">信息发布</button>
-    <button onclick="outpower()" id="exit" class="f_field_exit">退出系统</button>
+    <button onclick="outpower()" id="exit" class="f_field_exit_delivery">退出系统</button>
 </div>
 
 <!--下方按键及内容-->
@@ -383,7 +383,7 @@
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //信息发布
     function informationDelivery() {
@@ -399,7 +399,7 @@
     var time=null;
     function getMedia1() {
         $("#showVdieo").empty();
-        let videoComp = "<video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
+        let videoComp = "<video  muted id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
         $("#showVdieo").append(videoComp);
 
         let constraints = {

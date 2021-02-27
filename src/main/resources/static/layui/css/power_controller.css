@@ -110,7 +110,7 @@
     opacity:0.5;
     z-index: 9;
 }
-.facebox{
+.facebox_exit{
     width:100%;
     height: 100%;
     /* 以下属性垂直居中 */
@@ -985,7 +985,7 @@
 }
 
 .p_field_management{
-    background-color: #ED7D31;
+    background-color: #4472C4;
     border: none;
     color: white;
     text-align: center;

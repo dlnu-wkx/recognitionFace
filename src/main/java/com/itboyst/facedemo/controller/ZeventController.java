@@ -62,7 +62,7 @@ public class ZeventController {
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         zstudent_event.setZapplicationtime(timestamp);
 
-        System.out.println(zstudent_event);
+        //System.out.println(zstudent_event);
         //插入之前将之前的事件状态更改
         zstudent_eventService.updateeventstatus(zstudent_event);
 
@@ -77,6 +77,7 @@ public class ZeventController {
 
         //更改设备表二端口的数据
         ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),1);
+        ztraining_facilityService.updateoneportbyip(ztraining_facility.getZstudentPCIP(),0);
 
         //另开一个线程，更改继电器1端口的数据
         Thread t = new Thread(new Runnable(){
@@ -85,6 +86,7 @@ public class ZeventController {
                     if (ztraining_facility.getZpowerIP()!=null)
                         if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
                             Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"21");
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"12");
                 }catch(Exception e) {
 
                 }
@@ -114,6 +116,8 @@ public class ZeventController {
         //更改设备表二端口的数据
         ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),0);
 
+        ztraining_facilityService.updateoneportbyip(ztraining_facility.getZstudentPCIP(),1);
+
         //另开一个线程，更改继电器1端口的数据
         Thread t = new Thread(new Runnable(){
             public void run(){
@@ -121,6 +125,7 @@ public class ZeventController {
                     if (ztraining_facility.getZpowerIP()!=null)
                         if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
                             Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"22");
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"11");
                 }catch(Exception e) {
 
                 }
@@ -144,6 +149,7 @@ public class ZeventController {
         Ztraining_facility ztraining_facility=(Ztraining_facility)session.getAttribute("ztraining_facility") ;
         //更改设备表二端口的数据
         ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),0);
+        ztraining_facilityService.updateoneportbyip(ztraining_facility.getZstudentPCIP(),1);
 
         //另开一个线程，更改继电器1端口的数据
         Thread t = new Thread(new Runnable(){
@@ -152,6 +158,7 @@ public class ZeventController {
                     if (ztraining_facility.getZpowerIP()!=null)
                         if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
                             Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"22");
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"11");
                 }catch(Exception e) {
 
                 }

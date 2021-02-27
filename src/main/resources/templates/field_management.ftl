@@ -82,11 +82,11 @@
         <div id="hiddenArea"style="position: absolute;height: 100%;width: 100%;filter: alpha(opacity=60);opacity: 0.6;display: none;z-index: 2">
         </div>
         <#--三级菜单-->
-        <div id='threeMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
+        <div id='threeMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 85%">
 
         </div>
         <#--查岗的下级功能表-->
-        <div id='checkPointMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 88%">
+        <div id='checkPointMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 87.3%">
 
         </div>
         <#--四级菜单-->
@@ -191,7 +191,7 @@
 </div>
 
 <!--蒙版-->
-<div id="parent" class="facebox" hidden></div>
+<div id="parent" class="facebox_exit" hidden></div>
 <div id="showVdieo" style="position: absolute;z-index:10;top: 24%;left: 41%"></div>
 
 <script>
@@ -379,7 +379,7 @@
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //退出
     function studentStatus() {
@@ -395,7 +395,7 @@
     var time=null;
     function getMedia1() {
         $("#showVdieo").empty();
-        let videoComp = "<video id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
+        let videoComp = "<video muted id='video' width='400px' height='400px' autoplay='autoplay'></video><canvas id='canvas' width='400px' height='400px' style='display: none'></canvas>";
         $("#showVdieo").append(videoComp);
 
         let constraints = {

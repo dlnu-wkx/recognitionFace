@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>人脸识别系统</title>
+    <title>人脸识别系统222222</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 
     <script src="jquery/jquery-3.3.1.min.js"></script>

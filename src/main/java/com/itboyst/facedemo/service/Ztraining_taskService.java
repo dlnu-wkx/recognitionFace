@@ -8,4 +8,6 @@ public interface Ztraining_taskService {
     public List<Ztraining_task> findalltask();
 
     public List<Ztraining_task> findtasklike(String zname);
+
+    public List<Ztraining_task> findalltaskbyzcourseID(String zcourseID);
 }

@@ -9,7 +9,7 @@
 
     <select id="findAll" resultType="com.itboyst.facedemo.dto.Zstrange">
         select * from zstrange
-        where zrecognizeIP=#{zrecognizeIP} and zcheck=#{zcheck} and zrecognizetime between '2020-01-12' and NOW()
+        where zrecognizeIP=#{zrecognizeIP} and zcheck=#{zcheck} and zrecognizetime between #{timestamp} and NOW()
     </select>
 
     <delete id="deleteOriginalPictureUrl" parameterType="java.lang.String">

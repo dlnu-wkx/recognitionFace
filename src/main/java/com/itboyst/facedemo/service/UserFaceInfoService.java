@@ -2,6 +2,7 @@ package com.itboyst.facedemo.service;
 
 import com.itboyst.facedemo.domain.UserFaceInfo;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -26,4 +27,6 @@ public interface UserFaceInfoService {
     int deltempuser(String face_id);
 
     int updatefacefeature(String face_id);
+
+    Timestamp findcreatimebyfaceid(String face_id);
 }

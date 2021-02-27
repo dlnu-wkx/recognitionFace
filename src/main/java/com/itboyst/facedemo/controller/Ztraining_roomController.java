@@ -105,6 +105,13 @@ public class Ztraining_roomController {
         return ztraining_taskService.findalltask();
     }
 
+
+    @RequestMapping("/findalltraingtaskbyzcourseID")
+    @ResponseBody
+    public List<Ztraining_task> findalltraingtaskbyzcourseID(String zid){
+        return ztraining_taskService.findalltaskbyzcourseID(zid);
+    }
+
     @RequestMapping("/findfacilitybyrid")
     @ResponseBody
     public List<Ztraining_facility> findfacilitybyrid(String id){
@@ -151,19 +158,28 @@ public class Ztraining_roomController {
             ztraining_facility.setZpowerStatus6(1);
         else
             ztraining_facility.setZpowerStatus6(0);
-        try{
-            if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
-                if (ztraining_facility.getZpowerStatus8()==1)
-                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"16");
-                else
-                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"26");
 
 
-        ztraining_facilityService.updatesixportbyid(ztraining_facility);
+        Thread t = new Thread(new Runnable(){
 
-        }catch(Exception e) {
+            public void run(){
+                try{
+                    if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                        if (ztraining_facility.getZpowerStatus8()==1)
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"16");
+                        else
+                            Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"26");
 
-        }
+
+                    ztraining_facilityService.updatesixportbyid(ztraining_facility);
+
+                }catch(Exception e) {
+
+                }
+
+            }});
+        t.start();
+
 
 
         return ztraining_facility.getZselecttest();

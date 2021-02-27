@@ -1,5 +1,3 @@
-
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title> 测试管理 </title>
@@ -51,7 +49,7 @@
 <br><br>
     <button onclick="informationService()" class="p_information_service">信息查询</button>
 <br><br>
-    <button onclick="timeStatus()" class="p_time_status">实时状态</button>
+    <button onclick="timeStatus()" id="statusid" class="p_time_status">实时状态</button>
 <br><br>
     <button onclick="informationDelivery()" class="p_information_delivery">信息发布</button>
     <br><br>
@@ -138,9 +136,23 @@
 
 <script>
 
+    function fieldManagement(){
+        location.href="/field_management";
+    }
+
+    function timeStatus() {
+        location.href="/student_status";
+    }
+
     //退出
     function outpower(){
         $("#popup").show()
+    }
+
+    window.onLoad=aaa();
+    function aaa(){
+        var servicebutton = document.getElementById("statusid");
+        servicebutton.style.backgroundColor="#ED7D31"
     }
 
     var istestchange=0;
@@ -487,10 +499,10 @@
                             str+=" <font class='p_ispower3'>开</font>"
                         }
 
-                        str+="<font class='p_ftestnum'>题目数量:</font>"
-                        str+=" <font class='p_testnum'>"+data[i].zsafetestingNum+"</font>"
-                        str+=" <font class='p_fpassnum'>合格分数:</font>"
-                        str+="<font class='p_passnum'>"+data[i].zpassingscore+"</font>"
+                        str+="<font class='p_ftestnum' size='2'>题目数量</font>"
+                        str+=" <font class='p_testnum' size='2'>"+data[i].zsafetestingNum+"</font>"
+                        str+=" <font class='p_fpassnum' size='2'>合格分数</font>"
+                        str+="<font class='p_passnum' size='1'>"+data[i].zpassingscore+"</font>"
 
                         $.ajax({
                             type: "post",
@@ -502,10 +514,10 @@
                                     if (data5.ztesttime==0){
                                         str+=" <font class='p_testtime1'>"+data5.ztesttime+"</font>"
                                         str+="<font class='p_testname1' size='1'>"+data[i].zsafetestingType+"</font>"
-                                    }else if((data5.ztesttime>=1 && data5.ztesttime<=4 && data[i].zpowerStatus7==0)||(data5.ztesttime>=2 && data5.ztesttime<=4 && data[i].zpowerStatus7==1)){
+                                    }else if(data5.ztesttime>=2 && data5.ztesttime<=4 ){
                                         str+=" <font class='p_testtime2'>"+data5.ztesttime+"</font>"
                                         str+="<font class='p_testname2' size='1'>"+data[i].zsafetestingType+"</font>"
-                                    }else if(data5.ztesttime==1 && data[i].zpowerStatus7==1){
+                                    }else if(data5.ztesttime==1 ){
                                         str+=" <font class='p_testtime3'>"+data5.ztesttime+"</font>"
                                         str+="<font class='p_testname3' size='1'>"+data[i].zsafetestingType+"</font>"
                                     }else {
@@ -626,10 +638,10 @@
                                         str+=" <font class='p_ispower3'>开</font>"
                                     }
 
-                                    str+="<font class='p_ftestnum'>题目数量:</font>"
-                                    str+=" <font class='p_testnum'>"+data[j].zsafetestingNum+"</font>"
-                                    str+=" <font class='p_fpassnum'>合格分数:</font>"
-                                    str+="<font class='p_passnum'>"+data[j].zpassingscore+"</font>"
+                                    str+="<font class='p_ftestnum' size='2'>题目数量</font>"
+                                    str+=" <font class='p_testnum' size='2'>"+data[j].zsafetestingNum+"</font>"
+                                    str+=" <font class='p_fpassnum' size='2'>合格分数</font>"
+                                    str+="<font class='p_passnum' size='2'>"+data[j].zpassingscore+"</font>"
 
                                 $.ajax({
                                     type: "post",
@@ -641,10 +653,10 @@
                                             if (data5.ztesttime==0){
                                                 str+=" <font class='p_testtime1'>"+data5.ztesttime+"</font>"
                                                 str+="<font class='p_testname1' size='1'>"+data[j].zsafetestingType+"</font>"
-                                            }else if((data5.ztesttime>=1 && data5.ztesttime<=4 && data[j].zpowerStatus7==0)||(data5.ztesttime>=2 && data5.ztesttime<=4 && data[j].zpowerStatus7==1)){
+                                            }else if(data5.ztesttime>=2 && data5.ztesttime<=4 ){
                                                 str+=" <font class='p_testtime2'>"+data5.ztesttime+"</font>"
                                                 str+="<font class='p_testname2' size='1'>"+data[j].zsafetestingType+"</font>"
-                                            }else if(data5.ztesttime==1 && data[j].zpowerStatus7==1){
+                                            }else if(data5.ztesttime==1){
                                                 str+=" <font class='p_testtime3'>"+data5.ztesttime+"</font>"
                                                 str+="<font class='p_testname3' size='1'>"+data[j].zsafetestingType+"</font>"
                                             }else {

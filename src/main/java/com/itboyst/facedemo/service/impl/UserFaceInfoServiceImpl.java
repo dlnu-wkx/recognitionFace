@@ -6,6 +6,7 @@ import com.itboyst.facedemo.service.UserFaceInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -53,6 +54,11 @@ public class UserFaceInfoServiceImpl implements UserFaceInfoService {
     @Override
     public int updatefacefeature(String face_id) {
         return userFaceInfoMapper.updatefacefeature(face_id);
+    }
+
+    @Override
+    public Timestamp findcreatimebyfaceid(String face_id) {
+        return userFaceInfoMapper.findcreatimebyfaceid(face_id);
     }
 
 }

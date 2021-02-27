@@ -14,4 +14,6 @@ public interface ZscheuleService {
     List<Zschedule> findbytime(Timestamp zstartdate);
 
     int addzschedule(Zschedule zschedule);
+
+    String findidbycourename(String coursename);
 }

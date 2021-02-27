@@ -10,7 +10,7 @@
 
     <select id="findAlltempuserbytime" resultType="com.itboyst.facedemo.dto.Ztempuser">
 
-        select * from ztempuser where to_days(zlogintime) = to_days(now())
+        select * from ztempuser where to_days(zlogintime) = to_days(now()) ORDER BY zlogintime DESC
 
     </select>
 

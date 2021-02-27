@@ -15,8 +15,13 @@ public class Ztraining_taskServiceImpl implements Ztraining_taskService {
     Ztraining_taskMapper ztraining_taskMapper;
 
     @Override
-    public List<Ztraining_task> findalltask(){
-        return ztraining_taskMapper.findalltask();
+    public List<Ztraining_task> findalltaskbyzcourseID(String zcourseID){
+        return ztraining_taskMapper.findalltaskbyzcourseID(zcourseID);
+    }
+
+    @Override
+    public List<Ztraining_task> findalltask() {
+        return  ztraining_taskMapper.findalltask();
     }
 
     @Override

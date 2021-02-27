@@ -49,7 +49,13 @@
 <div class="left" id="leftbutton">
 
 </div>
-<div id="regcoDiv" style="position: absolute;width: 69%;height: 380px;margin-top: 2%;margin-left: 15%"></div>
+
+
+
+<div id="regcoDiv" style="position: absolute;width: 69%;height: 380px;margin-top: 2%;margin-left: 15%;display: none"></div>
+
+
+
 <div id="chagangID" style="display: none"></div>
 <div id="gundongID" style="display: none"></div>
 
@@ -377,7 +383,7 @@
                         str+=" <div class='left_table2'><img src='"+content[0]+"'  alt='测试用' class='right_message' /></div>"
                         str+=" <div class='reight_mes2'>"
                         str+=" <table class='r_table2'>";
-                        str+="<tr><th class='r_tableth1'>序号</th><th class='r_tableth2'>尺寸值</th><th class='r_tableth3'>输入尺寸</th></tr>"
+                        str+="<tr><th class='r_tableth1'>序号</th><th class='r_tableth3'>输入尺寸</th></tr>"
 
                         //加载测量值的个数及id
                         $.ajax({
@@ -390,7 +396,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth2'>"+data[i].ztechnicaldemand+"</th><th class='r_tableth3'><input class='rmes_input' type='input' id='"+data[i].zid+"'></th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth3'><input class='rmes_input' type='input' id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });

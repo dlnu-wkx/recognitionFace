@@ -32,7 +32,7 @@
 </style>
 <body style="text-align: center;margin: 0 auto">
 <div class="logintop">
-    <div class="leftfont">现场管理</div>
+    <div class="leftfont">登录管理</div>
     <div class="rightfont">安浩智能学习工厂</div>
 </div>
 <div style="width: 100%;height: 90%;background-color: #CDCDCD">

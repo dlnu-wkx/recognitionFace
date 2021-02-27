@@ -15,8 +15,9 @@
 </head>
 <body class="layui-layout-body">
 
+<div id="trainroomchose" class="trainroomchose" hidden>
 
-
+</div>
 
 <div class="layui-layout layui-layout-admin"  style="background-color: #CDCDCD">
     <div class="layui-header" style="border-bottom: 1px solid #c2c2c2;background-color: #CDCDCD">
@@ -153,26 +154,67 @@
                 async: false,
                 success: function (text) {
                     var res = JSON.stringify(text)
-                    if (text.code == 0) {
-                        var name = text.data.name;
-                        $("#nameDiv").html("姓名：" + name);
-                        var similar = text.data.similarValue;
-                        $("#similarDiv").html("相似度：" + similar + "%");
-                        var age = text.data.age;
-                        $("#ageDiv").html("年龄：" + age);
-                        var gender = text.data.gender;
-                        $("#genderDiv").html("性别：" + gender);
+                    // alert(text.message)
+                    var faceid=text.data.faceId;
+                    if(text.message == "2"){
+                        $.ajax({
+                            type: "post",
+                            url: "/loadtrainroom2",
+                            data: {},
+                            async: false,
+                            success: function (data) {
+                                var str="";
+                                var trainroomchose=$("#trainroomchose");
+                                for (var i=0;i<data.length;i++){
+                                    str+="<button class='button16' value='"+data[i].ztrainingroomid+"' onclick='choseroom(\""+data[i].ztrainingroomid+"\")'>"+data[i].zroomname+"</button>"
+                                    str+="<br><br>"
+                                }
 
-                        location.href = "/teacherlogin";
+                                trainroomchose.html(str);
+                                trainroomchose.show();
+                            }
+                        });
+                    } else if (text.message == "1"){
+                        $.ajax({
+                            type: "post",
+                            url: "/loadtrainroom",
+                            data: {"id":faceid},
+                            async: false,
+                            success: function (data) {
+                                var str="";
+                                var trainroomchose=$("#trainroomchose");
+                                for (var i=0;i<data.length;i++){
+                                    str+="<button class='button16' value='"+data[i].ztrainingroomid+"' onclick='choseroom(\""+data[i].ztrainingroomid+"\")'>"+data[i].zroomname+"</button>"
+                                    str+="<br><br>"
+                                }
 
-                    } else {
-                        $("#nameDiv").html("");
-                        $("#similarDiv").html("");
-                        $("#ageDiv").html("");
-                        $("#genderDiv").html("");
-
-                        showTips(text.message);
+                                trainroomchose.html(str);
+                                trainroomchose.show();
+                            }
+                        });
                     }
+                    else{
+                        if (text.code == 0) {
+                            location.href = "/teacherlogin";
+                        } else {
+                            if(text.code==14){
+                                alert("14未检出到人脸")
+                            }
+                            if(text.code==24){
+                                alert(text.message)
+                            }
+                            if (text.code==15) {
+                                alert(text.message)
+                            }
+                            if(text.code==26){
+                                alert(text.message)
+                            }
+                            if(text.code==25){
+                                alert(text.message)
+                            }
+                        }
+                    }
+
 
                 },
                 error: function (error) {
