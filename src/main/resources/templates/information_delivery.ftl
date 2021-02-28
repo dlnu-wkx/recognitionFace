@@ -53,7 +53,7 @@
     <button onclick="informationService()" class="f_field_service">信息查询</button>
     <button onclick="timeStatus()"class="f_field_status">实时状态</button>
     <button class="f_field_delivery" id="deliveryid" onclick="informationDelivery()">信息发布</button>
-    <button onclick="outpower()" id="exit" class="f_field_exit_delivery">退出系统</button>
+    <button onclick="outpower()" id="exit" class="p_exit">退出系统</button>
 </div>
 
 <!--下方按键及内容-->
@@ -320,6 +320,7 @@
 
     function insertcommand() {
 
+        //alert(11)
         var i_time=$("#i_time").val()
 
         var inputmes=$("#inputmes").val()
@@ -328,7 +329,7 @@
             $.ajax({
                 type: "post",
                 url: "/insertcommand",
-                data:{"zcontent":inputmes},
+                data:{"zcontent":inputmes,"time":i_time},
                 success: function (data) {
                     if(data>0){
                         layer.msg("成功发布滚屏信息", { icon: 1, offset: "auto", time:2000 });

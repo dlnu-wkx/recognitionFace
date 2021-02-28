@@ -48,8 +48,7 @@ public class ZcommandController {
         //System.out.println(data);
         for(int i=0;i<data.size();i++){
             if(data.get(i).getZid().equals(chagangID)|| data.get(i).getZid().equals(gundongID)){
-
-            data.remove(i);
+                data.remove(i);
             }
         }
        // System.err.println(data.size());
@@ -60,7 +59,7 @@ public class ZcommandController {
 
     @RequestMapping("/insertcommand")
     @ResponseBody
-    public int insertcommand(String zcontent,HttpSession session){
+    public int insertcommand(String zcontent,HttpSession session,int time){
 
         Zteacher_cookie zteacher_cookie=( Zteacher_cookie)session.getAttribute("zteacher_cookie");
 
@@ -72,6 +71,7 @@ public class ZcommandController {
         zteacher_command.setZpublishtime(timestamp);
         zteacher_command.setZstatus("有效");
         zteacher_command.setZtype("滚屏信息");
+        zteacher_command.setZduration(time);
         zteacher_command.setZscheduleID(zteacher_cookie.getZscheduleID());
         zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
 

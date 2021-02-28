@@ -411,6 +411,9 @@ public class QbankController {
     @RequestMapping(value = "/loginManagement")
     public String loginManagement(){return "login_management";}
 
+    @RequestMapping(value = "/down")
+    public String down(){return "down";}
+
     /**
      * 查十个题目，备用
      * @param response

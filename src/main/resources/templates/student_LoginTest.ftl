@@ -8,7 +8,7 @@
     <title>人脸识别系统</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 
-    <script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>
+   <#-- <script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>-->
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 
     <script src="jquery/jquery-3.3.1.min.js"></script>

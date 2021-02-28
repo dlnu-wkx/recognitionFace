@@ -36,7 +36,7 @@ public class TasktempController {
         Zstudent zstudent=(Zstudent)session.getAttribute("zstudent");
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
         String zid=zstudent.getZid();
-        System.out.println(zid+zstudent_cookie.getZscheduleID());
+        //System.out.println(zid+zstudent_cookie.getZscheduleID());
 
         return zteacher_temporary_taskService.findtaskname(zid,zstudent_cookie.getZscheduleID());
 

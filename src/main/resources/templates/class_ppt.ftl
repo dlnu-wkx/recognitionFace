@@ -212,13 +212,13 @@
                     $("#com_screen").hide()
                     $("#com_screen21").empty()
                     $("#com_screen22").empty()
-                    getcommand2()
+                  //  getcommand2()
                 }
             }
         })
     }
 
-    function getcommand2() {
+   /* function getcommand2() {
         $.ajax({
             type: "post",
             url: "/findscreencommand",
@@ -247,7 +247,7 @@
         })
 
     }
-
+*/
 
 
     //备用参数，方便处理逻辑
@@ -256,7 +256,7 @@
     //默认页面数
     var pages=1;
     //training_taskid
-    var static_taskid=0;
+    var static_taskid="";
 
     //共有几页，最后一页
     var last_page=0;
@@ -281,6 +281,12 @@
 
     //加载页面前页码及按键逻辑处理（任务表id,任务类型，固定任务Id）
     function loadcontentbypages2(zname,taskid,kindid,assid) {
+
+        $(".cp_button2").css("background-color","#70AD47");
+        $(".cp_button1").css("background-color","rgb(255, 192, 0)");
+
+
+        $("#"+taskid+"").css("background-color","#A5A5A5");
 
       //  alert(zname)
         $.ajax({
@@ -396,7 +402,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth3'><input class='rmes_input' type='input' id='"+data[i].zid+"'></th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth3'><input class='rmes_input'  type='tel'  id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });
@@ -441,7 +447,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth2'>"+data[i].ztechnicaldemand+"</th><th class='r_tableth3'><input class='rmes_input' type='input' id='"+data[i].zid+"'></th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth2'>"+data[i].ztechnicaldemand+"</th><th class='r_tableth3'><input class='rmes_input' type='tel'  id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });
@@ -511,13 +517,13 @@
                         success: function (data){
                             str+="<br><br><br>"
                             for(var i=0;i<data.length;i++){
-                                str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
+                                str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='"+data[i].zstudent_scheduleid+"'>"+data[i].zname+"</button> <br><br>"
                             }
                         }
                     });
 
                     for(var i=0;i<data.length;i++){
-                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
+                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='"+data[i].zid+"'>"+data[i].ztitle+"</button> <br><br>"
                     }
                     leftbutton.html(str)
                 }
@@ -526,9 +532,10 @@
     }
 
 
+
     //页面加载前方法
     window.onload =function () {
-        getcommand2();
+        //getcommand2();
         welcome();
         $("#lastpage").css("background-color","#A5A5A5");
         findalltask();
@@ -578,7 +585,7 @@ var static_temleng=0
             success: function (data){
                 str+="<br><br><br>"
                 for(var i=0;i<data.length;i++){
-                    str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='\""+data[i].zstudent_scheduleid+"\"'>"+data[i].zname+"</button> <br><br>"
+                    str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='"+data[i].zstudent_scheduleid+"'>"+data[i].zname+"</button> <br><br>"
                 }
             }
         });
@@ -592,7 +599,7 @@ var static_temleng=0
             success: function (data){
                 static_temleng=data.length
                 for(var i=0;i<data.length;i++){
-                    str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='\""+data[i].zid+"\"'>"+data[i].ztitle+"</button> <br><br>"
+                    str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='"+data[i].zid+"'>"+data[i].ztitle+"</button> <br><br>"
                 }
             }
         });
