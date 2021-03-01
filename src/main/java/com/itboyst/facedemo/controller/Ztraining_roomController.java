@@ -476,7 +476,10 @@ public class Ztraining_roomController {
                 ztraining_facility.setZselecttest("是");
 
             ztraining_facility.setZpowerStatus8(isconnected);
+
+            //System.out.println(p_testnum);
             j=ztraining_facilityService.updatefatestbyid2(ztraining_facility);
+
             if (j>0)k++;
 
             //教师端这边不用管继电器

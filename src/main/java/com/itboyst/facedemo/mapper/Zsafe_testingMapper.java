@@ -19,4 +19,6 @@ public interface Zsafe_testingMapper {
     public List<Zsafe_testingDto> findrandbynumber(int number,String ztype);
 
     public List<String> findallsafetype();
+
+    public int findnumberbytype(String ztype);
 }

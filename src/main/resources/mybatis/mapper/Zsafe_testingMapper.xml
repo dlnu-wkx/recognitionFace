@@ -28,6 +28,11 @@
         SELECT * FROM zsafe_testing  where ztitletype='判断'   ORDER BY RAND() LIMIT 2
     </select>
 
+    <select id="findnumberbytype" resultType="int">
+        SELECT count(*) FROM zsafe_testing  where ztype=#{ztype};
+    </select>
+
+
     <!--
         <insert id="insertUserFaceInfo" parameterType="com.itboyst.facedemo.domain.UserFaceInfo" >
                 INSERT INTO user_face_info (group_id,face_id,name,face_feature,fpath) VALUES (#{groupId},#{faceId},#{name},#{faceFeature},#{path})

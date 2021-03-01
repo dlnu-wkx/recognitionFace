@@ -67,6 +67,13 @@
     </div>
 </div>
 
+<div class="t_centerindex" hidden id="t_centerindex">
+    <font class="t_centerfont" size="5">你还有未做完的题，请确认是否提交？</font>
+    <button onclick="clicksubmit1()" class="t_click1">确认</button>
+    <button onclick="removesubmit1()" class="t_remove1">取消</button>
+</div>
+
+
 
 <!--中间题目主体部分-->
 <div class="center" id="qbank" style="background-color: white">
@@ -94,6 +101,11 @@
 </body>
 
 <script>
+
+    function clicksubmit1(){
+        $("#t_centerindex").hide()
+        submit2()
+    }
 
     function loadpagenumber(i) {
         //先清空里面的
@@ -127,7 +139,7 @@
     //记录页数的i值,页数减1
     var i=0;
 
-
+    var static_tnumber2=0;
 
     //页面加载前方法
     window.onload =function () {
@@ -150,12 +162,29 @@
             url: "/findtestnumber",
             async: false,
             success: function (data){
-                static_questionnum=data;
-                var str=" <font size='5'>1/"+static_questionnum+"</font>"
-                pagesnumber.html(str)
-                static_singlecode=100/static_questionnum;
+                if(data==9999){
+                    static_tnumber2=1
+                    $.ajax({
+                        type: "post",
+                        url: "/findtenumbytype",
+                        async: false,
+                        success: function (data2){
+                            static_questionnum=data2;
+                            var str=" <font size='5'>1/"+static_questionnum+"</font>"
+                            pagesnumber.html(str)
+                            static_singlecode=100/static_questionnum;
+                        }
+                    })
+
+                }else{
+                    static_questionnum=data;
+                    var str=" <font size='5'>1/"+static_questionnum+"</font>"
+                    pagesnumber.html(str)
+                    static_singlecode=100/static_questionnum;
+                }
             }
         });
+
 
         //总分
         $.ajax({
@@ -314,8 +343,21 @@
 
 
    function submit() {
+       //学生题解记录
+       ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
+       for (var f=0;f<i+1;f++){
+           if (!ananswer[f]){
+              // alert(1)
+               $("#t_centerindex").show()
+               return;
+           }
+       }
 
-       submit2()
+     //  submit2()
+   }
+
+   function removesubmit1(){
+       $("#t_centerindex").hide()
    }
 
 
@@ -325,14 +367,13 @@
 
     function submit2() {
 
-        //学生题解记录
-        ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
-        for (var f=0;f<i+1;f++){
+
+        /*for (var f=0;f<i+1;f++){
             if (!ananswer[f]){
                 alert("你还有未做的题，请仔细检查")
                 return ;
             }
-        }
+        }*/
         //分数信息居中显示
         $("#qbank").attr("align","center");
 
@@ -344,24 +385,52 @@
         var str3="";
 
         //总分
-        for (var j=0;j<static_questionnum;j++){
+        if(static_tnumber2==1){
+            for (var j=0;j<static_questionnum;j++){
 
-            //正确答案与学生题解对比
-            if(ananswer[j]==answer[j]){
-                code+=static_singlecode;
-                answercode[j]=static_singlecode;
-            }else{
-                answercode[j]=0;
+                //正确答案与学生题解对比
+                if(ananswer[j]==answer[j]){
+                    code+=1;
+                    answercode[j]=1;
+                }else{
+                    answercode[j]=0;
+                }
+            }
+        }else{
+            for (var j=0;j<static_questionnum;j++){
+
+                //正确答案与学生题解对比
+                if(ananswer[j]==answer[j]){
+                    code+=static_singlecode;
+                    answercode[j]=static_singlecode;
+                }else{
+                    answercode[j]=0;
+                }
             }
         }
+
         //隐藏题目，并加载分数信息
         $("#qbank"+i+"").hide();
         str3+="<br><br><br><br><br>"
-        str3+="<div><font size='3' >安全测试评分</font></div>";
-        str3+="<div><font size='3' >题目数量："+static_questionnum+"题</font></div>";
-        str3+="<div><font size='3' >每题分数："+static_singlecode+"分</font></div>";
-        str3+="<div><font size='3' >测试总分：100分</font></div>";
-        str3+="<div><font size='3' >合格分数："+static_passingcode+"分</font></div>";
+
+        if(static_tnumber2==1){
+
+            str3+="<div><font size='3' >安全测试评分</font></div>";
+            str3+="<div><font size='3' >题目数量："+static_questionnum+"题</font></div>";
+            str3+="<div><font size='3' >每题分数：1分</font></div>";
+            str3+="<div><font size='3' >测试总分："+static_questionnum+"分</font></div>";
+            str3+="<div><font size='3' >合格分数："+static_passingcode+"分</font></div>";
+
+        }else{
+
+            str3+="<div><font size='3' >安全测试评分</font></div>";
+            str3+="<div><font size='3' >题目数量："+static_questionnum+"题</font></div>";
+            str3+="<div><font size='3' >每题分数："+static_singlecode+"分</font></div>";
+            str3+="<div><font size='3' >测试总分：100分</font></div>";
+            str3+="<div><font size='3' >合格分数："+static_passingcode+"分</font></div>";
+
+        }
+
         str3+="<br><br><br>"
 
         if(code<static_passingcode){
@@ -408,7 +477,7 @@
             data: {"ananswer":ananswer,"answercode":answercode,"questionid":questionid,"number":static_questionnum,"id":static_testinputnum},
             success: function (data) {
 
-                if(data==static_questionnum){
+                if(data){
                     layer.msg("提交成功", { icon: 1, offset: "auto", time:2000 });
                 }else{
                     alert("提交出错")

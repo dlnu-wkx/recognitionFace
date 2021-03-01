@@ -2,6 +2,42 @@
 特定类
  */
 
+.t_centerindex{
+    top: 30%;
+    left: 30%;
+    position: fixed;
+    width: 30%;
+    height: 30%;
+    z-index: 999;
+    background-color: orange;
+}
+
+.t_click1{
+    left: 18%;
+    top: 50%;
+    position: absolute;
+    background-color: #4472C4;
+    color: white;
+    width: 20%;
+    height: 20%;
+}
+
+.t_remove1{
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    background-color: #4472C4;
+    color: white;
+    width: 20%;
+    height: 20%;
+}
+
+
+.t_centerfont{
+    left: 20%;
+    top: 20%;
+    position: absolute;
+}
 
 
 .image21{

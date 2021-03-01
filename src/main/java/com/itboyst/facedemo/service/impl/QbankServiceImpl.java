@@ -75,4 +75,7 @@ public class QbankServiceImpl implements QbankService {
     @Override
     public List<String> findallsafetype(){return cmapper.findallsafetype();}
 
+    @Override
+    public int findnumberbytype(String ztype){return cmapper.findnumberbytype(ztype);};
+
 }

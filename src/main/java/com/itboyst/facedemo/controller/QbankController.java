@@ -90,6 +90,15 @@ public class QbankController {
     }
 
 
+    @RequestMapping("/findtenumbytype")
+    @ResponseBody
+    public int findtenumbytype(HttpSession session){
+        Ztraining_facility ztraining_facility=(Ztraining_facility) session.getAttribute("ztraining_facility");
+
+        return Qservice.findnumberbytype(ztraining_facility.getZsafetestingType());
+    }
+
+
 
     /*
     根据上课表id更新是否需要考试及考试分数
@@ -301,16 +310,15 @@ public class QbankController {
         int j=0,k=0;
 
 
-        for (int i=0;i<number;i++){
+        for (int i=0;i<ananswer.length;i++){
             Ztesting_input ztesting_input=new Ztesting_input();
-           // ztesting_input.setZstudentscheduleID(zstudentscheduleID);
-           // ztesting_input.setZorder(i);
-            ztesting_input.setZstate("已做");
+
             ztesting_input.setZinput(ananswer[i]);
+            ztesting_input.setZstate("已做");
+
             ztesting_input.setZscore(Integer.parseInt(answercode[i]));
             ztesting_input.setZid(id[i]);
-           // System.out.println(id[i]);
-           // System.out.println(ztesting_input);
+
             k=ztesting_inputService.updatelist(ztesting_input);
 
             if(k==1){

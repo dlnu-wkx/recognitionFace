@@ -77,7 +77,7 @@
 
     <font class="p_testbankchoose" size="5">测试题库:</font>
 
-    <div class="p_stestchose" id="p_stestchose">
+    <div class="p_stestchose" id="p_stestchose" onchange="getalltestnumber()">
 
     </div>
 
@@ -90,11 +90,30 @@
         <option value="20">20</option>
         <option value="50">50</option>
         <option value="100">100</option>
+        <option value="9999">全部</option>
     </select>
 
     <font class="p_tefpass" size="5">合格分数</font>
 
-    <select class="p_tepasschose" id="p_passcode">
+    <input type="tel" id="p_passcode" class="p_tepasschose">
+
+    <button id="p_chbuttonpa" class="p_chbuttonpa" onclick="chosetestnumber()">选择</button>
+
+
+    <div class="p_tepasschose2" id="p_passcode2" hidden>
+        <font size="3" onclick="chosefixednumber(10)">10</font><br>
+        <font size="3" onclick="chosefixednumber(20)">20</font><br>
+        <font size="3" onclick="chosefixednumber(30)">30</font><br>
+        <font size="3" onclick="chosefixednumber(40)">40</font><br>
+        <font size="3" onclick="chosefixednumber(50)">50</font><br>
+        <font size="3" onclick="chosefixednumber(60)">60</font><br>
+        <font size="3" onclick="chosefixednumber(70)">70</font><br>
+        <font size="3" onclick="chosefixednumber(80)">80</font><br>
+        <font size="3" onclick="chosefixednumber(90)">90</font><br>
+        <font size="3" onclick="chosefixednumber(100)">100</font><br>
+    </div>
+
+    <#--<select class="p_tepasschose2" id="p_passcode2">
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="30">30</option>
@@ -105,7 +124,7 @@
         <option value="80">80</option>
         <option value="90">90</option>
         <option value="100">100</option>
-    </select>
+    </select>-->
 
     <button class="p_clcik" onclick="controllerthing()">确认</button>
 
@@ -140,6 +159,16 @@
 
 
 <script>
+
+    function chosetestnumber(){
+        $("#p_passcode2").show()
+    }
+
+    function chosefixednumber(number){
+        //alert(number)
+        $("#p_passcode").val(number)
+        $("#p_passcode2").hide()
+    }
 
     function fieldManagement(){
         location.href="/field_management";
@@ -237,6 +266,7 @@
     //全选
     function allchose() {
         //alert(2)
+        openchose()
         if(static_chose==0){
             $("input[name='topchose']:checkbox").prop("checked", true);
             $("#allchose").css("background","#F2A774");
@@ -256,7 +286,7 @@
     //放大th
     function loadth(zid){
 
-        alert(zid);
+        //alert(zid);
         var trainfactity=$("#trainfactity")
         var str=""
 
@@ -426,9 +456,31 @@
         loadalltesttype();
         getteacherroom();
         loadfaclity(static_trainroomid);
+
        /* interval= window.setInterval(function () {
             loadfaclity(static_trainroomid);
         }, 20000);*/
+    }
+
+
+    var static_allnumber=0;
+
+    function getalltestnumber(){
+        //数量
+        var p_testnum=$("#p_testnum")
+        //题库
+        var p_testtype=$("#p_testtype")
+
+        $.ajax({
+            type: "post",
+            url: "/findtenumbytype",
+            data:{"type":p_testtype},
+            async: false,
+            success: function (data) {
+                static_allnumber=data;
+            }
+        })
+
     }
 
    /* var static_eventid=""

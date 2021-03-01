@@ -684,8 +684,8 @@
 }
 
 .p_isconnectopen{
-    left: 65%;
-    top: 20%;
+    left: 72%;
+    top: 25%;
     position: absolute;
     width: 20px;
     height: 20px;
@@ -697,6 +697,25 @@
     position: absolute;
     width: 8%;
     height: 20%;
+}
+
+.p_tepasschose2{
+    left: 60%;
+    top: -35%;
+    position: absolute;
+    width: 8%;
+    height: 80%;
+    background-color: whitesmoke;
+}
+
+
+.p_chbuttonpa{
+    left: 70%;
+    top: 50%;
+    position: absolute;
+    width: 5%;
+    height: 20%;
+    background-color: #4472C4;
 }
 
 
