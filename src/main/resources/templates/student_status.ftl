@@ -478,7 +478,7 @@
 
                         str+="<th ><div class='power_bbox2'  align='center'> "
                         str+="<input type='checkbox' id='"+data[i].zid+"' value='"+data[i].zid+"' class='chosetop' hidden name='topchose'>"
-                        str+="<div  class='delivery_unpowerbox2' align='center' onclick='loadth("+data[i].zid+")'>"
+                        str+="<div  class='delivery_unpowerbox2' align='center' onclick='loadth(\""+data[i].zid+"\")'>"
 
 
                         str+="<div class='p_islogin'>"
@@ -617,7 +617,7 @@
                             else {
                                     str+="<th ><div class='power_bbox2'  align='center'> "
                                     str+="<input type='checkbox' id='"+data[j].zid+"' value='"+data[j].zid+"' class='chosetop' hidden name='topchose'>"
-                                    str+="<div  class='delivery_unpowerbox2' align='center' onclick='loadth("+data[j].zid+")'>"
+                                    str+="<div  class='delivery_unpowerbox2' align='center' onclick='loadth(\""+data[j].zid+"\")'>"
 
 
                                     str+="<div class='p_islogin'>"
