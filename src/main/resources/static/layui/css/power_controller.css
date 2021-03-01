@@ -253,7 +253,7 @@
     left: 0%;
     top: 21%;
     height: 16%;
-    width: 39%;
+    width: 35%;
     position: absolute;
     border-right-style: solid;
     border-right-color: black;
@@ -266,7 +266,7 @@
     left: 0%;
     top: 38%;
     height: 17%;
-    width: 39%;
+    width: 35%;
     position: absolute;
     border-right-style: solid;
     border-right-color: black;
@@ -292,9 +292,9 @@
     background-color: red;
 }
 .p_istest2{
-    left: 40%;
+    left: 36%;
     top: 21%;
-    width: 10%;
+    width: 14%;
     position: absolute;
     height: 16%;
     border-right-style: solid;
@@ -307,9 +307,9 @@
 
 
 .p_testnum{
-    left: 40%;
+    left: 36%;
     top: 38%;
-    width: 10%;
+    width: 14%;
     position: absolute;
     height: 17%;
     border-right-style: solid;
@@ -324,7 +324,7 @@
     left: 51%;
     top: 21%;
     position: absolute;
-    width: 38%;
+    width: 33%;
     height: 16%;
     border-right-style: solid;
     border-right-color: black;
@@ -337,7 +337,7 @@
     left: 51%;
     top: 38%;
     position: absolute;
-    width: 38%;
+    width: 33%;
     height: 17%;
     border-right-style: solid;
     border-right-color: black;
@@ -348,11 +348,11 @@
 
 
 .p_ispower2{
-    left: 90%;
+    left: 85%;
     top: 21%;
     position: absolute;
     height: 16%;
-    width: 10%;
+    width: 15%;
     border-bottom-style: solid;
     border-bottom-color: black;
     background-color: red;
@@ -378,11 +378,11 @@
 
 
 .p_passnum{
-    left: 90%;
+    left: 85%;
     top: 38%;
     position: absolute;
     height: 17%;
-    width: 10%;
+    width: 15%;
     border-bottom-style:solid ;
     border-bottom-color:black;
     background-color:#4472C4;

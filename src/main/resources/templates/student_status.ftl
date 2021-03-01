@@ -256,6 +256,7 @@
     //放大th
     function loadth(zid){
 
+        alert(zid);
         var trainfactity=$("#trainfactity")
         var str=""
 
@@ -320,9 +321,9 @@
                     str+=" <font class='p_ispower3' size='5'>开</font>"
                 }
 
-                str+="<font class='p_ftestnum' size='5'>题目数量:</font>"
+                str+="<font class='p_ftestnum' size='5'>题目数量</font>"
                 str+=" <font class='p_testnum' size='5'>"+data.zsafetestingNum+"</font>"
-                str+=" <font class='p_fpassnum' size='5'>合格分数:</font>"
+                str+=" <font class='p_fpassnum' size='5'>合格分数</font>"
                 str+="<font class='p_passnum' size='5'>"+data.zpassingscore+"</font>"
 
                 $.ajax({
