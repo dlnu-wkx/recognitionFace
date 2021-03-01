@@ -130,6 +130,11 @@
 <div id="showVdieo" style="position: absolute;z-index:10;top: 24%;left: 41%"></div>
 
 
+<div id="headeventdiv" class="p_headeventdiv" hidden>
+
+</div>
+
+
 </body>
 
 
@@ -299,7 +304,7 @@
                 }
 
 
-                str+=" <font class='p_fistest' size='5'>是否测试:</font>"
+                str+=" <font class='p_fistest' size='5'>是否测试</font>"
 
                 if (data.zselecttest=="是"){
                     str+="<font class='p_istest2' size='5'>开</font>"
@@ -307,7 +312,7 @@
                     str+="<font class='p_istest1' size='5'>关</font>"
                 }
 
-                str+="<font class='p_fispower' size='5'>电源联动:</font>"
+                str+="<font class='p_fispower' size='5'>电源联动</font>"
 
                 if (data.zpowerStatus8==0){
                     str+=" <font class='p_ispower2' size='5'>关</font>"
@@ -353,6 +358,8 @@
                 })
 
 
+                //onclick='handevent(1,\""+data3.zid+"\")'
+
                 $.ajax({
                     type: "post",
                     url: "/getishandsup",
@@ -360,7 +367,7 @@
                     async: false,
                     success: function (data3) {
                         if (data3)
-                            str+="<font class='p_upheads1' size='5'>举手</font>";
+                            str+="<font class='p_upheads1' size='5' id='"+data3.zid+"' >举手</font>";
                         else
                             str+="<font class='p_upheads2' size='5'></font>";
                     }
@@ -418,10 +425,33 @@
         loadalltesttype();
         getteacherroom();
         loadfaclity(static_trainroomid);
-        interval= window.setInterval(function () {
+       /* interval= window.setInterval(function () {
             loadfaclity(static_trainroomid);
-        }, 20000);
+        }, 20000);*/
     }
+
+   /* var static_eventid=""
+
+    function  handevent(kind,id){
+        if (kind==1){
+
+            $.ajax({
+                type: "post",
+                url: "/findfacilitybyrid",
+                data:{"id":id},
+                async: false,
+                success: function (data) {
+
+                }
+            })
+
+        }else{
+            static_eventid=id;
+            $("#headeventdiv").show()
+        }
+
+    }*/
+
 
     function loadfaclity(trainroomid) {
 
@@ -483,20 +513,20 @@
                             }
 
 
-                        str+=" <font class='p_fistest'>是否测试:</font>"
+                        str+=" <font class='p_fistest' size='2'>是否测试</font>"
 
                         if (data[i].zselecttest=="是"){
-                            str+="<font class='p_istest2'>开</font>"
+                            str+="<font class='p_istest2' size='2'>开</font>"
                         }else{
-                            str+="<font class='p_istest1'>关</font>"
+                            str+="<font class='p_istest1' size='2'>关</font>"
                         }
 
-                        str+="<font class='p_fispower'>电源联动:</font>"
+                        str+="<font class='p_fispower' size='2'>电源联动</font>"
 
                         if (data[i].zpowerStatus8==0){
-                            str+=" <font class='p_ispower2'>关</font>"
+                            str+=" <font class='p_ispower2' size='2'>关</font>"
                         } else{
-                            str+=" <font class='p_ispower3'>开</font>"
+                            str+=" <font class='p_ispower3' size='2'>开</font>"
                         }
 
                         str+="<font class='p_ftestnum' size='2'>题目数量</font>"
@@ -622,26 +652,26 @@
                                     }
 
 
-                                    str+=" <font class='p_fistest'>是否测试:</font>"
+                                    str+=" <font class='p_fistest' size='2'>是否测试</font>"
 
                                     if (data[j].zselecttest=="是"){
-                                        str+="<font class='p_istest2'>开</font>"
+                                        str+="<font class='p_istest2' size='2'>开</font>"
                                     }else{
-                                        str+="<font class='p_istest1'>关</font>"
+                                        str+="<font class='p_istest1' size='2'>关</font>"
                                     }
 
-                                    str+="<font class='p_fispower'>电源联动:</font>"
+                                    str+="<font class='p_fispower' size='2'>电源联动</font>"
 
                                     if (data[j].zpowerStatus8==0){
-                                        str+=" <font class='p_ispower2'>关</font>"
+                                        str+=" <font class='p_ispower2' size='2'>关</font>"
                                     } else{
-                                        str+=" <font class='p_ispower3'>开</font>"
+                                        str+=" <font class='p_ispower3' size='2'>开</font>"
                                     }
 
                                     str+="<font class='p_ftestnum' size='2'>题目数量</font>"
                                     str+=" <font class='p_testnum' size='2'>"+data[j].zsafetestingNum+"</font>"
                                     str+=" <font class='p_fpassnum' size='2'>合格分数</font>"
-                                    str+="<font class='p_passnum' size='2'>"+data[j].zpassingscore+"</font>"
+                                    str+="<font class='p_passnum' size='1'>"+data[j].zpassingscore+"</font>"
 
                                 $.ajax({
                                     type: "post",

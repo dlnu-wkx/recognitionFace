@@ -165,6 +165,8 @@ public class Zfixed_taskController {
 
         String zscheduleid=zteacher_cookie.getZscheduleID();
 
+        System.out.println(zid+zscheduleid+studentid+taskid+timestamp);
+
         return zassign_scheduleService.insertfixedtask(zid,zscheduleid,studentid,taskid,timestamp);
     }
 

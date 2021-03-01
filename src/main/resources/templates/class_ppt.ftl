@@ -523,7 +523,7 @@
                     });
 
                     for(var i=0;i<data.length;i++){
-                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='"+data[i].zid+"'>"+data[i].ztitle+"</button> <br><br>"
+                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].ztitle+"\",\""+data[i].zcontentID+"\",2,\"\")' id='"+data[i].zid+"'>"+data[i].zcontentID+"</button> <br><br>"
                     }
                     leftbutton.html(str)
                 }
@@ -599,7 +599,7 @@ var static_temleng=0
             success: function (data){
                 static_temleng=data.length
                 for(var i=0;i<data.length;i++){
-                    str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zcontentID+"\",2)' id='"+data[i].zid+"'>"+data[i].ztitle+"</button> <br><br>"
+                    str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].ztitle+"\",\""+data[i].zcontentID+"\",2,\"\")' id='"+data[i].zcontentID+"'>"+data[i].ztitle+"</button> <br><br>"
                 }
             }
         });

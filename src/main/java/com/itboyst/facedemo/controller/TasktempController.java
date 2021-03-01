@@ -63,6 +63,7 @@ public class TasktempController {
     @ResponseBody
     public int inserttemptask(String studentid,String taskid,HttpSession session){
 
+        System.out.println(studentid);
         String zid = UUID.randomUUID().toString().replaceAll("-","");
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
@@ -75,7 +76,7 @@ public class TasktempController {
         zteacher_temporary_task.setZpublishtime(timestamp);
         zteacher_temporary_task.setZstudentID(studentid);
         zteacher_temporary_task.setZscheduleID(zteacher_cookie.getZscheduleID());
-        //System.out.println(zteacher_temporary_task);
+        System.out.println(zteacher_temporary_task);
 
         return zteacher_temporary_taskService.inserttemptask(zteacher_temporary_task);
     }
