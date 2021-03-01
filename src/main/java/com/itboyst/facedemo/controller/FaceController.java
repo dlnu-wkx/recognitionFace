@@ -583,9 +583,9 @@ public class FaceController {
             Zstudent_cookie zsc = zstudent_cooikeService.findscookiemes(ztr.getZid(), timestamp, zstudent.getZid());
             System.out.println(zsc);
 
-            if (!zstudent.getZidentity().contains("L")) {
+            //if (!zstudent.getZidentity().contains("L")) {
                 zsl.setZscheduleID(zsc.getZscheduleID());
-            }
+            //}
             zsl.setZstatus("正常");
             //zsc为空说明该学生该时间段内没有课程并且不是临时学生
             if (zsc == null && !zstudent.getZidentity().contains("L")) {
