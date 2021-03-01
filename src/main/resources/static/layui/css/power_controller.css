@@ -756,13 +756,12 @@
     position: absolute;
 }
 .p_check{
-
     background-color: whitesmoke;
     position: absolute;
-    height: 20%;
-    left: 8%;
-    top: 30%;
-    width: 20%;
+    height: 40%;
+    left: 12%;
+    top: 50%;
+    width: 40%;
     transform: scale(1.5,1.5);
 }
 
@@ -813,7 +812,7 @@
     background-color:#70AD47;
     border-right: 1px solid white;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

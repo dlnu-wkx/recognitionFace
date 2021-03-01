@@ -75,7 +75,7 @@
     <br>
     <button class="p_button2" onclick="fixed_task()">固定任务</button><br><br>
     <button class="p_button2" onclick="temporary_task()">临时任务</button><br><br>
-    <button class="p_button2" onclick="">信息发送</button>
+    <#--<button class="p_button2" onclick="">信息发送</button>-->
 </div>
 
 <div hidden class="popup" id="popup" align="center">

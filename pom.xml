@@ -6,7 +6,8 @@
     <groupId>com.arcsoft</groupId>
     <artifactId>arcsoft-face</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <!--war更改-->
+    <packaging>war</packaging>
 
     <name>arcsoft-face-demo</name>
     <description>人脸识别服务端完整demo</description>
@@ -27,6 +28,30 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+                   <groupId>org.apache.commons</groupId>
+                  <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+
+        <!--同屏jar-->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv-platform -->
+        <dependency>
+            <groupId>org.bytedeco.javacpp-presets</groupId>
+            <artifactId>opencv-platform</artifactId>
+            <version>3.4.1-1.4.1</version>
+        </dependency>
+
+
+
+
+
         <!--本地的jar包-->
         <dependency>
             <groupId>com.alibaba.fastjson</groupId>
@@ -64,8 +89,8 @@
             <version>1.18.8</version>
             <scope>provided</scope>
         </dependency>
-        <!--因为这个项目要servlet但是下面一个配置取出tomcat要加上一个servlet,就是打成jar时要把这个注掉，否则加载错误-->
-       <!--<dependency>
+        <!--*****************因为这个项目要servlet但是下面一个配置取出tomcat要加上一个servlet,就是打成jar时要把这个注掉，否则加载错误-->
+     <!--<dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
@@ -75,14 +100,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--取出web自带的tomcat-->
-            <!--<exclusions>
+            <!--*************************取出web自带的tomcat-->
+       <!--<exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>-->
         </dependency>
+
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
