@@ -54,7 +54,7 @@
         <button id="serviceid" class="f_field_service">信息查询</button>
         <button onclick="timeStatus()" class="f_field_status">实时状态</button>
         <button onclick="informationDelivery()"class="f_field_delivery">信息发布</button>
-        <button class="f_field_exit" id="exit" onclick="outpower()">退出系统</button>
+        <button class="f_field_exit2" id="exit" onclick="outpower()">退出系统</button>
 
     </div>
 </div>

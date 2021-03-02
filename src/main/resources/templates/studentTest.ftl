@@ -345,7 +345,7 @@
    function submit() {
        //学生题解记录
        ananswer[i]=$("#cbooks"+i+"").find(':checkbox:checked').val();
-       for (var f=0;f<i+1;f++){
+       for (var f=0;f<static_questionnum;f++){
            if (!ananswer[f]){
               // alert(1)
                $("#t_centerindex").show()

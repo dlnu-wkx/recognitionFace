@@ -316,8 +316,10 @@
         //如果这个任务只有一页
         if(last_page==1){
             //下一面变灰，并移除下一页方法
-            $("#nextpage").css("background-color","#A5A5A5");
-            $("#nextpage").removeAttr("onclick");
+            $("#nextpage").text("结束任务")
+            $("#nextpage").attr("onclick","sumbmitpages()");
+           /* $("#nextpage").css("background-color","#A5A5A5");
+            $("#nextpage").removeAttr("onclick");*/
 
         }else {
             //除了上述特殊情况外，正常加载下一页方法及颜色
