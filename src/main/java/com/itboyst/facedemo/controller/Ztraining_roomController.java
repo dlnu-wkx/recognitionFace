@@ -53,6 +53,19 @@ public class Ztraining_roomController {
     @Autowired
     Ztraining_taskService ztraining_taskService;
 
+    @Autowired
+    QbankService qbankService;
+
+
+    @RequestMapping("/findtnumberbyfaid")
+    @ResponseBody
+    public int findtnumberbyfaid(String zid){
+        Ztraining_facility ztraining_facility=ztraining_facilityService.findfacilitybyid(zid);
+
+        return qbankService.findnumberbytype(ztraining_facility.getZsafetestingType());
+
+    }
+
     /*
    勾选开启安全测试
   */

@@ -352,7 +352,24 @@
                 }
 
                 str+="<font class='p_ftestnum' size='5'>题目数量</font>"
-                str+=" <font class='p_testnum' size='5'>"+data.zsafetestingNum+"</font>"
+
+                if(data.zsafetestingNum==9999){
+
+                    $.ajax({
+                        type: "post",
+                        url: "/findtnumberbyfaid",
+                        data:{"zid":data.zid},
+                        async: false,
+                        success: function (data6) {
+                            str+=" <font class='p_testnum' size='5'>"+data6+"</font>"
+                        }
+                    })
+
+                }else {
+                    str+=" <font class='p_testnum' size='5'>"+data.zsafetestingNum+"</font>"
+                }
+
+
                 str+=" <font class='p_fpassnum' size='5'>合格分数</font>"
                 str+="<font class='p_passnum' size='5'>"+data.zpassingscore+"</font>"
 
@@ -457,9 +474,9 @@
         getteacherroom();
         loadfaclity(static_trainroomid);
 
-       /* interval= window.setInterval(function () {
+        interval= window.setInterval(function () {
             loadfaclity(static_trainroomid);
-        }, 20000);*/
+        }, 20000);
     }
 
 
@@ -583,7 +600,25 @@
                         }
 
                         str+="<font class='p_ftestnum' size='2'>题目数量</font>"
-                        str+=" <font class='p_testnum' size='2'>"+data[i].zsafetestingNum+"</font>"
+
+                        if(data[i].zsafetestingNum==9999){
+
+                            $.ajax({
+                                type: "post",
+                                url: "/findtnumberbyfaid",
+                                data:{"zid":data[i].zid},
+                                async: false,
+                                success: function (data6) {
+                                    str+=" <font class='p_testnum' size='2'>"+data6+"</font>"
+                                }
+                            })
+
+                        }else {
+                            str+=" <font class='p_testnum' size='2'>"+data[i].zsafetestingNum+"</font>"
+                        }
+
+
+
                         str+=" <font class='p_fpassnum' size='2'>合格分数</font>"
                         str+="<font class='p_passnum' size='1'>"+data[i].zpassingscore+"</font>"
 
@@ -722,7 +757,23 @@
                                     }
 
                                     str+="<font class='p_ftestnum' size='2'>题目数量</font>"
+
+                                if(data[j].zsafetestingNum==9999){
+
+                                    $.ajax({
+                                        type: "post",
+                                        url: "/findtnumberbyfaid",
+                                        data:{"zid":data[j].zid},
+                                        async: false,
+                                        success: function (data6) {
+                                            str+=" <font class='p_testnum' size='2'>"+data6+"</font>"
+                                        }
+                                    })
+
+                                }else {
                                     str+=" <font class='p_testnum' size='2'>"+data[j].zsafetestingNum+"</font>"
+                                }
+
                                     str+=" <font class='p_fpassnum' size='2'>合格分数</font>"
                                     str+="<font class='p_passnum' size='1'>"+data[j].zpassingscore+"</font>"
 

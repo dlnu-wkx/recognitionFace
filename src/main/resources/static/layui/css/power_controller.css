@@ -280,9 +280,9 @@
 
 
 .p_istest1{
-    left: 40%;
+    left: 36%;
     top: 21%;
-    width: 10%;
+    width: 14%;
     position: absolute;
     height: 16%;
     border-right-style: solid;
@@ -359,11 +359,11 @@
 }
 
 .p_ispower3{
-    left: 90%;
+    left: 85%;
     top: 21%;
     position: absolute;
     height: 16%;
-    width: 10%;
+    width: 15%;
     border-bottom-style: solid;
     border-bottom-color: black;
     background-color: green;
