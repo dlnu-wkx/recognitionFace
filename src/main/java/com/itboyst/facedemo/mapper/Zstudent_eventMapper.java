@@ -27,4 +27,6 @@ public interface Zstudent_eventMapper {
     public int updatealleventbystu(String zstatus,String zrecognizeIP,String zscheduleID);
 
     public int updatealleventbystu2(String zstatus,String zstudentID,String zscheduleID);
+
+    public int updatebeforebyip(Zstudent_event zstudent_event);
 }

@@ -74,4 +74,6 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
 
 
    public int updatetanbyipasch(Zstudent_login zstudent_login){return zstulogma.updatetanbyipasch(zstudent_login);}
+
+   public int updatetatbyip2(Zstudent_login zstudent_login){return zstulogma.updatetatbyip2(zstudent_login);};
 }

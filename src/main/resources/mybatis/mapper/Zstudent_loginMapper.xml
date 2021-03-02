@@ -23,6 +23,7 @@
     <select id="findtatbyip"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
         select * from zstudent_login where zrecognizeIP=(select zstudentPCIP from ztraining_facility WHERE zid= #{zid}) and zcheck='登陆'  ORDER BY zrecognizetime desc LIMIT 1;
     </select>
+
     <delete id="deletebyoriginalPictureUrl" parameterType="com.itboyst.facedemo.dto.Zstudent_login">
     	DELETE FROM zstudent_login WHERE originalPictureUrl = #{originalPictureUrl};
   	</delete>
@@ -47,6 +48,11 @@
     <update id="updatetanbyipasch" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
         UPDATE zstudent_login SET zstatus=#{zstatus} WHERE zrecognizeIP=#{zrecognizeIP} anad zscheduleID=#{zscheduleID}
     </update>
+
+    <update id="updatetatbyip2" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
+        UPDATE zstudent_login SET zstatus=#{zstatus} ,znowtaskname=#{znowtaskname} where zrecognizeIP=#{zrecognizeIP}
+    </update>
+
 
     <update id="updatetesttime" parameterType="java.lang.String" >
         update zstudent_login set ztesttime=ztesttime+1 where zrecognizetime=( select max(a.zrecognizetime) from ( select * from zstudent_login where zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} )a)

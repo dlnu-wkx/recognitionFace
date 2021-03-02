@@ -35,6 +35,11 @@
     </update>
 
 
+    <update id="updatebeforebyip" parameterType="com.itboyst.facedemo.dto.Zstudent_event">
+        update zstudent_event set  zstatus =#{zstatus} where zrecognizeIP=#{zrecognizeIP}
+    </update>
+
+
     <select id="findisevent"  resultType="java.lang.Integer">
             SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID}  AND ztype='请假' and zstatus='申请中';
     </select>

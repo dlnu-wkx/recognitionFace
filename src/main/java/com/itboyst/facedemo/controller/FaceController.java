@@ -97,6 +97,9 @@ public class FaceController {
     @Autowired
     ZtempuserService ztempuserService;
 
+    @Autowired
+    Zstudent_eventService zstudent_eventService;
+
     /**
      * 跳转测试
      *
@@ -541,6 +544,21 @@ public class FaceController {
             String ip4 = Iputil.getClientIpAddress(request);
             int b = ztrinfser.updatezprogressbyip(ip4, "登陆");
 
+            //清除学生登陆表
+            Zstudent_login zstudent_login2=new Zstudent_login();
+            zstudent_login2.setZnowtaskname("");
+            zstudent_login2.setZtesttime(0);
+            zstudent_login2.setZrecognizeIP(ip4);
+            int c=zstudent_loginService.updatetatbyip2(zstudent_login2);
+
+
+            //清除学生事务表
+            Zstudent_event zstudent_event=new Zstudent_event();
+            zstudent_event.setZstatus("取消");
+            zstudent_event.setZrecognizeIP(ip4);
+            int d=zstudent_eventService.updatebeforebyip(zstudent_event);
+
+
             zsl.setZcheck("登陆");
             System.out.println("ip4" + ip4);
 
@@ -553,6 +571,7 @@ public class FaceController {
 
             //数据库一端口的更改
             ztrinfser.updateoneportbyip(ip4, 1);
+            ztrinfser.updattwoportbyip(ip4,0);
 
             //另开一个线程，更改继电器1端口的数据
             Thread t = new Thread(new Runnable() {
@@ -561,6 +580,7 @@ public class FaceController {
                         if (ztrfac.getZpowerIP() != null)
                             if (Powerutil.pingIp(ztrfac.getZpowerIP()))
                                 Powerutil.powercontroller(ztrfac.getZpowerIP(), "11");
+                                Powerutil.powercontroller(ztrfac.getZpowerIP(), "22");
                     } catch (Exception e) {
                         // e.printStackTrace();
                     }

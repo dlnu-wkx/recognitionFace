@@ -35,4 +35,6 @@ public interface Zstudent_loginMapper {
     int removetat(Zstudent_login zstudent_login);
 
     int updatetanbyipasch(Zstudent_login zstudent_login);
+
+    int updatetatbyip2(Zstudent_login zstudent_login);
 }
