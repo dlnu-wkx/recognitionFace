@@ -353,7 +353,7 @@
            }
        }
 
-     //  submit2()
+      submit2()
    }
 
    function removesubmit1(){

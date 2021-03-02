@@ -51,6 +51,12 @@ public class Zfixed_taskController {
     @Autowired
     Ztraining_facilityService ztraining_facilityService;
 
+    @Autowired
+    ZstudentService zstudentService;
+
+    @Autowired
+    ZscheuleService zscheuleService;
+
 
     @RequestMapping("/findallfixedtasks")
     @ResponseBody
@@ -166,6 +172,12 @@ public class Zfixed_taskController {
         String zscheduleid=zteacher_cookie.getZscheduleID();
 
         System.out.println(zid+zscheduleid+studentid+taskid+timestamp);
+
+
+        Zstudent zstudent=zstudentService.findStudentById(studentid);
+        if (zstudent.getZidentity().contains("L")){
+            zscheduleid=zscheuleService.findidbycourename("临时课程");
+        }
 
         return zassign_scheduleService.insertfixedtask(zid,zscheduleid,studentid,taskid,timestamp);
     }

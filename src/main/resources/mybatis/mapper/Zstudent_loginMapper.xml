@@ -50,7 +50,7 @@
     </update>
 
     <update id="updatetatbyip2" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
-        UPDATE zstudent_login SET zstatus=#{zstatus} ,znowtaskname=#{znowtaskname} where zrecognizeIP=#{zrecognizeIP}
+        UPDATE zstudent_login SET ztesttime=#{ztesttime} ,znowtaskname=#{znowtaskname} where zrecognizeIP=#{zrecognizeIP}
     </update>
 
 

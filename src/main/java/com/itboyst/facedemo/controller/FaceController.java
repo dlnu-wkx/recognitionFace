@@ -58,8 +58,6 @@ public class FaceController {
     @Autowired
     ZstudentService zstuservice;
 
-    @Autowired
-    Zstudent_loginService zstudent_loginService;
 
     @Autowired
     FaceEngineService faceengine;
@@ -93,6 +91,9 @@ public class FaceController {
 
     @Autowired
     Zstudent_loginService zstudentLoginService;
+
+    @Autowired
+    Zstudent_loginService zstudent_loginService;
 
     @Autowired
     ZtempuserService ztempuserService;
