@@ -5,7 +5,7 @@
     <resultMap id="zstudent_login" type="com.itboyst.facedemo.dto.Zstudent_login">
         <id column="zid" property="zid" javaType="String"/>
         <result column="zstudentID" property="zstudentID" javaType="String"/>
-        <result column="zrecongnizetime" property="zrecongnizetime" jdbcType="TIMESTAMP"/>
+        <result column="zrecognizetime" property="zrecongnizetime" jdbcType="TIMESTAMP"/>
         <result column="ztype" property="ztype" javaType="String"/>
         <result column="zrecognizeIP" property="zrecognizeIP" javaType="String"/>
         <result column="originalPictureUrl" property="originalPictureUrl" javaType="String"/>
@@ -25,7 +25,7 @@
     </select>
 
     <select id="findnowinbystuid"  resultType="com.itboyst.facedemo.dto.Zstudent_login">
-        select * from zstudent_login  WHERE zstudentID= #{zstudentID} ORDER BY zrecognizetime desc LIMIT 1;
+        select zrecognizetime as zrecongnizetime from zstudent_login  WHERE zstudentID= #{zstudentID} and zcheck='登陆'  ORDER BY zrecognizetime desc LIMIT 1;
     </select>
 
 

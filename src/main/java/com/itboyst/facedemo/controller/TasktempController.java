@@ -78,20 +78,18 @@ public class TasktempController {
     @ResponseBody
     public int findisintemp2(String studentid,String taskid){
 
-        System.out.println(studentid+taskid);
+        //System.out.println(studentid+taskid);
         if (zteacher_temporary_taskService.findisintemp(taskid,studentid)>0){
             Zteacher_temporary_task zteacher_temporary_task= zteacher_temporary_taskService.findisintemp2(taskid,studentid);
 
             Zstudent_login zstudent_login=zstudent_loginService.findnowinbystuid(studentid);
 
             //Timestamp timestamp =new Timestamp(System.currentTimeMillis());
-/*
-            System.out.println(zteacher_temporary_task.getZpublishtime());
-            System.out.println(zstudent_login.getZrecongnizetime());*/
 
-            if (zteacher_temporary_task!=null)
-                return 1;
-            else if (zteacher_temporary_task.getZpublishtime().compareTo(zstudent_login.getZrecongnizetime())>0)
+            //System.out.println(zteacher_temporary_task.getZpublishtime());
+            System.out.println(zstudent_login);
+
+            if (zteacher_temporary_task!=null && zteacher_temporary_task.getZpublishtime().compareTo(zstudent_login.getZrecongnizetime())>0)
                 return 1;
         }
 
