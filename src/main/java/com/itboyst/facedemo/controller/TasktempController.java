@@ -1,9 +1,6 @@
 package com.itboyst.facedemo.controller;
 
-import com.itboyst.facedemo.dto.Zstudent;
-import com.itboyst.facedemo.dto.Zstudent_cookie;
-import com.itboyst.facedemo.dto.Zteacher_cookie;
-import com.itboyst.facedemo.dto.Zteacher_temporary_task;
+import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.Zassign_scheduleService;
 import com.itboyst.facedemo.service.Zteacher_temporary_taskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,10 +34,24 @@ public class TasktempController {
 
         Zstudent zstudent=(Zstudent)session.getAttribute("zstudent");
         Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
-        String zid=zstudent.getZid();
-        //System.out.println(zid+zstudent_cookie.getZscheduleID());
 
-        return zteacher_temporary_taskService.findtaskname(zid,zstudent_cookie.getZscheduleID());
+        Zstudent_login zstudent_login=(Zstudent_login)session.getAttribute("zstudent_login") ;
+
+        Timestamp logintime=zstudent_login.getZrecongnizetime();
+
+        String zid=zstudent.getZid();
+
+        List<Zteacher_temporary_task> data=zteacher_temporary_taskService.findtaskname(zid,zstudent_cookie.getZscheduleID());
+        List<Zteacher_temporary_task> data2=new ArrayList<>();
+
+        /*System.out.println(logintime);
+        System.out.println(data);*/
+
+        for(int i=0;i<data.size();i++)
+            if (logintime.compareTo(data.get(i).getZpublishtime())<0)
+                data2.add(data.get(i));
+
+        return data2;
 
     }
 

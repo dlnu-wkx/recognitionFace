@@ -14,7 +14,7 @@
 
 
         <select id="findtitle"  resultType="com.itboyst.facedemo.dto.Zteacher_temporary_task">
-            SELECT zid,ztitle,zcontentID FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} ORDER BY zpublishtime;
+            SELECT * FROM zteacher_temporary_task WHERE zstudentID=#{zstudentID} and zscheduleID=#{zscheduleID} ORDER BY zpublishtime;
         </select>
 
         <select id="findisintemp"  resultType="java.lang.Integer">

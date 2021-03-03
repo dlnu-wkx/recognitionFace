@@ -640,7 +640,8 @@ public class FaceController {
             // System.out.println(session.getAttribute("zstudent_cookie"));
             //插入学生登陆信息
             int i = zstudent_loginService.insertnowmessage(zsl);
-
+           // zsl.setZrecongnizetime(timestamp);
+            session.setAttribute("zstudent_login",zsl);
 
             /*Cookie zselecttest = new Cookie("zselecttest",zsc.getZselecttest());//设置路径在cookie中的值
 

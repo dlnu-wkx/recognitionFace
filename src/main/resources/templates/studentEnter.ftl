@@ -120,6 +120,17 @@
         /*ajax不能实现只发送不要数据所以不能用ajax*/
        // location.href = "/student_test";
      //跳转开始测试的controller
+        $.ajax({
+            type: "post",
+            url: "/updatetesttime",
+            async: false,
+            data:{},
+            success: function (data){
+
+            }
+        });
+
+
       $.ajax({
             type: "post",
             url: "/starttest",

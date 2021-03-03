@@ -309,17 +309,6 @@
                 //单选方法加载
                 onechose();
 
-                $.ajax({
-                    type: "post",
-                    url: "/updatetesttime",
-                    async: false,
-                    data:{},
-                    success: function (data){
-
-                    }
-                });
-
-
             },
             error: function (error) {
                 alert(JSON.stringify(error))
@@ -507,6 +496,15 @@
 
         //加载题目
         load();
+        $.ajax({
+            type: "post",
+            url: "/updatetesttime",
+            async: false,
+            data:{},
+            success: function (data){
+
+            }
+        });
         loadpagenumber(1);
 
     }

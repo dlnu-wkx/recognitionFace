@@ -141,7 +141,7 @@ public class Zfixed_taskController {
             if (zstudent_facility != null)
                 data2.add(zstudent_facility);
         }
-        //System.out.println(data2);
+        System.out.println(data2);
        return data2;
     }
 

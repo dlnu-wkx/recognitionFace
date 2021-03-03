@@ -328,7 +328,7 @@
 
                 if (data.zpowerStatus1==1 && data.zpowerStatus2==0){
                     str+="<button class='p_ispobutton2'></button> </div>"
-                }else if(data.zpowerStatus1==1 && data.zpowerStatus2==1){
+                }else if(data.zpowerStatus1==0 && data.zpowerStatus2==1){
                     str+="<button class='p_ispobutton3'></button> </div>"
                 }else{
                     str+="<button class='p_ispobutton1'></button> </div>"
@@ -576,7 +576,7 @@
 
                             if (data[i].zpowerStatus1==1 && data[i].zpowerStatus2==0){
                                 str+="<button class='p_ispobutton2'></button> </div>"
-                            }else if(data[i].zpowerStatus1==1 && data[i].zpowerStatus2==1){
+                            }else if(data[i].zpowerStatus1==0 && data[i].zpowerStatus2==1){
                                 str+="<button class='p_ispobutton3'></button> </div>"
                             }else{
                                 str+="<button class='p_ispobutton1'></button> </div>"
@@ -733,7 +733,7 @@
 
                                     if (data[j].zpowerStatus1==1 && data[j].zpowerStatus2==0){
                                         str+="<button class='p_ispobutton2'></button> </div>"
-                                    }else if(data[j].zpowerStatus1==1 && data[j].zpowerStatus2==1){
+                                    }else if(data[j].zpowerStatus1==0 && data[j].zpowerStatus2==1){
                                         str+="<button class='p_ispobutton3'></button> </div>"
                                     }else{
                                         str+="<button class='p_ispobutton1'></button> </div>"

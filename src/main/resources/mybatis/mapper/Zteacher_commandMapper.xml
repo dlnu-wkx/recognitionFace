@@ -54,7 +54,7 @@
 	</delete>
 
     <update id="updatestate" parameterType="com.itboyst.facedemo.dto.Zteacher_command">
-        update zteacher_command set zstatus =#{zstatus} where ztrainingroomID=#{ztrainingroomID} and ztype=#{ztype} and zscheduleID=#{zscheduleID}
+        update zteacher_command set zstatus =#{zstatus} where ztrainingroomID=#{ztrainingroomID} and ztype=#{ztype} 
     </update>
 
     <select id="findcommandById"  resultType="com.itboyst.facedemo.dto.Zteacher_command">

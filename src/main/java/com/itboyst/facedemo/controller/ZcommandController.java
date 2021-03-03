@@ -76,7 +76,7 @@ public class ZcommandController {
         zteacher_command.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
 
         Zteacher_command zteacher_command1=new Zteacher_command();
-        zteacher_command1.setZscheduleID(zteacher_cookie.getZscheduleID());
+       // zteacher_command1.setZscheduleID(zteacher_cookie.getZscheduleID());
         zteacher_command1.setZtrainingroomID(zteacher_cookie.getZtrainingroomid());
         zteacher_command1.setZstatus("失效");
         zteacher_command1.setZtype("滚屏信息");
