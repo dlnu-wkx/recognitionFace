@@ -254,7 +254,7 @@
                    //教师临时任务表是否有该学生和任务
                     $.ajax({
                         type: "post",
-                        url: "/findisintemp",
+                        url: "/findisintemp2",
                         data:{"studentid":studentid[i],"taskid":taskid[j]},
                         async: false,
                         success: function (data) {
@@ -264,6 +264,8 @@
                     });
                    // alert(data2)
                     if(data2>0){continue;}
+
+
 
                  $.ajax({
                         type: "post",

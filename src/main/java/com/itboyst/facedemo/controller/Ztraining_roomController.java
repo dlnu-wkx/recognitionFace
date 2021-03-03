@@ -481,7 +481,8 @@ public class Ztraining_roomController {
             ztraining_facility.setZsafetestingNum(p_testnum);
             ztraining_facility.setZsafetestingType(p_testtype);
 
-            ztraining_facility.setZpowerStatus6(istest);
+            //ztraining_facility.setZpowerStatus6(istest);
+
 
             if (istest==0)
                 ztraining_facility.setZselecttest("否");

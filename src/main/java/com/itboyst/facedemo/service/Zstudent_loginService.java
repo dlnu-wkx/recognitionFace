@@ -30,4 +30,6 @@ public interface Zstudent_loginService {
     int updatetanbyipasch(Zstudent_login zstudent_login);
 
     int updatetatbyip2(Zstudent_login zstudent_login);
+
+    public Zstudent_login findnowinbystuid(String zstudentID);
 }

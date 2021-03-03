@@ -60,20 +60,22 @@ public class Zstudent_loginServiceImpl implements Zstudent_loginService {
     }
 
 
-    public int updatetesttime(String zstudentID,String zscheduleID){
+        public int updatetesttime(String zstudentID,String zscheduleID){
         return zstulogma.updatetesttime(zstudentID,zscheduleID);
     }
 
-    public int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname){
+        public int updateznowtaskname(String zstudentID,String zscheduleID,String znowtaskname){
         return zstulogma.updateznowtaskname(zstudentID, zscheduleID,znowtaskname);
     }
 
-   public int removetat(Zstudent_login zstudent_login){
+    public int removetat(Zstudent_login zstudent_login){
         return zstulogma.removetat(zstudent_login);
    }
 
 
-   public int updatetanbyipasch(Zstudent_login zstudent_login){return zstulogma.updatetanbyipasch(zstudent_login);}
+    public int updatetanbyipasch(Zstudent_login zstudent_login){return zstulogma.updatetanbyipasch(zstudent_login);}
 
-   public int updatetatbyip2(Zstudent_login zstudent_login){return zstulogma.updatetatbyip2(zstudent_login);};
+    public int updatetatbyip2(Zstudent_login zstudent_login){return zstulogma.updatetatbyip2(zstudent_login);};
+
+    public Zstudent_login findnowinbystuid(String zstudentID){return zstulogma.findnowinbystuid(zstudentID);}
 }

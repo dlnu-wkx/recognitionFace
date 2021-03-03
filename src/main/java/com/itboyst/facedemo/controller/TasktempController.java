@@ -2,6 +2,7 @@ package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.Zassign_scheduleService;
+import com.itboyst.facedemo.service.Zstudent_loginService;
 import com.itboyst.facedemo.service.Zteacher_temporary_taskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,8 @@ public class TasktempController {
     @Autowired
     Zassign_scheduleService zassign_scheduleService;
 
-
-
-
+    @Autowired
+    Zstudent_loginService zstudent_loginService;
 
     @RequestMapping("/findalltemporarytask")
     @ResponseBody
@@ -44,7 +44,7 @@ public class TasktempController {
         List<Zteacher_temporary_task> data=zteacher_temporary_taskService.findtaskname(zid,zstudent_cookie.getZscheduleID());
         List<Zteacher_temporary_task> data2=new ArrayList<>();
 
-        /*System.out.println(logintime);
+       /* System.out.println(logintime);
         System.out.println(data);*/
 
         for(int i=0;i<data.size();i++)
@@ -68,9 +68,36 @@ public class TasktempController {
     @ResponseBody
     public int findisintemp(String studentid,String taskid){
        // System.out.println(studentid+taskid);
+
         return zteacher_temporary_taskService.findisintemp(taskid,studentid);
 
     }
+
+
+    @RequestMapping("/findisintemp2")
+    @ResponseBody
+    public int findisintemp2(String studentid,String taskid){
+
+        System.out.println(studentid+taskid);
+        if (zteacher_temporary_taskService.findisintemp(taskid,studentid)>0){
+            Zteacher_temporary_task zteacher_temporary_task= zteacher_temporary_taskService.findisintemp2(taskid,studentid);
+
+            Zstudent_login zstudent_login=zstudent_loginService.findnowinbystuid(studentid);
+
+            //Timestamp timestamp =new Timestamp(System.currentTimeMillis());
+/*
+            System.out.println(zteacher_temporary_task.getZpublishtime());
+            System.out.println(zstudent_login.getZrecongnizetime());*/
+
+            if (zteacher_temporary_task!=null)
+                return 1;
+            else if (zteacher_temporary_task.getZpublishtime().compareTo(zstudent_login.getZrecongnizetime())>0)
+                return 1;
+        }
+
+        return 0;
+    }
+
 
     @RequestMapping("/inserttemptask")
     @ResponseBody

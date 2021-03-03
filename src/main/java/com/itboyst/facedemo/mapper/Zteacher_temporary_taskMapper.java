@@ -15,4 +15,6 @@ public interface Zteacher_temporary_taskMapper {
   public int inserttemptask(Zteacher_temporary_task zteacher_temporary_task);
 
   public int detemporarybydid(String zstudentID,String zscheduleID);
+
+  public Zteacher_temporary_task findisintemp2(String zcontentID,String zstudentID);
 }

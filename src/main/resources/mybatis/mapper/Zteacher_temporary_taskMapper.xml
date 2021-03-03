@@ -21,6 +21,10 @@
             SELECT COUNT(*) FROM zteacher_temporary_task WHERE ztype='临时任务' AND zcontentID=#{zcontentID} AND zstudentID=#{zstudentID};
         </select>
 
+        <select id="findisintemp2"  resultType="com.itboyst.facedemo.dto.Zteacher_temporary_task">
+             SELECT * FROM zteacher_temporary_task WHERE ztype='临时任务' AND zcontentID=#{zcontentID} AND zstudentID=#{zstudentID} order by zpublishtime desc limit 1 ;
+        </select>
+
         <insert id="inserttemptask" parameterType="com.itboyst.facedemo.dto.Zteacher_temporary_task" >
             INSERT INTO zteacher_temporary_task(zid,zstudentID,zscheduleID,ztype,ztitle,zpublishtime,zcontentID) VALUES(#{zid},#{zstudentID},#{zscheduleID},'临时任务',(select zname from ztraining_task where zid=#{zcontentID}),#{zpublishtime},#{zcontentID});
         </insert>

@@ -31,4 +31,6 @@ public class Zteacher_temporary_taskServiceImpl implements Zteacher_temporary_ta
 
     public int temporarybydid(String zstudentID,String zscheduleID){return zteacher_temporary_taskMapper.detemporarybydid(zstudentID, zscheduleID);}
 
+    public Zteacher_temporary_task findisintemp2(String zcontentID,String zstudentID){return zteacher_temporary_taskMapper.findisintemp2(zcontentID, zstudentID);}
+
 }
