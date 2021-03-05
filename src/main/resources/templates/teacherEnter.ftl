@@ -84,7 +84,7 @@
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //信息发布
     function informationDelivery() {

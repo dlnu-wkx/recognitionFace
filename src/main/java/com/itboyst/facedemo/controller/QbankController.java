@@ -99,7 +99,6 @@ public class QbankController {
     }
 
 
-
     /*
     根据上课表id更新是否需要考试及考试分数
      */
@@ -419,7 +418,7 @@ public class QbankController {
     @RequestMapping(value = "/loginManagement")
     public String loginManagement(){return "login_management";}
 
-    @RequestMapping(value = "/down")
+    @RequestMapping(value = "/1")
     public String down(){return "down";}
 
     /**

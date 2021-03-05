@@ -324,6 +324,16 @@ function OpenOTimer(a) {
             insertCheckPoint();
             $("#startID2").css('background-color','rgba(237,125,49)')
             $("#endID2").css('background-color','rgba(0,0,255)')
+
+            $.ajax({
+                type:"post",
+                url:"/updateoneatwobyzrid",
+                async: false,
+                success:function (data) {
+
+                }
+            })
+
         }else {
             zcheck="人脸识别";
             $("#startID").css('background-color','rgba(237,125,49)')
@@ -351,6 +361,16 @@ function CloseTimer(a) {
         delAllCheckPoint();
         $("#endID2").css('background-color','rgba(237,125,49)')
         $("#startID2").css('background-color','rgba(0,0,255)')
+
+        $.ajax({
+            type: "post",
+            url: "/updateoneatwobyzrid2",
+            async: false,
+            success: function (data) {
+
+            }
+        })
+
     }else {
         $("#endID").css('background-color','rgba(237,125,49)')
         $("#startID").css('background-color','rgba(0,0,255)')
@@ -1003,6 +1023,17 @@ function chooseFileChangeComp() {
                     //关闭摄像头
                     mediaStreamTrack.stop();
                     $("#regcoDiv").empty();
+
+
+                    $.ajax({
+                        type: "post",
+                        url: "/updateoneatwobyzrid2",
+                        async: false,
+                        success: function (data) {
+
+                        }
+                    })
+
 
                 } else {
                     $("#nameDiv").html("");

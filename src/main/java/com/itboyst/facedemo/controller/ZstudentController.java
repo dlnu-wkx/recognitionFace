@@ -52,11 +52,18 @@ public class ZstudentController {
         return zstudentService.findcountbystuname(zname);
     }
 
+
+
+
     @RequestMapping("/getnameandpath")
     @ResponseBody
     public FaceUserInfo getnameandpath(HttpSession session){
         FaceUserInfo faceUserInfo=(FaceUserInfo) session.getAttribute("faceUserInfo");
-        //System.out.println(faceUserInfo);
+
+        Zstudent zstudent=zstudentService.findstudentbyfaceid(faceUserInfo.getFaceId());
+
+        faceUserInfo.setName(zstudent.getZname());
+
         return faceUserInfo;
     }
 

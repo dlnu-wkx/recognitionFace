@@ -61,4 +61,6 @@ public interface Ztraining_facilityMapper {
     public int updatefiveportbyzid(String zid,int zpowerStatus5);
 
     public int updateoatportbyrid(int zpowerStatus2,int zpowerStatus1,String ztrainingroomID);
+
+    public int updateoneatwobyrid(Ztraining_facility ztraining_facility);
 }

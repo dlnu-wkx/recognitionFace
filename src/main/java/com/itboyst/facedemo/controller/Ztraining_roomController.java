@@ -467,6 +467,82 @@ public class Ztraining_roomController {
 
     }
 
+    @RequestMapping("/updateoneatwobyzrid2")
+    @ResponseBody
+    public int updateoneatwobyzrid2(HttpSession session) throws  Exception{
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String rid=zteacher_cookie.getZtrainingroomid();
+        Ztraining_facility ztraining_facility=new Ztraining_facility();
+        ztraining_facility.setZtrainingroomID(rid);
+        ztraining_facility.setZpowerStatus1(1);
+        ztraining_facility.setZpowerStatus2(0);
+
+        int i=ztraining_facilityService.updateoneatwobyrid(ztraining_facility);
+
+        List<Ztraining_facility> data=ztraining_facilityService.findfacilitybyrid(rid);
+
+        Thread t = new Thread(new Runnable(){
+            public void run(){
+                try {
+                    for (int u=0;u<data.size();u++){
+                        if (data.get(u).getZpowerIP()!=null)
+                            if (Powerutil.pingIp(data.get(u).getZpowerIP()))
+                                Powerutil.powercontroller(data.get(u).getZpowerIP(),"12");
+                        Powerutil.powercontroller(data.get(u).getZpowerIP(),"21");
+
+                    }
+                }catch(Exception e) {
+                    //打印输出异常
+                    e.printStackTrace();
+                }
+
+            }});
+        t.start();
+
+        return i;
+    }
+
+
+
+
+
+
+    @RequestMapping("/updateoneatwobyzrid")
+    @ResponseBody
+    public int updateoneatwobyzrid(HttpSession session) throws  Exception{
+        Zteacher_cookie zteacher_cookie=(Zteacher_cookie) session.getAttribute("zteacher_cookie");
+        String rid=zteacher_cookie.getZtrainingroomid();
+        Ztraining_facility ztraining_facility=new Ztraining_facility();
+        ztraining_facility.setZtrainingroomID(rid);
+        ztraining_facility.setZpowerStatus1(0);
+        ztraining_facility.setZpowerStatus2(1);
+
+        int i=ztraining_facilityService.updateoneatwobyrid(ztraining_facility);
+
+        List<Ztraining_facility> data=ztraining_facilityService.findfacilitybyrid(rid);
+
+        Thread t = new Thread(new Runnable(){
+            public void run(){
+                try {
+                    for (int u=0;u<data.size();u++){
+                        if (data.get(u).getZpowerIP()!=null)
+                            if (Powerutil.pingIp(data.get(u).getZpowerIP()))
+                                Powerutil.powercontroller(data.get(u).getZpowerIP(),"21");
+                                Powerutil.powercontroller(data.get(u).getZpowerIP(),"12");
+
+                    }
+                }catch(Exception e) {
+                    //打印输出异常
+                    e.printStackTrace();
+                }
+
+            }});
+        t.start();
+
+        return i;
+    }
+
+
 
     @RequestMapping("/updatefaclitybychose2")
     @ResponseBody
@@ -495,6 +571,30 @@ public class Ztraining_roomController {
             j=ztraining_facilityService.updatefatestbyid2(ztraining_facility);
 
             if (j>0)k++;
+
+            //电源联动为0时，将第六端口的值更改为0
+            if(isconnected==0){
+                Ztraining_facility ztraining_facility1=ztraining_facilityService.findfacilitybyid(zid[i]);
+                ztraining_facility1.setZpowerStatus6(0);
+
+                ztraining_facilityService.updatesixportbyid(ztraining_facility1);
+
+                Thread t = new Thread(new Runnable(){
+                    public void run(){
+                        try {
+                            if (ztraining_facility1.getZpowerIP()!=null)
+                                if (Powerutil.pingIp(ztraining_facility1.getZpowerIP()))
+                                    Powerutil.powercontroller(ztraining_facility1.getZpowerIP(),"26");
+
+                        }catch(Exception e) {
+                            //打印输出异常
+                            e.printStackTrace();
+                        }
+
+                    }});
+                t.start();
+            }
+
 
             //教师端这边不用管继电器
             /*Ztraining_facility ztraining_facility1=ztraining_facilityService.findfacilitybyid(zid[i]);

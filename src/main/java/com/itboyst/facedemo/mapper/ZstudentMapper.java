@@ -31,6 +31,7 @@ public interface ZstudentMapper {
 
     public int findcountbystuname(String zname);
 
+    public Zstudent findstudentbyfaceid(String zfaceinfoID);
 
     List<Zstudent> findAllstudentbygradeid(String zgradeID);
 

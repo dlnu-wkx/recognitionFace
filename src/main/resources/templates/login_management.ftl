@@ -68,6 +68,14 @@
 
 
 </div>
+
+<div hidden class="popup" id="popup" align="center">
+    <br><br>
+    <button class="p_button2" onclick="lockscreen()">锁屏</button><br>
+
+    <button class="p_button2" onclick="overclass()">下课</button>
+</div>
+
 </body>
 <script>
 
@@ -83,7 +91,7 @@
     }
     //实时状态
     function timeStatus() {
-        location.href="/time_status";
+        location.href="/student_status";
     }
     //现场管理
     function fieldManagement() {

@@ -482,6 +482,8 @@ public class FaceController {
                 faceSearchResDto.setGender(processInfoList.get(0).getGender().equals(1) ? "女" : "男");
 
             }
+            session.setMaxInactiveInterval(60*60*24*30);
+
             //System.out.println(faceUserInfo.getPath());
             //student表信息更改
             Zstudent zstudent = new Zstudent();
@@ -924,7 +926,7 @@ public class FaceController {
 
             }
 
-
+                 session.setMaxInactiveInterval(60*60*24*30);
                 //人脸表id
                 int faceid = faceengine.selectidbyname(faceUserInfo.getPath());
                 //教师信息、课程信息和实训室信息

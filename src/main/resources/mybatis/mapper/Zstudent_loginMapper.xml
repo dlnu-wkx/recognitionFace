@@ -41,6 +41,8 @@
             SELECT * FROM zstudent_login ORDER BY zrecognizetime DESC
     </select>
 
+
+
     <!--<insert id="insertnowmessage" parameterType="com.itboyst.facedemo.dto.Zstudent_login" >
         INSERT INTO zstudent_login (zid,zstudentID,zrecognizetime,zcheck, ztype, zrecognizeIP) VALUES(#{zid}, #{zstudentID},#{zrecongnizetime},#{zcheck}, #{ztype}, #{zrecognizeIP});
     </insert>-->

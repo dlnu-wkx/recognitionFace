@@ -1,9 +1,7 @@
 package com.itboyst.facedemo.controller;
 
 import com.itboyst.facedemo.dto.*;
-import com.itboyst.facedemo.service.Zassign_scheduleService;
-import com.itboyst.facedemo.service.Zstudent_loginService;
-import com.itboyst.facedemo.service.Zteacher_temporary_taskService;
+import com.itboyst.facedemo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +25,12 @@ public class TasktempController {
 
     @Autowired
     Zstudent_loginService zstudent_loginService;
+
+    @Autowired
+    ZstudentService zstudentService;
+
+    @Autowired
+    ZscheuleService zscheuleService;
 
     @RequestMapping("/findalltemporarytask")
     @ResponseBody
@@ -101,7 +105,7 @@ public class TasktempController {
     @ResponseBody
     public int inserttemptask(String studentid,String taskid,HttpSession session){
 
-        System.out.println(studentid);
+        //System.out.println(studentid);
         String zid = UUID.randomUUID().toString().replaceAll("-","");
 
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
@@ -114,7 +118,14 @@ public class TasktempController {
         zteacher_temporary_task.setZpublishtime(timestamp);
         zteacher_temporary_task.setZstudentID(studentid);
         zteacher_temporary_task.setZscheduleID(zteacher_cookie.getZscheduleID());
-        System.out.println(zteacher_temporary_task);
+
+        //System.out.println(zteacher_temporary_task);
+        Zstudent zstudent=zstudentService.findStudentById(studentid);
+        if (zstudent.getZidentity().contains("L")){
+           String zscheduleid=zscheuleService.findidbycourename("临时课程");
+           zteacher_temporary_task.setZscheduleID(zscheduleid);
+        }
+
 
         return zteacher_temporary_taskService.inserttemptask(zteacher_temporary_task);
     }

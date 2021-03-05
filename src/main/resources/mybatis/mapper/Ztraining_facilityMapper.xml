@@ -149,4 +149,8 @@
     </update>
 
 
+    <update id="updateoneatwobyrid" parameterType="com.itboyst.facedemo.dto.Ztraining_facility" >
+        update ztraining_facility set zpowerStatus1 = #{zpowerStatus1},zpowerStatus2 = #{zpowerStatus2} where ztrainingroomID = #{ztrainingroomID}
+    </update>
+
 </mapper>
