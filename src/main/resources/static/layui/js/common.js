@@ -250,11 +250,14 @@ function common_leave(){
 
     //数据长度过长
     if (length>100){
-        alert("请假原因过长");
+        //alert("请假原因过长");
+        layer.msg("请假原因过长", { icon: 1, offset: "auto", time:2000 });
     }
     //去空格后是否还有内容
     else if(!co_mes){
-        alert("请填入请假原因");
+        //
+        //alert("请填入请假原因");
+        layer.msg("请填入请假原因", { icon: 1, offset: "auto", time:2000 });
     }else {
         $.ajax({
             type: 'post',

@@ -311,7 +311,7 @@
 
             },
             error: function (error) {
-                alert(JSON.stringify(error))
+               // alert(JSON.stringify(error))
             }
         });
     }
@@ -469,7 +469,8 @@
                 if(data){
                     layer.msg("提交成功", { icon: 1, offset: "auto", time:2000 });
                 }else{
-                    alert("提交出错")
+                    //alert("提交出错")
+                    layer.msg("提交出错", { icon: 1, offset: "auto", time:2000 });
                 }
             }
         });
@@ -479,9 +480,9 @@
     }
 
     //用来测试的方法
-    function test() {
+  /*  function test() {
         alert(1)
-    }
+    }*/
 
     //重新答题方法
     function reanswer() {
@@ -537,8 +538,8 @@
             }
 
         }else {
-
-            alert("已经没有下一页了")
+            //alert("已经没有下一页了")
+            layer.msg("已经没有下一页了", { icon: 1, offset: "auto", time:2000 });
         }
         //当前页面单选
         onechose();
@@ -573,8 +574,8 @@
             }
 
         }else{
-
-            alert("没有上一页了")
+            //alert("没有上一页了")
+            layer.msg("已经没有上一页了", { icon: 1, offset: "auto", time:2000 });
         }
         loadpagenumber(i+1)
 

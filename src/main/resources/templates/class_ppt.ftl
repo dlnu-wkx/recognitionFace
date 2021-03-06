@@ -624,7 +624,7 @@ var static_temleng=0
             }*/
             //长度长于数据库字体长度，直接返回
            if(titleLength(removenull)>20){
-                alert("你输入的长度过长！")
+                layer.msg("你输入的长度过长！", { icon: 1, offset: "auto", time:2000 });
                 return;
             }
             //长度与空格检查都通过，将值附给自检值
@@ -693,7 +693,7 @@ var static_temleng=0
                         return;
                     }else */
                         if(titleLength(removenull)>20){
-                        alert("你输入的长度过长！")
+                            layer.msg("你输入的长度过长", { icon: 1, offset: "auto", time:1000 });
                         return;
                     }else{
                         zselfcheck[i]=removenull
@@ -760,7 +760,8 @@ var static_temleng=0
                             last_page=0;
 
                         }else{
-                            alert("出错，请吉时联系老师")
+                            //alert("出错，请吉时联系老师")
+                            layer.msg("出错，请吉时联系老师", { icon: 1, offset: "auto", time:2000 });
                         }
                     }
                 });
@@ -782,7 +783,6 @@ var static_temleng=0
                     cp_content.html(str);
                 }
             });
-
             $("#nextpage").css("background-color","#A5A5A5");
         }
 

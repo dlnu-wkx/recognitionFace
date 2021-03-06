@@ -206,21 +206,27 @@
                         location.href = "/login";
                     } else {
                         if(text.code==16){
-                            alert("人脸信息表（user_face_info表）里没有地址信息");
+                           // alert("人脸信息表（user_face_info表）里没有地址信息");
+                            layer.msg("人脸信息表（user_face_info表）里没有地址信息", { icon: 1, offset: "auto", time:2000 });
                         }
                         else if(text.code==17){
-                            alert("学生表（zstudent表）里没有人脸id(faceid)或者没有审核通过,请添加人脸信息");
+                            layer.msg("学生表（zstudent表）里没有人脸id(faceid)或者没有审核通过,请添加人脸信息", { icon: 1, offset: "auto", time:2000 });
+                            //alert("学生表（zstudent表）里没有人脸id(faceid)或者没有审核通过,请添加人脸信息");
                         }
                         else if (text.code==18){
-                            alert("设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)");
+                            //alert("设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)");
+                            layer.msg("设备表（ztraining_facility）中没有这台设备的Ip(zsutdentPCIP)", { icon: 1, offset: "auto", time:2000 });
                         }
                         else if (text.code==19){
-                            alert("设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)");
+                            //alert("设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)");
+                            layer.msg("设备表（ztraining_facility）中没有这台设备的所处的实训室(ztrainingroomID)", { icon: 1, offset: "auto", time:2000 });
                         }else if (text.code==23){
-                            alert("学生上课表(zstudent_schedule)没有该名学生的信息");
+                            layer.msg("学生上课表(zstudent_schedule)没有该名学生的信息", { icon: 1, offset: "auto", time:2000 });
+                            //alert("学生上课表(zstudent_schedule)没有该名学生的信息");
                         }
                         else{
-                            alert("摄像头未开或其它错误")
+                            //alert("摄像头未开或其它错误")
+                            layer.msg("摄像头未开或人脸识别失败", { icon: 1, offset: "auto", time:2000 });
                         }
                     }
 
