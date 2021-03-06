@@ -47,6 +47,9 @@ public class ZtempuserController {
     @Autowired
     Zstudent_scheduleService zstudent_scheduleService;
 
+    @Autowired
+    Ztraining_facilityService ztrinfser;
+
     @RequestMapping(value = "/findAllztempuser", method = RequestMethod.POST)
     @ResponseBody
     public List<Ztempuser> findAllztempuser(HttpSession session) throws IOException {
@@ -63,6 +66,9 @@ public class ZtempuserController {
 
         String faceid=userFaceInfoService.selectfaceidbyfpath(ztempuser.getOriginalPictureUrl());
         int faceinfoid = userFaceInfoService.findidbyfaceid(faceid);
+
+        String IP = ztempuser.getZrecognizeIP();
+        Ztraining_facility ztrfac = ztrinfser.findbyip(IP);
         //当有权限信息是存储教师的相关信息
         if(""!=authorityID){
             Zteacher zteacher = new Zteacher();
@@ -104,7 +110,7 @@ public class ZtempuserController {
                 zstudent.setZfaceinfoID(faceinfoid);
                 zstudent.setZphoto(ztempuser.getOriginalPictureUrl());
                 zstudent.setZstatus("审核通过");
-                String zscheduleid =zscheuleService.findidbycourename("临时课程");
+                String zscheduleid =zscheuleService.findidbycourename("临时课程",ztrfac.getZtrainingroomID());
                 Zstudent_schedule zstudent_schedule = new Zstudent_schedule();
                 String zstudent_schedulestuuuid = UUID.randomUUID().toString().replaceAll("-","");
                 zstudent_schedule.setZid(zstudent_schedulestuuuid);
@@ -118,7 +124,7 @@ public class ZtempuserController {
                 int a =ztempuserService.update(zid,zname);
                return c;
             }else{//不是临时人员则只添加课程
-                String zscheduleid =zscheuleService.findidbycourename("临时课程");
+                String zscheduleid =zscheuleService.findidbycourename("临时课程",ztrfac.getZtrainingroomID());
                 Zstudent_schedule zstudent_schedule = new Zstudent_schedule();
                 String zstudent_schedulestuuuid = UUID.randomUUID().toString().replaceAll("-","");
                 zstudent_schedule.setZid(zstudent_schedulestuuuid);

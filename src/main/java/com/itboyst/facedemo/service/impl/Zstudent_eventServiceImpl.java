@@ -67,4 +67,7 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
 
     public int updatebeforebyip(Zstudent_event zstudent_event){return zstudent_eventMapper.updatebeforebyip(zstudent_event);}
 
+
+    public int findisevent2(String zstudentID,String zrecognizeIP){return zstudent_eventMapper.findisevent2(zstudentID, zrecognizeIP);}
+
 }

@@ -502,6 +502,65 @@ public class Ztraining_roomController {
         return i;
     }
 
+    @RequestMapping("/updateoragetogreen")
+    @ResponseBody
+    public void updateoragetogreen(HttpSession session,HttpServletRequest request) throws  Exception{
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie") ;
+        Ztraining_facility ztraining_facility=ztraining_facilityService.findbyip(Iputil.getClientIpAddress(request));
+
+        if (ztraining_facility.getZpowerStatus2()==0){
+            ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),1);
+            ztraining_facilityService.updateoneportbyip(ztraining_facility.getZstudentPCIP(),0);
+
+            Thread t = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                            if (ztraining_facility.getZpowerIP()!=null)
+                                if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"12");
+                                    Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"21");
+
+                    }catch(Exception e) {
+                        //打印输出异常
+                        e.printStackTrace();
+                    }
+
+                }});
+            t.start();
+        }
+
+    }
+
+    @RequestMapping("/updategreentoorge")
+    @ResponseBody
+    public void updategreentoorge(HttpSession session,HttpServletRequest request) throws  Exception{
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie)session.getAttribute("zstudent_cookie") ;
+        Ztraining_facility ztraining_facility=ztraining_facilityService.findbyip(Iputil.getClientIpAddress(request));
+
+        int i=zstudent_eventService.findisevent2(zstudent_cookie.getZstudentID(),Iputil.getClientIpAddress(request));
+
+        if (ztraining_facility.getZpowerStatus2()==0 && i==0){
+            ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),0);
+            ztraining_facilityService.updateoneportbyip(ztraining_facility.getZstudentPCIP(),1);
+
+            Thread t = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                        if (ztraining_facility.getZpowerIP()!=null)
+                            if (Powerutil.pingIp(ztraining_facility.getZpowerIP()))
+                                Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"22");
+                                Powerutil.powercontroller(ztraining_facility.getZpowerIP(),"11");
+
+                    }catch(Exception e) {
+                        //打印输出异常
+                        e.printStackTrace();
+                    }
+
+                }});
+            t.start();
+        }
+
+    }
 
 
 

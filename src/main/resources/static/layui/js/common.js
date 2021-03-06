@@ -328,14 +328,7 @@ function OpenOTimer(a) {
             $("#startID2").css('background-color','rgba(237,125,49)')
             $("#endID2").css('background-color','rgba(0,0,255)')
 
-            $.ajax({
-                type:"post",
-                url:"/updateoneatwobyzrid",
-                async: false,
-                success:function (data) {
 
-                }
-            })
 
         }else {
             zcheck="人脸识别";
@@ -365,14 +358,6 @@ function CloseTimer(a) {
         $("#endID2").css('background-color','rgba(237,125,49)')
         $("#startID2").css('background-color','rgba(0,0,255)')
 
-        $.ajax({
-            type: "post",
-            url: "/updateoneatwobyzrid2",
-            async: false,
-            success: function (data) {
-
-            }
-        })
 
     }else {
         $("#endID").css('background-color','rgba(237,125,49)')
@@ -885,18 +870,46 @@ function getcommand() {
         success: function (data) {
             if ("" != data) {
 
+                var j=0;
+
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].ztype == "查岗") {//data[i].ztype =="签到"||
                         document.getElementById("chagangID").innerHTML = data[i].zid;
                         getMedia2();
 
-                    } else if (data[i].ztype == "滚屏信息") {
-                        str += " <marquee  id='marquee'><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>" + data[i].zcontent + "</font></span></marquee>"
-                        rolling_barrage.html(str)
-                        rolling_barrage.show()
-                        document.getElementById("gundongID").innerHTML = data[i].zid;
+                        $.ajax({
+                            type: "post",
+                            url: "/updateoragetogreen",
+                            async: false,
+                            success: function (data) {
+
+                            }
+                        })
+
+                    j++;
+                    } else{
+                        if (data[i].ztype == "滚屏信息") {
+                            str += " <marquee  id='marquee'><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>" + data[i].zcontent + "</font></span></marquee>"
+                            rolling_barrage.html(str)
+                            rolling_barrage.show()
+                            document.getElementById("gundongID").innerHTML = data[i].zid;
+                        }
+
                     }
+
                 }
+                if (j==0){
+                    $.ajax({
+                        type: "post",
+                        url: "/updategreentoorge",
+                        async: false,
+                        success: function (data) {
+
+                        }
+                    })
+                }
+
+
             }
         }
     });
@@ -1026,16 +1039,6 @@ function chooseFileChangeComp() {
                     //关闭摄像头
                     mediaStreamTrack.stop();
                     $("#regcoDiv").empty();
-
-
-                    $.ajax({
-                        type: "post",
-                        url: "/updateoneatwobyzrid2",
-                        async: false,
-                        success: function (data) {
-
-                        }
-                    })
 
 
                 } else {

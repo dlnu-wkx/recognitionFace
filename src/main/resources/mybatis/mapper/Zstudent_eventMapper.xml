@@ -44,6 +44,10 @@
             SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID}  AND ztype='请假' and zstatus='申请中';
     </select>
 
+    <select id="findisevent2"  resultType="java.lang.Integer">
+        SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID} and zrecognizeIP=#{zrecognizeIP}  AND (ztype='请假' or ztype='举手') and zstatus='申请中';
+    </select>
+
 
     <select id="findupnumberbyfai"  resultType="com.itboyst.facedemo.dto.Zstudent_event" parameterType="java.lang.String">
             select * from zstudent_event where zrecognizeIP=(select zstudentPCIP from ztraining_facility where zid= #{zid} ) and ztype= #{ztype}  and zstatus='申请中'  order by zapplicationtime desc limit 1
