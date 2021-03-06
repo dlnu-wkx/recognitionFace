@@ -15,5 +15,5 @@ public interface ZscheuleService {
 
     int addzschedule(Zschedule zschedule);
 
-    String findidbycourename(String coursename);
+    String findidbycourename(String coursename,String ztrainingroomID);
 }

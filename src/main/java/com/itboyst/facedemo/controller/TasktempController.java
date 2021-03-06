@@ -122,7 +122,7 @@ public class TasktempController {
         //System.out.println(zteacher_temporary_task);
         Zstudent zstudent=zstudentService.findStudentById(studentid);
         if (zstudent.getZidentity().contains("L")){
-           String zscheduleid=zscheuleService.findidbycourename("临时课程");
+           String zscheduleid=zscheuleService.findidbycourename("临时课程",zteacher_cookie.getZtrainingroomid());
            zteacher_temporary_task.setZscheduleID(zscheduleid);
         }
 

@@ -576,7 +576,7 @@ public class FaceController {
             ztrinfser.updateoneportbyip(ip4, 1);
             ztrinfser.updattwoportbyip(ip4,0);
 
-            //另开一个线程，更改继电器1端口的数据
+
             Thread t = new Thread(new Runnable() {
                 public void run() {
                     try {
@@ -589,7 +589,7 @@ public class FaceController {
                     }
                 }
             });
-            t.start();
+
 
 
             session.setAttribute("ztraining_facility", ztrfac);
@@ -660,6 +660,7 @@ public class FaceController {
             String uuid3 = UUID.randomUUID().toString().replaceAll("-", "");
             zstudentJournal.setZid(uuid3);
 
+            t.start();
             int j = zstudentJournalService.insertstujournal(zstudentJournal);
 
 
@@ -714,6 +715,7 @@ public class FaceController {
         ztempuser.setZrecognizeIP(ip4);
         ztempuser.setZstatus("申请中");
         int a = ztempuserService.insertoneztempuser(ztempuser);
+
 
         return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
     }

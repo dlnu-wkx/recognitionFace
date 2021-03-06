@@ -176,7 +176,7 @@ public class Zfixed_taskController {
 
         Zstudent zstudent=zstudentService.findStudentById(studentid);
         if (zstudent.getZidentity().contains("L")){
-            zscheduleid=zscheuleService.findidbycourename("临时课程");
+            zscheduleid=zscheuleService.findidbycourename("临时课程",zteacher_cookie.getZtrainingroomid());
         }
 
         return zassign_scheduleService.insertfixedtask(zid,zscheduleid,studentid,taskid,timestamp);

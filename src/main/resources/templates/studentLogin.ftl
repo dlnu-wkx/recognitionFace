@@ -16,7 +16,18 @@
 </head>
 <body class="layui-layout-body">
 
+<!--警示消息-->
+<div>
+    <script>
+        var layer;
+        $(function () {
+            layui.use("layer",function () {
+                layer =layui.layer;
+            });
+        })
+    </script>
 
+</div>
 
 
 <div class="layui-layout layui-layout-admin"  style="background-color: #CDCDCD">
