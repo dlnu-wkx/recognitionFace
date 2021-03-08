@@ -42,7 +42,7 @@
     <select id="findidbycourename" resultType="java.lang.String">
         select zid
         from zschedule
-        where zcourseID=(select zid from zcourse where zname=#{zname}) and ztrainingroomID=#{ztrainingroomID}
+        where zcourseID=(select zid from zcourse where zname=#{coursename}) and ztrainingroomID=#{ztrainingroomID}
     </select>
 
 </mapper>

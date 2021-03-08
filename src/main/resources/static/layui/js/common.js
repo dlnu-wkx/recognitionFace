@@ -309,9 +309,11 @@ function subContent() {
         async: false,
         success:function (success) {
         if(success==1){
-            alert("提交成功");
+            //alert("提交成功");
+            layer.msg("提交成功", { icon: 1, offset: "auto", time:2000 });
         }else{
-            alert("提交失败没有提交成功");
+            //alert("提交失败没有提交成功");
+            layer.msg("提交失败", { icon: 1, offset: "auto", time:2000 });
         }
         }
     })
@@ -702,7 +704,8 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                  center.empty();
              }
             }else{
-                alert("没有学生签到成功");
+                //alert("没有学生签到成功");
+                layer.msg("没有学生签到成功", { icon: 1, offset: "auto", time:2000 });
             }
         }
     })
@@ -951,7 +954,8 @@ function insertCheckPoint(){
         async: false,
         success: function (data){
         if(data!=1){
-            alert("插入查岗失败")
+            //alert("插入查岗失败")
+            layer.msg("插入查岗失败", { icon: 1, offset: "auto", time:2000 });
         }
 
         }

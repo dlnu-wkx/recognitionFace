@@ -30,6 +30,17 @@ public class Zslect_messageController {
         return zselect_messageService.findattandance(zname, time1, time2,zcheck);
     }
 
+    @RequestMapping("/selectattandancemes2")
+    @ResponseBody
+    public List<Zselect_message> selectattandancemes2(String zname, String starttime, String endtime,String zcheck){
+        //将starttime与endtime的String类型转化为Timestamp
+        Timestamp time1 = Timestamp.valueOf(starttime);
+        Timestamp time2 = Timestamp.valueOf(endtime);
+
+        return zselect_messageService.findattandance2(zname, time1, time2,zcheck);
+    }
+
+
     @RequestMapping("/selectinandout")
     @ResponseBody
     public List<Zselect_message> selectinandout(String zname, String starttime, String endtime){

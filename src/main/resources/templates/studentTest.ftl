@@ -63,7 +63,7 @@
     </div>
 
     <div class="right3">
-        <button class="button5" onclick="leaveclass()" id="outsystem">退出系统</button>
+        <button class="button5" onclick="leaveclass()" >退出系统</button>
     </div>
 </div>
 

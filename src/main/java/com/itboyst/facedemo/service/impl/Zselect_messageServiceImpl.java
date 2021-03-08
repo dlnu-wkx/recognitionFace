@@ -29,4 +29,7 @@ public class Zselect_messageServiceImpl implements Zselect_messageService {
 
     @Override
     public List<Zselect_message> findscorebyname(String zname, Timestamp starttime, Timestamp endtime){return zselect_messageMapper.findscorebyname(zname, starttime, endtime);}
+
+    @Override
+    public List<Zselect_message>findattandance2(String zname, Timestamp starttime,Timestamp endtime,String zcheck){return zselect_messageMapper.findattandance2(zname, starttime, endtime, zcheck);}
 }

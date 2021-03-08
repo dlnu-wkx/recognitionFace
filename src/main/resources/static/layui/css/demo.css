@@ -112,7 +112,7 @@
 }
 
 .right3 {
-    bottom: 10%;
+    bottom: 20%;
     right: 2%;
     position: absolute;
 }
@@ -185,7 +185,7 @@
     position: fixed;
     left: 20%;
     height: 10%;
-    width: 80%;
+    width: 70%;
 }
 
 .left {
@@ -199,15 +199,15 @@
 }
 
 .button5 {
-    background-color:  #4472C4;
+    background-color: #4472C4;
     border: none;
     color: white;
-    padding: 15px 20px;
+    padding: 20px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    border-radius: 10px;
+    font-size: 25px;
+    border-radius: 15px;
     border-right: 1px solid white;
     box-shadow: 0px 3px 0px rgba(0,0,0,.2);
 }
@@ -361,7 +361,7 @@
     font-size: 16px;
     border-radius: 10px;
     bottom: 0%;
-    right: 25%;
+    right: 15%;
     position: absolute;
     height: 80%;
     width: 10%;
@@ -475,7 +475,7 @@
 
 .cbooks{
     left: 20%;
-    top: 35%;
+    top: 40%;
     position: absolute;
 }
 

@@ -16,4 +16,6 @@ public interface Zselect_messageService {
     public List<Zselect_message> findallleave(String zname, Timestamp starttime, Timestamp endtime);
 
     public List<Zselect_message> findscorebyname(String zname,Timestamp starttime,Timestamp endtime);
+
+    public List<Zselect_message>findattandance2(String zname, Timestamp starttime,Timestamp endtime,String zcheck);
 }

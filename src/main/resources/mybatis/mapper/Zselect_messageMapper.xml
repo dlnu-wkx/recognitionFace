@@ -23,6 +23,11 @@
         select B.zname as studentname,C.zname as trainingroomname,A.zrecognizetime as mestime from zstudent_login A,zstudent B, ztraining_room C,ztraining_facility D,ztraining_camera E where A.zstudentID=B.zid and (B.zname =#{zname} or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.zcheck=#{zcheck}  and ((A.zrecognizeIP=D.zstudentPCIP and D.ztrainingroomID=C.zid) or (A.zrecognizeIP=E.zcameraIP and E.ztrainingroomID=C.zid))  and A.zrecognizetime between #{starttime} and #{endtime} group by A.zrecognizetime order by A.zrecognizetime desc
     </select>
 
+    <select id="findattandance2"  resultType="com.itboyst.facedemo.dto.Zselect_message">
+        select B.zname as studentname,C.zname as trainingroomname,A.zrecognizetime as mestime from zstudent_login A,zstudent B, ztraining_room C,ztraining_facility D,ztraining_camera E where A.zstudentID=B.zid and (B.zname =#{zname} or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.zcheck=#{zcheck}  and  D.ztrainingroomID=C.zid   and A.zrecognizetime between #{starttime} and #{endtime}  group by A.zrecognizetime order by A.zrecognizetime desc
+    </select>
+
+
     <select id="findinandout"  resultType="com.itboyst.facedemo.dto.Zselect_message">
         select B.zname as studentname,C.zname as trainingroomname,D.zidentity as facilityname,A.zcheck as isintype,A.zrecognizetime as mestime from zstudent_login A,zstudent B, ztraining_room C,ztraining_facility D where A.zstudentID=B.zid and  (B.zname=#{zname}  or B. zgradeID in (select zid from zgrade where zname =#{zname})) and  (A.zcheck='登陆' or A.zcheck='退出') and A.zrecognizeIP=D.zstudentPCIP and D.ztrainingroomID=C.zid and A.zrecognizetime between #{starttime} and #{endtime} order by B.zgradeID,B.zidentity, A.zrecognizetime desc
     </select>
