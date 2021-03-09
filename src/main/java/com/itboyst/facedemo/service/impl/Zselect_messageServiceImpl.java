@@ -32,4 +32,10 @@ public class Zselect_messageServiceImpl implements Zselect_messageService {
 
     @Override
     public List<Zselect_message>findattandance2(String zname, Timestamp starttime,Timestamp endtime,String zcheck){return zselect_messageMapper.findattandance2(zname, starttime, endtime, zcheck);}
+
+    @Override
+    public List<Zselect_message>findztaskinput(String zname,Timestamp starttime,Timestamp endtime){return zselect_messageMapper.findztaskinput(zname, starttime, endtime);}
+
+    @Override
+    public List<Zselect_message>findtasktime(String zname,Timestamp starttime,Timestamp endtime){return zselect_messageMapper.findtasktime(zname, starttime, endtime);}
 }

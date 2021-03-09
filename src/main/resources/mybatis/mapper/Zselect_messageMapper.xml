@@ -7,6 +7,7 @@
         <result column="studentname" property="studentname" javaType="String"/>
         <result column="trainingroomname" property="trainingroomname" javaType="String"/>
         <result column="mestime" property="mestime" jdbcType="TIMESTAMP"/>
+        <result column="deltetime" property="deltetime" jdbcType="TIMESTAMP"/>
         <result column="facilityname" property="facilityname" javaType="String"/>
         <result column="isintype" property="isintype" javaType="String"/>
         <result column="leavereason" property="leavereason" javaType="String"/>
@@ -17,7 +18,13 @@
 
     </resultMap>
 
+    <select id="findztaskinput"  resultType="com.itboyst.facedemo.dto.Zselect_message">
+        SELECT a.zname as studentname,d.zname as trainingroomname,e.zselfcheck as leavetype ,e.zteachercheck as approver,c.zchecktime as mestime from zstudent a,zstudent_schedule b,zassign_schedule c,ztraining_task d,ztask_input e,ztraining_task_assess f where a.zid=b.zstudentID and (a.zname =#{zname} or a.zgradeID in (select zid from zgrade where zname =#{zname})) and c.zstudentscheduleID=b.zid and e.zassignscheduleID=c.zid and e.ztrainingtaskassessID=f.zid and f.ztrainingtaskID=d.zid and c.zchecktime between #{starttime} and #{endtime} ORDER BY c.zchecktime desc
+    </select>
 
+    <select id="findtasktime"  resultType="com.itboyst.facedemo.dto.Zselect_message">
+        SELECT a.zname as studentname,f.zname as trainingroomname ,e.zorder as score,c.zstarttime as mestime,c.zendtime as deltetime from zstudent a,zstudent_schedule b,ztask_content_log c,zassign_schedule d,ztraining_task_content e,ztraining_task f where a.zid=b.zstudentID and (a.zname =#{zname} or a.zgradeID in (select zid from zgrade where zname =#{zname}))  and c.zassignscheduleID=d.zid and c.ztrainingtaskcontentID=e.zid and d.zstudentscheduleID=b.zid and d.ztrainingtaskID=f.zid and c.zstarttime between #{starttime} and #{endtime} ORDER BY c.zstarttime desc
+    </select>
 
     <select id="findattandance"  resultType="com.itboyst.facedemo.dto.Zselect_message">
         select B.zname as studentname,C.zname as trainingroomname,A.zrecognizetime as mestime from zstudent_login A,zstudent B, ztraining_room C,ztraining_facility D,ztraining_camera E where A.zstudentID=B.zid and (B.zname =#{zname} or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.zcheck=#{zcheck}  and ((A.zrecognizeIP=D.zstudentPCIP and D.ztrainingroomID=C.zid) or (A.zrecognizeIP=E.zcameraIP and E.ztrainingroomID=C.zid))  and A.zrecognizetime between #{starttime} and #{endtime} group by A.zrecognizetime order by A.zrecognizetime desc
@@ -33,11 +40,11 @@
     </select>
 
     <select id="findupheads"  resultType="com.itboyst.facedemo.dto.Zselect_message">
-        select B.zname as studentname,C.zname as trainingroomname,D.zidentity as facilityname,A.zstatus as isintype,A.zapplicationtime as mestime from zstudent_event A,zstudent B, ztraining_room C,ztraining_facility D where A.zstudentID=B.zid and  (B.zname=#{zname}  or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.ztype=#{ztype} and A.zrecognizeIP=D.zstudentPCIP and D.ztrainingroomID=C.zid and A.zapplicationtime  between #{starttime} and #{endtime} order by B.zgradeID,B.zidentity, A.zapplicationtime desc
+        select B.zname as studentname,C.zname as trainingroomname,D.zidentity as facilityname,A.zstatus as isintype,A.zapplicationtime as mestime ,A.zhandletime as deltetime from zstudent_event A,zstudent B, ztraining_room C,ztraining_facility D where A.zstudentID=B.zid and  (B.zname=#{zname}  or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.ztype=#{ztype} and A.zrecognizeIP=D.zstudentPCIP and D.ztrainingroomID=C.zid and A.zapplicationtime  between #{starttime} and #{endtime} order by B.zgradeID,B.zidentity, A.zapplicationtime desc
     </select>
 
     <select id="findallleave"  resultType="com.itboyst.facedemo.dto.Zselect_message">
-        select A.zteacherID as approver, B.zname as studentname,C.zname as trainingroomname,A.zcontent as leavereason,A.zstatus as isintype,A.zapplicationtime as mestime from zstudent_event A,zstudent B, ztraining_room C,ztraining_facility D  where A.zstudentID=B.zid and  (B.zname=#{zname}  or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.ztype='请假' and A.zrecognizeIP=D.zstudentPCIP  and D.ztrainingroomID=C.zid and A.zapplicationtime  between #{starttime} and #{endtime}  order by B.zgradeID,B.zidentity, A.zapplicationtime desc
+        select A.zteacherID as approver, B.zname as studentname,C.zname as trainingroomname,A.zcontent as leavereason,A.zstatus as isintype,A.zapplicationtime as mestime ,A.zhandletime as deltetime from zstudent_event A,zstudent B, ztraining_room C,ztraining_facility D  where A.zstudentID=B.zid and  (B.zname=#{zname}  or B. zgradeID in (select zid from zgrade where zname =#{zname})) and A.ztype='请假' and A.zrecognizeIP=D.zstudentPCIP  and D.ztrainingroomID=C.zid and A.zapplicationtime  between #{starttime} and #{endtime}  order by B.zgradeID,B.zidentity, A.zapplicationtime desc
     </select>
 
     <select id="findscorebyname"  resultType="com.itboyst.facedemo.dto.Zselect_message">

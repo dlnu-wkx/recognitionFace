@@ -7,6 +7,7 @@ public class Zselect_message {
     private String studentname;
     private String trainingroomname;
     private Timestamp mestime;
+    private Timestamp deltetime;
     private String facilityname;
     private String isintype;
     private String leavereason;
@@ -45,6 +46,14 @@ public class Zselect_message {
 
     public void setMestime(Timestamp mestime) {
         this.mestime = mestime;
+    }
+
+    public Timestamp getDeltetime() {
+        return deltetime;
+    }
+
+    public void setDeltetime(Timestamp deltetime) {
+        this.deltetime = deltetime;
     }
 
     public String getFacilityname() {
@@ -110,6 +119,7 @@ public class Zselect_message {
                 ", studentname='" + studentname + '\'' +
                 ", trainingroomname='" + trainingroomname + '\'' +
                 ", mestime=" + mestime +
+                ", deltetime=" + deltetime +
                 ", facilityname='" + facilityname + '\'' +
                 ", isintype='" + isintype + '\'' +
                 ", leavereason='" + leavereason + '\'' +

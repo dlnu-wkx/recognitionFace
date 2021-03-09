@@ -12,7 +12,7 @@
 .i_excel{
     top: 10%;
     left: 10%;
-    width: 80%;
+    width: 65%;
     height: 80%;
     position: fixed;
     background-color: antiquewhite;
@@ -25,7 +25,12 @@
 .i_table{
     top: 15%;
     position: absolute;
-    overflow: auto;
+}
+.i_table2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /*overflow: auto;*/
 }
 
 .i_tbutton{
@@ -46,15 +51,19 @@
 
 .i_tableth1{
     border: 2px solid burlywood;
-    height: 100px;
-    width: 150px;
+    height: 30px;
+    width: 100px;
 }
 .i_tableth2{
     border: 2px solid burlywood;
-    height: 100px;
-    width: 300px;
+    width: 150px;
+    height: 30px;
 }
-
+.i_tableth3{
+    border: 2px solid burlywood;
+    width: 250px;
+    height: 30px;
+}
 
 .i_center{
     /*left: 0.6%;

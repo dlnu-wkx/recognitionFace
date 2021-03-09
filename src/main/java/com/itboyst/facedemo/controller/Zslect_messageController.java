@@ -90,4 +90,26 @@ public class Zslect_messageController {
         return zselect_messageService.findscorebyname(zname,time1,time2);
     }
 
+    @RequestMapping("/findztaskinput")
+    @ResponseBody
+    public List<Zselect_message> findztaskinput(String zname, String starttime, String endtime){
+
+        Timestamp time1 = Timestamp.valueOf(starttime);
+        Timestamp time2 = Timestamp.valueOf(endtime);
+
+        return zselect_messageService.findztaskinput(zname,time1,time2);
+    }
+
+    @RequestMapping("/findztasktime")
+    @ResponseBody
+    public List<Zselect_message> findztasktime(String zname, String starttime, String endtime){
+
+        Timestamp time1 = Timestamp.valueOf(starttime);
+        Timestamp time2 = Timestamp.valueOf(endtime);
+
+        return zselect_messageService.findtasktime(zname,time1,time2);
+    }
+
+
+
 }

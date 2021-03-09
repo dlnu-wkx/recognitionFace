@@ -20,4 +20,8 @@ public interface Zselect_messageMapper {
     public List<Zselect_message> findscorebyname(String zname,Timestamp starttime,Timestamp endtime);
 
     public List<Zselect_message>findattandance2(String zname, Timestamp starttime,Timestamp endtime,String zcheck);
+
+    public List<Zselect_message>findztaskinput(String zname,Timestamp starttime,Timestamp endtime);
+
+    public List<Zselect_message>findtasktime(String zname,Timestamp starttime,Timestamp endtime);
 }

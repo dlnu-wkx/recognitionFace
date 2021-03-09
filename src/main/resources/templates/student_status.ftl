@@ -95,7 +95,7 @@
 
     <font class="p_tefpass" size="5">合格分数</font>
 
-    <input type="tel" id="p_passcode" class="p_tepasschose">
+    <input type="tel" id="p_passcode" class="p_tepasschose" value="0">
 
     <button id="p_chbuttonpa" class="p_chbuttonpa" onclick="chosetestnumber()">选择</button>
 
