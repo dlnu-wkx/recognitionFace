@@ -435,7 +435,7 @@ public class FaceController {
     @ResponseBody
     public Result<FaceSearchResDto> faceSearch(HttpServletRequest request, String ztype, String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session, Model model) throws Exception {
 
-        System.out.println(ip + "," + ztype + "," + groupId);
+        //System.out.println(ip + "," + ztype + "," + groupId);
 
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
@@ -604,7 +604,7 @@ public class FaceController {
             
             //课程，日期，上课学生表
             Zstudent_cookie zsc = zstudent_cooikeService.findscookiemes(ztr.getZid(), timestamp, zstudent.getZid());
-            System.out.println(zsc);
+            //System.out.println(zsc);
 
             //if (!zstudent.getZidentity().contains("L")) {
                 zsl.setZscheduleID(zsc.getZscheduleID());
@@ -794,7 +794,7 @@ public class FaceController {
                 if (!list.isEmpty()) {
                     zsl.setZscheduleID(list.get(0));
                 }
-                System.out.println(ip4);
+                //System.out.println(ip4);
                 //System.out.println(ip2);
                 zsl.setZcheck("查岗");
                 zsl.setZrecognizeIP(ip4);

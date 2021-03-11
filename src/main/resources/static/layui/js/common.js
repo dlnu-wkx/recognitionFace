@@ -213,7 +213,7 @@ function showleave() {
 }
 
 
-/*function removeleave() {
+/*function removeleave() { 民同
     $("#co_leavemes").hide();
     $("#leaveclass").css('background-color','rgba(68,114,196)');
     $("#leaveclass").text('请假');

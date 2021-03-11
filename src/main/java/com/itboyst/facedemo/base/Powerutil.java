@@ -45,7 +45,7 @@ public class Powerutil
 
 			// 4:读取从服务器响应的数据
 			String info = br.readLine(); // 阻塞式方式
-			System.out.println(info);
+			//System.out.println(info);
 
 			// 4:关闭套接字
 			s.close();

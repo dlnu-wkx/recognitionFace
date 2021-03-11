@@ -19,7 +19,7 @@
     </resultMap>
 
     <select id="findztaskinput"  resultType="com.itboyst.facedemo.dto.Zselect_message">
-        SELECT a.zname as studentname,d.zname as trainingroomname,e.zselfcheck as leavetype ,e.zteachercheck as approver,c.zchecktime as mestime from zstudent a,zstudent_schedule b,zassign_schedule c,ztraining_task d,ztask_input e,ztraining_task_assess f where a.zid=b.zstudentID and (a.zname =#{zname} or a.zgradeID in (select zid from zgrade where zname =#{zname})) and c.zstudentscheduleID=b.zid and e.zassignscheduleID=c.zid and e.ztrainingtaskassessID=f.zid and f.ztrainingtaskID=d.zid and c.zchecktime between #{starttime} and #{endtime} ORDER BY c.zchecktime desc
+        SELECT a.zname as studentname,d.zname as trainingroomname,f.zorder as score,e.zselfcheck as leavetype ,e.zteachercheck as approver,c.zchecktime as mestime from zstudent a,zstudent_schedule b,zassign_schedule c,ztraining_task d,ztask_input e,ztraining_task_assess f where a.zid=b.zstudentID and (a.zname =#{zname} or a.zgradeID in (select zid from zgrade where zname =#{zname})) and c.zstudentscheduleID=b.zid and e.zassignscheduleID=c.zid and e.ztrainingtaskassessID=f.zid and f.ztrainingtaskID=d.zid and c.zchecktime between #{starttime} and #{endtime}  ORDER BY c.zchecktime desc,f.zorder
     </select>
 
     <select id="findtasktime"  resultType="com.itboyst.facedemo.dto.Zselect_message">

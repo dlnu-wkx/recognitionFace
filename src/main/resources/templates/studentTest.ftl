@@ -474,7 +474,11 @@
                 }
             }
         });
+
         code=0;
+
+        for(var c=0;c<static_questionnum;c++)
+            ananswer[c]="";
 
 
     }

@@ -404,7 +404,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth3'><input class='rmes_input'  type='tel'  id='"+data[i].zid+"'></th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+data[i].zorder+"</th><th class='r_tableth3'><input class='rmes_input'  type='tel'  id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });
@@ -449,7 +449,7 @@
                                 for (var i=0;i<data.length;i++){
                                     ztrainingtaskassessID[i]=data[i].zid;
                                     j=i+1;
-                                    str+=" <tr><th class='r_tableth1'>"+j+"</th><th class='r_tableth2'>"+data[i].ztechnicaldemand+"</th><th class='r_tableth3'><input class='rmes_input' type='tel'  id='"+data[i].zid+"'></th></tr>"
+                                    str+=" <tr><th class='r_tableth1'>"+data[i].zorder+"</th><th class='r_tableth3'><input class='rmes_input' type='tel'  id='"+data[i].zid+"'></th></tr>"
                                 }
                             }
                         });

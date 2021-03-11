@@ -246,7 +246,7 @@
         }else  if(selecttype=="实训测量值"){
             str+="<div class='i_tbutton'><button class='i_tbutton1' onclick='loadexcel(\""+i_name+"实训测量值查询.xlsx\")'>下载</button>&emsp;<button class='i_tbutton1' onclick='hideexcel()'>取消</button></div>"
             str+="<table class='i_table' id='i_table'><tr><th class='i_tableth1' colspan='7'><font size='6'>"+i_name+"实训测量值查询</font></th></tr>"
-            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>任务名</th><th class='i_tableth2'>自检值</th><th class='i_tableth2'>师检值</th><th class='i_tableth3'>输入时间</th></tr>"
+            str+="<tr><th class='i_tableth1'>序号</th><th class='i_tableth1'>姓名</th><th class='i_tableth2'>任务名</th><th class='i_tableth2'>序号</th><th class='i_tableth2'>自检值</th><th class='i_tableth2'>师检值</th><th class='i_tableth3'>输入时间</th></tr>"
             $.ajax({
                 type: "post",
                 url: "/findztaskinput",
@@ -255,7 +255,7 @@
                 success: function (data){
                     for (var i=0;i<data.length;i++){
                         //data[i].mestime=data[i].mestime..slice(0,9)+"  "+data[i].mestime..slice(10,18)
-                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].leavetype+"</th><th class='i_tableth2'>"+data[i].approver+"</th><th class='i_tableth3'>"+createTime(data[i].mestime)+"</th></tr>"
+                        str+="<tr><th class='i_tableth1'>"+(i+1)+"</th><th class='i_tableth1'>"+data[i].studentname+"</th><th class='i_tableth2'>"+data[i].trainingroomname+"</th><th class='i_tableth2'>"+data[i].score+"</th><th class='i_tableth2'>"+data[i].leavetype+"</th><th class='i_tableth2'>"+data[i].approver+"</th><th class='i_tableth3'>"+createTime(data[i].mestime)+"</th></tr>"
                     }
                 }
             });

@@ -13,7 +13,7 @@
 
 
     <select id="findallbyztrainingtaskID"  resultType="com.itboyst.facedemo.dto.Ztraining_task_assess">
-          SELECT * FROM ztraining_task_assess WHERE ztrainingtaskID=#{ztrainingtaskID};
+          SELECT * FROM ztraining_task_assess WHERE ztrainingtaskID=#{ztrainingtaskID} order by zorder;
     </select>
 
 

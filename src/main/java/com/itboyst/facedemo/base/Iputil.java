@@ -61,7 +61,7 @@ public class Iputil {
                 ip = inet.getHostAddress();
             }
         }
-        logger.info("getClientIp  IP is " + ip + ", headerName = " + headerName);
+        //logger.info("getClientIp  IP is " + ip + ", headerName = " + headerName);
         return ip;
     }
     private static boolean checkIp(String ip) {
@@ -131,7 +131,7 @@ public class Iputil {
             Map<String, List<String>> map = connection.getHeaderFields();
             // 遍历所有的响应头字段，获取到cookies等
             for (String key : map.keySet()) {
-                System.out.println(key + "--->" + map.get(key));
+              //  System.out.println(key + "--->" + map.get(key));
             }
             // 定义 BufferedReader输入流来读取URL的响应
             read = new BufferedReader(new InputStreamReader(
