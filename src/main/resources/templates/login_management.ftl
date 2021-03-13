@@ -147,7 +147,6 @@
 
     /*根据班级查找所有的学生并且显示在table中*/
     function showtempuser() {
-        console.log("showtempuser")
         var str = "";
         $.ajax({
             type:"post",

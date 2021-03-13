@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 public class Zstudent_cookieServiceImpl implements Zstudent_cooikeService {
@@ -15,7 +16,7 @@ public class Zstudent_cookieServiceImpl implements Zstudent_cooikeService {
     Zstudent_cookieMapper zstudent_cookieMapper;
 
     @Override
-    public Zstudent_cookie findscookiemes(String ztrainingroomID, Timestamp zrecongnizetime, String zstudentID){
+    public List<Zstudent_cookie> findscookiemes(String ztrainingroomID, Timestamp zrecongnizetime, String zstudentID){
 
         return zstudent_cookieMapper.findscookiemes(ztrainingroomID,zrecongnizetime,zstudentID);
 

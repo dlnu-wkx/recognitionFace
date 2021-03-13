@@ -1,5 +1,6 @@
 package com.itboyst.facedemo.controller;
 
+import com.itboyst.facedemo.domain.UserFaceInfo;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.*;
 import org.slf4j.Logger;
@@ -9,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpSession;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -62,11 +66,29 @@ public class ZtempuserController {
     @ResponseBody
     public int  addtempuser(String zid,String authorityID,String zname) throws IOException {
 
+
+       /* UserFaceInfo userFaceInfo = new UserFaceInfo();
+        userFaceInfo.setGroupId(groupId);
+        userFaceInfo.setFaceFeature(bytes);
+        String path = "D:\\SchoolTrainFiles\\FacePic\\student\\" + System.currentTimeMillis() + ".jpg";
+        //从人脸表中查找自增键的值
+        int num = userFaceInfoService.findAll();
+        int number = num;
+        String face_id = "L" + number;
+        //用学号或工号与face表相连
+        userFaceInfo.setFaceId(face_id);
+        userFaceInfo.setPath(path);
+        int e = userFaceInfoService.findcountfaceid(face_id);
+        //通过工号查找到没有记录则添加一条记录;
+        if (e <= 0) {
+            userFaceInfoService.insertSelective(userFaceInfo);
+            GenerateImage(file, path);
+        }
+*/
         Ztempuser ztempuser = ztempuserService.findByzid(zid);
 
         String faceid=userFaceInfoService.selectfaceidbyfpath(ztempuser.getOriginalPictureUrl());
         int faceinfoid = userFaceInfoService.findidbyfaceid(faceid);
-
         String IP = ztempuser.getZrecognizeIP();
         Ztraining_facility ztrfac = ztrinfser.findbyip(IP);
         //当有权限信息是存储教师的相关信息
@@ -110,6 +132,7 @@ public class ZtempuserController {
                 zstudent.setZfaceinfoID(faceinfoid);
                 zstudent.setZphoto(ztempuser.getOriginalPictureUrl());
                 zstudent.setZstatus("审核通过");
+
                 String zscheduleid =zscheuleService.findidbycourename("临时课程",ztrfac.getZtrainingroomID());
                 Zstudent_schedule zstudent_schedule = new Zstudent_schedule();
                 String zstudent_schedulestuuuid = UUID.randomUUID().toString().replaceAll("-","");
@@ -139,6 +162,35 @@ public class ZtempuserController {
         }
         return 0;
     }
+
+
+    /**
+     * 将图片解析成字节数组
+     * @param imgFile
+     * @return
+     */
+    public static String GetImageStr(String imgFile)
+    {//将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+        InputStream in = null;
+        byte[] data = null;
+        //读取图片字节数组
+        try
+        {
+            in = new FileInputStream(imgFile);
+            data = new byte[in.available()];
+            in.read(data);
+            in.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        //对字节数组Base64编码
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(data);//返回Base64编码过的字节数组字符串
+    }
+
+
 
 
 }

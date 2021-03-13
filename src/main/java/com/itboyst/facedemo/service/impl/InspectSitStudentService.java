@@ -15,4 +15,8 @@ public interface InspectSitStudentService {
     List<InspectSitTeacher> findTeacherByDateAndTrainingIdASC(String camerasIP,Timestamp timestamp,String zcheck);
     //查找所有教师并去重
     List<InspectSitTeacher> findTeacherByDateAndTrainingIDdistinct(String camerasIP, Timestamp timestamp,String zcheck);
+    //查岗，不筛选
+    List<InspectSitStudent> inspectfindStudentByDateAndTrainingIdASC(String ztrainingroomID, Timestamp timestamp,String zcheck);
+    //查岗，去重
+    List<InspectSitStudent>  inspectfindStudentByDateAndTrainingId(String ztrainingroomID, Timestamp timestamp,String zcheck);
 }

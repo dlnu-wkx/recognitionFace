@@ -321,6 +321,10 @@ function subContent() {
 var filterjieshiLoop=0;
 //根据开始按钮或者是结束按钮来帅选签到的人
 var timer=null;
+
+var renliandata = new Array();
+
+
 function OpenOTimer(a) {
         filterjieshiLoop=1;
         var zcheck="";
@@ -328,6 +332,9 @@ function OpenOTimer(a) {
             zcheck="查岗";
             insertCheckPoint();
             $("#startID2").css('background-color','rgba(237,125,49)')
+            //增加一个蒙版效果
+            document.getElementById("hiddenArea").style.display="block";//显示一个蒙版
+
             $("#endID2").css('background-color','rgba(0,0,255)')
 
 
@@ -336,21 +343,79 @@ function OpenOTimer(a) {
             zcheck="人脸识别";
             $("#startID").css('background-color','rgba(237,125,49)')
             $("#endID").css('background-color','rgba(0,0,255)')
+            //打开杰视的远程socket
+            //loadjieshisocket();
+            //建立连接websocket的端口
+            handlewebsocket("开始");
         }
-
-
+        //每次开始时给renliandata清空
+        renliandata.splice(0,renliandata.length);
         var myDate = new Date();
         var mytime=myDate.getTime();
         timer = setInterval(function(){
-            showRecognitionFace(mytime,zcheck,filterjieshiLoop)
+            showRecognitionFace(mytime,zcheck,filterjieshiLoop,renliandata)
             findAllLoginpeople(mytime,zcheck)
-        }, 3000)
+        }, 1000)
 
-  /*  alert("执行完了start的功能")
-    if (a == 2) {
 
-        //timer=false;
+}
+//连接websocket获取数据
+function handlewebsocket(a) {
+    var formData = new FormData();
+    formData.append("startorend",a);
+    $.ajax({
+        type:"post",
+        url:"/handlewebsocket",
+        data:formData,
+        contentType: false,
+        processData: false,
+        async: false,
+        success:function (data) {
+        }
+    })
+}
+
+function loadjieshisocket() {
+    var socket;
+    if ("WebSocket" in window) {
+        var ws = new WebSocket("ws://192.168.11.99:8080/webapi/websocket");
+        socket = ws;
+        ws.onopen = function() {
+            layer.msg("连接成功", { icon: 1, offset: "auto", time:1000 });
+        };
+
+        ws.onmessage = function(evt) {
+            var received_msg = evt.data;
+            var formData = new FormData();
+            formData.append("receivedMsg",received_msg );
+           $.ajax({
+               type:"post",
+               url:"/insertrecognitionFace",
+               data:formData,
+               contentType: false,
+               processData: false,
+               async: false,
+               success:function (data) {
+                console.log("远程连接返回的数值")
+               }
+           })
+        };
+
+        ws.onclose = function() {
+            layer.msg("WS未连接", { icon: 1, offset: "auto", time:1000 });
+        };
+    } else {
+        alert("浏览器不支持WebSocket");
+    }
+
+
+   /* function login(){
+        //var message=document.getElementById("name").value+":"+document.getElementById("mes").value;
+        var timestamp=new Date().getTime();
+        message='{"echo":'+timestamp +'}';
+        socket.send(message);
     }*/
+
 }
 
 function CloseTimer(a) {
@@ -358,12 +423,15 @@ function CloseTimer(a) {
         //清除所有查岗的信息
         delAllCheckPoint();
         $("#endID2").css('background-color','rgba(237,125,49)')
+        document.getElementById("hiddenArea").style.display="none";//显示一个蒙版
         $("#startID2").css('background-color','rgba(0,0,255)')
 
 
     }else {
         $("#endID").css('background-color','rgba(237,125,49)')
         $("#startID").css('background-color','rgba(0,0,255)')
+        //结束连接杰视数据接口
+        handlewebsocket("结束")
     }
 
     window.clearInterval(timer);
@@ -593,11 +661,11 @@ function presentProgess(zid){
 
 //从数据库中显示已经检测到的人脸信息
 //从数据中找到签到的学生
-function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
-    console.log(filterjieshiLoop)
+function showRecognitionFace(mytime,zcheck,filterjieshiLoop,renliandata) {
     var formData = new FormData();
     formData.append("zcheck",zcheck);
     formData.append("mytime",mytime );
+    formData.append("renliandata",JSON.stringify(renliandata) );
     if(filterjieshiLoop==1){
     $.ajax({
         type:"post",
@@ -608,7 +676,6 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
         async: false,
         success:function (data) {
             if(data!=null){
-
                 /*findAllLoginpeople(mytime,zcheck);*/
                  if(data.length==0){
                      $("#left").hide();
@@ -616,9 +683,12 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                      $("#right").hide();
                  }
                  if(data.length==1){
+                     console.log(data.length)
                      $("#left").empty();
                      $("#middle").hide();
                      $("#right").hide();
+                     renliandata.splice(0,renliandata.length);
+                     renliandata.push(data[0])
                      var  zName =data[0].zname;
                      var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
                      $("#left").append(zName+"("+data1+")");
@@ -626,6 +696,7 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                      $("#left").show();
                  }
                  if(data.length==2){
+                     console.log(data.length)
                      $("#left").empty();
                      $("#middle").empty();
                      $("#right").hide();
@@ -636,10 +707,14 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                      var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
                      $("#middle").append(zName2+"("+data2+")");
                      //$("#mainBody").hide();
+                     renliandata.splice(0,renliandata.length);
+                     renliandata.push(data[0])
+                     renliandata.push(data[1])
                      $("#left").show();
                      $("#middle").show();
                  }
                 if(data.length==3){
+                    console.log(data.length)
                     $("#left").empty();
                     $("#middle").empty();
                     $("#right").empty();
@@ -653,41 +728,44 @@ function showRecognitionFace(mytime,zcheck,filterjieshiLoop) {
                     var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
                     $("#right").append(zName3+"("+data3+")");
                     //$("#mainBody").hide();
+                    renliandata.splice(0,renliandata.length);
+                    renliandata.push(data[0])
+                    renliandata.push(data[1])
+                    renliandata.push(data[2])
                     $("#left").show();
                     $("#middle").show();
                     $("#right").show();
                 }
-                 if(data.length>3){
-                     $("#left").empty();
-                     $("#middle").empty();
-                     $("#right").empty();
-                     var  zName1 =data[0].zname;
-                     var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
-
-                     $("#left").append(zName1+"("+data1+")");
-                     var  zName2 =data[1].zname;
-                     var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
-                     $("#middle").append(zName2+"("+data2+")");
-                     var  zName3 =data[2].zname;
-                     var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
-                     $("#right").append(zName3+"("+data3+")")
-                     //$("#mainBody").hide();
-                     $("#left").show();
-                     $("#middle").show();
-                     $("#right").show();
-                 }
-
 
              if(data.length>3){//不大于三个则显示现有的个数
+                 console.log(data.length)
+                 $("#left").empty();
+                 $("#middle").empty();
+                 $("#right").empty();
+                 var  zName1 =data[0].zname;
+                 var data1 = formatterDatetimeLocalToApprication(data[0].zrecognizetime);
+                 $("#left").append(zName1+"("+data1+")");
+                 var  zName2 =data[1].zname;
+                 var data2 = formatterDatetimeLocalToApprication(data[1].zrecognizetime);
+                 $("#middle").append(zName2+"("+data2+")");
+                 var  zName3 =data[2].zname;
+                 var data3 = formatterDatetimeLocalToApprication(data[2].zrecognizetime)
+                 $("#right").append(zName3+"("+data3+")")
+                 $("#left").show();
+                 $("#middle").show();
+                 $("#right").show();
+
                  var str="";
                  var center=$("#mainBody");
                  center.empty();
                  var j=0;
                  str+="<table class='fm_table1' id='p_bbox'>";
                  var arr =data.slice(3,1000);
-                 //var arr=data.slice(3,data.length);
+                 renliandata.splice(0,renliandata.length);
+                 for(var m =0;m<data.length;m++){
+                     renliandata.push(data[m])
+                 }
                  for (var i=0;i<(arr.length/4+1);i++) {
-
                      str += " <tr>";
                      for (; j < 4 * (i + 1); j++) {
                          if (j == arr.length) {break;}
@@ -731,13 +809,22 @@ function findAllLoginpeople(mytime,zcheck) {
                     if(""!=data[0].originalPictureUrl){
                         var str =data[0].originalPictureUrl;
                         var path =str.substring(23);
-                        document.getElementById("img").src = "http://192.168.11.100:81"+path;
+                        /*var ip =getIPAdress()
+                        console.log(ip)*/
+                        document.getElementById("img").src = "http://localhost:81"+path;
+                        /*document.getElementById("img").src = str;*/
                     }
                 }
                 if(zcheck=="查岗"){
                     if(""!=data[0].originalPictureUrl){
                         var str =data[0].originalPictureUrl;
-                        var path =str.substring(23);
+                        var path = "";
+                        if(str.match("D:")){
+                            path =str.substring(36);
+                        }
+                        if(str.match("http:")){
+                            path =str.substring(23);
+                        }
                         document.getElementById("img").src=""+path;
                     }
                 }
@@ -872,12 +959,14 @@ function getcommand() {
         async: false,
         success: function (data) {
             if ("" != data) {
+                    var inspectid =$.cookie("Inspect");
 
-                var j=0;
+                //var j=0;
 
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].ztype == "查岗") {//data[i].ztype =="签到"||
+                    if (data[i].ztype == "查岗" && inspectid !=data[i].zid) {//data[i].ztype =="签到"||
                         document.getElementById("chagangID").innerHTML = data[i].zid;
+                        $.cookie("Inspect",data[i].zid)
                         getMedia2();
 
                         $.ajax({
@@ -889,7 +978,7 @@ function getcommand() {
                             }
                         })
 
-                    j++;
+                    //j++;
                     } else{
                         if (data[i].ztype == "滚屏信息") {
                             str += " <marquee  id='marquee'><span style='font-weight: bolder;font-size: 40px;color: white;'><font size='7'>" + data[i].zcontent + "</font></span></marquee>"
@@ -901,16 +990,9 @@ function getcommand() {
                     }
 
                 }
-                if (j==0){
-                    $.ajax({
-                        type: "post",
-                        url: "/updategreentoorge",
-                        async: false,
-                        success: function (data) {
+               // if (j==0){
 
-                        }
-                    })
-                }
+              //  }
 
 
             }
@@ -1029,6 +1111,7 @@ function chooseFileChangeComp() {
             processData: false,
             async: false,
             success: function (text) {
+                console.log(text.code)
                 var res = JSON.stringify(text)
                 if (text.code == 0) {
                     var name = text.data.name;
@@ -1043,6 +1126,31 @@ function chooseFileChangeComp() {
                     //关闭摄像头
                     mediaStreamTrack.stop();
                     $("#regcoDiv").empty();
+
+                    $.ajax({
+                        type: "post",
+                        url: "/updategreentoorge",
+                        async: false,
+                        success: function (data) {
+
+                        }
+                    })
+
+                } else if (text.code == 28 || text.code == 29){//查岗结束或者session失活则关闭查岗识别窗口
+                    console.log("进入到关闭弹框里")
+                    document.getElementById("hiddenArea").style.display="none";
+                    //关闭摄像头
+                    mediaStreamTrack.stop();
+                    $("#regcoDiv").empty();
+
+                    $.ajax({
+                        type: "post",
+                        url: "/updategreentoorge",
+                        async: false,
+                        success: function (data) {
+
+                        }
+                    })
 
 
                 } else {
@@ -1237,3 +1345,16 @@ function findZtrainingroomName(zid) {
 
     })
 }*/
+
+function getIPAdress() {
+    /*var interfaces = require('os').networkInterfaces();
+    for (var devName in interfaces) {
+        var iface = interfaces[devName];
+        for (var i = 0; i < iface.length; i++) {
+            var alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }*/
+}

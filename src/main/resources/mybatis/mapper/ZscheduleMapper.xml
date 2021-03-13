@@ -31,7 +31,7 @@
     </update>
 
     <select id="findbytime" resultType="com.itboyst.facedemo.dto.Zschedule">
-        select *  from zschedule where #{zstartdate} between zstartdate and zenddate
+        select *  from zschedule where #{zstartdate} between zstartdate and zenddate and zcourseID !=(select zid from zcourse where zname='临时课程')
     </select>
 
     <insert id="addzschedule" parameterType="com.itboyst.facedemo.dto.Zschedule">
@@ -42,7 +42,14 @@
     <select id="findidbycourename" resultType="java.lang.String">
         select zid
         from zschedule
-        where zcourseID=(select zid from zcourse where zname=#{coursename}) and ztrainingroomID=#{ztrainingroomID}
+        where zcourseID=(select zid from zcourse where zname=#{coursename}) and ztrainingroomID= #{ztrainingroomID}
     </select>
+
+    <select id="findallzschedule" resultType="java.lang.String">
+        select zid
+        from zschedule
+        where zcourseID=(select zid from zcourse where zname=#{coursename})
+    </select>
+
 
 </mapper>

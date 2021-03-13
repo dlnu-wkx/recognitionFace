@@ -1,5 +1,6 @@
 package com.itboyst.facedemo.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.itboyst.facedemo.dto.*;
 import com.itboyst.facedemo.service.*;
 import org.slf4j.Logger;
@@ -83,9 +84,11 @@ public class ZcourseController {
         Timestamp enddate = Timestamp.valueOf(zenddate);
 
         List<Zschedule>  zscheduleList = zscheuleService.findbytime(startdate);
-        if(null == zscheduleList){//首先根据开始时间判断该段时间内有无上课表
+
+        if(CollectionUtil.isEmpty(zscheduleList)){//首先根据开始时间判断该段时间内有无上课表
             zschedule.setZid(uuid);
             zschedule.setZcourseID(courseID);
+            zschedule.setZtrainingroomID(trainingroomID);
             zschedule.setZstartdate(startdate);
             zschedule.setZenddate(enddate);
             int a = zscheuleService.addzschedule(zschedule);

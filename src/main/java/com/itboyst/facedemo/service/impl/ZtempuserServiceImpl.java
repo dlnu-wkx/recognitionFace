@@ -34,4 +34,14 @@ public class ZtempuserServiceImpl implements ZtempuserService {
     public Ztempuser findByzid(String zid) {
         return ztempuserMapper.findByzid(zid);
     }
+
+    @Override
+    public int upzstatusbyoriginalPictureUrl(String originalPictureUrl) {
+        return ztempuserMapper.upzstatusbyoriginalPictureUrl(originalPictureUrl);
+    }
+
+    @Override
+    public int updatestatustostudent(String originalPictureUrl) {
+        return ztempuserMapper.updatestatustostudent(originalPictureUrl);
+    }
 }

@@ -11,8 +11,6 @@
     <link href="http://vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
     <link href="./layui/css/right_public_bar.css" rel="stylesheet" type="text/css">
 
-
-
     <script type="text/javascript" src="./layui/js/common.js "></script>
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="/layui/layui.js"></script>
@@ -65,7 +63,7 @@
                 </ul>
             </div>
         </div>
-        <div id="courseRecordContent"style="display: none;width: 50%;height: 300px;position: fixed;background-color: #CDCDCD;border: 1px solid;top:50%;left: 7%;z-index: 3">
+        <div id="courseRecordContent"style="display: none;width: 50%;height: 300px;position: fixed;background-color: #CDCDCD;border: 1px solid;top:50%;left: 7%;z-index: 12">
             <div style="margin: 5px auto;width: 29%">
                 <div style="float: left">课堂记录</div>
                 <select id="valueSelect" style="float: right">
@@ -79,7 +77,7 @@
             <div style="position: absolute;left: 15%"><button onclick="subContent()" style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">确定</button></div>
             <div style="position: absolute;left: 60%"><button onclick="cancel()" style="background-color: #0000FF;height: 30px;width: 81px;border-radius: 10px;color: #ffffff">取消</button></div>
         </div>
-        <div id="hiddenArea"style="position: absolute;height: 100%;width: 100%;filter: alpha(opacity=60);opacity: 0.6;display: none;z-index: 2">
+        <div id="hiddenArea"style="position: absolute;height: 100%;width: 100%;filter: alpha(opacity=60);opacity: 0.6;display: none;z-index: 11">
         </div>
         <#--三级菜单-->
         <div id='threeMenu' class="layui-col-xs10" style="display: none; margin-top: 40px;margin: 10px 20px;width: 85%">
@@ -149,7 +147,7 @@
                     <button id="startID2" onclick="OpenOTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">开始</button>
                 </div>
                 <div style="text-align:center;line-height:80px;font-size:34px;color:#0C0C0C;float:right;width: 50%">
-                    <button id="endID2"onclick="CloseTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px">结束</button>
+                    <button id="endID2"onclick="CloseTimer(this.value)" value="2" style="background-color: blue;color: #ffff;border-radius:32px;width: 150px;position: fixed;z-index: 12;">结束</button>
                 </div>
             </div>
 
@@ -224,6 +222,12 @@
         getMedia1();
 
     }
+    var layer;
+    $(function () {
+        layui.use("layer",function () {
+            layer =layui.layer;
+        });
+    })
 
     //JavaScript代码区域
     layui.use('element', function () {
