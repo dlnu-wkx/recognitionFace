@@ -18,4 +18,6 @@ public interface ZtempuserService {
     int upzstatusbyoriginalPictureUrl(String originalPictureUrl);
 
     int updatestatustostudent(String originalPictureUrl);
+
+    Timestamp findmaxtime();
 }

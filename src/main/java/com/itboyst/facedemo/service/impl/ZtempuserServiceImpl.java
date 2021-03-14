@@ -44,4 +44,9 @@ public class ZtempuserServiceImpl implements ZtempuserService {
     public int updatestatustostudent(String originalPictureUrl) {
         return ztempuserMapper.updatestatustostudent(originalPictureUrl);
     }
+
+    @Override
+    public Timestamp findmaxtime() {
+        return ztempuserMapper.findmaxtime();
+    }
 }

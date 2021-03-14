@@ -19,4 +19,6 @@ public interface ZtempuserMapper {
     int upzstatusbyoriginalPictureUrl(String originalPictureUrl);
 
     int updatestatustostudent(String originalPictureUrl);
+
+    Timestamp findmaxtime();
 }

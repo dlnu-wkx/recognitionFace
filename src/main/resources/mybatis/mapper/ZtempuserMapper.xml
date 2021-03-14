@@ -31,4 +31,8 @@
         update ztempuser set zstatus='失效' where originalPictureUrl=#{originalPictureUrl}
     </update>
 
+    <select id="findmaxtime" resultType="java.sql.Timestamp">
+        select MAX(zlogintime) logintime from ztempuser
+    </select>
+
 </mapper>

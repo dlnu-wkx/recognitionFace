@@ -820,7 +820,11 @@ function findAllLoginpeople(mytime,zcheck) {
                         var str =data[0].originalPictureUrl;
                         var path = "";
                         if(str.match("D:")){
-                            path =str.substring(36);
+                            if(str.match("ztempuser")){
+                                path =str.substring(46);
+                            }else {
+                                path =str.substring(36);
+                            }
                         }
                         if(str.match("http:")){
                             path =str.substring(23);
