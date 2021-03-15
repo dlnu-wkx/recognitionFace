@@ -16,4 +16,6 @@ public interface ZscheduleMapper {
     int addzschedule(Zschedule zschedule);
 
     String findidbycourename(String coursename,String ztrainingroomID);
+
+    List<String> findallzschedule(String coursename);
 }

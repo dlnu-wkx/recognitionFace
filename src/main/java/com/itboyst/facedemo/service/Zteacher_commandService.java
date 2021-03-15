@@ -33,4 +33,6 @@ public interface Zteacher_commandService {
     public Zteacher_command findscrenclosefun(String ztrainingroomID,String zscheduleID);
 
     public int findscrenclosefuncount(String ztrainingroomID,String zscheduleID);
+
+    List<Zteacher_command> findinspect(String ztrainingroomID);
 }

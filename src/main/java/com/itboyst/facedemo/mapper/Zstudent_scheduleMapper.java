@@ -21,4 +21,8 @@ public interface Zstudent_scheduleMapper {
     int addzstudentSchedule(Zstudent_schedule zstudent_schedule);
 
     Zstudent_schedule findbyzstudentIDandzscheduleID(String zscheduleID,String zstudentID);
+
+    int deletelinshi(String zscheduleID,String zstudentID);
+
 }
+

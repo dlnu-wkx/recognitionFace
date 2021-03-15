@@ -60,5 +60,10 @@ public class Zteacher_commandServiceImpl implements Zteacher_commandService {
 
     public int findscrenclosefuncount(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclosefuncount(ztrainingroomID, zscheduleID);}
 
+    @Override
+    public List<Zteacher_command>findinspect(String ztrainingroomID) {
+        return zteacher_commandMapper.findinspect(ztrainingroomID);
+    }
+
     public Zteacher_command findscrenclosefun(String ztrainingroomID,String zscheduleID){return zteacher_commandMapper.findscrenclosefun(ztrainingroomID, zscheduleID);}
 }

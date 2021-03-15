@@ -539,7 +539,7 @@ public class Ztraining_roomController {
 
         int i=zstudent_eventService.findisevent2(zstudent_cookie.getZstudentID(),Iputil.getClientIpAddress(request));
 
-        if (ztraining_facility.getZpowerStatus2()==0 && i==0){
+        if (ztraining_facility.getZpowerStatus2()==1 && i==0){
             ztraining_facilityService.updattwoportbyip(ztraining_facility.getZstudentPCIP(),0);
             ztraining_facilityService.updateoneportbyip(ztraining_facility.getZstudentPCIP(),1);
 

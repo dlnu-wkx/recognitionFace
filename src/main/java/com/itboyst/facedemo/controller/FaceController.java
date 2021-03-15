@@ -24,6 +24,7 @@ import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -34,11 +35,10 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.InetAddress;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.UUID;
 
 import static com.itboyst.facedemo.base.UUIDutil.ReplaceSQLChar;
 
@@ -101,6 +101,11 @@ public class FaceController {
     @Autowired
     Zstudent_eventService zstudent_eventService;
 
+    @Autowired
+    Zteacher_commandService zteacher_commandService;
+
+    @Autowired
+    Zstudent_scheduleService zstudent_scheduleService;
     /**
      * 跳转测试
      *
@@ -411,6 +416,11 @@ public class FaceController {
                     bytes[i] += 256;
                 }
             }
+            //如果文件夹不存在则自动创建一个
+            File tempFile = new File(imgFilePath);
+            if (!tempFile.getParentFile().exists()) {
+                tempFile.getParentFile().mkdirs();
+            }
             // 生成jpg图片
             OutputStream out = new FileOutputStream(imgFilePath);
             out.write(bytes);
@@ -435,7 +445,7 @@ public class FaceController {
     @ResponseBody
     public Result<FaceSearchResDto> faceSearch(HttpServletRequest request, String ztype, String ip, String file, Integer groupId, HttpServletResponse response, HttpSession session, Model model) throws Exception {
 
-        //System.out.println(ip + "," + ztype + "," + groupId);
+        System.out.println(ip + "," + ztype + "," + groupId);
 
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
@@ -446,7 +456,6 @@ public class FaceController {
         ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);
         //人脸特征获取
         byte[] bytes = faceEngineService.extractFaceFeature(imageInfo);
-
         if (bytes == null) {
             return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);//没检测到人脸数据
         }
@@ -455,8 +464,20 @@ public class FaceController {
         System.out.println("学生端符合条件的人脸" + userFaceInfoList.size());
         if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
             FaceUserInfo faceUserInfo = userFaceInfoList.get(0);
+            //把相似度不是最高的临时人员的feature设置为空
+            for(int i =1;i<userFaceInfoList.size();i++){
+                String updatfaceid = userFaceInfoList.get(i).getFaceId();
+                /*String deloriginalPictureUrl = userFaceInfoList.get(i).getPath();*/
+                if(updatfaceid.contains("L")){
+                    //把人脸库的信息去掉
+                    int m = userFaceInfoService.updatefacefeature(updatfaceid);
+                  /*  int f = ztempuserService.upzstatusbyoriginalPictureUrl(deloriginalPictureUrl);*/
+                }
+
+            }
             //获取目标文件路径以备上传照片使用
             String fpath = userFaceInfoList.get(0).getPath();
+            //必须是从学生端注册的学生教师端注册的人员过滤掉
             if(!fpath.contains("teacher")){
             FaceSearchResDto faceSearchResDto = new FaceSearchResDto();
             BeanUtil.copyProperties(faceUserInfo, faceSearchResDto);
@@ -500,7 +521,7 @@ public class FaceController {
             System.out.println("faceid:"+faceid);
             //判定int类型为空,设备表出问题返回1
 
-            //清除在人脸库中注册但是后台没有审核的临时人员
+            //清除今天以前人脸库中注册但是后台没有审核的临时人员
             String face_id = userFaceInfoService.selectfaceidbyfpath(faceUserInfo.getPath());
             if (face_id.contains("L")){
                 Timestamp createtimestamp = userFaceInfoService.findcreatimebyfaceid(face_id);
@@ -520,7 +541,7 @@ public class FaceController {
             }
 
             zstudent = zstuservice.findadoptstudent(faceid);
-            System.out.println(zstudent);
+            //System.out.println(zstudent);
 
             if (zstudent == null) return Results.newFailedResult(ErrorCodeEnum.NO_STUDENT_FACEID);
             //学生登陆信息
@@ -603,16 +624,21 @@ public class FaceController {
             //System.out.println(ztr);
             
             //课程，日期，上课学生表
-            Zstudent_cookie zsc = zstudent_cooikeService.findscookiemes(ztr.getZid(), timestamp, zstudent.getZid());
-            //System.out.println(zsc);
+            List<Zstudent_cookie> zsclist = zstudent_cooikeService.findscookiemes(ztr.getZid(), timestamp, zstudent.getZid());
+            if(zsclist.size()>1){
+                //删除临时课程的制约
+                List<String> findallzschedulelist = zscheuleService.findallzschedule("临时课程");
+                for(int i=0;i<findallzschedulelist.size();i++){
+                    zstudent_scheduleService.deletelinshi(findallzschedulelist.get(i),zstudent.getZid());
+                }
+            }
 
-            //if (!zstudent.getZidentity().contains("L")) {
-                zsl.setZscheduleID(zsc.getZscheduleID());
-            //}
             zsl.setZstatus("正常");
             //zsc为空说明该学生该时间段内没有课程并且不是临时学生
-            if (zsc == null && !zstudent.getZidentity().contains("L")) {
-
+            if (CollectionUtil.isEmpty(zsclist) && !zstudent.getZidentity().contains("L")) {
+                String lpictureurl = zstudent.getZphoto();
+                //把之前所有的临时申请干掉然后插入一条最新的
+                int g = ztempuserService.updatestatustostudent(lpictureurl);
                 //该学生已经注册但是该学生现在这个时间还没有课程所以添加到临时人员表中
                 Ztempuser ztempuser = new Ztempuser();
                 String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
@@ -626,6 +652,8 @@ public class FaceController {
                 //当为临时人员时没有课也能进入
                 return Results.newFailedResult(ErrorCodeEnum.NO_STUDENTSCHDULE_MESSAGE);
             }
+
+                zsl.setZscheduleID(zsclist.get(0).getZscheduleID());
             //临时学生要查看是否是第二次登录如果是就删除临时信息并且不让登录
 
             if (zstudent.getZidentity().contains("L")) {//临时学生进入
@@ -638,7 +666,7 @@ public class FaceController {
                 }
 
             }
-            session.setAttribute("zstudent_cookie", zsc);
+            session.setAttribute("zstudent_cookie", zsclist.get(0));
             // System.out.println(session.getAttribute("zstudent_cookie"));
             //插入学生登陆信息
             int i = zstudent_loginService.insertnowmessage(zsl);
@@ -668,14 +696,24 @@ public class FaceController {
                 //将验证信息保存到Cookie
                 Cookie name = new Cookie("name", faceSearchResDto.getName());
                 Cookie faceId = new Cookie("faceId", faceSearchResDto.getFaceId());
+                //查岗需要的对比参数
+                Cookie inspect = new Cookie("Inspect","1111");
                 //替换“\”为“/”否则存不到Cookie中
                 String path1 = fpath.replace("\\", "/");
-                String path = path1.substring(36);
+                String path = "";
+                if(faceUserInfo.getPath().contains("ztempuser")){//临时人员图片路径的处理方式
+                    path = path1.substring(46);
+                }else {//正式人员的处理方式
+                    path = path1.substring(36);
+                }
+
                 //输出看是否有空格
                 Cookie aimPath1 = new Cookie("path", path);//设置路径在cookie中的值
                 name.setMaxAge(86400);
                 faceId.setMaxAge(86400);
                 aimPath1.setMaxAge(86400);
+                inspect.setMaxAge(86400);
+                response.addCookie(inspect);
                 response.addCookie(name);
                 response.addCookie(faceId);
                 response.addCookie(aimPath1);//把路径存到cookie中
@@ -684,26 +722,15 @@ public class FaceController {
 
             }
         }
-        //学生端识别不出来的人默认当成临时人员
-        //1.存到虹软的表中
-        UserFaceInfo userFaceInfo = new UserFaceInfo();
-        userFaceInfo.setGroupId(groupId);
-        userFaceInfo.setFaceFeature(bytes);
-        String path = "D:\\SchoolTrainFiles\\FacePic\\student\\" + System.currentTimeMillis() + ".jpg";
-        //从人脸表中查找自增键的值
-        int num = userFaceInfoService.findAll();
-        int number = num;
-        String face_id = "L" + number;
-        //用学号或工号与face表相连
-        userFaceInfo.setFaceId(face_id);
-        userFaceInfo.setPath(path);
-        int e = userFaceInfoService.findcountfaceid(face_id);
-        //通过工号查找到没有记录则添加一条记录;
-        if (e <= 0) {
-            userFaceInfoService.insertSelective(userFaceInfo);
-            GenerateImage(file, path);
+        //向临时表中添加一条记录临时学生数据
+        String path = "D:\\SchoolTrainFiles\\FacePic\\ztempuser\\student\\" + System.currentTimeMillis() + ".jpg";
+        GenerateImage(file, path);
+        Timestamp  logintime = ztempuserService.findmaxtime();
+        Long  strdate = handleDate(logintime.getTime());
+        System.err.println("strdate : "+strdate);
+        if(strdate>=1){//删除文件夹类的所有图片
+            deletenottodaypicture("D:\\SchoolTrainFiles\\FacePic\\ztempuser\\student\\");
         }
-        //2.向临时表中添加一条记录临时学生数据
         Ztempuser ztempuser = new Ztempuser();
         String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
         ztempuser.setZid(uuid1);
@@ -733,6 +760,16 @@ public class FaceController {
     @RequestMapping(value = "/faceFind", method = RequestMethod.POST)
     @ResponseBody
     public Result<FaceSearchResDto> faceFind(String file, Integer groupId, HttpSession session, HttpServletRequest request) throws Exception {
+        //如果教师端停止查岗则清除摄像头弹窗
+        Zstudent_cookie  zstucookie = (Zstudent_cookie) session.getAttribute("zstudent_cookie");
+        if(null == zstucookie){
+            return Results.newFailedResult(ErrorCodeEnum.SESSION_NOT_ACTIVE);//查岗结束
+        }
+        String  ztrainingroomID = zstucookie.getZtrainingroomID();
+        List<Zteacher_command> zteacherCommandList =  zteacher_commandService.findinspect(ztrainingroomID);
+        if(CollectionUtil.isEmpty(zteacherCommandList)){
+            return Results.newFailedResult(ErrorCodeEnum.INSPECT_END);//查岗结束
+        }
         if (groupId == null) {
             return Results.newFailedResult("groupId is null");
         }
@@ -745,6 +782,7 @@ public class FaceController {
         if (bytes == null) {
             return Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);//没检测到人脸数据
         }
+
         //人脸比对，获取比对结果
         List<FaceUserInfo> userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);
         if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
@@ -779,33 +817,37 @@ public class FaceController {
             Zstudent zstudent = new Zstudent();
             int faceid = faceengine.selectidbyname(faceUserInfo.getPath());
             zstudent = zstuservice.findadoptstudent(faceid);
-            Zstudent presentZstudent = (Zstudent) session.getAttribute("zstudent");
-            if (presentZstudent.getZidentity().equals(zstudent.getZidentity())) {
-                Zstudent_login zsl = new Zstudent_login();
-                String uuid2 = UUID.randomUUID().toString().replaceAll("-", "");
-                zsl.setZid(uuid2);
-                zsl.setZstudentID(presentZstudent.getZid());
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                zsl.setZrecongnizetime(timestamp);
-                String ip4 = Iputil.getClientIpAddress(request);
-                zsl.setZtype("机床");
-                List<String> list = zstudentLoginService.findScheduleBytimeandzstudentID(presentZstudent.getZid(), timestamp);
+            if(null != zstudent){//有可能是没有注册的人员
+                Zstudent presentZstudent = (Zstudent) session.getAttribute("zstudent");
+                if (presentZstudent.getZidentity().equals(zstudent.getZidentity())) {
+                    Zstudent_login zsl = new Zstudent_login();
+                    String uuid2 = UUID.randomUUID().toString().replaceAll("-", "");
+                    zsl.setZid(uuid2);
+                    zsl.setZstudentID(presentZstudent.getZid());
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    zsl.setZrecongnizetime(timestamp);
+                    String ip4 = Iputil.getClientIpAddress(request);
+                    zsl.setZtype("机床");
+                    List<String> list = zstudentLoginService.findScheduleBytimeandzstudentID(presentZstudent.getZid(), timestamp);
+                    System.out.println("list.size"+list.size());
+                    if (!list.isEmpty()) {
+                        zsl.setZscheduleID(list.get(0));
+                    }
+                    //System.out.println(ip4);
+                    //System.out.println(ip2);
+                    zsl.setZcheck("查岗");
+                    zsl.setZrecognizeIP(ip4);
+                    String studentfpath = faceEngineService.findfopathByfaceid(zstudent.getZfaceinfoID());
+                    System.out.println("studentfpath :"+studentfpath);
+                    zsl.setOriginalPictureUrl(studentfpath);
+                    //插入学生登陆信息
+                    int i = zstudent_loginService.updateloginmessage(zsl);
 
-                if (!list.isEmpty()) {
-                    zsl.setZscheduleID(list.get(0));
+                    return Results.newSuccessResult(faceSearchResDto);
                 }
-                //System.out.println(ip4);
-                //System.out.println(ip2);
-                zsl.setZcheck("查岗");
-                zsl.setZrecognizeIP(ip4);
-                String studentfpath = faceEngineService.findfopathByfaceid(zstudent.getZfaceinfoID());
-                zsl.setOriginalPictureUrl(studentfpath);
-                //插入学生登陆信息
-                int i = zstudent_loginService.updateloginmessage(zsl);
-
-                return Results.newSuccessResult(faceSearchResDto);
+                return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
             }
-            System.out.println("当前登录人员和查岗人员不匹配");
+
             return Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);
 
         }
@@ -901,6 +943,16 @@ public class FaceController {
         List<FaceUserInfo> userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);
         if (CollectionUtil.isNotEmpty(userFaceInfoList)) {
             FaceUserInfo faceUserInfo = userFaceInfoList.get(0);
+            for(int i =1;i<userFaceInfoList.size();i++){
+                String updatfaceid = userFaceInfoList.get(i).getFaceId();
+                String deloriginalPictureUrl = userFaceInfoList.get(i).getPath();
+                if(updatfaceid.contains("L")){
+                    //把人脸库的信息去掉
+                    int m = userFaceInfoService.updatefacefeature(updatfaceid);
+                    int f = ztempuserService.upzstatusbyoriginalPictureUrl(deloriginalPictureUrl);
+                }
+
+            }
             //获取目标文件路径以备上传照片使用
             String fpath = userFaceInfoList.get(0).getPath();
             FaceSearchResDto faceSearchResDto = new FaceSearchResDto();
@@ -944,8 +996,12 @@ public class FaceController {
                 Cookie faceId = new Cookie("faceId", faceSearchResDto.getFaceId());
                 //替换“\”为“/”否则存不到Cookie中
                 String path1 = fpath.replace("\\", "/");
-                String path = path1.substring(36);
-
+                String path = "";
+                if(faceUserInfo.getPath().contains("ztempuser")){//临时人员图片路径的处理方式
+                    path = path1.substring(46);
+                }else {//正式人员的处理方式
+                    path = path1.substring(36);
+                }
                 //输出看是否有空格
                 Cookie aimPath1 = new Cookie("path", path);//设置路径在cookie中的值
                 name.setMaxAge(86400);
@@ -1027,26 +1083,15 @@ public class FaceController {
             return Results.newSuccessResult(faceSearchResDto);
 
         }
-        //当人脸不匹配是默认为临时人员，如果识别的人是临时人员则首先在虹软表中保存，然后到临时表中保存
-        UserFaceInfo userFaceInfo = new UserFaceInfo();
-        userFaceInfo.setGroupId(groupId);
-        userFaceInfo.setFaceFeature(bytes);
-        //从人脸表中查找自增键的值
-        int num = userFaceInfoService.findAll();
-        int number = num;
-        String face_id = "L" + number;
-        userFaceInfo.setFaceId(face_id);
-        String path = "D:\\SchoolTrainFiles\\FacePic\\teacher\\" + System.currentTimeMillis() + ".jpg";
-        userFaceInfo.setPath(path);
-        int e = userFaceInfoService.findcountfaceid(face_id);
-
-        //通过工号查找到没有记录则添加一条记录;
-        if (e <= 0) {
-            userFaceInfoService.insertSelective(userFaceInfo);
-            //把照片存储到电脑上
-            GenerateImage(file, path);
-        }
         //向临时表中添加临时人员
+        String path = "D:\\SchoolTrainFiles\\FacePic\\ztempuser\\teacher\\" + System.currentTimeMillis() + ".jpg";
+        GenerateImage(file, path);
+        //每次有新的人员注册时删除不是今天的所有图片
+        Timestamp  logintime = ztempuserService.findmaxtime();
+        Long  day = handleDate(logintime.getTime());
+        if(day>=1){
+            deletenottodaypicture("D:\\SchoolTrainFiles\\FacePic\\ztempuser\\teacher\\");
+        }
         Ztempuser ztempuser = new Ztempuser();
         String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
         ztempuser.setZid(uuid1);
@@ -1143,6 +1188,69 @@ public class FaceController {
             return base64Str;
         } else {
             return "";
+        }
+    }
+
+
+    /**
+     * 将图片解析成字节数组
+     * @param imgFile
+     * @return
+     */
+    public static String GetImageStr(String imgFile)
+    {//将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+        InputStream in = null;
+        byte[] data = null;
+        //读取图片字节数组
+        try
+        {
+            in = new FileInputStream(imgFile);
+            data = new byte[in.available()];
+            in.read(data);
+            in.close();
+            System.out.println("对比图片1 ："+Arrays.toString(data));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+       return Base64.encode(data);
+    }
+
+    //判断传入的时间是否是今天的
+    private static Long  handleDate(long time) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(time);
+        Date old = sdf.parse(sdf.format(date));
+        Date now = sdf.parse(sdf.format(new Date()));
+        long oldTime = old.getTime();
+        long nowTime = now.getTime();
+
+        long day = (nowTime - oldTime) / (24 * 60 * 60 * 1000);
+
+        /*if (day < 1) {  //今天
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            return format.format(date);
+        } else if (day == 1) {     //昨天
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            return "昨天 " + format.format(date);
+        } else {    //可依次类推
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            return format.format(date);
+        }*/
+        return day;
+    }
+    //删除指定文件夹下的图片
+    public static void deletenottodaypicture(String url) {
+        File file = new File(url);
+        if (file.isDirectory()) {
+            {//判断file是否是文件目录 若是返回TRUE
+                String name[] = file.list();//name存储file文件夹中的文件名
+                for (int i = 0; i < name.length; i++) {
+                    File f=new File(url, name[i]);//此时就可得到文件夹中的文件
+                    f.delete();//删除文件
+                }
+            }
         }
     }
 }

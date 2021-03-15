@@ -15,4 +15,10 @@ public interface ZtempuserMapper {
     int update(String zid,String zname);
 
     Ztempuser findByzid(String zid);
+
+    int upzstatusbyoriginalPictureUrl(String originalPictureUrl);
+
+    int updatestatustostudent(String originalPictureUrl);
+
+    Timestamp findmaxtime();
 }

@@ -45,7 +45,12 @@
 
     <select id="findbyzstudentIDandzscheduleID" parameterType="java.lang.String" resultType="com.itboyst.facedemo.dto.Zstudent_schedule">
 
-        select * from zstudent_schedule where zscheduleID =${zscheduleID} and zstudentID = ${zstudentID}
+        select * from zstudent_schedule where zscheduleID =#{zscheduleID} and zstudentID = #{zstudentID}
     </select>
+
+
+    <delete id="deletelinshi" parameterType="java.lang.String">
+        DELETE FROM zstudent_schedule WHERE zscheduleID=#{zscheduleID} and zstudentID = #{zstudentID};
+    </delete>
 
 </mapper>

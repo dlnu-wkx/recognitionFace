@@ -77,5 +77,10 @@
         update zteacher_command a , (select max(zpublishtime) btime from zteacher_command) b set a.zstatus =#{zstatus} where a.zpublishtime=b.btime  AND a.ztype='分屏信息' and ztrainingroomID=#{ztrainingroomID} and zscheduleID=#{zscheduleID}
     </update>
 
+    <select id="findinspect" resultType="com.itboyst.facedemo.dto.Zteacher_command">
+
+        select * from zteacher_command  where ztype ='查岗' and  zstatus = '有效' and ztrainingroomID=#{ztrainingroomID}
+    </select>
+
 
 </mapper>

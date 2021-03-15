@@ -44,8 +44,8 @@
             SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID}  AND ztype='请假' and zstatus='申请中';
     </select>
 
-    <select id="findisevent2"  resultType="java.lang.Integer">
-        SELECT count(*) FROM zstudnet_event WHERE zstudentID=#{zstudentID} and zrecognizeIP=#{zrecognizeIP}  AND (ztype='请假' or ztype='举手') and zstatus='申请中';
+    <select id="findisevent2"  resultType="int">
+        SELECT count(*) FROM zstudent_event WHERE zstudentID=#{zstudentID} and zrecognizeIP=#{zrecognizeIP}  AND (ztype='请假' or ztype='举手') and zstatus='申请中';
     </select>
 
 

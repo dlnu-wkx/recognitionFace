@@ -359,10 +359,12 @@ function savecourse() {
 
         }
 
-        $("#selectName").select2();
         function selectStr1() {
             var color_value = $("#trainingroomselect").val();
             console.log(color_value);
+        }
+        function selectStr(){
+
         }
     </script>
         </div>

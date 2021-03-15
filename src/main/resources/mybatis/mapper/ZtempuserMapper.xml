@@ -10,9 +10,13 @@
 
     <select id="findAlltempuserbytime" resultType="com.itboyst.facedemo.dto.Ztempuser">
 
-        select * from ztempuser where to_days(zlogintime) = to_days(now()) ORDER BY zlogintime DESC
+        select * from ztempuser where to_days(zlogintime) = to_days(now()) and zstatus = '申请中' ORDER BY zlogintime DESC
 
     </select>
+
+    <update id="updatestatustostudent" parameterType="java.lang.String">
+        select * from ztempuser where  zstatus = '失效' and originalPictureUrl=#{originalPictureUrl}
+    </update>
 
     <update id="update" parameterType="java.lang.String">
         update ztempuser set zname=#{zname} where zid=#{zid}
@@ -21,6 +25,14 @@
 
     <select id="findByzid" resultType="com.itboyst.facedemo.dto.Ztempuser" parameterType="java.lang.String">
         select * from ztempuser where zid=#{zid}
+    </select>
+
+    <update id="upzstatusbyoriginalPictureUrl" parameterType="java.lang.String">
+        update ztempuser set zstatus='失效' where originalPictureUrl=#{originalPictureUrl}
+    </update>
+
+    <select id="findmaxtime" resultType="java.sql.Timestamp">
+        select MAX(zlogintime) logintime from ztempuser
     </select>
 
 </mapper>

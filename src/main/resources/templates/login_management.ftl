@@ -147,7 +147,6 @@
 
     /*根据班级查找所有的学生并且显示在table中*/
     function showtempuser() {
-        console.log("showtempuser")
         var str = "";
         $.ajax({
             type:"post",
@@ -169,7 +168,7 @@
                         var date = formatterDate(data[i].zlogintime);
                         str+="<tr>";
                         str+="<td>"+(i+1)+"</td>";
-                        str+="<td><img  src='"+data[i].originalPictureUrl.substring(36)+"'style='width: 4rem;height: 4rem;'></td>";
+                        str+="<td><img  src='"+data[i].originalPictureUrl.substring(46)+"'style='width: 4rem;height: 4rem;'></td>";
                         str+="<td id='td"+data[i].zid+"'>设备名称</td>";
                         str+="<td>"+date+"</td>";
                         if("教师"==data[i].ztype){

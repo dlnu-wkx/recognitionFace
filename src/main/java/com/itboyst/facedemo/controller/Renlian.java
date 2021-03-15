@@ -40,16 +40,6 @@ public class Renlian  {
     FaceEngineService faceEngineService = appCtx.getBean(FaceEngineService.class);
     ZstrangeService zstrangeService = appCtx.getBean(ZstrangeService.class);
 
-    // 自定义局部变量
-    //private static final String jieshiip = "192.168.1.156"; // 杰视设备的IP地址
-    //private static final String url = "ws://" + jieshiip + ":8080/webapi/websocket";
-    //只能自定义接口类
-
-   /* private static Zstudent_loginService zstudentLoginService;
-    private static ZstudentService zstudentService;*/
-
-   /* private static Zteacher_loginService zteacher_loginService;
-    private static ZteacherService zteacherService;*/
 
     private String jieshiip;
     private String url ;
@@ -204,8 +194,8 @@ public class Renlian  {
             // 判断是否连接成功，未成功后面发送消息时会报错
             if (!myClient.getReadyState().equals(ReadyState.OPEN)) {
                 System.out.println("连接中···请稍后");
-              /*  try {
-                   // Thread.sleep(3000);
+                /*try {
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }*/
@@ -217,6 +207,7 @@ public class Renlian  {
 
     public void stopBtnClick() {
         System.out.println("进入到stopBtnClick()");
+        System.out.println("myClient: "+myClient);
         if (myClient != null) {
             System.out.println("关闭连接");
             myClient.close();
