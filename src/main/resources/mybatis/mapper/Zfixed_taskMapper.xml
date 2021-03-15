@@ -14,7 +14,7 @@
 
 
     <select id="findallfixed"  resultType="com.itboyst.facedemo.dto.Zfixed_task">
-        SELECT A.zid as zassign_scheduleid ,B.zid as zstudent_scheduleid,B.zname as zname FROM zassign_schedule A, ztraining_task B, zstudent_schedule C WHERE A.zstudentscheduleID=#{zstudentscheduleID} and A.ztrainingtaskID=B.zid  AND A.zstudentscheduleID=C.zid AND C.zstate NOT LIKE '已结束' ORDER BY A.zpublishtime;
+        SELECT A.zid as zassign_scheduleid ,B.zid as zstudent_scheduleid,B.zname as zname FROM zassign_schedule A, ztraining_task B, zstudent_schedule C WHERE A.zstudentscheduleID=#{zstudentscheduleID} and A.ztrainingtaskID=B.zid  AND A.zstudentscheduleID=C.zid AND C.zstate NOT LIKE '已结束' ORDER BY B.zname;
     </select>
 
 

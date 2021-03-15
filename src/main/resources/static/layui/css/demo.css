@@ -190,12 +190,12 @@
 
 .left {
     width: 10%;
-    height: 95%;
+    height: 91.5%;
     left: 2%;
     top: 8.5%;
     position: fixed;
     border-right: 2px solid #BBBBBB;
-
+    overflow-y: auto;
 }
 
 .button5 {
