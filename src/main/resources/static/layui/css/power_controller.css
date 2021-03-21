@@ -1,3 +1,20 @@
+.s_online{
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    left: 40%;
+    top:3%;
+    z-index: 90;
+}
+.delivery_quanxuan2 {
+    width: 20%;
+    height: 40%;
+    top: -2%;
+    right: 10%;
+    position: absolute;
+}
+
+
 .power_bbox4{
     width: 50%;
     height: 50%;

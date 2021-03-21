@@ -58,7 +58,7 @@
 
 <!--下方按键及内容-->
 <div class="p_text2" align="center">
-    <textarea  type="text" class="d_text"  onclick="removemes()" id="inputmes">点击输入滚动消息</textarea>
+    <textarea  type="text" class="d_text"   id="inputmes"></textarea>
     <div class="d_font2"><button class="button7" onclick="insertcommand()">确认</button>
         <#-- <br><br><button class="button7" onclick="insertcommandbychose()">发送到勾选</button>-->
     </div>

@@ -65,6 +65,11 @@
           SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID} ORDER BY zidentity;
     </select>
 
+
+    <select id="findfactibyrid2"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
+        SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID} and zprogress!='下课' and zprogress!='退出系统'  ORDER BY zidentity;
+    </select>
+
     <select id="findfactibyztrainingroomID"  resultType="com.itboyst.facedemo.dto.Ztraining_facility">
           SELECT * FROM ztraining_facility WHERE ztrainingroomID=#{ztrainingroomID} ORDER BY zidentity;
     </select>

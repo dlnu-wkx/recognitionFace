@@ -28,6 +28,11 @@
 
 </div>
 
+<div class="s_online">
+    <font size="5">在线：</font><input type="checkbox" class="delivery_quanxuan2" id="s_onlinebox" onclick="getisonline()">
+</div>
+
+
 
 <!--头部导航条-->
 <div class="top">
@@ -159,6 +164,19 @@
 
 
 <script>
+    var stataic_isonline=0;
+
+    function getisonline(){
+        if(stataic_isonline==0){
+
+            stataic_isonline=1;
+            loadfaclity(static_trainroomid)
+        }else if(stataic_isonline==1){
+            stataic_isonline=0;
+            loadfaclity(static_trainroomid)
+        }
+
+    }
 
     function lockscreen() {
         //蒙版出现
@@ -661,7 +679,7 @@
         $.ajax({
             type: "post",
             url: "/findfacilitybyrid",
-            data:{"id":trainroomid},
+            data:{"id":trainroomid,"isonline":stataic_isonline},
             async: false,
             success: function (data) {
                 //alert(data.length)

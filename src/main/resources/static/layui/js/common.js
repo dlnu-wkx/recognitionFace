@@ -17,6 +17,35 @@ function upheads() {
 
 }
 
+function loadisevent(){
+    //alert(111)
+    $.ajax({
+        type: "post",
+        url: "/findisevent",
+        data:{},
+        async: false,
+        success: function (data){
+
+            for(var i=0;i<data.length;i++){
+               // alert(2222)
+                if(data[i].ztype=="请假"){
+                    // alert(33333)
+                    $("#leave").css('background-color','#FFC000');
+                    $("#leave").attr("onclick","deleteleave()");
+                    $("#leave").text('销假');
+
+                }else if(data[i].ztype=="举手"){
+                    //alert(4444)
+                    $("#upheads").css('background-color','#FFC000');
+                    $("#upheads").text('取消举手');
+                    $("#upheads").attr("onclick","removeup()");
+
+                }
+            }
+
+        }
+    });
+}
 
 function findfiveport(){
     $.ajax({

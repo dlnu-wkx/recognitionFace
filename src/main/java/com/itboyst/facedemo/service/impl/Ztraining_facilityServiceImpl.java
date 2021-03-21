@@ -100,4 +100,6 @@ public class Ztraining_facilityServiceImpl implements Ztraining_facilityService 
 
     public int updateoneatwobyrid(Ztraining_facility ztraining_facility){return ztran_facmap.updateoneatwobyrid(ztraining_facility);}
 
+    public List<Ztraining_facility> findfactibyrid2(String ztrainingroomID ){return ztran_facmap.findfactibyrid2(ztrainingroomID);}
+
 }

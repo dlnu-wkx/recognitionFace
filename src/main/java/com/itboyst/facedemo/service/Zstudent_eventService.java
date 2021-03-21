@@ -2,6 +2,8 @@ package com.itboyst.facedemo.service;
 
 import com.itboyst.facedemo.dto.Zstudent_event;
 
+import java.util.List;
+
 public interface Zstudent_eventService {
     public  int insertevent(Zstudent_event zstudent_event);
 
@@ -28,4 +30,6 @@ public interface Zstudent_eventService {
     public int updatebeforebyip(Zstudent_event zstudent_event);
 
     public int findisevent2(String zstudentID,String zrecognizeIP);
+
+    public List<Zstudent_event> findisevent3(String zstudentID, String zscheduleID);
 }

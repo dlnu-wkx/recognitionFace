@@ -62,4 +62,6 @@ public interface Ztraining_facilityService {
     public int updateoatportbyrid(int zpowerStatus2,int zpowerStatus1,String ztrainingroomID);
 
     public int updateoneatwobyrid(Ztraining_facility ztraining_facility);
+
+    public List<Ztraining_facility> findfactibyrid2(String ztrainingroomID );
 }

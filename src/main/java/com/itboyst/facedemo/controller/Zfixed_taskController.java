@@ -58,6 +58,32 @@ public class Zfixed_taskController {
     ZscheuleService zscheuleService;
 
 
+    @RequestMapping("/sendclassmessage")
+    @ResponseBody
+    public void sendclassmessage(HttpSession session,String zname,String taskid,int kindid,String assid,int pages){
+        Zclassmessession zclassmessession=new Zclassmessession();
+        zclassmessession.setAssid(assid);
+        zclassmessession.setTaskid(taskid);
+        zclassmessession.setKindid(kindid);
+        zclassmessession.setZname(zname);
+        zclassmessession.setPages(pages);
+        //System.out.println(zclassmessession);
+
+        session.setAttribute("zclassmessession",zclassmessession);
+
+    }
+
+    @RequestMapping("/getclassmesssion")
+    @ResponseBody
+    public Zclassmessession getclassmesssion(HttpSession session){
+       // System.out.println(session.getAttribute("zclassmessession"));
+        return   (Zclassmessession) session.getAttribute("zclassmessession");
+
+    }
+
+
+
+
     @RequestMapping("/findallfixedtasks")
     @ResponseBody
     public List<Zfixed_task> findallfixedtasks(HttpSession session, HttpServletRequest request){

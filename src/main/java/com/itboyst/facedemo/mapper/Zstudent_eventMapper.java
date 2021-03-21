@@ -4,6 +4,8 @@ import com.itboyst.facedemo.dto.Zstudent;
 import com.itboyst.facedemo.dto.Zstudent_event;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface Zstudent_eventMapper {
     public  int insertevent(Zstudent_event zstudent_event);
@@ -31,4 +33,6 @@ public interface Zstudent_eventMapper {
     public int updatebeforebyip(Zstudent_event zstudent_event);
 
     public int findisevent2(String zstudentID,String zrecognizeIP);
+
+    public List<Zstudent_event>findisevent3(String zstudentID,String zscheduleID);
 }

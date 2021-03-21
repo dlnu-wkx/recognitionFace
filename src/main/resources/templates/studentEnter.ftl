@@ -89,6 +89,8 @@
 
 
     window.onload = function(){
+        loadisevent()
+
         $.ajax({
             type: "post",
             url: "/findteststatebyIP",

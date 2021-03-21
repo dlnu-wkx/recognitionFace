@@ -127,9 +127,13 @@ public class Ztraining_roomController {
 
     @RequestMapping("/findfacilitybyrid")
     @ResponseBody
-    public List<Ztraining_facility> findfacilitybyrid(String id){
+    public List<Ztraining_facility> findfacilitybyrid(String id,int isonline){
+        if(isonline==0){
+            return ztraining_facilityService.findfacilitybyrid(id);
+        }else{
+            return ztraining_facilityService.findfactibyrid2(id);
+        }
 
-        return ztraining_facilityService.findfacilitybyrid(id);
     }
 
 

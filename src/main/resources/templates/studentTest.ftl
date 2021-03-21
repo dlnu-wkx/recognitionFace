@@ -143,6 +143,8 @@
 
     //页面加载前方法
     window.onload =function () {
+        loadisevent()
+
         //通过的分数
         $.ajax({
             type: "post",

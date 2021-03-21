@@ -6,6 +6,8 @@ import com.itboyst.facedemo.service.Zstudent_eventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Zstudent_eventServiceImpl implements Zstudent_eventService {
 
@@ -69,5 +71,7 @@ public class Zstudent_eventServiceImpl implements Zstudent_eventService {
 
 
     public int findisevent2(String zstudentID,String zrecognizeIP){return zstudent_eventMapper.findisevent2(zstudentID, zrecognizeIP);}
+
+    public List<Zstudent_event> findisevent3(String zstudentID, String zscheduleID){return zstudent_eventMapper.findisevent3(zstudentID, zscheduleID);}
 
 }

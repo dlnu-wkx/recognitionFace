@@ -279,9 +279,29 @@
     //需要测量的总数据条数
     var static_assessnum=0;
 
-    //加载页面前页码及按键逻辑处理（任务表id,任务类型，固定任务Id）
-    function loadcontentbypages2(zname,taskid,kindid,assid) {
 
+    function sendclassmessage(zname,taskid,kindid,assid,pages){
+        //alert(taskid)
+        //保存已做题目信息
+        $.ajax({
+            type: "post",
+            url: "/sendclassmessage",
+            async: false,
+            data:{"zname":zname,"taskid":taskid,"kindid":kindid,"assid":assid,"pages":pages},
+            success: function (data){
+
+            }
+        });
+
+    }
+
+
+
+    //加载页面前页码及按键逻辑处理（名称,任务表id,任务类型，固定任务Id）
+    function loadcontentbypages2(zname,taskid,kindid,assid) {
+        //alert(taskid)
+        //sendclassmessage(zname,taskid,kindid,assid)
+        static_zname=zname;
         $(".cp_button2").css("background-color","#70AD47");
         $(".cp_button1").css("background-color","rgb(255, 192, 0)");
 
@@ -305,7 +325,8 @@
         //页码代码
         $("#pages").show()
         //当前页为1
-        pages=1;
+        if(static_ismes!=1){pages=1;}
+
         loadcontentbypages(taskid,kindid,assid);
 
         //上一页按键变灰
@@ -334,6 +355,7 @@
     //根据页面与任务id加载任务主体内容
     //任务表id,任务类型（1为固定任务,2为临时任务），固定任务id
     function  loadcontentbypages(taskid,kindid,assid){
+        sendclassmessage(static_zname,taskid,kindid,assid,pages);
 
        //将传进来的三个值附值给全局变量
         static_kindid=kindid;
@@ -535,11 +557,21 @@
 
 
 
+
     //页面加载前方法
     window.onload =function () {
+
+
         //getcommand2();
-        welcome();
+        getclassmesssion();
+
+        loadisevent();
+
+        if(static_ismes!=1)
+            welcome();
+
         $("#lastpage").css("background-color","#A5A5A5");
+
         findalltask();
         getcommand();
         //循环查找老师的命令
@@ -549,6 +581,34 @@
             gettemporary();
             loadscreentime();
         }, 3000);
+    }
+
+    var static_ismes;
+    var static_zname;
+    var static_ztaskid;
+    var static_kindid;
+    var static_assid;
+
+    //获取任务页面的session
+    function getclassmesssion(){
+        $.ajax({
+            type: "post",
+            url: "/getclassmesssion",
+            data: {},
+            async: false,
+            success: function (data) {
+                if(data){
+                    //alert(11)
+                    static_ismes=1;
+                    static_zname=data.zname;
+                    static_ztaskid=data.taskid;
+                    static_kindid=data.kindid;
+                    static_assid=data.assid;
+                    pages=data.pages;
+
+                }
+            }
+        })
     }
 
 
@@ -606,6 +666,12 @@ var static_temleng=0
             }
         });*/
         leftbutton.html(str)
+
+        if(static_ismes==1){
+
+            loadcontentbypages2(static_zname,static_ztaskid,static_kindid,static_assid)
+        }
+
     }
     
 

@@ -199,6 +199,16 @@ public class ZeventController {
     }
 
 
+    @RequestMapping("/findisevent")
+    @ResponseBody
+    public List<Zstudent_event> findisevent(HttpSession session){
+        Zstudent_cookie zstudent_cookie=(Zstudent_cookie) session.getAttribute("zstudent_cookie");
+        System.out.println(zstudent_cookie.getZstudentID()+"    "+zstudent_cookie.getZscheduleID());
+        System.out.println(zstudent_eventService.findisevent3(zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID()));
+        return zstudent_eventService.findisevent3(zstudent_cookie.getZstudentID(),zstudent_cookie.getZscheduleID());
+    }
+
+
     @RequestMapping("/updatealleventbystu")
     @ResponseBody
     public int updatealleventbystu(HttpSession session){
