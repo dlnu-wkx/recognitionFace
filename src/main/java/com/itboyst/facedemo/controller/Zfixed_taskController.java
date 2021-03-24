@@ -197,7 +197,7 @@ public class Zfixed_taskController {
 
         String zscheduleid=zteacher_cookie.getZscheduleID();
 
-        System.out.println(zid+zscheduleid+studentid+taskid+timestamp);
+       //System.out.println(zid+zscheduleid+studentid+taskid+timestamp);
 
 
         Zstudent zstudent=zstudentService.findStudentById(studentid);

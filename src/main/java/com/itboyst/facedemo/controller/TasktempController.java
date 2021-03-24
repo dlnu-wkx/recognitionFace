@@ -91,7 +91,7 @@ public class TasktempController {
             //Timestamp timestamp =new Timestamp(System.currentTimeMillis());
 
             //System.out.println(zteacher_temporary_task.getZpublishtime());
-            System.out.println(zstudent_login);
+           // System.out.println(zstudent_login);
 
             if (zteacher_temporary_task!=null && zteacher_temporary_task.getZpublishtime().compareTo(zstudent_login.getZrecongnizetime())>0)
                 return 1;

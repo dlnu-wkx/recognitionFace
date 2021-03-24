@@ -514,7 +514,43 @@
             });
         }
     }
+    function getfixtask(){
+        $.ajax({
+            type: "post",
+            url: "/findallfixedtasks",
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (data){
 
+                if (data.length>static_fixleng){
+                    var leftbutton=$("#leftbutton");
+                    var str="";
+
+                    //固定任务按键
+                    for(var i=0;i<data.length;i++) {
+                        str += "<button onclick='loadcontentbypages2(\"" + data[i].zname + "\",\"" + data[i].zstudent_scheduleid + "\",1,\"" + data[i].zassign_scheduleid + "\")' class='cp_button2' id='" + data[i].zstudent_scheduleid + "'>" + data[i].zname + "</button> <br><br>"
+
+                    }
+                    //临时任务按键
+                    $.ajax({
+                        type: "post",
+                        url: "/findalltemporarytask",
+                        contentType: false,
+                        processData: false,
+                        async: false,
+                        success: function (data){
+                            str+="<br><br><br>"
+                            for(var i=0;i<data.length;i++){
+                                str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].ztitle+"\",\""+data[i].zcontentID+"\",2,\"\")' id='"+data[i].zcontentID+"'>"+data[i].ztitle+"</button> <br><br>"
+                            }
+                        }
+                    });
+                    leftbutton.html(str)
+                }
+            }
+        });
+    }
 
 
     function gettemporary(){
@@ -579,6 +615,7 @@
             findisleave()
             getcommand();
             gettemporary();
+            getfixtask();
             loadscreentime();
         }, 3000);
     }
@@ -630,7 +667,8 @@
         });
     }
 
-var static_temleng=0
+    var static_temleng=0;
+    var static_fixleng=0;
 
 //所有任务
     function findalltask() {
@@ -645,6 +683,7 @@ var static_temleng=0
             processData: false,
             async: false,
             success: function (data){
+                static_fixleng=data.length;
                 str+="<br><br><br>"
                 for(var i=0;i<data.length;i++){
                     str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='"+data[i].zstudent_scheduleid+"'>"+data[i].zname+"</button> <br><br>"

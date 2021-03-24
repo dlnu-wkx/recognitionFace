@@ -80,7 +80,7 @@ public class Ztraining_roomController {
                 ztraining_facility.setZsafetestingNum(zsafetestingNum);
                 ztraining_facility.setZsafetestingType(zsafetestingType);
                 j=ztraining_facilityService.updatefatestbyid(ztraining_facility);
-                System.out.println(ztraining_facility);
+               // System.out.println(ztraining_facility);
             }
         return j;
     }
