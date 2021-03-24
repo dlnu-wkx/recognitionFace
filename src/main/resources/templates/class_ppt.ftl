@@ -350,7 +350,7 @@
 
     }
 
-
+    var static_ztitle=""
 
     //根据页面与任务id加载任务主体内容
     //任务表id,任务类型（1为固定任务,2为临时任务），固定任务id
@@ -374,6 +374,7 @@
         var cp_number=$("#cp_number");
         var str2="";
 
+        static_ztitle="";
         //主体任务方法
         $.ajax({
             type: "post",
@@ -387,55 +388,10 @@
                 task_contentid=data.zid;
                 static_ztype=data.ztype;
 
+                static_ztitle=data.ztitle;
                 //判断主体内容，图片，视频，文字，数据测量各不相同
                 //任务有title的情况
-                if (data.ztitle){
-                    str+="<div class='mes_title'><font size='5'>"+data.ztitle+"</font></div>"
-                    if(data.ztype=="图片"){
-                        //截取图片获取相对路径
-                        var zcontent = data.zcontent;
-                        var content=zcontent.substr(43);
-                        str+="<img src='"+content+"'  alt='测试用' class='cp_message2' />";
-                    }else if(data.ztype=="视频"){
-                        var zcontent = data.zcontent;
-                        var content=zcontent.substr(43);
-                        str+="<video src='"+content+"' controls='controls' class='cp_message2'>您的浏览器不支持 video 标签。</video>"
-                    }else if(data.ztype=="文字"){
-                        str+="<font class='cp_message2' size='3'>"+data.zcontent+"</font>"
-                        //数据测量需要额外加载右侧测量值的Id
-                    }else if(data.ztype=="评分表"){
-                        var zcontent = data.zcontent;
-                        var content = zcontent.split(";");
-                        content[0]=content[0].substr(43);
-                        var  arr = content[1].split(",");
 
-
-                        str+=" <div class='left_table2'><img src='"+content[0]+"'  alt='测试用' class='right_message' /></div>"
-                        str+=" <div class='reight_mes2'>"
-                        str+=" <table class='r_table2'>";
-                        str+="<tr><th class='r_tableth1'>序号</th><th class='r_tableth3'>输入尺寸</th></tr>"
-
-                        //加载测量值的个数及id
-                        $.ajax({
-                            type: "post",
-                            url: "/findtaskassessbytrainingid",
-                            async: false,
-                            data:{"ztraining_taskID":static_taskid},
-                            success: function (data) {
-                                static_assessnum=data.length;
-                                for (var i=0;i<data.length;i++){
-                                    ztrainingtaskassessID[i]=data[i].zid;
-                                    j=i+1;
-                                    str+=" <tr><th class='r_tableth1'>"+data[i].zorder+"</th><th class='r_tableth3'><input class='rmes_input'  type='tel'  id='"+data[i].zid+"'></th></tr>"
-                                }
-                            }
-                        });
-                        }
-                        str+="</table>";
-                        str+="</div>"
-
-                    //任务没有title的情况
-                }else{
                     if(data.ztype=="图片"){
                         var zcontent = data.zcontent;
                         var content=zcontent.substr(43);
@@ -480,7 +436,7 @@
                         str+="</div>"
                     }
                 }
-            }
+
         });
 
         cp_content.html(str);
@@ -492,13 +448,17 @@
             processData: false,
             data:formData,
             async: false,
-            success: function (data){
+            success: function (data2){
                //将其赋值给全局变量
-                last_page=data;
+                last_page=data2;
             }
         });
         //页码前端加载
-        str2="<font size='5'>"+pages+"页/共"+last_page+"页</font>"
+        if(static_ztitle){
+            str2="<font size='5'>"+pages+"页/共"+last_page+"页  ("+static_ztitle+")</font>"
+        }else{
+            str2="<font size='5'>"+pages+"页/共"+last_page+"页</font>"
+        }
         cp_number.html(str2)
 
         //如果是固定任务就更新任务的日志表
@@ -523,32 +483,15 @@
             async: false,
             success: function (data){
 
-                if (data.length>static_fixleng){
-                    var leftbutton=$("#leftbutton");
-                    var str="";
-
-                    //固定任务按键
-                    for(var i=0;i<data.length;i++) {
-                        str += "<button onclick='loadcontentbypages2(\"" + data[i].zname + "\",\"" + data[i].zstudent_scheduleid + "\",1,\"" + data[i].zassign_scheduleid + "\")' class='cp_button2' id='" + data[i].zstudent_scheduleid + "'>" + data[i].zname + "</button> <br><br>"
-
+                if (data.length!=static_fixleng){
+                    static_fixleng=data.length;
+                    if(static_ismes==1)
+                        loadcontentbypages2(static_zname,static_ztaskid,static_kindid,static_assid)
+                        location.reload();
                     }
-                    //临时任务按键
-                    $.ajax({
-                        type: "post",
-                        url: "/findalltemporarytask",
-                        contentType: false,
-                        processData: false,
-                        async: false,
-                        success: function (data){
-                            str+="<br><br><br>"
-                            for(var i=0;i<data.length;i++){
-                                str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].ztitle+"\",\""+data[i].zcontentID+"\",2,\"\")' id='"+data[i].zcontentID+"'>"+data[i].ztitle+"</button> <br><br>"
-                            }
-                        }
-                    });
-                    leftbutton.html(str)
+
                 }
-            }
+
         });
     }
 
@@ -563,29 +506,13 @@
             async: false,
             success: function (data){
 
-                if (data.length>static_temleng){
-                    var leftbutton=$("#leftbutton");
-                    var str="";
+                if (data.length!=static_temleng) {
+                    static_temleng = data.length;
+                    if(static_ismes==1){
 
-                    //固定任务按键
-                    $.ajax({
-                        type: "post",
-                        url: "/findallfixedtasks",
-                        contentType: false,
-                        processData: false,
-                        async: false,
-                        success: function (data){
-                            str+="<br><br><br>"
-                            for(var i=0;i<data.length;i++){
-                                str+="<button onclick='loadcontentbypages2(\""+data[i].zname+"\",\""+data[i].zstudent_scheduleid+"\",1,\""+data[i].zassign_scheduleid+"\")' class='cp_button2' id='"+data[i].zstudent_scheduleid+"'>"+data[i].zname+"</button> <br><br>"
-                            }
-                        }
-                    });
-
-                    for(var i=0;i<data.length;i++){
-                        str+="<button class='cp_button1' onclick='loadcontentbypages2(\""+data[i].ztitle+"\",\""+data[i].zcontentID+"\",2,\"\")' id='"+data[i].zcontentID+"'>"+data[i].ztitle+"</button> <br><br>"
+                        loadcontentbypages2(static_zname,static_ztaskid,static_kindid,static_assid)
+                        location.reload();
                     }
-                    leftbutton.html(str)
                 }
             }
         });
