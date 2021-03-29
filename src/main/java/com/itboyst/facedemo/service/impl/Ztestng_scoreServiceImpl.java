@@ -15,4 +15,6 @@ public class Ztestng_scoreServiceImpl implements Ztesting_scoreService {
 
     @Override
     public int insertscore(Ztesting_score ztesting_score){return ztesting_scoreMapper.insertscore(ztesting_score);}
+
+
 }

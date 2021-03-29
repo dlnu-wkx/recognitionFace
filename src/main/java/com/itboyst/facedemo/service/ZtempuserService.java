@@ -19,5 +19,5 @@ public interface ZtempuserService {
 
     int updatestatustostudent(String originalPictureUrl);
 
-    Timestamp findmaxtime();
+    Timestamp findmaxtime(String studorteach);
 }

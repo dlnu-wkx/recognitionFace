@@ -77,26 +77,29 @@ public class ZtempuserController {
 
         //存储临时人员的信息到人脸数据库中
         Ztempuser ztempuser = ztempuserService.findByzid(zid);
-        String file = GetImageStr(ztempuser.getOriginalPictureUrl());
-        byte[] decode = Base64.decode(base64Process(file));
-        BufferedImage bufImage = ImageIO.read(new ByteArrayInputStream(decode));
-        ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);
-        //人脸特征获取
-        byte[] bytes = faceEngineService.extractFaceFeature(imageInfo);
-        UserFaceInfo userFaceInfo = new UserFaceInfo();
-        userFaceInfo.setGroupId(101);
-        userFaceInfo.setFaceFeature(bytes);
-        //从人脸表中查找自增键的值作为face_id
-        int num = userFaceInfoService.findAll();
-        int number = num;
-        String face_id = "L" + number;
-        //用学号或工号与face表相连
-        userFaceInfo.setFaceId(face_id);
-        userFaceInfo.setPath(ztempuser.getOriginalPictureUrl());
-        int e = userFaceInfoService.findcountfaceid(face_id);
-        //通过工号查找到没有记录则添加一条记录;
-        if (e <= 0) {
-            userFaceInfoService.insertSelective(userFaceInfo);
+        //如果包含ztempuser则存到人脸数据库中
+        if(ztempuser.getOriginalPictureUrl().contains("ztempuser")){
+            String file = GetImageStr(ztempuser.getOriginalPictureUrl());
+            byte[] decode = Base64.decode(base64Process(file));
+            BufferedImage bufImage = ImageIO.read(new ByteArrayInputStream(decode));
+            ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);
+            //人脸特征获取
+            byte[] bytes = faceEngineService.extractFaceFeature(imageInfo);
+            UserFaceInfo userFaceInfo = new UserFaceInfo();
+            userFaceInfo.setGroupId(101);
+            userFaceInfo.setFaceFeature(bytes);
+            //从人脸表中查找自增键的值作为face_id
+            int num = userFaceInfoService.findAll();
+            int number = num;
+            String face_id = "L" + number;
+            //用学号或工号与face表相连
+            userFaceInfo.setFaceId(face_id);
+            userFaceInfo.setPath(ztempuser.getOriginalPictureUrl());
+            int e = userFaceInfoService.findcountfaceid(face_id);
+            //通过工号查找到没有记录则添加一条记录;
+            if (e <= 0) {
+                userFaceInfoService.insertSelective(userFaceInfo);
+            }
         }
 
         String faceid=userFaceInfoService.selectfaceidbyfpath(ztempuser.getOriginalPictureUrl());

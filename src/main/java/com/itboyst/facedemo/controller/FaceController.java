@@ -622,15 +622,20 @@ public class FaceController {
             session.setAttribute("ztraining_room", ztr);
 
             //System.out.println(ztr);
-            
+
             //课程，日期，上课学生表
             List<Zstudent_cookie> zsclist = zstudent_cooikeService.findscookiemes(ztr.getZid(), timestamp, zstudent.getZid());
             if(zsclist.size()>1){
                 //删除临时课程的制约
                 List<String> findallzschedulelist = zscheuleService.findallzschedule("临时课程");
-                for(int i=0;i<findallzschedulelist.size();i++){
-                    zstudent_scheduleService.deletelinshi(findallzschedulelist.get(i),zstudent.getZid());
+                for(int n =0;n<zsclist.size();n++){//取出临时课程
+                    for(int i=0;i<findallzschedulelist.size();i++){
+                    if(zsclist.get(n).getZscheduleID().equals(findallzschedulelist.get(i))){
+                        zsclist.remove(zsclist.get(n));
+                    }
+                    }
                 }
+
             }
 
             zsl.setZstatus("正常");
@@ -725,7 +730,7 @@ public class FaceController {
         //向临时表中添加一条记录临时学生数据
         String path = "D:\\SchoolTrainFiles\\FacePic\\ztempuser\\student\\" + System.currentTimeMillis() + ".jpg";
         GenerateImage(file, path);
-        Timestamp  logintime = ztempuserService.findmaxtime();
+        Timestamp  logintime = ztempuserService.findmaxtime("学生");
         Long  strdate = handleDate(logintime.getTime());
         System.err.println("strdate : "+strdate);
         if(strdate>=1){//删除文件夹类的所有图片
@@ -1087,7 +1092,7 @@ public class FaceController {
         String path = "D:\\SchoolTrainFiles\\FacePic\\ztempuser\\teacher\\" + System.currentTimeMillis() + ".jpg";
         GenerateImage(file, path);
         //每次有新的人员注册时删除不是今天的所有图片
-        Timestamp  logintime = ztempuserService.findmaxtime();
+        Timestamp  logintime = ztempuserService.findmaxtime("教师");
         Long  day = handleDate(logintime.getTime());
         if(day>=1){
             deletenottodaypicture("D:\\SchoolTrainFiles\\FacePic\\ztempuser\\teacher\\");

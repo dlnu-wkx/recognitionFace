@@ -46,7 +46,7 @@ public class ZtempuserServiceImpl implements ZtempuserService {
     }
 
     @Override
-    public Timestamp findmaxtime() {
-        return ztempuserMapper.findmaxtime();
+    public Timestamp findmaxtime(String studorteach) {
+        return ztempuserMapper.findmaxtime(studorteach);
     }
 }

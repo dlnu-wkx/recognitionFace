@@ -32,7 +32,7 @@
     </update>
 
     <select id="findmaxtime" resultType="java.sql.Timestamp">
-        select MAX(zlogintime) logintime from ztempuser
+        select MAX(zlogintime) logintime from ztempuser where ztype=#{studorteach}
     </select>
 
 </mapper>

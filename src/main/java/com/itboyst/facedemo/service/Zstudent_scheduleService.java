@@ -22,4 +22,6 @@ public interface Zstudent_scheduleService {
     Zstudent_schedule findbyzstudentIDandzscheduleID(String zscheduleID,String zstudentID);
 
     int deletelinshi(String zscheduleID,String zstudentID);
+
+    String  findstudentscheduleid(String zscheduleID,String zstudentID);
 }

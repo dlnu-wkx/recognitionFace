@@ -51,5 +51,9 @@
         where zcourseID=(select zid from zcourse where zname=#{coursename})
     </select>
 
+    <select id="findzschedulebyzid" resultType="com.itboyst.facedemo.dto.Zschedule">
+        select * from zschedule where zid=#{zid}
+    </select>
+
 
 </mapper>

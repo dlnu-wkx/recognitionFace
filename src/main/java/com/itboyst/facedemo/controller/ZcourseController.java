@@ -137,14 +137,70 @@ public class ZcourseController {
             return "新建上课表失败" ;
         }else {//如果有课比对实训室是否相同
             int j =0;
+            Zschedule existschedule = null;
             for(Zschedule a :zscheduleList) {
                 //时间相同时比对实训室是否是同一间
                 if (a.getZtrainingroomID().equals(trainingroomID)) {
+                    existschedule = a;
                     j++;
                 }
             }
-            if(j>0) {//说明该实训室有课
-                  return "该实训室在该时间段内已经有课";
+            if(j>0) {//说明该实训室有课，不同班级也可以添加课程
+
+                //为教师新建一个教师上课表
+                Zteacher_schedule zteacher_schedule = new Zteacher_schedule();
+                zteacher_schedule.setZscheduleID(existschedule.getZid());
+                for(int y =0;y<scheduleteacherid.length;y++){
+                    String tsuuid = UUID.randomUUID().toString().replaceAll("-","");
+                    zteacher_schedule.setZid(tsuuid);
+                    zteacher_schedule.setZteacherID(scheduleteacherid[y]);
+                    //如果该教师没有课程则给该教师添加一节课否则不添加
+                    Zteacher_schedule zs = zteacher_scheduleService.findzteaschedule(existschedule.getZid(),scheduleteacherid[y]);
+                    if(null == zs){
+                        int q = zteacher_scheduleService.insert(zteacher_schedule);
+                    }
+
+                }
+                //为学生添加课程
+                for(int i=0;i<zid.length;i++){
+                    //根据学生id和上课表的ID为空时则为该位学生新建一个学生上课表
+                    String studentschedule = zstudent_scheduleService.findstudentscheduleid(existschedule.getZid(),zid[i]);
+                    System.out.println("studentschedule : "+studentschedule);
+                    int c = 0;
+                    String uuid1 = UUID.randomUUID().toString().replaceAll("-","");
+                    if(null == studentschedule){//如果上课表中没课则添加课程
+                        Zstudent_schedule zstudent_schedule = new Zstudent_schedule();
+                        zstudent_schedule.setZid(uuid1);
+                        zstudent_schedule.setZstudentID(zid[i]);
+                        zstudent_schedule.setZscheduleID(existschedule.getZid());
+                        zstudent_schedule.setZstate("未上课");
+                        c = zstudent_scheduleService.addzstudentSchedule(zstudent_schedule);
+                    }
+
+                    if(c>0){
+                        Zassign_schedule zassign_schedule = new Zassign_schedule();
+                        if(null ==studentschedule){//如果没有课程直接添加新建的上课学生表的id,否则添加查询到的id
+                            zassign_schedule.setZstudentscheduleID(uuid1);
+                        }else{
+                            zassign_schedule.setZstudentscheduleID(studentschedule);
+                        }
+                        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+                        zassign_schedule.setZpublishtime(timestamp);
+                        int m = 0;
+                        for(int v =0;v<trainingtaskID.length;v++){
+                            String uuid2 = UUID.randomUUID().toString().replaceAll("-","");
+                            zassign_schedule.setZid(uuid2);
+                            zassign_schedule.setZtrainingtaskID(trainingtaskID[v]);
+                            m =zassign_scheduleService.insertzassignzschedule(zassign_schedule);
+                        }
+                        if(m>0){
+                            return "success";
+                        }
+                    }
+
+                }
+
+                  return "新建上课表失败";
               }else {//如果实训室不同则新建一个上课表
                     zschedule.setZid(uuid);
                     zschedule.setZcourseID(courseID);

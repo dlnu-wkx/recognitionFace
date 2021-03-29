@@ -16,4 +16,9 @@ public class Zteacher_scheduleServiceImpl implements Zteacher_scheduleService {
     public int insert(Zteacher_schedule zteacher_schedule) {
         return zteacher_scheduleMapper.insert(zteacher_schedule);
     }
+
+    @Override
+    public Zteacher_schedule findzteaschedule(String zscheduleID, String zteacherID) {
+        return zteacher_scheduleMapper.findzteaschedule(zscheduleID,zteacherID);
+    }
 }

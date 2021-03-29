@@ -6,6 +6,10 @@
     <insert id="insert" parameterType="com.itboyst.facedemo.dto.Zteacher_schedule">
         insert into zteacher_schedule (zid,zscheduleID,zteacherID)
         VALUES (#{zid},#{zscheduleID},#{zteacherID})
-
     </insert>
+
+    <select id="findzteaschedule" resultType="com.itboyst.facedemo.dto.Zteacher_schedule">
+        select * from zteacher_schedule where zscheduleID = #{zscheduleID} and zteacherID = #{zteacherID}
+    </select>
+
 </mapper>

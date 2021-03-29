@@ -340,6 +340,7 @@ function savecourse() {
         url:"/addzscheduleAndzstudentscheduleAndassignschedule",
         data:{"zid":startchose,"trainingroomID":trainingroomID,"zstartdate":zstartdate,"zenddate":zenddate,"courseID":courseID,"trainingtaskID":trainingtaskID,"scheduleteacherid":scheduleteacherid},
         success:function (data) {
+            console.log(data)
         if(data=="success"){
             layer.msg("新增课程表成功", { icon: 1, offset: "auto", time:1000 });
 
@@ -407,15 +408,6 @@ function savecourse() {
                 <div>结束时间</div><input type="text" class="Wdate form-controls" style="width: 68%;height: 30px"
                                       onClick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'startDate\')}'})" readonly="readonly" id="endDate">
 
-                <div id="trainingtask">
-                    <div>实训任务</div>
-                    <select class="selectpicker" name="selectValue" multiple="true" onchange="selectStr()" id="trainingtaskselect">
-                        <option>请选择</option>
-                        <option value="1">首页</option>
-                        <option value="2">其它</option>
-                    </select>
-                </div>
-
                 <div id="scheduleteacher">
                     <div>上课教师</div>
                     <select class="selectpicker" name="selectValue" multiple="true" onchange="selectStr2()" id="scheduleteacherselect">
@@ -427,6 +419,14 @@ function savecourse() {
              <div  id="selectcourse">
                  <div>添加课程</div>
                  <select class="rightfirstson_second_first_select" name="selectValue" onchange="selectStr()" id="selectName">
+                     <option>请选择</option>
+                     <option value="1">首页</option>
+                     <option value="2">其它</option>
+                 </select>
+             </div>
+             <div id="trainingtask">
+                 <div>实训任务</div>
+                 <select class="selectpicker" name="selectValue" multiple="true" onchange="selectStr()" id="trainingtaskselect">
                      <option>请选择</option>
                      <option value="1">首页</option>
                      <option value="2">其它</option>

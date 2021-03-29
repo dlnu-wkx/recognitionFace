@@ -29,7 +29,7 @@
     <div class="layui-row ">
         <div class="layui-col-xs10" align="center" style="left: 150px">
             <div style="margin: 0,auto;margin-top:40px;height: 80px;text-align:center;line-height:40px;font-size: 40px;color: #E51C23">
-                欢迎使用安浩智学习工厂
+                欢迎使用安浩智能学习工厂
             </div>
             <#--//摄像头的位置-->
             <div id="regcoDiv"></div>

@@ -18,4 +18,6 @@ public interface ZscheduleMapper {
     String findidbycourename(String coursename,String ztrainingroomID);
 
     List<String> findallzschedule(String coursename);
+
+    Zschedule findzschedulebyzid(String zid);
 }

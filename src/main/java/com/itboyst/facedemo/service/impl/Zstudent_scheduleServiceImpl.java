@@ -55,4 +55,9 @@ public class Zstudent_scheduleServiceImpl implements Zstudent_scheduleService {
         return zstudent_scheduleMapper.deletelinshi(zscheduleID,zstudentID);
     }
 
+    @Override
+    public String findstudentscheduleid(String zscheduleID, String zstudentID) {
+        return zstudent_scheduleMapper.findstudentscheduleid(zscheduleID,zstudentID);
+    }
+
 }
